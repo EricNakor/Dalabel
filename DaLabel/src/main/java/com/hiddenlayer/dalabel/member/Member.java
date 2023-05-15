@@ -12,6 +12,10 @@ public class Member {
 	private String user_img;
 	private String user_address;
 
+	public Member() {
+		// TODO Auto-generated constructor stub
+	}
+	
 	public Member(String user_id, String user_email, String user_name, String user_pw, Date user_birth, String nickname,
 			String user_img, String user_address) {
 		super();
