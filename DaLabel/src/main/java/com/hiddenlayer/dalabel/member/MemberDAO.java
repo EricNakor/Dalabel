@@ -44,7 +44,7 @@ public class MemberDAO {
 		req.getSession().setAttribute("loginUserID", null);
 	}
 	
-	public boolean checkLoginSession(HttpServletRequest req) {
+	public boolean isLogined(HttpServletRequest req) {
 		String userid = (String)req.getSession().getAttribute("loginUserID");
 		if (userid == null) {
 			return false;
@@ -59,4 +59,5 @@ public class MemberDAO {
 			return false;
 		}
 	}
+	
 }
