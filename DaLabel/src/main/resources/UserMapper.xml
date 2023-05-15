@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hiddenlayer.dalabel.member">
+	<insert id="addAccount"
+		parameterType="com.hiddenlayer.dalabel.member.Member">
+	<![CDATA[
+		insert into conv_user values(#{user_id}, #{user_email}, #{user_name}, #{user_pw}, #{user_birth},#{user_nickname}, #{user_img}, #{user_address})
+	]]>
+	</insert>
+
+	<select id="getUserInfo"
+		parameterType="com.hiddenlayer.dalabel.member.Member"
+		resultType="com.hiddenlayer.dalabel.member.Member">
+	<![CDATA[
+		select * from conv_user where userid=#{userid}
+	]]>
+	</select>
+
+</mapper>
