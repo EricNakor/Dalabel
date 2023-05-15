@@ -28,8 +28,22 @@
 				<td><input value="${sessionScope. }" type="password"></td>
 			</tr>
 			<tr>
+				<td align="left">이름</td>
+				<td>${sessionScope. }</td>
+			</tr>
+			<tr>
 				<td align="left">생일</td>
 				<td><fmt:formatDate value="${sessionScope.}" type="date" dateStyle="long"/> </td>
+			</tr>
+			<tr>
+				<td align="left">이름</td>
+				<td>${sessionScope. }</td>
+			</tr>
+			<tr>
+				<td align="left">주소</td>
+				<td>
+					<input value>
+				</td>
 			</tr>
 			<tr>
 				<td align="left">닉네임</td>
