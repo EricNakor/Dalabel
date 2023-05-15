@@ -13,12 +13,12 @@ public class MemberController {
 	@Autowired
 	private MemberDAO mDAO;
 
-	@RequestMapping(value = "/member.login", method = RequestMethod.POST)
+	@RequestMapping(value = "/login.do", method = RequestMethod.POST)
 	public String memberLogin(Member m, HttpServletRequest req) {
 		mDAO.login(m, req);
 		mDAO.isLogined(req);
 		req.setAttribute("contentPage", "home.jsp");
-		return "index";
+		return "home";
 	}
 
 	@RequestMapping(value = "/member.logout", method = RequestMethod.GET)

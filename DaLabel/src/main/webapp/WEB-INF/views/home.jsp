@@ -10,6 +10,6 @@
 	Hello world!  
 </h1>
 
-<P>  ${serverTime}. </P>
+<P>  ${sessionScope.loginUserID}. </P>
 </body>
 </html>
