@@ -1,6 +1,7 @@
 package com.hiddenlayer.dalabel.member;
 
 import java.io.File;
+import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -10,12 +11,11 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
 @Service
 public class MemberDAO {
-	
+
 	private HashMap<String, String> sessionmap;
-	
+
 	@Autowired
 	private SqlSession ss;
 
@@ -39,14 +39,14 @@ public class MemberDAO {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void logout(HttpServletRequest req) {
-		sessionmap.remove((String)req.getSession().getAttribute("loginUserID"));
+		sessionmap.remove((String) req.getSession().getAttribute("loginUserID"));
 		req.getSession().setAttribute("loginUserID", null);
 	}
-	
+
 	public boolean isLogined(HttpServletRequest req) {
-		String userid = (String)req.getSession().getAttribute("loginUserID");
+		String userid = (String) req.getSession().getAttribute("loginUserID");
 		if (userid == null) {
 			return false;
 		}
@@ -60,14 +60,15 @@ public class MemberDAO {
 			return false;
 		}
 	}
-	
+
 	public void joinMember(HttpServletRequest req) {
-		
+
 	}
+
 	public void withdraw(HttpServletRequest req) {
 		try {
 			Member m = (Member) req.getSession().getAttribute("loginUserID");
-			if(ss.getMapper(AccountMapper.class).withdraw(m) == 1) {
+			if(ss.getMapper(AccountMapper.class).deleteMember(m) == 1) {
 				req.setAttribute("result", "탈퇴성공");
 				
 				String path = req.getSession().getServletContext().getRealPath("resources/profile");
@@ -80,5 +81,6 @@ public class MemberDAO {
 		} catch (Exception e) {
 			req.setAttribute("result", "탈퇴실패");				
 		}
+	}
 	
 }
