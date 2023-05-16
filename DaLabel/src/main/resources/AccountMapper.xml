@@ -15,5 +15,14 @@
 		select * from member where user_id=#{user_id}
 	]]>
 	</select>
+	
+	<update id="changeMember"
+		parameterType="com.hiddenlayer.dalabel.member.Member">
+	<![CDATA[
+		update member 
+		set user_email=#{user_email}, user_name=#{user_name},user_pw=#{user_pw}, user_birth=#{user_birth}, user_nickname=#{user_nickname},user_img=#{user_img}, user_address=#{user_address}
+		where user_id=#{user_id}
+	]]>
+	</update>
 
 </mapper>
