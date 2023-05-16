@@ -8,25 +8,41 @@ public class Member {
 	private String user_name;
 	private String user_pw;
 	private Date user_birth;
-	private String nickname;
 	private String user_img;
-	private String user_address;
+	private int user_isdeleted;
+	private Date user_deleted_date;
 
 	public Member() {
 		// TODO Auto-generated constructor stub
 	}
-	
-	public Member(String user_id, String user_email, String user_name, String user_pw, Date user_birth, String nickname,
-			String user_img, String user_address) {
+
+	public int getUser_isdeleted() {
+		return user_isdeleted;
+	}
+
+	public void setUser_isdeleted(int user_isdeleted) {
+		this.user_isdeleted = user_isdeleted;
+	}
+
+	public Date getUser_deleted_date() {
+		return user_deleted_date;
+	}
+
+	public void setUser_deleted_date(Date user_deleted_date) {
+		this.user_deleted_date = user_deleted_date;
+	}
+
+	public Member(String user_id, String user_email, String user_name, String user_pw, Date user_birth, String user_img,
+			int user_isdeleted, Date user_deleted_date) {
 		super();
 		this.user_id = user_id;
 		this.user_email = user_email;
 		this.user_name = user_name;
 		this.user_pw = user_pw;
 		this.user_birth = user_birth;
-		this.nickname = nickname;
 		this.user_img = user_img;
-		this.user_address = user_address;
+		this.user_isdeleted = user_isdeleted;
+		this.user_deleted_date = user_deleted_date;
 	}
 
 	public String getUser_id() {
@@ -69,28 +85,12 @@ public class Member {
 		this.user_birth = user_birth;
 	}
 
-	public String getNickname() {
-		return nickname;
-	}
-
-	public void setNickname(String nickname) {
-		this.nickname = nickname;
-	}
-
 	public String getUser_img() {
 		return user_img;
 	}
 
 	public void setUser_img(String user_img) {
 		this.user_img = user_img;
-	}
-
-	public String getUser_address() {
-		return user_address;
-	}
-
-	public void setUser_address(String user_address) {
-		this.user_address = user_address;
 	}
 
 }
