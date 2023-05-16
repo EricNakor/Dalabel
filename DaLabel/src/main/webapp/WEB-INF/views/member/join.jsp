@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="joinMember.do">
+	<form action="member.join.do">
 		<table id="joinTable">
 			<tr>
 				<th colspan="2">회원가입</th>
@@ -33,12 +33,11 @@
 			<tr>
 				<td class="td1" align="right">이메일</td>
 				<td align="center"><input> @ <input></td>
-				<td><button>인증번호 받기</button></td>
 			</tr>
 			<tr>
 				<td class="td1" align="right">생일</td>
 				<td colspan="2" align="center"><select name="y">
-						<c:forEach var="y" begin="${curYear - 100 }" end="${curYear }">
+						<c:forEach var="y" begin="1923" end="2023">
 							<option>${y }</option>
 						</c:forEach>
 				</select>년&nbsp;&nbsp; <select name="m">
@@ -60,12 +59,9 @@
 					placeholder="상세주소"><br></td>
 			</tr>
 			<tr>
-				<td class="td1" align="right">프사</td>
-				<td colspan="2" align="center"><input type="file" name="m_photo"></td>
-			</tr>
-			<tr>
 				<td colspan="3" align="center">
 					<button>가입</button>
+					<button>취소</button>
 				</td>
 			</tr>
 		</table>
