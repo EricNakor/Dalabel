@@ -64,6 +64,21 @@ public class MemberDAO {
 	public void joinMember(HttpServletRequest req) {
 
 	}
+	
+	public void update(Member m, HttpServletRequest req) {
+		String userid = (String) req.getSession().getAttribute("loginUserID");
+		m.setUser_id(userid);
+		m.setUser_email(req.getParameter("user_email"));
+		m.setUser_name(req.getParameter("user_name"));
+		m.setUser_pw(req.getParameter("user_pw"));
+		
+		
+		if (ss.getMapper(AccountMapper.class).changeMember(m) == 1) {
+			ArrayList<Member> member = ss.getMapper(AccountMapper.class).getUserinfo(m);
+			Member user = member.get(0);
+			req.getSession().setAttribute("logoinUserID", user);
+		} 
+	}
 
 	public void withdraw(HttpServletRequest req) {
 		try {
