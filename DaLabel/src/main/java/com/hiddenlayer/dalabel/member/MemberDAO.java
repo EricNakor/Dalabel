@@ -64,6 +64,26 @@ public class MemberDAO {
 	public void joinMember(HttpServletRequest req) {
 		
 	}
+	
+	public void update(Member m, HttpServletRequest req) {
+		Member userid = (Member) req.getSession().getAttribute("loginUserID");
+		m.setUser_id(userid.getUser_id());
+		m.setUser_email(req.getParameter("user_email"));
+		m.setUser_name(req.getParameter("user_name"));
+		m.setUser_pw(req.getParameter("user_pw"));
+		
+		
+		
+		if (ss.getMapper(AccountMapper.class).changeMember(m) == 1) {
+			req.setAttribute("updateResult", "수정성공");
+			ArrayList<Member> member = ss.getMapper(AccountMapper.class).getUserinfo(m);
+			Member user = member.get(0);
+			req.getSession().setAttribute("logoinUserID", user);
+		} else {
+			req.setAttribute("updateResult", "수정실패");
+		}
+	}
+	
 	public void withdraw(HttpServletRequest req) {
 		try {
 			Member m = (Member) req.getSession().getAttribute("loginUserID");
