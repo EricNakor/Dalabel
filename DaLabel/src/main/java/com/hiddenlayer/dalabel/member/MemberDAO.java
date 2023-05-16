@@ -59,7 +59,8 @@ public class MemberDAO {
 			return false;
 		}
 	}
-
+	
+	// 23_05_16 성훈이가 맡음 ↓
 	public void joinMember(Member m, HttpServletRequest req) {
 		// user_birth는 받아서 넣어야 함 year + month + day
 		// user_address도 마찬가지 address1 + address2 + address3 -> 우편번호 + 주소 + 상세주소

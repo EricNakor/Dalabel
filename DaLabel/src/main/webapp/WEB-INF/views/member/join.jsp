@@ -69,7 +69,7 @@
 			</tr>
 			<tr>
 				<td colspan="3" align="center">
-					<button>가입</button>
+					<button>가입</button> 
 				</td>
 			</tr>
 		</table>
