@@ -1,5 +1,6 @@
 package com.hiddenlayer.dalabel.member;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -9,12 +10,11 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
 @Service
 public class MemberDAO {
-	
+
 	private HashMap<String, String> sessionmap;
-	
+
 	@Autowired
 	private SqlSession ss;
 
@@ -38,14 +38,14 @@ public class MemberDAO {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void logout(HttpServletRequest req) {
-		sessionmap.remove((String)req.getSession().getAttribute("loginUserID"));
+		sessionmap.remove((String) req.getSession().getAttribute("loginUserID"));
 		req.getSession().setAttribute("loginUserID", null);
 	}
-	
+
 	public boolean isLogined(HttpServletRequest req) {
-		String userid = (String)req.getSession().getAttribute("loginUserID");
+		String userid = (String) req.getSession().getAttribute("loginUserID");
 		if (userid == null) {
 			return false;
 		}
@@ -59,9 +59,19 @@ public class MemberDAO {
 			return false;
 		}
 	}
-	
-	public void joinMember(HttpServletRequest req) {
-		
+
+	public void joinMember(Member m, HttpServletRequest req) {
+		// user_birth는 받아서 넣어야 함 year + month + day
+		// user_address도 마찬가지 address1 + address2 + address3 -> 우편번호 + 주소 + 상세주소
+		try {
+			m.setUser_birth(new SimpleDateFormat("yyyyMMdd")
+					.parse(req.getParameter("year") + req.getParameter("month") + req.getParameter("day")));
+			m.setUser_address(String.format("%s!%s!%s",
+					req.getParameter("address1") + req.getParameter("address2") + req.getParameter("address3")));
+			ss.getMapper(AccountMapper.class).addMember(m);
+		} catch (Exception e) {
+			e.printStackTrace();
+			req.setAttribute("result", "가입 실패");
+		}
 	}
-	
 }
