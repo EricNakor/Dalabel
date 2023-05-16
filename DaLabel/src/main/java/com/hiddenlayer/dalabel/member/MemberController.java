@@ -28,4 +28,11 @@ public class MemberController {
 		req.setAttribute("contentPage", "home.jsp");
 		return "index";
 	}
+	
+	@RequestMapping(value = "/memberJoin.go", method = RequestMethod.GET)
+	public String memberJoin(HttpServletRequest req) {
+		mDAO.isLogined(req);
+		req.setAttribute("contentPage", "home.jsp");
+		return "join";
+	}
 }
