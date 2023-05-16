@@ -60,4 +60,8 @@ public class MemberDAO {
 		}
 	}
 	
+	public void joinMember(HttpServletRequest req) {
+		
+	}
+	
 }
