@@ -30,11 +30,11 @@ public class HomeController {
 	
 	@RequestMapping(value = "/goLabelling", method = RequestMethod.GET)
 	public String goLabelling(HttpServletRequest req, HttpServletResponse res) {
-		return "Labelling/goLabelling";
+		return "labelling/goLabelling";
 	}
 	
 	@RequestMapping(value = "/doLabelling", method = RequestMethod.GET)
 	public String doLabelling(HttpServletRequest req, HttpServletResponse res) {
-		return "Labelling/doLabelling";
+		return "labelling/doLabelling";
 	}
 }
