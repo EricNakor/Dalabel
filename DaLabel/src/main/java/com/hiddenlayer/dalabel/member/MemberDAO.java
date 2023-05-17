@@ -80,7 +80,7 @@ public class MemberDAO {
 		} 
 	}
 
-	public void withdraw(HttpServletRequest req) {
+	public void deleteMember(HttpServletRequest req) {
 		try {
 			Member m = (Member) req.getSession().getAttribute("loginUserID");
 			if(ss.getMapper(AccountMapper.class).deleteMember(m) == 1) {
