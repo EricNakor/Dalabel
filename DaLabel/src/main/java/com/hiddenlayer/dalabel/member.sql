@@ -1,6 +1,6 @@
 create table member (
 	user_id varchar2(15 char) primary key,
-	user_email varchar2(15 char),
+	user_email varchar2(35 char),
 	user_name varchar2(20 char) not null,
 	user_pw varchar2(15 char) not null,
 	user_birth date not null,
@@ -10,3 +10,4 @@ create table member (
 )
 
 select * from member
+
