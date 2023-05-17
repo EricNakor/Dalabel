@@ -24,9 +24,6 @@ public class FileUpload {
 			String fileName = mr.getParameter("fileName");
 			return fileName;
 		} catch (Exception e) {
-			// 네트워크 문제로 실패하면 올리던 파일 삭제
-			File f = new File(path + "/" + mr.getParameter("fileName"));
-			f.delete();
 			return null;
 		}
 	}
@@ -47,9 +44,6 @@ public class FileUpload {
 			String fileName = mr.getParameter("fileName");
 			return fileName;
 		} catch (Exception e) {
-			// 네트워크 문제로 실패하면 올리던 파일 삭제
-			File f = new File(path + "/" + mr.getParameter("fileName"));
-			f.delete();
 			return null;
 		}
 	}
