@@ -77,17 +77,19 @@ public class MemberDAO {
 		}
 	}
 
+	// 23-05-17 미주님꺼 성훈이가 바통받아서 수정
 	public void update(Member m, HttpServletRequest req) {
-		String userid = (String) req.getSession().getAttribute("loginUserID");
-		m.setUser_id(userid);
-		m.setUser_email(req.getParameter("user_email"));
-		m.setUser_name(req.getParameter("user_name"));
-		m.setUser_pw(req.getParameter("user_pw"));
-
-		if (ss.getMapper(AccountMapper.class).changeMember(m) == 1) {
-			ArrayList<Member> member = ss.getMapper(AccountMapper.class).getUserinfo(m);
-			Member user = member.get(0);
-			req.getSession().setAttribute("logoinUserID", user);
+		// 컨트롤러에서 세션 검사 + PW 입력받아서 확인 후, 유효하면 수정페이지로 -> 거기서 수정하기 누르면 최종 수정됨
+		// 이 Method는 최종 수정단계를 구현함
+		try {
+			m.setUser_id((String) req.getSession().getAttribute("loginUserID"));
+			m.setUser_email(req.getParameter("user_email"));
+			m.setUser_name(req.getParameter("user_name"));
+			m.setUser_pw(req.getParameter("user_pw"));
+			ss.getMapper(AccountMapper.class).changeMember(m);
+		} catch (Exception e) {
+			// 수정 성공 띄워주는 게 나을지? 상의된 바가 없어서 비워 둠
+			return;
 		}
 	}
 
