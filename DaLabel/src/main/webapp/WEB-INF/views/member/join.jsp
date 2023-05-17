@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,6 +15,7 @@
 			</tr>
 			<tr>
 				<td class="td1" align="right">아이디</td>
+
 				<td align="center"><input name="user_id">
 				<button>중복확인</button></td>
 			</tr>
@@ -48,7 +49,7 @@
 			</tr>
 			<tr>
 				<td colspan="2" align="center">
-					<button>가입</button>
+          <button>가입</button>
 				</td>
 			</tr>
 		</table>

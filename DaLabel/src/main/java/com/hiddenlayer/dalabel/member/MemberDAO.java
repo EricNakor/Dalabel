@@ -1,3 +1,4 @@
+
 package com.hiddenlayer.dalabel.member;
 
 import java.io.File;
@@ -107,3 +108,4 @@ public class MemberDAO {
 	}
 
 }
+
