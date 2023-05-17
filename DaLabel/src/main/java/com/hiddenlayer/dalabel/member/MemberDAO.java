@@ -88,7 +88,6 @@ public class MemberDAO {
 	}
 	
 	public void update(Member m, HttpServletRequest req) {
-		
 		String userid = (String) req.getSession().getAttribute("loginUserID");
 		m.setUser_id(userid);
 		m.setUser_email(req.getParameter("user_email"));
