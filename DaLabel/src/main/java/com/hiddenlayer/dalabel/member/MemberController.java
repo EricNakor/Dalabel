@@ -13,6 +13,13 @@ public class MemberController {
 	@Autowired
 	private MemberDAO mDAO;
 
+	@RequestMapping(value = "/login.go", method = RequestMethod.GET)
+	public String goLogin(Member m, HttpServletRequest req) {
+		mDAO.isLogined(req);
+		req.setAttribute("contentPage", "home.jsp");
+		return "member/login";
+	}
+	
 	@RequestMapping(value = "/login.do", method = RequestMethod.POST)
 	public String memberLogin(Member m, HttpServletRequest req) {
 		mDAO.login(m, req);
@@ -26,13 +33,28 @@ public class MemberController {
 		mDAO.logout(req);
 		mDAO.isLogined(req);
 		req.setAttribute("contentPage", "home.jsp");
-		return "index";
+		return "home";
 	}
 	
-	@RequestMapping(value = "/memberJoin.go", method = RequestMethod.GET)
+	@RequestMapping(value = "/member.join.go", method = RequestMethod.GET)
 	public String memberJoin(HttpServletRequest req) {
 		mDAO.isLogined(req);
 		req.setAttribute("contentPage", "home.jsp");
-		return "join";
+		return "member/join";
+	}
+	
+	@RequestMapping(value = "/member.join.do", method = RequestMethod.POST)
+	public String memberJoin(Member m, HttpServletRequest req) {
+		mDAO.isLogined(req);
+		mDAO.joinMember(m, req);
+		req.setAttribute("contentPage", "home.jsp");
+		return "home";
+	}
+	@RequestMapping(value = "/member.delete", method = RequestMethod.POST)
+	public String memberDelete(Member m, HttpServletRequest req) {
+		mDAO.isLogined(req);
+		mDAO.deleteMember(m, req);
+		req.setAttribute("contentPage", "home.jsp");
+		return "home";
 	}
 }

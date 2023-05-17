@@ -1,6 +1,9 @@
+
 package com.hiddenlayer.dalabel.member;
 
 import java.io.File;
+import java.net.URLDecoder;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -10,12 +13,11 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
 @Service
 public class MemberDAO {
-	
+
 	private HashMap<String, String> sessionmap;
-	
+
 	@Autowired
 	private SqlSession ss;
 
@@ -39,14 +41,14 @@ public class MemberDAO {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void logout(HttpServletRequest req) {
-		sessionmap.remove((String)req.getSession().getAttribute("loginUserID"));
+		sessionmap.remove((String) req.getSession().getAttribute("loginUserID"));
 		req.getSession().setAttribute("loginUserID", null);
 	}
-	
+
 	public boolean isLogined(HttpServletRequest req) {
-		String userid = (String)req.getSession().getAttribute("loginUserID");
+		String userid = (String) req.getSession().getAttribute("loginUserID");
 		if (userid == null) {
 			return false;
 		}
@@ -61,44 +63,45 @@ public class MemberDAO {
 		}
 	}
 	
-	public void joinMember(HttpServletRequest req) {
-		
+	public void joinMember(Member m, HttpServletRequest req) {
+		// user_birth는 받아서 넣어야 함 year + month + day
+		try {
+			String year = req.getParameter("year");
+			int month = Integer.parseInt(req.getParameter("month"));
+			int day = Integer.parseInt(req.getParameter("day"));
+			String birth = String.format("%s%02d%02d", year, month, day);
+			m.setUser_birth(new SimpleDateFormat("yyyyMMdd")
+					.parse(birth));
+			ss.getMapper(AccountMapper.class).addMember(m);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
-	
+
 	public void update(Member m, HttpServletRequest req) {
-		Member userid = (Member) req.getSession().getAttribute("loginUserID");
-		m.setUser_id(userid.getUser_id());
+		String userid = (String) req.getSession().getAttribute("loginUserID");
+		m.setUser_id(userid);
 		m.setUser_email(req.getParameter("user_email"));
 		m.setUser_name(req.getParameter("user_name"));
 		m.setUser_pw(req.getParameter("user_pw"));
-		
-		
-		
+
 		if (ss.getMapper(AccountMapper.class).changeMember(m) == 1) {
-			req.setAttribute("updateResult", "수정성공");
 			ArrayList<Member> member = ss.getMapper(AccountMapper.class).getUserinfo(m);
 			Member user = member.get(0);
 			req.getSession().setAttribute("logoinUserID", user);
-		} else {
-			req.setAttribute("updateResult", "수정실패");
 		}
 	}
-	
-	public void withdraw(HttpServletRequest req) {
+
+	public void deleteMember(Member m, HttpServletRequest req) {
 		try {
-			Member m = (Member) req.getSession().getAttribute("loginUserID");
-			if(ss.getMapper(AccountMapper.class).withdraw(m) == 1) {
-				req.setAttribute("result", "탈퇴성공");
+			m.setUser_id((String) req.getSession().getAttribute("loginUserID"));
+			if (ss.getMapper(AccountMapper.class).deleteMember(m) == 1) {
 				
-				String path = req.getSession().getServletContext().getRealPath("resources/profile");
-				String file = URLDecoder.decode(m.getUser_img(), "utf-8");
-				new File(path + "/" + file).delete();
-				
-			} else {
-				req.setAttribute("result", "탈퇴실패");				
-			}			
+			}
 		} catch (Exception e) {
-			req.setAttribute("result", "탈퇴실패");				
+			e.printStackTrace();
 		}
-	
+	}
+
 }
+
