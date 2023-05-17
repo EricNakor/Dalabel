@@ -1,5 +1,8 @@
+
 package com.hiddenlayer.dalabel.member;
 
+import java.io.File;
+import java.net.URLDecoder;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -60,19 +63,49 @@ public class MemberDAO {
 		}
 	}
 	
-	// 23_05_16 성훈이가 맡음 ↓
 	public void joinMember(Member m, HttpServletRequest req) {
 		// user_birth는 받아서 넣어야 함 year + month + day
-		// user_address도 마찬가지 address1 + address2 + address3 -> 우편번호 + 주소 + 상세주소
 		try {
+			String year = req.getParameter("year");
+			int month = Integer.parseInt(req.getParameter("month"));
+			int day = Integer.parseInt(req.getParameter("day"));
+			String birth = String.format("%s%02d%02d", year, month, day);
 			m.setUser_birth(new SimpleDateFormat("yyyyMMdd")
-					.parse(req.getParameter("year") + req.getParameter("month") + req.getParameter("day")));
-			m.setUser_address(String.format("%s!%s!%s",
-					req.getParameter("address1") + req.getParameter("address2") + req.getParameter("address3")));
+					.parse(birth));
 			ss.getMapper(AccountMapper.class).addMember(m);
 		} catch (Exception e) {
 			e.printStackTrace();
-			req.setAttribute("result", "가입 실패");
 		}
 	}
+
+	public void update(Member m, HttpServletRequest req) {
+		String userid = (String) req.getSession().getAttribute("loginUserID");
+		m.setUser_id(userid);
+		m.setUser_email(req.getParameter("user_email"));
+		m.setUser_name(req.getParameter("user_name"));
+		m.setUser_pw(req.getParameter("user_pw"));
+
+		if (ss.getMapper(AccountMapper.class).changeMember(m) == 1) {
+			ArrayList<Member> member = ss.getMapper(AccountMapper.class).getUserinfo(m);
+			Member user = member.get(0);
+			req.getSession().setAttribute("logoinUserID", user);
+		}
+	}
+
+	public void deleteMember(HttpServletRequest req) {
+		try {
+			Member m = (Member) req.getSession().getAttribute("loginUserID");
+			if (ss.getMapper(AccountMapper.class).deleteMember(m) == 1) {
+
+				String path = req.getSession().getServletContext().getRealPath("resources/profile");
+				String file = URLDecoder.decode(m.getUser_img(), "utf-8");
+				new File(path + "/" + file).delete();
+
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
 }
+

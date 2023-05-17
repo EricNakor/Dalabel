@@ -2,9 +2,6 @@ package com.hiddenlayer.dalabel;
 
 import java.util.Locale;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,16 +22,7 @@ public class HomeController {
 
 		model.addAttribute("serverTime", "Hello world! 한글테스트" );
 		
-		return "login";
+		return "home";
 	}
 	
-	@RequestMapping(value = "/goLabelling", method = RequestMethod.GET)
-	public String goLabelling(HttpServletRequest req, HttpServletResponse res) {
-		return "labelling/goLabelling";
-	}
-	
-	@RequestMapping(value = "/doLabelling", method = RequestMethod.GET)
-	public String doLabelling(HttpServletRequest req, HttpServletResponse res) {
-		return "labelling/doLabelling";
-	}
 }
