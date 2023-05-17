@@ -17,11 +17,11 @@
 			</tr>
 			<tr>
 				<td align="left">이메일</td>
-				<td>${memberInfo.user_email }</td>
+				<td><input value="${memberInfo.user_email }" readonly="readonly"></td>
 			</tr>
 			<tr>
 				<td align="left">이름</td>
-				<td>${memberInfo.user_name }</td>
+				<td><input value="${memberInfo.user_name }" readonly="readonly"></td>
 			</tr>
 			<tr>
 				<td align="left">비밀번호</td>
@@ -37,7 +37,7 @@
 			</tr>
 			<tr>
 				<td align="left">프로필 사진</td>
-				<td><img src="resources/profile/${memberInfo.user_img }"></td>
+				<td><img src="resources/image/profile/${memberInfo.user_img }"></td>
 			</tr>
 			<tr>
 				<td align="center" colspan="2">
