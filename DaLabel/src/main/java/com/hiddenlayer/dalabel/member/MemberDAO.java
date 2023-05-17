@@ -33,6 +33,8 @@ public class MemberDAO {
 			if (user != null) {
 				if (user.getUser_pw().equals(m.getUser_pw())) {
 					req.getSession().setAttribute("loginUserID", user.getUser_id());
+					req.getSession().setAttribute("loginUserIMG",
+							(user.getUser_img() != null) ? user.getUser_img() : "defaultprofile.jpg");
 					req.setAttribute("loginResult", "로그인 성공");
 					sessionmap.put(user.getUser_id(), req.getSession().getId());
 				}
@@ -44,15 +46,13 @@ public class MemberDAO {
 
 	public void logout(HttpServletRequest req) {
 		sessionmap.remove((String) req.getSession().getAttribute("loginUserID"));
-		req.getSession().setAttribute("loginUserID", null);
+		req.getSession().removeAttribute("loginUserID");
+		req.getSession().removeAttribute("loginUserIMG");
 	}
 
 	public boolean isLogined(HttpServletRequest req) {
 		String userid = (String) req.getSession().getAttribute("loginUserID");
-		if (userid == null) {
-			return false;
-		}
-		if (sessionmap.get(userid) == null) {
+		if (userid == null || sessionmap.get(userid) == null) {
 			return false;
 		}
 		if (req.getSession().getId().equals(sessionmap.get(userid))) {
@@ -62,7 +62,7 @@ public class MemberDAO {
 			return false;
 		}
 	}
-	
+
 	public void joinMember(Member m, HttpServletRequest req) {
 		// user_birth는 받아서 넣어야 함 year + month + day
 		try {
@@ -70,8 +70,7 @@ public class MemberDAO {
 			int month = Integer.parseInt(req.getParameter("month"));
 			int day = Integer.parseInt(req.getParameter("day"));
 			String birth = String.format("%s%02d%02d", year, month, day);
-			m.setUser_birth(new SimpleDateFormat("yyyyMMdd")
-					.parse(birth));
+			m.setUser_birth(new SimpleDateFormat("yyyyMMdd").parse(birth));
 			ss.getMapper(AccountMapper.class).addMember(m);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -93,19 +92,24 @@ public class MemberDAO {
 	}
 
 	public void deleteMember(HttpServletRequest req) {
-		try {
-			Member m = (Member) req.getSession().getAttribute("loginUserID");
-			if (ss.getMapper(AccountMapper.class).deleteMember(m) == 1) {
-
-				String path = req.getSession().getServletContext().getRealPath("resources/profile");
-				String file = URLDecoder.decode(m.getUser_img(), "utf-8");
-				new File(path + "/" + file).delete();
-
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
+		Member m = new Member();
+		m.setUser_id((String) req.getSession().getAttribute("loginUserID"));
+		if (ss.getMapper(AccountMapper.class).deleteMember(m) == 1) {
+			logout(req);
 		}
 	}
 
-}
+	public void updateProfile(HttpServletRequest req, String fileName) {
+		String userID = (String) req.getSession().getAttribute("loginUserID");
+		String userIMG = (String) req.getSession().getAttribute("loginUserIMG");
+		if (!userIMG.equals("defaultprofile.jpg")) {
+			new File("resources/imgs/" + userIMG).delete();
+		}
+		req.getSession().setAttribute("loginUserIMG", fileName);
+		Member m = new Member();
+		m.setUser_id(userID);
+		m.setUser_img(fileName);
+		ss.getMapper(AccountMapper.class).changeMemberIMG(m);
+	}
 
+}
