@@ -20,7 +20,7 @@ public class MemberController {
 		req.setAttribute("contentPage", "home.jsp");
 		return "member/login";
 	}
-	
+
 	@RequestMapping(value = "/login.do", method = RequestMethod.POST)
 	public String memberLogin(Member m, HttpServletRequest req) {
 		mDAO.login(m, req);
@@ -36,25 +36,31 @@ public class MemberController {
 		req.setAttribute("contentPage", "home.jsp");
 		return "home";
 	}
-	
+
 	@RequestMapping(value = "/member.join.go", method = RequestMethod.GET)
 	public String goJoin(HttpServletRequest req) {
 		req.setAttribute("contentPage", "home.jsp");
 		return "member/join";
 	}
-	
+
 	@RequestMapping(value = "/member.join.do", method = RequestMethod.POST)
 	public String memberJoin(Member m, HttpServletRequest req) {
 		mDAO.joinMember(m, req);
 		req.setAttribute("contentPage", "home.jsp");
 		return "home";
 	}
-  
-  @RequestMapping(value = "/member.delete", method = RequestMethod.POST)
+
+	@RequestMapping(value = "/member.delete", method = RequestMethod.POST)
 	public String memberDelete(Member m, HttpServletRequest req) {
 		mDAO.isLogined(req);
 		mDAO.deleteMember(req);
 		req.setAttribute("contentPage", "home.jsp");
 		return "home";
+	}
+
+	@RequestMapping(value = "/member.info", method = RequestMethod.GET)
+	public String memberInfo(HttpServletRequest req) {
+		mDAO.info(req);
+		return "member/info";
 	}
 }
