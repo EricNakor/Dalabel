@@ -53,7 +53,7 @@ public class MemberController {
   @RequestMapping(value = "/member.delete", method = RequestMethod.POST)
 	public String memberDelete(Member m, HttpServletRequest req) {
 		mDAO.isLogined(req);
-		mDAO.deleteMember(m, req);
+		mDAO.deleteMember(req);
 		req.setAttribute("contentPage", "home.jsp");
 		return "home";
 	}
