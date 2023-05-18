@@ -77,7 +77,16 @@ public class MemberDAO {
 		}
 	}
 
-	// 23-05-17 미주님꺼 성훈이가 바통받아서 수정
+	public void info(Member m, HttpServletRequest req) {
+		try {
+			m.setUser_id((String)req.getSession().getAttribute("loginUserID"));
+			ArrayList<Member> userinfo = ss.getMapper(AccountMapper.class).getUserinfo(m);
+			m = userinfo.get(0);
+			req.setAttribute("memberInfo", m);
+		} catch (Exception e) {
+		}
+	}
+
 	public void update(Member m, HttpServletRequest req) {
 		// 컨트롤러에서 세션 검사 + PW 입력받아서 확인 후, 유효하면 수정페이지로 -> 거기서 수정하기 누르면 최종 수정됨
 		// 이 Method는 최종 수정단계를 구현함
@@ -106,12 +115,6 @@ public class MemberDAO {
 		String userIMG = (String) req.getSession().getAttribute("loginUserIMG");
 		if (!userIMG.equals("defaultprofile.jpg")) {
 			new File("resources/imgs/" + userIMG).delete();
-		}
-		req.getSession().setAttribute("loginUserIMG", fileName);
-		Member m = new Member();
-		m.setUser_id(userID);
-		m.setUser_img(fileName);
-		ss.getMapper(AccountMapper.class).changeMemberIMG(m);
-	}
+
 
 }

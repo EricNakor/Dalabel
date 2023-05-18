@@ -13,46 +13,31 @@
 			<th>회원정보</th>
 			<tr>
 				<td align="left">아이디</td>
-				<td>${sessionScope. }</td>
+				<td>${memberInfo.user_id }</td>
 			</tr>
 			<tr>
 				<td align="left">이메일</td>
-				<td><input value="${sessionScope. }"></td>
+				<td><input value="${memberInfo.user_email }" readonly="readonly"></td>
+			</tr>
+			<tr>
+				<td align="left">이름</td>
+				<td><input value="${memberInfo.user_name }" readonly="readonly"></td>
 			</tr>
 			<tr>
 				<td align="left">비밀번호</td>
-				<td><input value="${sessionScope. }" type="password"></td>
+				<td><input value="${memberInfo.user_pw }" type="password" readonly="readonly"></td>
 			</tr>
 			<tr>
 				<td align="left">비밀번호 확인</td>
-				<td><input value="${sessionScope. }" type="password"></td>
-			</tr>
-			<tr>
-				<td align="left">이름</td>
-				<td>${sessionScope. }</td>
+				<td><input value="${memberInfo.user_pw }" type="password" readonly="readonly"></td>
 			</tr>
 			<tr>
 				<td align="left">생일</td>
-				<td><fmt:formatDate value="${sessionScope.}" type="date" dateStyle="long"/> </td>
-			</tr>
-			<tr>
-				<td align="left">이름</td>
-				<td>${sessionScope. }</td>
-			</tr>
-			<tr>
-				<td align="left">주소</td>
-				<td>
-					<input value>
-				</td>
-			</tr>
-			<tr>
-				<td align="left">닉네임</td>
-				<td><input value="${sessionScope. }"></td>
+				<td><fmt:formatDate value="${memberInfo.user_birth }" type="date" dateStyle="long"/> </td>
 			</tr>
 			<tr>
 				<td align="left">프로필 사진</td>
-				<img src="img/${sessionScope. }">
-				<td><input type="file"></td>
+				<td><img src="resources/image/profile/${memberInfo.user_img }"></td>
 			</tr>
 			<tr>
 				<td align="center" colspan="2">
