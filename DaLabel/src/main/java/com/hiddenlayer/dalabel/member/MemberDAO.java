@@ -92,15 +92,10 @@ public class MemberDAO {
 		}
 	}
 
-	public void deleteMember(HttpServletRequest req) {
+	public void deleteMember(Member m, HttpServletRequest req) {
 		try {
-			Member m = (Member) req.getSession().getAttribute("loginUserID");
+			m.setUser_id((String) req.getSession().getAttribute("loginUserID"));
 			if (ss.getMapper(AccountMapper.class).deleteMember(m) == 1) {
-
-				String path = req.getSession().getServletContext().getRealPath("resources/profile");
-				String file = URLDecoder.decode(m.getUser_img(), "utf-8");
-				new File(path + "/" + file).delete();
-
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
