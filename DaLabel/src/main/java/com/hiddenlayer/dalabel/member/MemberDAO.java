@@ -96,7 +96,6 @@ public class MemberDAO {
 		try {
 			m.setUser_id((String) req.getSession().getAttribute("loginUserID"));
 			if (ss.getMapper(AccountMapper.class).deleteMember(m) == 1) {
-				
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -1,3 +1,4 @@
+
 package com.hiddenlayer.dalabel.member;
 
 import javax.servlet.http.HttpServletRequest;
@@ -30,27 +31,26 @@ public class MemberController {
 
 	@RequestMapping(value = "/member.logout", method = RequestMethod.GET)
 	public String memberLogout(HttpServletRequest req) {
-		mDAO.logout(req);
 		mDAO.isLogined(req);
+		mDAO.logout(req);
 		req.setAttribute("contentPage", "home.jsp");
 		return "home";
 	}
 	
 	@RequestMapping(value = "/member.join.go", method = RequestMethod.GET)
-	public String memberJoin(HttpServletRequest req) {
-		mDAO.isLogined(req);
+	public String goJoin(HttpServletRequest req) {
 		req.setAttribute("contentPage", "home.jsp");
 		return "member/join";
 	}
 	
 	@RequestMapping(value = "/member.join.do", method = RequestMethod.POST)
 	public String memberJoin(Member m, HttpServletRequest req) {
-		mDAO.isLogined(req);
 		mDAO.joinMember(m, req);
 		req.setAttribute("contentPage", "home.jsp");
 		return "home";
 	}
-	@RequestMapping(value = "/member.delete", method = RequestMethod.POST)
+  
+  @RequestMapping(value = "/member.delete", method = RequestMethod.POST)
 	public String memberDelete(Member m, HttpServletRequest req) {
 		mDAO.isLogined(req);
 		mDAO.deleteMember(m, req);
