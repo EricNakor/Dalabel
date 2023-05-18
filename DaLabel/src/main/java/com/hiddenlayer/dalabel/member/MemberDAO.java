@@ -78,6 +78,16 @@ public class MemberDAO {
 		}
 	}
 
+	public void info(Member m, HttpServletRequest req) {
+		try {
+			m.setUser_id((String)req.getSession().getAttribute("loginUserID"));
+			ArrayList<Member> userinfo = ss.getMapper(AccountMapper.class).getUserinfo(m);
+			m = userinfo.get(0);
+			req.setAttribute("memberInfo", m);
+		} catch (Exception e) {
+		}
+	}
+	
 	public void update(Member m, HttpServletRequest req) {
 		String userid = (String) req.getSession().getAttribute("loginUserID");
 		m.setUser_id(userid);
