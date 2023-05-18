@@ -2,7 +2,6 @@
 package com.hiddenlayer.dalabel.member;
 
 import java.io.File;
-import java.net.URLDecoder;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -20,6 +19,7 @@ public class MemberDAO {
 
 	@Autowired
 	private SqlSession ss;
+
 
 	public MemberDAO() {
 		super();
@@ -77,7 +77,7 @@ public class MemberDAO {
 		}
 	}
 
-	public void info( HttpServletRequest req) {
+	public void info(HttpServletRequest req) {
 		try {
 			Member m = new Member();
 			m.setUser_id((String) req.getSession().getAttribute("loginUserID"));
@@ -117,5 +117,10 @@ public class MemberDAO {
 		if (!userIMG.equals("defaultprofile.jpg")) {
 			new File("resources/imgs/" + userIMG).delete();
 		}
+		req.getSession().setAttribute("loginUserIMG", fileName);
+		Member m = new Member();
+		m.setUser_id(userID);
+		m.setUser_img(fileName);
+		ss.getMapper(AccountMapper.class).changeMemberIMG(m);
 	}
 }

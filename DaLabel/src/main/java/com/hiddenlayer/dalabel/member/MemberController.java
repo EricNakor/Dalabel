@@ -8,12 +8,17 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.hiddenlayer.dalabel.fileupload.FileUpload;
+
 @Controller
 public class MemberController {
 
 	@Autowired
 	private MemberDAO mDAO;
 
+	@Autowired
+	private FileUpload fu;
+	
 	@RequestMapping(value = "/login.go", method = RequestMethod.GET)
 	public String goLogin(Member m, HttpServletRequest req) {
 		mDAO.isLogined(req);
@@ -61,6 +66,20 @@ public class MemberController {
 	@RequestMapping(value = "/member.info", method = RequestMethod.GET)
 	public String memberInfo(HttpServletRequest req) {
 		mDAO.info(req);
+		return "member/info";
+	}
+	
+	@RequestMapping(value = "/try.upload", method = RequestMethod.GET)
+	public String profile(HttpServletRequest req) {
+		mDAO.isLogined(req);
+		return "upload";
+	}
+	
+	
+	@RequestMapping(value = "/upload", method = RequestMethod.POST)
+	public String updateProfile(HttpServletRequest req) {
+		String fileName = fu.profileUpload(req);
+		mDAO.updateProfile(req, fileName);
 		return "member/info";
 	}
 }

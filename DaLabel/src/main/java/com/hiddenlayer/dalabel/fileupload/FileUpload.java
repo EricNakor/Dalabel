@@ -1,12 +1,13 @@
 package com.hiddenlayer.dalabel.fileupload;
 
-import java.io.File;
-
 import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.stereotype.Service;
 
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
+@Service
 public class FileUpload {
 	public String profileUpload(HttpServletRequest req) {
 		String path = req.getSession().getServletContext().getRealPath("resources/image/profile");
