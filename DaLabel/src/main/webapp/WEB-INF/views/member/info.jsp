@@ -36,8 +36,8 @@
 				<td><fmt:formatDate value="${memberInfo.user_birth }" type="date" dateStyle="long"/> </td>
 			</tr>
 			<tr>
-				<td align="left">프로필 사진</td>
-				<td><img src="resources/image/profile/${memberInfo.user_img }"></td>
+				<td align="left">프로필 사진 </td>
+				<td><img src="resources/image/profile/${sessionScope.loginUserIMG }"></td>
 			</tr>
 			<tr>
 				<td align="center" colspan="2">
