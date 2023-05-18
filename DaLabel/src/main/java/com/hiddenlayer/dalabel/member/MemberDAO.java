@@ -80,6 +80,7 @@ public class MemberDAO {
 
 	public void info(Member m, HttpServletRequest req) {
 		try {
+			m.setUser_id((String)req.getSession().getAttribute("loginUserID"));
 			ArrayList<Member> userinfo = ss.getMapper(AccountMapper.class).getUserinfo(m);
 			m = userinfo.get(0);
 			req.setAttribute("memberInfo", m);
