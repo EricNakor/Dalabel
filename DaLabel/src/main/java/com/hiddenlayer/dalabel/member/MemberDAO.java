@@ -12,6 +12,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.hiddenlayer.dalabel.fileupload.FileUpload;
+
 @Service
 public class MemberDAO {
 
@@ -19,6 +21,9 @@ public class MemberDAO {
 
 	@Autowired
 	private SqlSession ss;
+	
+	@Autowired
+	private FileUpload fu;
 
 
 	public MemberDAO() {
@@ -111,11 +116,12 @@ public class MemberDAO {
 		}
 	}
 
-	public void updateProfile(HttpServletRequest req, String fileName) {
+	public void updateProfile(HttpServletRequest req) {
+		String fileName = fu.profileUpload(req);
 		String userID = (String) req.getSession().getAttribute("loginUserID");
 		String userIMG = (String) req.getSession().getAttribute("loginUserIMG");
-		if (!userIMG.equals("defaultprofile.jpg")) {
-			new File("resources/imgs/" + userIMG).delete();
+		if (!("defaultprofile.jpg").equals(userIMG)) {
+			fu.deleteProfileIMG(userIMG);
 		}
 		req.getSession().setAttribute("loginUserIMG", fileName);
 		Member m = new Member();

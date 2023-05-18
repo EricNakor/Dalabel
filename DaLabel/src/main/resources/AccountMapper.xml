@@ -15,7 +15,7 @@
 		select * from member where user_id=#{user_id} and user_isdeleted=0
 	]]>
 	</select>
-	
+
 	<update id="changeMember"
 		parameterType="com.hiddenlayer.dalabel.member.Member">
 	<![CDATA[
@@ -24,7 +24,7 @@
 		where user_id=#{user_id}
 	]]>
 	</update>
-	
+
 	<update id="changeMemberIMG"
 		parameterType="com.hiddenlayer.dalabel.member.Member">
 	<![CDATA[
@@ -33,8 +33,9 @@
 		where user_id=#{user_id}
 	]]>
 	</update>
-	
-	<update id="deleteMember" parameterType="com.hiddenlayer.dalabel.member.Member">
+
+	<update id="deleteMember"
+		parameterType="com.hiddenlayer.dalabel.member.Member">
 	<![CDATA[
 		update member 
 		set user_isdeleted=1, user_deleted_date=sysdate
