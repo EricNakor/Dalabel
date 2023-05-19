@@ -8,19 +8,24 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.hiddenlayer.dalabel.fileupload.FileUpload;
+
 @Controller
 public class MemberController {
 
 	@Autowired
 	private MemberDAO mDAO;
 
+	@Autowired
+	private FileUpload fu;
+	
 	@RequestMapping(value = "/login.go", method = RequestMethod.GET)
 	public String goLogin(Member m, HttpServletRequest req) {
 		mDAO.isLogined(req);
 		req.setAttribute("contentPage", "home.jsp");
 		return "member/login";
 	}
-	
+
 	@RequestMapping(value = "/login.do", method = RequestMethod.POST)
 	public String memberLogin(Member m, HttpServletRequest req) {
 		mDAO.login(m, req);
@@ -36,25 +41,45 @@ public class MemberController {
 		req.setAttribute("contentPage", "home.jsp");
 		return "home";
 	}
-	
+
 	@RequestMapping(value = "/member.join.go", method = RequestMethod.GET)
 	public String goJoin(HttpServletRequest req) {
 		req.setAttribute("contentPage", "home.jsp");
 		return "member/join";
 	}
-	
+
 	@RequestMapping(value = "/member.join.do", method = RequestMethod.POST)
 	public String memberJoin(Member m, HttpServletRequest req) {
 		mDAO.joinMember(m, req);
 		req.setAttribute("contentPage", "home.jsp");
 		return "home";
 	}
-  
-  @RequestMapping(value = "/member.delete", method = RequestMethod.POST)
+
+	@RequestMapping(value = "/member.delete", method = RequestMethod.POST)
 	public String memberDelete(Member m, HttpServletRequest req) {
 		mDAO.isLogined(req);
 		mDAO.deleteMember(req);
 		req.setAttribute("contentPage", "home.jsp");
 		return "home";
+	}
+
+	@RequestMapping(value = "/member.info", method = RequestMethod.GET)
+	public String memberInfo(HttpServletRequest req) {
+		mDAO.info(req);
+		return "member/info";
+	}
+	
+	@RequestMapping(value = "/try.upload", method = RequestMethod.GET)
+	public String profile(HttpServletRequest req) {
+		mDAO.isLogined(req);
+		return "upload";
+	}
+	
+	
+	@RequestMapping(value = "/upload", method = RequestMethod.POST)
+	public String updateProfile(HttpServletRequest req) {
+		String fileName = fu.profileUpload(req);
+		mDAO.updateProfile(req, fileName);
+		return "member/info";
 	}
 }

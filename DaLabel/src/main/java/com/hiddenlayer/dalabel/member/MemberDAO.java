@@ -2,7 +2,6 @@
 package com.hiddenlayer.dalabel.member;
 
 import java.io.File;
-import java.net.URLDecoder;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -13,6 +12,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.hiddenlayer.dalabel.fileupload.FileUpload;
+
 @Service
 public class MemberDAO {
 
@@ -20,6 +21,10 @@ public class MemberDAO {
 
 	@Autowired
 	private SqlSession ss;
+	
+	@Autowired
+	private FileUpload fu;
+
 
 	public MemberDAO() {
 		super();
@@ -79,11 +84,11 @@ public class MemberDAO {
 
 	public void info(HttpServletRequest req) {
 		try {
-			Member mm = new Member();
-			mm.setUser_id((String) req.getSession().getAttribute("loginUserID"));
-			ArrayList<Member> userinfo = ss.getMapper(AccountMapper.class).getUserinfo(mm);
-			mm = userinfo.get(0);
-			req.setAttribute("memberInfo", mm);
+			Member m = new Member();
+			m.setUser_id((String) req.getSession().getAttribute("loginUserID"));
+			ArrayList<Member> userinfo = ss.getMapper(AccountMapper.class).getUserinfo(m);
+			m = userinfo.get(0);
+			req.setAttribute("memberInfo", m);			
 		} catch (Exception e) {
 		}
 	}
@@ -113,12 +118,17 @@ public class MemberDAO {
 		}
 	}
 
-	public void updateProfile(HttpServletRequest req, String fileName) {
+	public void updateProfile(HttpServletRequest req) {
+		String fileName = fu.profileUpload(req);
 		String userID = (String) req.getSession().getAttribute("loginUserID");
 		String userIMG = (String) req.getSession().getAttribute("loginUserIMG");
-		if (!userIMG.equals("defaultprofile.jpg")) {
-			new File("resources/imgs/" + userIMG).delete();
-
+		if (!("defaultprofile.jpg").equals(userIMG)) {
+			fu.deleteProfileIMG(userIMG);
 		}
+		req.getSession().setAttribute("loginUserIMG", fileName);
+		Member m = new Member();
+		m.setUser_id(userID);
+		m.setUser_img(fileName);
+		ss.getMapper(AccountMapper.class).changeMemberIMG(m);
 	}
 }
