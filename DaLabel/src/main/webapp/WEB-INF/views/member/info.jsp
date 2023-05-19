@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="">
+	<form action="member.update.do" method="post">
 		<table id="infoTbl">
 			<th>회원정보</th>
 			<tr>
@@ -17,23 +17,23 @@
 			</tr>
 			<tr>
 				<td align="left">이메일</td>
-				<td><input value="${memberInfo.user_email }" readonly="readonly"></td>
+				<td><input value="${memberInfo.user_email }" name="user_email"></td>
 			</tr>
 			<tr>
 				<td align="left">이름</td>
-				<td><input value="${memberInfo.user_name }" readonly="readonly"></td>
+				<td><input value="${memberInfo.user_name }" name="user_name"></td>
 			</tr>
 			<tr>
 				<td align="left">비밀번호</td>
-				<td><input value="${memberInfo.user_pw }" type="password" readonly="readonly"></td>
+				<td><input value="${memberInfo.user_pw }" type="password" name="user_pw"></td>
 			</tr>
 			<tr>
 				<td align="left">비밀번호 확인</td>
-				<td><input value="${memberInfo.user_pw }" type="password" readonly="readonly"></td>
+				<td><input value="${memberInfo.user_pw }" type="password"></td>
 			</tr>
 			<tr>
 				<td align="left">생일</td>
-				<td><fmt:formatDate value="${memberInfo.user_birth }" type="date" dateStyle="long"/> </td>
+				<td><fmt:formatDate value="${memberInfo.user_birth }" type="date" dateStyle="long"/> <input value="20220905" name="user_birth_formatted"></td>
 			</tr>
 			<tr>
 				<td align="left">프로필 사진 </td>

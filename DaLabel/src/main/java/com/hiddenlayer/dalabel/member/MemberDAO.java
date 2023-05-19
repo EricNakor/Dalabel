@@ -88,7 +88,7 @@ public class MemberDAO {
 			m.setUser_id((String) req.getSession().getAttribute("loginUserID"));
 			ArrayList<Member> userinfo = ss.getMapper(AccountMapper.class).getUserinfo(m);
 			m = userinfo.get(0);
-			req.setAttribute("memberInfo", m);
+			req.setAttribute("memberInfo", m);			
 		} catch (Exception e) {
 		}
 	}
@@ -101,9 +101,11 @@ public class MemberDAO {
 			m.setUser_email(req.getParameter("user_email"));
 			m.setUser_name(req.getParameter("user_name"));
 			m.setUser_pw(req.getParameter("user_pw"));
-			ss.getMapper(AccountMapper.class).changeMember(m);
+			System.out.println(ss.getMapper(AccountMapper.class).changeMember(m));
 		} catch (Exception e) {
 			// 수정 성공 띄워주는 게 나을지? 상의된 바가 없어서 비워 둠
+			System.out.println(m.getUser_birth());
+			e.printStackTrace();
 			return;
 		}
 	}
