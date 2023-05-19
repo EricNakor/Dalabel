@@ -1,3 +1,4 @@
+
 package com.hiddenlayer.dalabel.member;
 
 import javax.servlet.http.HttpServletRequest;
@@ -19,7 +20,7 @@ public class MemberController {
 		req.setAttribute("contentPage", "home.jsp");
 		return "member/login";
 	}
-	
+
 	@RequestMapping(value = "/login.do", method = RequestMethod.POST)
 	public String memberLogin(Member m, HttpServletRequest req) {
 		mDAO.login(m, req);
@@ -30,24 +31,64 @@ public class MemberController {
 
 	@RequestMapping(value = "/member.logout", method = RequestMethod.GET)
 	public String memberLogout(HttpServletRequest req) {
-		mDAO.logout(req);
 		mDAO.isLogined(req);
+		mDAO.logout(req);
 		req.setAttribute("contentPage", "home.jsp");
 		return "home";
 	}
-	
+
 	@RequestMapping(value = "/member.join.go", method = RequestMethod.GET)
-	public String memberJoin(HttpServletRequest req) {
-		mDAO.isLogined(req);
+	public String goJoin(HttpServletRequest req) {
 		req.setAttribute("contentPage", "home.jsp");
 		return "member/join";
 	}
-	
+
 	@RequestMapping(value = "/member.join.do", method = RequestMethod.POST)
 	public String memberJoin(Member m, HttpServletRequest req) {
-		mDAO.isLogined(req);
 		mDAO.joinMember(m, req);
 		req.setAttribute("contentPage", "home.jsp");
 		return "home";
+	}
+
+	@RequestMapping(value = "/member.delete", method = RequestMethod.POST)
+	public String memberDelete(HttpServletRequest req) {
+		mDAO.isLogined(req);
+		mDAO.deleteMember(req);
+		req.setAttribute("contentPage", "home.jsp");
+		return "home";
+	}
+
+	@RequestMapping(value = "/member.info", method = RequestMethod.GET)
+	public String memberInfo(HttpServletRequest req) {
+		mDAO.isLogined(req);
+		mDAO.info(req);
+		return "member/info";
+	}
+
+	@RequestMapping(value = "/member.update.go", method = RequestMethod.GET)
+	public String goUpdate(HttpServletRequest req) {
+		mDAO.isLogined(req);
+		mDAO.info(req);
+		return "member/update";
+	}
+
+	@RequestMapping(value = "/member.update.do", method = RequestMethod.POST)
+	public String memberUpdate(HttpServletRequest req, Member m) {
+		mDAO.isLogined(req);
+		mDAO.update(m, req);
+		return "home";
+	}
+
+	@RequestMapping(value = "/try.upload", method = RequestMethod.GET)
+	public String profile(HttpServletRequest req) {
+		mDAO.isLogined(req);
+		return "upload";
+	}
+
+	@RequestMapping(value = "/upload", method = RequestMethod.POST)
+	public String updateProfile(HttpServletRequest req) {
+		mDAO.isLogined(req);
+		mDAO.updateProfile(req);
+		return "member/info";
 	}
 }

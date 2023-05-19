@@ -1,8 +1,10 @@
 package com.hiddenlayer.dalabel.member;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Member {
+	private static final SimpleDateFormat SDF = new SimpleDateFormat("yyyyMMdd");
 	private String user_id;
 	private String user_email;
 	private String user_name;
