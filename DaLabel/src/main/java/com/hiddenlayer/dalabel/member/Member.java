@@ -86,14 +86,6 @@ public class Member {
 	public void setUser_birth(Date user_birth) {
 		this.user_birth = user_birth;
 	}
-	
-	public void setUser_birth_formatted(String user_birth_formatted) {
-		try {
-			this.user_birth = SDF.parse(user_birth_formatted);	
-		} catch (Exception e) {
-			this.user_birth = new Date();
-		}
-	}
 
 	public String getUser_img() {
 		return user_img;

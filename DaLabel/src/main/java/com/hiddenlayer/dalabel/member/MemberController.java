@@ -8,17 +8,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.hiddenlayer.dalabel.fileupload.FileUpload;
-
 @Controller
 public class MemberController {
 
 	@Autowired
 	private MemberDAO mDAO;
 
-	@Autowired
-	private FileUpload fu;
-	
 	@RequestMapping(value = "/login.go", method = RequestMethod.GET)
 	public String goLogin(Member m, HttpServletRequest req) {
 		mDAO.isLogined(req);
@@ -56,7 +51,7 @@ public class MemberController {
 	}
 
 	@RequestMapping(value = "/member.delete", method = RequestMethod.POST)
-	public String memberDelete(Member m, HttpServletRequest req) {
+	public String memberDelete(HttpServletRequest req) {
 		mDAO.isLogined(req);
 		mDAO.deleteMember(req);
 		req.setAttribute("contentPage", "home.jsp");
@@ -65,21 +60,35 @@ public class MemberController {
 
 	@RequestMapping(value = "/member.info", method = RequestMethod.GET)
 	public String memberInfo(HttpServletRequest req) {
+		mDAO.isLogined(req);
 		mDAO.info(req);
 		return "member/info";
 	}
-	
+
+	@RequestMapping(value = "/member.update.go", method = RequestMethod.GET)
+	public String goUpdate(HttpServletRequest req) {
+		mDAO.isLogined(req);
+		mDAO.info(req);
+		return "member/update";
+	}
+
+	@RequestMapping(value = "/member.update.do", method = RequestMethod.POST)
+	public String memberUpdate(HttpServletRequest req, Member m) {
+		mDAO.isLogined(req);
+		mDAO.update(m, req);
+		return "home";
+	}
+
 	@RequestMapping(value = "/try.upload", method = RequestMethod.GET)
 	public String profile(HttpServletRequest req) {
 		mDAO.isLogined(req);
 		return "upload";
 	}
-	
-	
+
 	@RequestMapping(value = "/upload", method = RequestMethod.POST)
 	public String updateProfile(HttpServletRequest req) {
-		String fileName = fu.profileUpload(req);
-		mDAO.updateProfile(req, fileName);
+		mDAO.isLogined(req);
+		mDAO.updateProfile(req);
 		return "member/info";
 	}
 }

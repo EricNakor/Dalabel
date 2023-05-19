@@ -1,7 +1,6 @@
 
 package com.hiddenlayer.dalabel.member;
 
-import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -18,7 +17,8 @@ import com.hiddenlayer.dalabel.fileupload.FileUpload;
 public class MemberDAO {
 
 	private HashMap<String, String> sessionmap;
-
+	private static final SimpleDateFormat SDF = new SimpleDateFormat("yyyyMMdd");
+	
 	@Autowired
 	private SqlSession ss;
 	
@@ -75,7 +75,7 @@ public class MemberDAO {
 			int month = Integer.parseInt(req.getParameter("month"));
 			int day = Integer.parseInt(req.getParameter("day"));
 			String birth = String.format("%s%02d%02d", year, month, day);
-			m.setUser_birth(new SimpleDateFormat("yyyyMMdd").parse(birth));
+			m.setUser_birth(SDF.parse(birth));
 			ss.getMapper(AccountMapper.class).addMember(m);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -98,13 +98,9 @@ public class MemberDAO {
 		// 이 Method는 최종 수정단계를 구현함
 		try {
 			m.setUser_id((String) req.getSession().getAttribute("loginUserID"));
-			m.setUser_email(req.getParameter("user_email"));
-			m.setUser_name(req.getParameter("user_name"));
-			m.setUser_pw(req.getParameter("user_pw"));
-			System.out.println(ss.getMapper(AccountMapper.class).changeMember(m));
+			m.setUser_birth(SDF.parse(req.getParameter("birth")));
+			ss.getMapper(AccountMapper.class).changeMember(m);
 		} catch (Exception e) {
-			// 수정 성공 띄워주는 게 나을지? 상의된 바가 없어서 비워 둠
-			System.out.println(m.getUser_birth());
 			e.printStackTrace();
 			return;
 		}
@@ -120,6 +116,7 @@ public class MemberDAO {
 
 	public void updateProfile(HttpServletRequest req) {
 		String fileName = fu.profileUpload(req);
+		System.out.println(fileName);
 		String userID = (String) req.getSession().getAttribute("loginUserID");
 		String userIMG = (String) req.getSession().getAttribute("loginUserIMG");
 		if (!("defaultprofile.jpg").equals(userIMG)) {

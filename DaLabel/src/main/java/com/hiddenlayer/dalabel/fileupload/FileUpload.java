@@ -22,7 +22,6 @@ public class FileUpload {
 			profileIMGrealpath=req.getSession().getServletContext().getRealPath("resources/image/profile/");
 		}
 		MultipartRequest mr = null;
-
 		try {
 			mr = new MultipartRequest(req, profileIMGrealpath, 50 * 1024 * 1024, "utf-8", new DefaultFileRenamePolicy());
 		} catch (Exception e) {
@@ -30,7 +29,6 @@ public class FileUpload {
 			e.printStackTrace();
 			return null;
 		}
-
 		try {
 			String fileName = mr.getFilesystemName("fileName");
 			return fileName;
@@ -52,7 +50,7 @@ public class FileUpload {
 		}
 		
 		try {
-			String fileName = mr.getParameter("fileName");
+			String fileName = mr.getFilesystemName("fileName");
 			return fileName;
 		} catch (Exception e) {
 			return null;

@@ -8,7 +8,7 @@
 </head>
 <body>
 <form action="upload" method="post" enctype="multipart/form-data">
-	<input type="file" name="profile">
+	<input type="file" name="fileName">
 	<button>업로드</button>
 </form>
 </body>
