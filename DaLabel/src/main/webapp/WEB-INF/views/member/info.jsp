@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="">
+	<form action="member.update.go">
 		<table id="infoTbl">
 			<th>회원정보</th>
 			<tr>
@@ -17,7 +17,8 @@
 			</tr>
 			<tr>
 				<td align="left">이메일</td>
-				<td><input value="${memberInfo.user_email }" readonly="readonly"></td>
+				<td><input value="${memberInfo.user_email }"
+					readonly="readonly"></td>
 			</tr>
 			<tr>
 				<td align="left">이름</td>
@@ -25,15 +26,18 @@
 			</tr>
 			<tr>
 				<td align="left">비밀번호</td>
-				<td><input value="${memberInfo.user_pw }" type="password" readonly="readonly"></td>
+				<td><input value="${memberInfo.user_pw }" type="password"
+					readonly="readonly"></td>
 			</tr>
 			<tr>
 				<td align="left">비밀번호 확인</td>
-				<td><input value="${memberInfo.user_pw }" type="password" readonly="readonly"></td>
+				<td><input value="${memberInfo.user_pw }" type="password"
+					readonly="readonly"></td>
 			</tr>
 			<tr>
 				<td align="left">생일</td>
-				<td><fmt:formatDate value="${memberInfo.user_birth }" type="date" dateStyle="long"/> </td>
+				<td><fmt:formatDate value="${memberInfo.user_birth }"
+						type="date" dateStyle="long" /></td>
 			</tr>
 			<tr>
 				<td align="left">프로필 사진</td>
@@ -41,11 +45,11 @@
 			</tr>
 			<tr>
 				<td align="center" colspan="2">
-				<button >수정</button>
-	</form>
-				<button onclick="">탈퇴</button>
+					<button>수정</button>
+					</form>
+					<button onclick="">탈퇴</button>
 				</td>
 			</tr>
-	</table>
+		</table>
 </body>
 </html>

@@ -11,5 +11,9 @@
 </h1>
 
 <P>  ${sessionScope.loginUserID}. </P>
+<a href="login.go">로그인</a>
+<a href="member.join.go">회원가입</a>
+<a href="mypage.go">마이페이지</a>
+<a href="member.delete">탈퇴</a>
 </body>
 </html>
