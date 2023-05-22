@@ -2,6 +2,8 @@ package com.hiddenlayer.dalabel.dolabeling;
 
 import java.util.Locale;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,21 +18,21 @@ public class DoLabelingController {
 	
 //	라벨링 시작시 호출.
 	@RequestMapping(value = "/doLabeling.start", method = RequestMethod.GET)
-	public String start(Locale locale, Model model) {
+	public String start(HttpServletRequest req) {
 		
 		return "home";
 	}
 	
 //	라벨링중 다음 데이타 부르기용도. AJAX로 호출됨. 토큰을 이용한 보안설정 고려할것. 세션종료시 토큰무효화하도록 토큰설계.
 	@RequestMapping(value = "/doLabeling.next", method = RequestMethod.POST)
-	public String nextData(Locale locale, Model model) {
+	public String nextData(HttpServletRequest req) {
 		
 		return "home";
 	}
 	
 //	라벨링 종료버튼 누를시 호출됨.
 	@RequestMapping(value = "/doLabeling.done", method = RequestMethod.GET)
-	public String end(Locale locale, Model model) {
+	public String end(HttpServletRequest req) {
 
 		
 		return "home";
@@ -45,14 +47,14 @@ public class DoLabelingController {
 
 //	라벨링 할거 찾기위해 라벨링 목록을 보면 보여야함.
 	@RequestMapping(value = "/doLabeling.find", method = RequestMethod.GET)
-	public String find(Locale locale, Model model) {
+	public String find(HttpServletRequest req) {
 		
 		return "home";
 	}
 	
 //	라벨링 하겠다고 참여하기 버튼을 누른경우 호출됨.
 	@RequestMapping(value = "/doLabeling.askjoin", method = RequestMethod.GET)
-	public String askjoin(Locale locale, Model model) {
+	public String askjoin(HttpServletRequest req) {
 
 		
 		return "home";

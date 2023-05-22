@@ -4,7 +4,8 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee https://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
 	<filter>
 		<filter-name>encodingFilter</filter-name>
-		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+		<filter-class>org.springframework.web.filter.CharacterEncodingFilter
+		</filter-class>
 		<init-param>
 			<param-name>encoding</param-name>
 			<param-value>utf-8</param-value>
@@ -24,6 +25,8 @@
 	<!-- Creates the Spring Container shared by all Servlets and Filters -->
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener
+		</listener-class>
+		<listener-class>com.hiddenlayer.dalabel.session.SessionConfig
 		</listener-class>
 	</listener>
 
