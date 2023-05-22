@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hiddenlayer.dalabel.dolabeling.DataDoLabelingMapper">
+	<insert id="addLabelData" parameterType="com.hiddenlayer.dalabel.dolabeling.LabelData">
+		<![CDATA[
+			insert into Labeling_Done
+			values (#{data_bundle}, #{data_no}, #{worked_by}, #{label})
+		]]>
+	</insert>
+	<insert id="addLabelDoList" parameterType="com.hiddenlayer.dalabel.dolabeling.LabelDoList">
+		<![CDATA[
+			insert into Labeling_Do
+			values (#{dolabel_user}, #{dolabel_bundle}, #{dolabel_state}, #{labeling_score})
+		]]>
+	</insert>
+	<select id="findLabelDoList" parameterType="com.hiddenlayer.dalabel.dolabeling.LabelDoList"
+		resultType="com.hiddenlayer.dalabel.dolabeling.LabelDoList">
+		<![CDATA[
+			select * from Labeling_Do
+			where dolabel_user=#{dolabel_user}
+		]]>	
+	</select>
+	<update id="updateLabelState" parameterType="com.hiddenlayer.dalabel.dolabeling.LabelDoList">
+		<![CDATA[
+			update Labeling_Do
+			set dolabel_state=#{dolabel_state}, labeling_score=#{labeling_score}
+			where dolabel_user=#{dolabel_user}
+		]]>
+	</update>
+</mapper>
