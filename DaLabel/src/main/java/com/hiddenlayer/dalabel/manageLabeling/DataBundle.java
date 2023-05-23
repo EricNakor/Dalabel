@@ -1,4 +1,4 @@
-package com.hiddenlayer.dalabel.wantlabeling;
+package com.hiddenlayer.dalabel.manageLabeling;
 
 import java.math.BigDecimal;
 
@@ -10,7 +10,7 @@ public class DataBundle {
 	private String bundle_guied;
 	private BigDecimal bundle_type;
 	private String bundle_category;
-
+  
 	public DataBundle() {
 		// TODO Auto-generated constructor stub
 	}

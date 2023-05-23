@@ -1,17 +1,17 @@
-package com.hiddenlayer.dalabel.wantlabeling;
+package com.hiddenlayer.dalabel.manageLabeling;
 
 import java.math.BigDecimal;
-
+ 
 public class SineUpLabeling {
 	private String want_user;
 	private BigDecimal want_what;
-	private boolean want_avail;
+	private char want_avail;
 
 	public SineUpLabeling() {
 		// TODO Auto-generated constructor stub
 	}
-
-	public SineUpLabeling(String want_user, BigDecimal want_what, boolean want_avail) {
+ 
+	public SineUpLabeling(String want_user, BigDecimal want_what, char want_avail) {
 		super();
 		this.want_user = want_user;
 		this.want_what = want_what;
@@ -34,11 +34,12 @@ public class SineUpLabeling {
 		this.want_what = want_what;
 	}
 
-	public boolean isWant_avail() {
+	public char getWant_avail() {
 		return want_avail;
 	}
 
-	public void setWant_avail(boolean want_avail) {
+	public void setWant_avail(char want_avail) {
 		this.want_avail = want_avail;
 	}
+
 }

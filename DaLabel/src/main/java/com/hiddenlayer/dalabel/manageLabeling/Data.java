@@ -1,17 +1,17 @@
-package com.hiddenlayer.dalabel.wantlabeling;
+package com.hiddenlayer.dalabel.manageLabeling;
 
 import java.math.BigDecimal;
 
 public class Data {
 	private BigDecimal data_no;
 	private BigDecimal data_where;
-	private boolean data_activation;
-	
+	private char data_activation;
+
 	public Data() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Data(BigDecimal data_no, BigDecimal data_where, boolean data_activation) {
+	public Data(BigDecimal data_no, BigDecimal data_where, char data_activation) {
 		super();
 		this.data_no = data_no;
 		this.data_where = data_where;
@@ -34,11 +34,12 @@ public class Data {
 		this.data_where = data_where;
 	}
 
-	public boolean isData_activation() {
+	public char getData_activation() {
 		return data_activation;
 	}
 
-	public void setData_activation(boolean data_activation) {
+	public void setData_activation(char data_activation) {
 		this.data_activation = data_activation;
 	}
+
 }
