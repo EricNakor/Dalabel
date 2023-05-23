@@ -2,16 +2,16 @@ package com.hiddenlayer.dalabel.manageLabeling;
 
 import java.math.BigDecimal;
  
-public class SineUpLabeling {
+public class WantDoLebling {
 	private String want_user;
 	private BigDecimal want_what;
 	private char want_avail;
 
-	public SineUpLabeling() {
+	public WantDoLebling() {
 		// TODO Auto-generated constructor stub
 	}
  
-	public SineUpLabeling(String want_user, BigDecimal want_what, char want_avail) {
+	public WantDoLebling(String want_user, BigDecimal want_what, char want_avail) {
 		super();
 		this.want_user = want_user;
 		this.want_what = want_what;

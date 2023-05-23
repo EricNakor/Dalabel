@@ -7,14 +7,14 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="regLabelling">
+	<form action="regLabeling.do" method="post">
 		<table>
 			<tr>
 				<td>
 					라벨링 제목
 				</td>
 				<td>
-					<input>
+					<input >
 				</td>
 			</tr>
 			<tr>
