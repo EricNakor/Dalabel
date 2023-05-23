@@ -2,7 +2,7 @@ package com.hiddenlayer.dalabel.wantlabeling;
 
 import java.math.BigDecimal;
 
-public class LabelingWantList {
+public class DataBundle {
 	private BigDecimal bundle_no;
 	private String bundle_title;
 	private String bundle_requester;
@@ -11,11 +11,11 @@ public class LabelingWantList {
 	private BigDecimal bundle_type;
 	private String bundle_category;
 
-	public LabelingWantList() {
+	public DataBundle() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public LabelingWantList(BigDecimal bundle_no, String bundle_title, String bundle_requester,
+	public DataBundle(BigDecimal bundle_no, String bundle_title, String bundle_requester,
 			BigDecimal bundle_access, String bundle_guied, BigDecimal bundle_type, String bundle_category) {
 		super();
 		this.bundle_no = bundle_no;

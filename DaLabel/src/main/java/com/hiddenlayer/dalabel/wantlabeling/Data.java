@@ -2,16 +2,16 @@ package com.hiddenlayer.dalabel.wantlabeling;
 
 import java.math.BigDecimal;
 
-public class LabelingStatus {
+public class Data {
 	private BigDecimal data_no;
 	private BigDecimal data_where;
 	private boolean data_activation;
 	
-	public LabelingStatus() {
+	public Data() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public LabelingStatus(BigDecimal data_no, BigDecimal data_where, boolean data_activation) {
+	public Data(BigDecimal data_no, BigDecimal data_where, boolean data_activation) {
 		super();
 		this.data_no = data_no;
 		this.data_where = data_where;

@@ -2,16 +2,16 @@ package com.hiddenlayer.dalabel.wantlabeling;
 
 import java.math.BigDecimal;
 
-public class LabelingWantApply {
+public class SineUpLabeling {
 	private String want_user;
 	private BigDecimal want_what;
 	private boolean want_avail;
 
-	public LabelingWantApply() {
+	public SineUpLabeling() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public LabelingWantApply(String want_user, BigDecimal want_what, boolean want_avail) {
+	public SineUpLabeling(String want_user, BigDecimal want_what, boolean want_avail) {
 		super();
 		this.want_user = want_user;
 		this.want_what = want_what;
