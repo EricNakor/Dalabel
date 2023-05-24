@@ -10,19 +10,18 @@ import com.hiddenlayer.dalabel.member.MemberDAO;
 
 public class SessionConfig implements HttpSessionListener {
 	@Autowired
-	private MemberDAO mDAO;
+	UserLoginSession uls;
 	
 	
 	@Override
 	public void sessionCreated(HttpSessionEvent se) {
 		// TODO Auto-generated method stub
-		se.getSession().setMaxInactiveInterval(5);
 	}
 
 	@Override
 	public void sessionDestroyed(HttpSessionEvent se) {
 		// TODO Auto-generated method stub
-		mDAO.deleteSessionFromSessionMap((String) se.getSession().getAttribute("loginUserID"));			
+		uls.remove((String) se.getSession().getAttribute("loginUserID"));			
 
 	}
 }

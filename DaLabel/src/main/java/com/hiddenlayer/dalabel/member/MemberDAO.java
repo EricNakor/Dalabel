@@ -12,10 +12,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.hiddenlayer.dalabel.fileupload.FileUpload;
+import com.hiddenlayer.dalabel.session.UserLoginSession;
 
 @Service
 public class MemberDAO {
-	private HashMap<String, String> sessionmap;
+	@Autowired
+	private UserLoginSession sessionmap;
+	
 	private static final SimpleDateFormat SDF = new SimpleDateFormat("yyyyMMdd");
 	@Autowired
 	private SqlSession ss;
@@ -26,16 +29,13 @@ public class MemberDAO {
 	
 	public void deleteSessionFromSessionMap(String userid) {
 		sessionmap.remove(userid);			
-
 	}
 	
 	public MemberDAO() {
 		super();
-		sessionmap = new HashMap<String, String>();
 	}
 
 	public void login(Member m, HttpServletRequest req) {
-		System.out.println(sessionmap);
 		try {
 			ArrayList<Member> member = ss.getMapper(AccountMapper.class).getUserinfo(m);
 			Member user = member.get(0);
@@ -54,7 +54,6 @@ public class MemberDAO {
 	}
 
 	public void logout(HttpServletRequest req) {
-		System.out.println(sessionmap);
 		sessionmap.remove((String) req.getSession().getAttribute("loginUserID"));
 		req.getSession().removeAttribute("loginUserID");
 		req.getSession().removeAttribute("loginUserIMG");
@@ -121,7 +120,6 @@ public class MemberDAO {
 
 	public void updateProfile(HttpServletRequest req) {
 		String fileName = fu.profileUpload(req);
-		System.out.println(fileName);
 		String userID = (String) req.getSession().getAttribute("loginUserID");
 		String userIMG = (String) req.getSession().getAttribute("loginUserIMG");
 		if (!("defaultprofile.jpg").equals(userIMG)) {
