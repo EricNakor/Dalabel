@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="member.update.do" method="post">
+	<form action="member.update.do" method="post" name="updateForm" onsubmit="return updateCheck();">
 		<table id="infoTbl">
 			<th>회원정보</th>
 			<tr>

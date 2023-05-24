@@ -6,9 +6,12 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript" src="resources/js/dalabelCheck.js"></script>
+<script type="text/javascript" src="resources/js/validChecker.js"></script>
+<script type="text/javascript" src="resources/js/jQuery.js"></script>
 </head>
 <body>
-	<form action="member.join.do" method="post">
+	<form action="member.join.do" method="post" name="joinForm" onsubmit="return joinCheck();">
 		<table id="joinTable">
 			<tr>
 				<th colspan="2">회원가입</th>
@@ -17,7 +20,7 @@
 				<td class="td1" align="right">아이디</td>
 
 				<td align="center"><input name="user_id">
-				<button>중복확인</button></td>
+				<button id="idChkBtn" type="button" onclick="idCheck();">중복확인</button></td>
 			</tr>
 			<tr>
 				<td class="td1" align="right">비밀번호</td>
