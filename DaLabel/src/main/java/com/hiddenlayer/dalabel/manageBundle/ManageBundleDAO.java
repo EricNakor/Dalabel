@@ -41,7 +41,7 @@ public class ManageBundleDAO {
 		int bundlePageCount = (int) Math.ceil((Integer) req.getSession().getAttribute("bundleCount") / (double) po.getDataBundlePerPage());
 		int start = (page - 1) * po.getDataBundlePerPage() + 1;
 		int end = page * po.getDataBundlePerPage();
-		ManageBundleSelector mbs = new ManageBundleSelector(user, start, end);
+		ManageSelector mbs = new ManageSelector(user, start, end);
 		List<DataBundle> bundles = ss.getMapper(ManageBundleMapper.class).getAllBundle(mbs);
 		req.setAttribute("bundles", bundles);
 		req.setAttribute("bundlePageCount", bundlePageCount);

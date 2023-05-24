@@ -2,31 +2,42 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper
 	namespace="com.hiddenlayer.dalabel.manageBundle.ManageBundleMapper">
-	<insert id="regLabelingBundle" parameterType="com.hiddenlayer.dalabel.manageLabeling.DataBundle">
+	<insert id="regLabelingBundle"
+		parameterType="com.hiddenlayer.dalabel.manageLabeling.DataBundle">
 		<![CDATA[
-		insert into databundle values(databundle_seq.nextval, #{bundle_uploader}, #{bundle_uploaded_filename}, #{bundle_folder_name}, null)
+		insert into databundle values(databundle_seq.nextval, #{bundle_uploader}, #{bundle_uploaded_filename}, #{bundle_folder_name}, null, null)
 	]]>
 	</insert>
-	
-	<select id="getAllBundle" parameterType="com.hiddenlayer.dalabel.manageBundle.ManageBundleSelector" resultType="com.hiddenlayer.dalabel.manageLabeling.DataBundle">
+
+	<select id="getAllBundle"
+		parameterType="com.hiddenlayer.dalabel.manageBundle.ManageSelector"
+		resultType="com.hiddenlayer.dalabel.manageLabeling.DataBundle">
 		<![CDATA[
 		select *
 		from (
-			select rownum as rn, bundle_no, bundle_uploaded_filename, bundle_folder_name
+			select rownum as rn, bundle_no, bundle_uploaded_filename, bundle_folder_name, bundle_descript
 			from (
-				select bundle_no, bundle_uploaded_filename, bundle_folder_name from databundle
+				select bundle_no, bundle_uploaded_filename, bundle_folder_name from databundle, bundle_descript
 				where bundle_uploader = #{login_user}
 			)
 		)
 		where rn >= #{start} and rn <= #{end}
 	]]>
 	</select>
-	
-	<select id="getAllBundleCount" parameterType="java.lang.String" resultType="java.lang.Integer">
+
+	<select id="getAllBundleCount" parameterType="java.lang.String"
+		resultType="java.lang.Integer">
 		<![CDATA[
 			select count(*) from databundle
 			where bundle_uploader = #{login_user}
 		]]>
 	</select>
-	
+
+	<delete id="deleteBundle"
+		parameterType="java.lang.String">
+		<![CDATA[
+		delete from databundle where bundle_uploader = #{login_user}
+	]]>
+	</delete>
+
 </mapper>

@@ -11,28 +11,28 @@
 		<table>
 			<tr>
 				<td>라벨링 제목</td>
-				<td><input name="bundle_title"></td>
+				<td><input name="project_title"></td>
 			</tr>
 			<tr>
 				<td>가이드라인</td>
-				<td><textarea rows="50" cols="50" name="bundle_guied">
+				<td><textarea rows="50" cols="50" name="project_guide">
 				
 					</textarea></td>
 			</tr>
 			<tr>
 				<td>데이터 타입</td>
-				<td><select name="bundle_datatype">
+				<td><select name="bundle_data_type">
 						<option value="0">사진 분석</option>
 						<option value="1">텍스트 분석</option>
 				</select></td>
 			</tr>
 			<tr>
 				<td>라벨링할 데이터</td>
-				<td><input type="file" name="bundle_zip"></td>
+				<td>${labelingData }</td>
 			</tr>
 			<tr>
 				<td>
-					<select name="bundle_type">
+					<select name="project_how">
 						<option value="0">버튼 누르기</option>
 						<option value="1">직접 타이핑</option>
 						<option value="2">영역 선택</option>
@@ -42,11 +42,6 @@
 			<tr>
 				<td>
 					공개설정
-				</td>
-				<td>
-					<select name="bundle_access">
-						<option value="1">선택</option>
-					</select>
 				</td>
 			</tr>
 			<tr>
