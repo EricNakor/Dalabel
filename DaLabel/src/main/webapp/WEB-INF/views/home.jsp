@@ -9,7 +9,6 @@
 <h1>
 	Hello world!  
 </h1>
-
 <P>  ${sessionScope.loginUserID}. </P>
 <a href="login.go">로그인</a>
 <a href="member.logout">로그아웃</a>
@@ -19,5 +18,8 @@
 	<button>탈퇴</button>
 </form>
 <a href="try.upload">프사 변경</a>
+<a href="upload.bundle.go">라벨링 파일 등록</a>
+<img alt="따봉" src="resources/image/profile/ddabong.jpg">
+<a href="get.my.bundle">내 데이터 관리</a>
 </body>
 </html>

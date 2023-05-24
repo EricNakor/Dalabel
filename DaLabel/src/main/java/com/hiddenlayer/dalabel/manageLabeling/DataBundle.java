@@ -4,45 +4,23 @@ import java.math.BigDecimal;
 
 public class DataBundle {
 	private BigDecimal bundle_no;
-	private String bundle_title;
-	private String bundle_requestor;
-	private BigDecimal bundle_access;
-	private String bundle_guied;
-	private BigDecimal bundle_type;
-	private String bundle_category;
-	private char bundle_state;
+	private String bundle_uploader;
+	private String bundle_uploaded_filename;
+	private String bundle_folder_name;
+	private String bundle_data_type;
 
 	public DataBundle() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public String getBundle_requestor() {
-		return bundle_requestor;
-	}
-
-	public void setBundle_requestor(String bundle_requestor) {
-		this.bundle_requestor = bundle_requestor;
-	}
-
-	public char getBundle_state() {
-		return bundle_state;
-	}
-
-	public void setBundle_state(char bundle_state) {
-		this.bundle_state = bundle_state;
-	}
-
-	public DataBundle(BigDecimal bundle_no, String bundle_title, String bundle_requestor, BigDecimal bundle_access,
-			String bundle_guied, BigDecimal bundle_type, String bundle_category, char bundle_state) {
+	public DataBundle(BigDecimal bundle_no, String bundle_uploader, String bundle_uploaded_filename,
+			String bundle_folder_name, String bundle_data_type) {
 		super();
 		this.bundle_no = bundle_no;
-		this.bundle_title = bundle_title;
-		this.bundle_requestor = bundle_requestor;
-		this.bundle_access = bundle_access;
-		this.bundle_guied = bundle_guied;
-		this.bundle_type = bundle_type;
-		this.bundle_category = bundle_category;
-		this.bundle_state = bundle_state;
+		this.bundle_uploader = bundle_uploader;
+		this.bundle_uploaded_filename = bundle_uploaded_filename;
+		this.bundle_folder_name = bundle_folder_name;
+		this.bundle_data_type = bundle_data_type;
 	}
 
 	public BigDecimal getBundle_no() {
@@ -53,51 +31,36 @@ public class DataBundle {
 		this.bundle_no = bundle_no;
 	}
 
-	public String getBundle_title() {
-		return bundle_title;
+	public String getBundle_uploader() {
+		return bundle_uploader;
 	}
 
-	public void setBundle_title(String bundle_title) {
-		this.bundle_title = bundle_title;
+	public void setBundle_uploader(String bundle_uploader) {
+		this.bundle_uploader = bundle_uploader;
 	}
 
-	public String getBundle_requester() {
-		return bundle_requestor;
+	public String getBundle_uploaded_filename() {
+		return bundle_uploaded_filename;
 	}
 
-	public void setBundle_requester(String bundle_requester) {
-		this.bundle_requestor = bundle_requester;
+	public void setBundle_uploaded_filename(String bundle_uploaded_filename) {
+		this.bundle_uploaded_filename = bundle_uploaded_filename;
 	}
 
-	public BigDecimal getBundle_access() {
-		return bundle_access;
+	public String getBundle_folder_name() {
+		return bundle_folder_name;
 	}
 
-	public void setBundle_access(BigDecimal bundle_access) {
-		this.bundle_access = bundle_access;
+	public void setBundle_folder_name(String bundle_folder_name) {
+		this.bundle_folder_name = bundle_folder_name;
 	}
 
-	public String getBundle_guied() {
-		return bundle_guied;
+	public String getBundle_data_type() {
+		return bundle_data_type;
 	}
 
-	public void setBundle_guied(String bundle_guied) {
-		this.bundle_guied = bundle_guied;
+	public void setBundle_data_type(String bundle_data_type) {
+		this.bundle_data_type = bundle_data_type;
 	}
 
-	public BigDecimal getBundle_type() {
-		return bundle_type;
-	}
-
-	public void setBundle_type(BigDecimal bundle_type) {
-		this.bundle_type = bundle_type;
-	}
-
-	public String getBundle_category() {
-		return bundle_category;
-	}
-
-	public void setBundle_category(String bundle_category) {
-		this.bundle_category = bundle_category;
-	}
 }

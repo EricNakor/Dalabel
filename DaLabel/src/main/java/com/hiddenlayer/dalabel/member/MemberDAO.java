@@ -53,6 +53,7 @@ public class MemberDAO {
 		sessionmap.remove((String) req.getSession().getAttribute("loginUserID"));
 		req.getSession().removeAttribute("loginUserID");
 		req.getSession().removeAttribute("loginUserIMG");
+		req.getSession().removeAttribute("bundleCount");
 	}
 
 	public boolean isLogined(HttpServletRequest req) {

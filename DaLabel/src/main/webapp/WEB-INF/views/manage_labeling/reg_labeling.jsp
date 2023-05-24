@@ -1,0 +1,61 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<form action="reg.labeling.do" method="post">
+		<table>
+			<tr>
+				<td>라벨링 제목</td>
+				<td><input name="bundle_title"></td>
+			</tr>
+			<tr>
+				<td>가이드라인</td>
+				<td><textarea rows="50" cols="50" name="bundle_guied">
+				
+					</textarea></td>
+			</tr>
+			<tr>
+				<td>데이터 타입</td>
+				<td><select name="bundle_datatype">
+						<option value="0">사진 분석</option>
+						<option value="1">텍스트 분석</option>
+				</select></td>
+			</tr>
+			<tr>
+				<td>라벨링할 데이터</td>
+				<td><input type="file" name="bundle_zip"></td>
+			</tr>
+			<tr>
+				<td>
+					<select name="bundle_type">
+						<option value="0">버튼 누르기</option>
+						<option value="1">직접 타이핑</option>
+						<option value="2">영역 선택</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					공개설정
+				</td>
+				<td>
+					<select name="bundle_access">
+						<option value="1">선택</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<button>등록</button>
+					<button>취소</button>
+				</td>
+			</tr>
+		</table>
+	</form>
+</body>
+</html>

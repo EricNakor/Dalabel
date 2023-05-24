@@ -7,9 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form action="upload.bundle.do" method="post" enctype="multipart/form-data">
-	<input type="file" name="fileName">
-	<button>업로드</button>
-</form>
+
 </body>
 </html>

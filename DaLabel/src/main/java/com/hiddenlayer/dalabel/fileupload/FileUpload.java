@@ -44,15 +44,33 @@ public class FileUpload {
 		}
 	}
 
-	public String labellingFileUpload(HttpServletRequest req) {
+	public String labelingFileUpload(HttpServletRequest req) {
+		MultipartRequest mr = null;
+		String path = req.getSession().getServletContext().getRealPath("resources/data/" + req.getSession().getAttribute("loginUserID"));
+		File folder = new File(path);
+		
+		if (!folder.exists()) {
+			try {
+				folder.mkdir();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		try {
+			mr = new MultipartRequest(req, path, 5 * 1024 * 1024 * 1024, "utf-8", new DefaultFileRenamePolicy());
+			return mr.getFilesystemName("fileName");
+		} catch (Exception e) {
+			e.printStackTrace(); // 파일 용량 안 맞으면 error
+			System.out.println("error" + mr.getFilesystemName("fileName"));
+			return mr.getFilesystemName("fileName");
+		}
+		
+	}
+	
+	
+	public String openZip(HttpServletRequest req) {
 		String route = req.getSession().getServletContext().getRealPath("resources/image/labeling_bundle/"); // 절대경로
-//		MultipartRequest mr = null;
-//		try {
-//			mr = new MultipartRequest(req, route, 2 * 1024 * 1024 * 1024, "utf-8", new DefaultFileRenamePolicy());
-//		} catch (Exception e) {
-//			e.printStackTrace(); // 파일 용량 안 맞으면 error
-//			return;
-//		}
 		ZipInputStream zis = null;
 		try { // 해당 경로에 .zip이 있어야 하는데, 즉, 톰캣 가상서버에 zip파일을 먼저 올린다음에 푸는 행위를 시작해야 함
 			zis = new ZipInputStream(new BufferedInputStream(new FileInputStream(new File(route, "Desktop.zip")))); // 경로에
