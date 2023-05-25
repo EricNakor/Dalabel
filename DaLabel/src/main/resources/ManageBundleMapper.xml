@@ -34,10 +34,12 @@
 	</select>
 
 	<delete id="deleteBundle"
-		parameterType="java.lang.String">
+		parameterType="java.lang.Integer">
 		<![CDATA[
-		delete from databundle where bundle_uploader = #{login_user}
+		delete from databundle where bundle_no = #{bundle_no}
 	]]>
 	</delete>
-
+	
+	
+	
 </mapper>

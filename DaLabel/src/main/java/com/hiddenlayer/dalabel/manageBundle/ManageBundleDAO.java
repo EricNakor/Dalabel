@@ -47,4 +47,8 @@ public class ManageBundleDAO {
 		req.setAttribute("bundlePageCount", bundlePageCount);
 		req.setAttribute("page", page);
 	}
+	
+	public void deleteBundle(int bundle_no, HttpServletRequest req) {
+		ss.getMapper(ManageBundleMapper.class).deleteBundle(bundle_no);
+	}
 }

@@ -14,14 +14,20 @@
 			<td><c:forEach var="b" items="${bundles }">
 					<table border="1">
 						<tr>
-							<td><a href="reg.labeling.go">${b.bundle_uploaded_filename }</a></td>
+							<td><a href="reg.labeling.go">${b.bundle_uploaded_filename }</a>
+								<input type="hidden" name="bundle_name" value="${b.bundle_uploaded_filename }"></td>
+							<td>
+								<form action="delete.bundle?bundle_no=${b.bundle_no }" method="post">
+									<button>삭제</button>
+								</form>
+							</td>
 						</tr>
 					</table>
 				</c:forEach></td>
 		</tr>
 		<tr>
 			<td><c:forEach var="p" begin="1" end="${bundlePageCount }">
-						<a href="bundle.page.change?page=${p }">${p }</a>
+					<a href="bundle.page.change?page=${p }">${p }</a>
 				</c:forEach></td>
 		</tr>
 	</table>

@@ -18,7 +18,7 @@ public class ManageBundleController {
 	private MemberDAO mDAO;
 
 	@Autowired
-	private ManageBundleDAO mlDAO;
+	private ManageBundleDAO mbDAO;
 
 	@RequestMapping(value = "/upload.bundle.go", method = RequestMethod.GET)
 	public String goRegBundle(HttpServletRequest req) {
@@ -29,28 +29,29 @@ public class ManageBundleController {
 	@RequestMapping(value = "/upload.bundle.do", method = RequestMethod.POST)
 	public String doRegBundle(HttpServletRequest req, DataBundle db) {
 		mDAO.isLogined(req);
-		mlDAO.uploadBundle(db, req);
+		mbDAO.uploadBundle(db, req);
 		return "home";
 	}
 
 	@RequestMapping(value = "/get.my.bundle", method = RequestMethod.GET)
 	public String getMyBundle(HttpServletRequest req) {
 		mDAO.isLogined(req);
-		mlDAO.getMyBundle(1, req);
+		mbDAO.getMyBundle(1, req);
 		return "bundle/manage_bundle";
 	}
 
 	@RequestMapping(value = "/bundle.page.change", method = RequestMethod.GET)
 	public String snsPageChange(@RequestParam(value = "page") int page, HttpServletRequest req) {
 		mDAO.isLogined(req);
-		mlDAO.getMyBundle(page, req);
+		mbDAO.getMyBundle(page, req);
 		return "bundle/manage_bundle";
 	}
-	
-	@RequestMapping(value = "/reg.bundle.go", method = RequestMethod.GET)
-	public String goRegLabeling(@RequestParam(value = "bundle") String bundle, HttpServletRequest req) {
+
+	@RequestMapping(value = "/delete.bundle", method = RequestMethod.POST)
+	public String deleteBundle(@RequestParam(value = "bundle_no") int bundle_no, HttpServletRequest req) {
 		mDAO.isLogined(req);
-		return "manage_labeling/reg_labeling";
+		mbDAO.deleteBundle(bundle_no, req);
+		return "home";
 	}
 
 }
