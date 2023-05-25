@@ -26,7 +26,7 @@ public class ManageBundleDAO {
 
 	public void uploadBundle(DataBundle db, HttpServletRequest req) {
 		db.setBundle_uploader((String) req.getSession().getAttribute("loginUserID"));
-		String name = fu.labelingFileUpload(req);
+		String name = fu.bundleUpload(req);
 		db.setBundle_uploaded_filename(name);
 		db.setBundle_folder_name(name);
 		ss.getMapper(ManageBundleMapper.class).regLabelingBundle(db);

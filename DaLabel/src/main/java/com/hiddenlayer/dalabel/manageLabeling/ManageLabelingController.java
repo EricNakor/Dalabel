@@ -7,15 +7,20 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.hiddenlayer.dalabel.member.MemberDAO;
+
 @Controller
 public class ManageLabelingController {
-	@Autowired
-	private ManageLabelingDAO ldao;
 	
-	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(HttpServletRequest request) {
-
-		
-		return "home";
+	@Autowired
+	private ManageLabelingDAO mlDAO;
+	
+	@Autowired
+	private MemberDAO mDAO;
+	
+	@RequestMapping(value = "/reg.labeling.go", method = RequestMethod.GET)
+	public String home(HttpServletRequest req) {
+		mDAO.isLogined(req);
+		return "manage_labeling/reg_labeling";
 	}
 }

@@ -44,7 +44,7 @@ public class FileUpload {
 		}
 	}
 
-	public String labelingFileUpload(HttpServletRequest req) {
+	public String bundleUpload(HttpServletRequest req) {
 		MultipartRequest mr = null;
 		String path = req.getSession().getServletContext().getRealPath("resources/data/" + req.getSession().getAttribute("loginUserID"));
 		File folder = new File(path);
