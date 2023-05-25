@@ -17,6 +17,7 @@
 			<tr>
 				<td>파일명 :</td>
 				<td>${bundle_name }</td>
+				<td><a href="get.my.bundle">변경</a></td>
 			</tr>
 			<tr>
 				<td>가이드라인</td>

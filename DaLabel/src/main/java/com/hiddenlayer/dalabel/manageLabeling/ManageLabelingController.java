@@ -22,7 +22,14 @@ public class ManageLabelingController {
 	@RequestMapping(value = "/reg.labeling.go", method = RequestMethod.GET)
 	public String goRegLabeling(@RequestParam(value = "bundle_name") String bundle_name, HttpServletRequest req) {
 		mDAO.isLogined(req);
-		mlDAO.regLabelingProject(bundle_name , req);
+		req.setAttribute("bundle_name", bundle_name);
 		return "manage_labeling/reg_labeling";
+	}
+	
+	@RequestMapping(value = "/reg.labeling.do", method = RequestMethod.POST)
+	public String doRegLabeling(LabelingProject lp, HttpServletRequest req) {
+		mDAO.isLogined(req);
+		mlDAO.regLabelingProject(lp, req);
+		return "home";
 	}
 }

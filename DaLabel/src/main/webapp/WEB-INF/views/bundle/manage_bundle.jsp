@@ -14,8 +14,7 @@
 			<td><c:forEach var="b" items="${bundles }">
 					<table border="1">
 						<tr>
-							<td><a href="reg.labeling.go">${b.bundle_uploaded_filename }</a>
-								<input type="hidden" name="bundle_name" value="${b.bundle_uploaded_filename }"></td>
+							<td><a href="reg.labeling.go?bundle_name=${b.bundle_uploaded_filename }">${b.bundle_uploaded_filename }</a>
 							<td>
 								<form action="delete.bundle?bundle_no=${b.bundle_no }" method="post">
 									<button>삭제</button>
