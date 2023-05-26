@@ -8,22 +8,37 @@
 <title>페이지 리스트</title>
 </head>
 <body>
-<table>
-<tr><td>
+	<c:forEach var="p" items="${posts }">
+				${p.board_id }<br>
+				${p.board_category }<br>
+				${p.user_id }<br>
+				${p.board_title }<br>
+				${p.board_regist }<br>
+	</c:forEach>
 	<table>
 		<tr>
-		<td> 글넘버 </td> <td> 글제목 </td> <td> 글쓴사람</td>
+			<td>
+				<table>
+					<tr>
+						<td>글넘버</td>
+						<td>글제목</td>
+						<td>글쓴사람</td>
+					</tr>
+
+					<tr>
+						<td>글넘버1</td>
+						<td>글제목1</td>
+						<td>글쓴사람1</td>
+					</tr>
+				</table>
+			</td>
 		</tr>
-		
 		<tr>
-		<td> 글넘버1 </td> <td> 글제목1 </td> <td> 글쓴사람1</td>
+			<td>페이지 이동 1 2 3 4 5</td>
+			<td>
+				<button>글쓰기</button>
+			</td>
 		</tr>
 	</table>
-	</td></tr>
-	<tr>
-	<td> 페이지 이동 1 2 3 4 5 </td>
-	<td> <button>글쓰기</button> </td>
-	</tr>
-</table>
 </body>
 </html>

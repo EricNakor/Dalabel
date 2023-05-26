@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="BoardMapper">
+	<!-- 게시글 불러오기 -->
+	<select id="getAllPost"
+		resultType="com.hiddenlayer.dalabel.board.Board"
+		parameterType="com.hiddenlayer.dalabel.board.Board">
+		<![CDATA[
+		select * from board
+		]]>
+	</select>
+
+	<!-- 게시글 카운트 -->
+	<select id="getPostCount" resultType="java.lang.Integer">
+		<![CDATA[
+		select count(*) from board
+		]]>
+	</select>
+
+	<!-- 게시글 작성 -->
+	<insert id="writePost"
+		parameterType="com.hiddenlayer.dalabel.board.Board">
+		<![CDATA[
+		insert into board(board_id, board_title, board_content, board_delete)
+		values(board_seq.nextval, #{board_title}, #{board_content}, 0)
+		]]>
+	</insert>
+</mapper>
