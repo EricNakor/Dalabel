@@ -9,6 +9,7 @@
 </head>
 <body>
 	<form action="reg.labeling.do" method="post">
+	<input type="hidden" name="bundle_no" value="${bundle_no }">
 		<table>
 			<tr>
 				<td>라벨링 제목</td>

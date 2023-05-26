@@ -5,6 +5,7 @@ create table databundle(
 	bundle_folder_name varchar2(100 char) not null,
 	bundle_data_type varchar2(5 char),
 	bundle_descript varchar2(100 char),
+	bundle_unzip number(1),
 	constraint bundle_requestor foreign key (bundle_uploader)
 	references member(user_id) on delete cascade
 )
@@ -34,6 +35,8 @@ create table labeling_project (
 )
 
 create sequence labeling_project_seq
+
+select * from labeling_project
 
 create table data(
 	data_no number(8),

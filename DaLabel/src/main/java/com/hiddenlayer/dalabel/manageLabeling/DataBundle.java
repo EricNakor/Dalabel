@@ -8,19 +8,23 @@ public class DataBundle {
 	private String bundle_uploaded_filename;
 	private String bundle_folder_name;
 	private String bundle_data_type;
+	private String bundle_descript;
+	private BigDecimal bundle_unzip;
 
 	public DataBundle() {
 		// TODO Auto-generated constructor stub
 	}
 
 	public DataBundle(BigDecimal bundle_no, String bundle_uploader, String bundle_uploaded_filename,
-			String bundle_folder_name, String bundle_data_type) {
+			String bundle_folder_name, String bundle_data_type, String bundle_descript, BigDecimal bundle_unzip) {
 		super();
 		this.bundle_no = bundle_no;
 		this.bundle_uploader = bundle_uploader;
 		this.bundle_uploaded_filename = bundle_uploaded_filename;
 		this.bundle_folder_name = bundle_folder_name;
 		this.bundle_data_type = bundle_data_type;
+		this.bundle_descript = bundle_descript;
+		this.bundle_unzip = bundle_unzip;
 	}
 
 	public BigDecimal getBundle_no() {
@@ -61,6 +65,22 @@ public class DataBundle {
 
 	public void setBundle_data_type(String bundle_data_type) {
 		this.bundle_data_type = bundle_data_type;
+	}
+
+	public String getBundle_descript() {
+		return bundle_descript;
+	}
+
+	public void setBundle_descript(String bundle_descript) {
+		this.bundle_descript = bundle_descript;
+	}
+
+	public BigDecimal getBundle_unzip() {
+		return bundle_unzip;
+	}
+
+	public void setBundle_unzip(BigDecimal bundle_unzip) {
+		this.bundle_unzip = bundle_unzip;
 	}
 
 }

@@ -5,7 +5,7 @@
 	<insert id="regLabelingBundle"
 		parameterType="com.hiddenlayer.dalabel.manageLabeling.DataBundle">
 		<![CDATA[
-		insert into databundle values(databundle_seq.nextval, #{bundle_uploader}, #{bundle_uploaded_filename}, #{bundle_folder_name}, null, null)
+		insert into databundle values(databundle_seq.nextval, #{bundle_uploader}, #{bundle_uploaded_filename}, #{bundle_folder_name}, null, null, 0)
 	]]>
 	</insert>
 
@@ -15,9 +15,9 @@
 		<![CDATA[
 		select *
 		from (
-			select rownum as rn, bundle_no, bundle_uploaded_filename, bundle_folder_name, bundle_descript
+			select rownum as rn, bundle_no, bundle_uploaded_filename, bundle_folder_name, bundle_descript, bundle_unzip
 			from (
-				select bundle_no, bundle_uploaded_filename, bundle_folder_name, bundle_descript from databundle
+				select bundle_no, bundle_uploaded_filename, bundle_folder_name, bundle_descript, bundle_unzip from databundle
 				where bundle_uploader = #{login_user}
 			)
 		)

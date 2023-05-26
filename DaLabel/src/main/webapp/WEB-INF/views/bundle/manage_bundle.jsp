@@ -8,15 +8,17 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<a href="get.myUpload.labeling">라벨링 프로젝트 관리</a>
+	<a href="get.myUpload.labeling"> 라벨링 프로젝트 관리</a>
 	<table>
 		<tr>
 			<td><c:forEach var="b" items="${bundles }">
 					<table border="1">
 						<tr>
-							<td><a href="reg.labeling.go?bundle_name=${b.bundle_uploaded_filename }">${b.bundle_uploaded_filename }</a>
+							<td><a
+								href="reg.labeling.go?bundle_name=${b.bundle_uploaded_filename }&bundle_no=${b.bundle_no }">${b.bundle_uploaded_filename }</a>
 							<td>
-								<form action="delete.bundle?bundle_no=${b.bundle_no }" method="post">
+								<form action="delete.bundle?bundle_no=${b.bundle_no }"
+									method="post">
 									<button>삭제</button>
 								</form>
 							</td>

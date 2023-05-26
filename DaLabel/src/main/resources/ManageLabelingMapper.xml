@@ -5,7 +5,7 @@
 	<insert id="regLabelingProject"
 		parameterType="com.hiddenlayer.dalabel.manageLabeling.LabelingProject">
 		<![CDATA[
-		insert into values(labeling_project_seq.nextval, #{project_title}, #{project_requestor}, 0, #{project_guide}, #{project_how}, '[버튼1 : 개, 버튼2 : 고양이]', 0, #{project_bundle_no})
+		insert into labeling_project values(labeling_project_seq.nextval, #{project_title}, #{project_requestor}, 0, #{project_guide}, #{project_how}, '[버튼1 : 개, 버튼2 : 고양이]', 0, #{project_bundle_no})
 	]]>
 	</insert>
 

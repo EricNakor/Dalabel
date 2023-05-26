@@ -1,5 +1,7 @@
 package com.hiddenlayer.dalabel.manageLabeling;
 
+import java.math.BigDecimal;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,16 +22,17 @@ public class ManageLabelingController {
 	private MemberDAO mDAO;
 	
 	@RequestMapping(value = "/reg.labeling.go", method = RequestMethod.GET)
-	public String goRegLabeling(@RequestParam(value = "bundle_name") String bundle_name, HttpServletRequest req) {
+	public String goRegLabeling(@RequestParam(value = "bundle_name") String bundle_name, @RequestParam(value = "bundle_no") BigDecimal bundle_no,HttpServletRequest req) {
 		mDAO.isLogined(req);
 		req.setAttribute("bundle_name", bundle_name);
+		req.setAttribute("bundle_no", bundle_no);
 		return "manage_labeling/reg_labeling";
 	}
 	
 	@RequestMapping(value = "/reg.labeling.do", method = RequestMethod.POST)
-	public String doRegLabeling(LabelingProject lp, HttpServletRequest req) {
+	public String doRegLabeling(LabelingProject lp, HttpServletRequest req, @RequestParam(value = "bundle_no") BigDecimal bundle_no) {
 		mDAO.isLogined(req);
-		mlDAO.regLabelingProject(lp, req);
+		mlDAO.regLabelingProject(lp, req, bundle_no);
 		return "home";
 	}
 }
