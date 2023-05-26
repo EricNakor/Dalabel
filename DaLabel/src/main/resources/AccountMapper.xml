@@ -42,5 +42,10 @@
 		where user_id=#{user_id}
 	]]>
 	</update>
+	<select id="checkId" parameterType="java.lang.String" resultType="java.lang.Integer">
+	<![CDATA[
+		select count(*) from member where user_id=#{user_id} and user_isdeleted=0
+	]]>
+	</select>
 
 </mapper>

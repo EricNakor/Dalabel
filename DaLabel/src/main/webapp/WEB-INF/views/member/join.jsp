@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 <script type="text/javascript" src="resources/js/dalabelCheck.js"></script>
 <script type="text/javascript" src="resources/js/validChecker.js"></script>
-<script type="text/javascript" src="resources/js/jQuery.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
 	<form action="member.join.do" method="post" name="joinForm" onsubmit="return joinCheck();">
@@ -18,9 +18,9 @@
 			</tr>
 			<tr>
 				<td class="td1" align="right">아이디</td>
-
-				<td align="center"><input name="user_id">
-				<button id="idChkBtn" type="button" onclick="idCheck();">중복확인</button></td>
+				<td align="center"><input name="user_id" id="user_id">
+				<button id="idChkBtn" type="button" onclick="idCheck();" value="0">중복확인</button>
+				
 			</tr>
 			<tr>
 				<td class="td1" align="right">비밀번호</td>

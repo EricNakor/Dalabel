@@ -7,6 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+
 
 @Controller
 public class MemberController {
@@ -91,4 +95,11 @@ public class MemberController {
 		mDAO.updateProfile(req);
 		return "member/info";
 	}
+	
+	@RequestMapping(value = "/member.idcheck", method = RequestMethod.POST, produces = "application/json; charset=utf-8")
+	public @ResponseBody int idCheck(@RequestParam("user_id") String user_id) {
+		int result = mDAO.idCheck(user_id);
+		return result;
+	}
+
 }

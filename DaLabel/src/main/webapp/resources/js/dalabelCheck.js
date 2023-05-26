@@ -10,6 +10,11 @@ function joinCheck() {
 		idInput.focus();
 		return false;
 	}
+	
+	if ($("#idChkBtn").val() == "0") {
+		alert("id 중복확인")
+		return false;
+	}
 
 	if (isEmpty(pwInput) || isEmpty(pwChkInput)) {
 		alert("pw 입력");
@@ -33,6 +38,7 @@ function joinCheck() {
 	}
 
 	return true;
+
 }
 
 function updateCheck() {
@@ -59,4 +65,24 @@ function updateCheck() {
 	}
 
 	return true;
+}
+
+
+function idCheck() {
+	var user_id = $("#user_id").val();
+		$.ajax({
+		url:'./member.idcheck',
+		type : 'post',
+		data : {user_id : user_id},
+		success : function(result) {
+			if (result == 0) {
+				alert("사용 가능 id");
+				
+			} else {
+				alert("중복된 id");
+				$("#user_id").val("");
+			}
+		}
+	});
+		$("#idChkBtn").val("1");
 }

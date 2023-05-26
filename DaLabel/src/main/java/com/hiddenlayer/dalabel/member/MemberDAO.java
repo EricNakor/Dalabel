@@ -133,4 +133,10 @@ public class MemberDAO {
 		m.setUser_img(fileName);
 		ss.getMapper(AccountMapper.class).changeMemberIMG(m);
 	}
+	
+
+	public int idCheck(String user_id) {
+		int result = ss.getMapper(AccountMapper.class).checkId(user_id);
+		return result;
+	}
 }
