@@ -7,7 +7,11 @@ import com.hiddenlayer.dalabel.manageBundle.ManageSelector;
 public interface ManageLabelingMapper {
 	public abstract int regLabelingProject(LabelingProject lp);
 
-	public ArrayList<LabelingProject> getMyLabelingProject(ManageSelector ms);
+	public abstract ArrayList<LabelingProject> getMyLabelingProject(ManageSelector ms);
 
-	public LabelingProject getMyDetaillabelingProject(int project_no);
+	public abstract LabelingProject getMyDetaillabelingProject(int project_no);
+	
+	public abstract int getAllMyProjectCount(String user_id);
+	
+	public abstract int updateProjectAccessLevel(LabelingProject lp);
 }

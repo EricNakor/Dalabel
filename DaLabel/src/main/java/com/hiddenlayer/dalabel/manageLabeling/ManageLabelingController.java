@@ -14,25 +14,32 @@ import com.hiddenlayer.dalabel.member.MemberDAO;
 
 @Controller
 public class ManageLabelingController {
-	
+
 	@Autowired
 	private ManageLabelingDAO mlDAO;
-	
+
 	@Autowired
 	private MemberDAO mDAO;
-	
+
 	@RequestMapping(value = "/reg.labeling.go", method = RequestMethod.GET)
-	public String goRegLabeling(@RequestParam(value = "bundle_name") String bundle_name, @RequestParam(value = "bundle_no") BigDecimal bundle_no,HttpServletRequest req) {
+	public String goRegLabeling(@RequestParam(value = "bundle_name") String bundle_name,
+			@RequestParam(value = "bundle_no") BigDecimal bundle_no, HttpServletRequest req) {
 		mDAO.isLogined(req);
 		req.setAttribute("bundle_name", bundle_name);
 		req.setAttribute("bundle_no", bundle_no);
 		return "manage_labeling/reg_labeling";
 	}
-	
+
 	@RequestMapping(value = "/reg.labeling.do", method = RequestMethod.POST)
-	public String doRegLabeling(LabelingProject lp, HttpServletRequest req, @RequestParam(value = "bundle_no") BigDecimal bundle_no) {
+	public String doRegLabeling(LabelingProject lp, HttpServletRequest req) {
 		mDAO.isLogined(req);
-		mlDAO.regLabelingProject(lp, req, bundle_no);
+		mlDAO.regLabelingProject(lp, req);
 		return "home";
+	}
+
+	@RequestMapping(value = "/get.myUpload.labeling", method = RequestMethod.GET)
+	public String getManageLabeling(HttpServletRequest req) {
+		mlDAO.getMyLabeling(1, req);
+		return "manage_labeling/manage_labeling";
 	}
 }

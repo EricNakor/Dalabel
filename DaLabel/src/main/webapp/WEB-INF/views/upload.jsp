@@ -9,6 +9,7 @@
 <body>
 <form action="upload.bundle.do" method="post" enctype="multipart/form-data">
 	<input type="file" name="fileName">
+	<input name="bundle_data_type">
 	<button>업로드</button>
 </form>
 </body>

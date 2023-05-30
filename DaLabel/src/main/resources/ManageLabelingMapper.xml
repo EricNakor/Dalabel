@@ -17,7 +17,7 @@
 		from (
 			select rownum as rn, project_no, project_title, project_access_level, project_progress
 			from (
-				select project_no, project_title, project_access_level, project_progress
+				select project_no, project_title, project_access_level, project_progress from labeling_project
 				where project_requestor = #{login_user}
 			)
 		)
@@ -33,5 +33,23 @@
 		]]>
 	</select>
 
+
+	<select id="getAllMyProjectCount"
+		parameterType="java.lang.String" resultType="java.lang.Integer">
+		<![CDATA[
+			select count(*) from labeling_project
+			where project_requestor = #{login_user}
+		]]>
+	</select>
+
+	<update id="updateProjectAccessLevel"
+		parameterType="com.hiddenlayer.dalabel.manageLabeling.LabelingProject">
+		<![CDATA[
+			update labeling_project set project_access_level = #{project_access_level}
+			where project_no = #{project_no}
+		]]>
+	</update>
 	
+	
+
 </mapper>

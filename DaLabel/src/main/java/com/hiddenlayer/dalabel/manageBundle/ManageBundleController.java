@@ -54,4 +54,10 @@ public class ManageBundleController {
 		return "home";
 	}
 
+	@RequestMapping(value = "/update.file.name", method = RequestMethod.GET)
+	public String updateBundleFolderName(DataBundle db) {
+		mbDAO.updateBundleFolderName(db);
+		return "home";
+	}
+	
 }

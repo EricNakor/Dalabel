@@ -5,7 +5,7 @@
 	<insert id="regLabelingBundle"
 		parameterType="com.hiddenlayer.dalabel.manageLabeling.DataBundle">
 		<![CDATA[
-		insert into databundle values(databundle_seq.nextval, #{bundle_uploader}, #{bundle_uploaded_filename}, #{bundle_folder_name}, null, null, 0)
+		insert into databundle values(databundle_seq.nextval, #{bundle_uploader}, #{bundle_uploaded_filename}, #{bundle_data_type}, #{bundle_descript}, 0, #{bundle_folder_name}, 0)
 	]]>
 	</insert>
 
@@ -15,9 +15,9 @@
 		<![CDATA[
 		select *
 		from (
-			select rownum as rn, bundle_no, bundle_uploaded_filename, bundle_folder_name, bundle_descript, bundle_unzip
+			select rownum as rn, bundle_no, bundle_uploaded_filename, bundle_descript, bundle_unzip, bundle_folder_name
 			from (
-				select bundle_no, bundle_uploaded_filename, bundle_folder_name, bundle_descript, bundle_unzip from databundle
+				select bundle_no, bundle_uploaded_filename, bundle_descript, bundle_unzip, bundle_folder_name from databundle
 				where bundle_uploader = #{login_user}
 			)
 		)
@@ -33,13 +33,37 @@
 		]]>
 	</select>
 
-	<delete id="deleteBundle"
-		parameterType="java.lang.Integer">
+	<delete id="deleteBundle" parameterType="java.lang.Integer">
 		<![CDATA[
 		delete from databundle where bundle_no = #{bundle_no}
 	]]>
 	</delete>
-	
-	
-	
+
+	<select id="getBundleNumber" parameterType="java.lang.String"
+		resultType="java.lang.Integer">
+		<![CDATA[
+			select bundle_no from databundle
+			where bundle_uploader = #{userId} and bundle_uploaded_filename=#{fileName}
+		]]>
+	</select>
+
+	<update id="updateBundleAfterUnzip"
+		parameterType="com.hiddenlayer.dalabel.manageLabeling.DataBundle">
+	<![CDATA[
+			update databundle
+			set bundle_unzip=1, bundle_file_count=#{bundle_file_count}
+			where bundle_no=#{bundle_no}
+		]]>
+	</update>
+
+	<update id="updateBundleFileName"
+		parameterType="com.hiddenlayer.dalabel.manageLabeling.DataBundle">
+	<![CDATA[
+			update databundle
+			set bundle_uploaded_filename = #{bundle_uploaded_filename}
+			where bundle_no=#{bundle_no}
+		]]>
+	</update>
+
+
 </mapper>

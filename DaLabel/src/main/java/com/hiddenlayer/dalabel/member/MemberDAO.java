@@ -11,7 +11,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.hiddenlayer.dalabel.fileupload.FileUpload;
+import com.hiddenlayer.dalabel.util.FileUpload;
 
 @Service
 public class MemberDAO {

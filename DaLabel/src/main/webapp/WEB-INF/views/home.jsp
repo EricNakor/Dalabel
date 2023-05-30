@@ -21,5 +21,6 @@
 <a href="upload.bundle.go">라벨링 파일 등록</a>
 <img alt="따봉" src="resources/image/profile/ddabong.jpg">
 <a href="get.my.bundle">내 데이터 관리</a>
+<a href="get.myUpload.labeling"> 라벨링 프로젝트 관리</a>
 </body>
 </html>

@@ -17,6 +17,13 @@
 							<td><a
 								href="reg.labeling.go?bundle_name=${b.bundle_uploaded_filename }&bundle_no=${b.bundle_no }">${b.bundle_uploaded_filename }</a>
 							<td>
+								<form action="update.file.name">
+									<input type="hidden" value="${b.bundle_no }" name="bundle_no">
+									<input name="bundle_uploaded_filename">
+									<button>파일명 변경</button>
+								</form>
+							</td>
+							<td>
 								<form action="delete.bundle?bundle_no=${b.bundle_no }"
 									method="post">
 									<button>삭제</button>

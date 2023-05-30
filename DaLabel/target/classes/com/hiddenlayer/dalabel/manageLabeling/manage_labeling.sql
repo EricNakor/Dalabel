@@ -2,10 +2,11 @@ create table databundle(
 	bundle_no number(8) primary key,
 	bundle_uploader varchar2(15 char) not null,
 	bundle_uploaded_filename varchar2(100 char) not null,
+	bundle_data_type varchar2(5 char) not null,
+	bundle_descript varchar2(100 char) not null,
+	bundle_unzip number(1) not null,
 	bundle_folder_name varchar2(100 char) not null,
-	bundle_data_type varchar2(5 char),
-	bundle_descript varchar2(100 char),
-	bundle_unzip number(1),
+	bundle_file_count number(8) not null,
 	constraint bundle_requestor foreign key (bundle_uploader)
 	references member(user_id) on delete cascade
 )
@@ -39,11 +40,13 @@ create sequence labeling_project_seq
 select * from labeling_project
 
 create table data(
-	data_no number(8),
+	data_name varchar2(15 char),
 	data_where number(8),
 	data_activation char(1) not null,
-	constraint data_pk primary key(data_no, data_where)
+	constraint data_pk primary key(data_where, data_name)
 )
+
+drop table data cascade constraint purge
 
 create table want_do_labeling (
 	want_user varchar2(15 char),
@@ -51,6 +54,8 @@ create table want_do_labeling (
 	want_avail char(1) not null,
 	constraint want_labeling_pk primary key(want_user, want_bundle)
 )
+
+CREATE INDEX idx_want_bundle on want_do_labeling (want_bundle)
 
 select bitor(2,4) from dual
 
