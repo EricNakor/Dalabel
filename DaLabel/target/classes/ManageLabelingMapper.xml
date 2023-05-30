@@ -25,7 +25,7 @@
 	]]>
 	</select>
 
-	<select id="getMyDetaillabelingProject"
+	<select id="getMyDeatilProject"
 		parameterType="java.lang.Integer"
 		resultType="com.hiddenlayer.dalabel.manageLabeling.LabelingProject">
 		<![CDATA[

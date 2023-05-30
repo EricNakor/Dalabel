@@ -42,4 +42,16 @@ public class ManageLabelingController {
 		mlDAO.getMyLabeling(1, req);
 		return "manage_labeling/manage_labeling";
 	}
+
+	@RequestMapping(value = "/get.detail.myproject", method = RequestMethod.GET)
+	public String goDetailProject(HttpServletRequest req) {
+		mlDAO.getMyDeatilProject(req);
+		return "manage_labeling/manage_detail_labeling";
+	}
+
+	@RequestMapping(value = "/update.project.accessLevel", method = RequestMethod.GET)
+	public String updateAccessLevel(LabelingProject lp, HttpServletRequest req) {
+		mlDAO.updateProjectAccessLevel(lp, req);
+		return "home";
+	}
 }

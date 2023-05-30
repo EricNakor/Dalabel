@@ -14,8 +14,12 @@
 			<td><c:forEach var="p" items="${projects }">
 					<table border="1">
 						<tr>
-							<td><a
-								href="detail.myproject.go?project_no=${p.project_no }">${p.project_title }</a>
+							<td>
+								<form action="get.detail.myproject">
+									<input type="hidden" value="${p.project_no }" name="project_no">
+									<button>${p.project_title }</button>
+								</form>
+							</td>
 						</tr>	
 					</table>
 				</c:forEach></td>
