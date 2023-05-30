@@ -6,14 +6,14 @@
 		parameterType="com.hiddenlayer.dalabel.dolabeling.LabelData">
 		<![CDATA[
 			insert into Labeling_Done
-			values (#{data_bundle}, #{data_no}, #{worked_by}, #{label})
+			values (#{project_no}, #{data_no}, #{worked_by}, #{label})
 		]]>
 	</insert>
 	<insert id="addLabelDoList"
 		parameterType="com.hiddenlayer.dalabel.dolabeling.LabelDoList">
 		<![CDATA[
 			insert into Labeling_Do
-			values (#{dolabel_user}, #{dolabel_bundle}, #{dolabel_state}, #{labeling_score})
+			values (#{dolabel_user}, #{dolable_project_no}, #{dolabel_state}, #{dolabel_score})
 		]]>
 	</insert>
 	<select id="findLabelDoList"
@@ -28,8 +28,8 @@
 		parameterType="com.hiddenlayer.dalabel.dolabeling.LabelDoList">
 		<![CDATA[
 			update Labeling_Do
-			set dolabel_state=#{dolabel_state}, labeling_score=#{labeling_score}
-			where dolabel_user=#{dolabel_user}
+			set dolabel_state=#{dolabel_state}
+			where dolabel_user=#{dolabel_user} and dolable_project_no=#{dolable_project_no}
 		]]>
 	</update>
 </mapper>

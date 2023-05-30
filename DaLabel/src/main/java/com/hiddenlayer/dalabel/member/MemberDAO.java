@@ -3,7 +3,6 @@ package com.hiddenlayer.dalabel.member;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -11,11 +10,14 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.hiddenlayer.dalabel.session.UserLoginSession;
 import com.hiddenlayer.dalabel.util.FileUpload;
 
 @Service
 public class MemberDAO {
-	private HashMap<String, String> sessionmap;
+	@Autowired
+	private UserLoginSession sessionmap;
+	
 	private static final SimpleDateFormat SDF = new SimpleDateFormat("yyyyMMdd");
 	@Autowired
 	private SqlSession ss;
@@ -25,17 +27,14 @@ public class MemberDAO {
 
 	
 	public void deleteSessionFromSessionMap(String userid) {
-		sessionmap.remove(userid);			
-
+		sessionmap.removeUserIDWithSessionID(userid);			
 	}
 	
 	public MemberDAO() {
 		super();
-		sessionmap = new HashMap<String, String>();
 	}
 
 	public void login(Member m, HttpServletRequest req) {
-		System.out.println(sessionmap);
 		try {
 			ArrayList<Member> member = ss.getMapper(AccountMapper.class).getUserinfo(m);
 			Member user = member.get(0);
@@ -45,7 +44,7 @@ public class MemberDAO {
 					req.getSession().setAttribute("loginUserIMG",
 							(user.getUser_img() != null) ? user.getUser_img() : "defaultprofile.jpg");
 					req.setAttribute("loginResult", "로그인 성공");
-					sessionmap.put(user.getUser_id(), req.getSession().getId());
+					sessionmap.putUserIDWithSessionID(user.getUser_id(), req.getSession().getId());
 				}
 			}
 		} catch (Exception e) {
@@ -54,19 +53,17 @@ public class MemberDAO {
 	}
 
 	public void logout(HttpServletRequest req) {
-		System.out.println(sessionmap);
-		sessionmap.remove((String) req.getSession().getAttribute("loginUserID"));
+		sessionmap.removeUserIDWithSessionID((String) req.getSession().getAttribute("loginUserID"));
 		req.getSession().removeAttribute("loginUserID");
 		req.getSession().removeAttribute("loginUserIMG");
-		req.getSession().removeAttribute("bundleCount");
 	}
 
 	public boolean isLogined(HttpServletRequest req) {
 		String userid = (String) req.getSession().getAttribute("loginUserID");
-		if (userid == null || sessionmap.get(userid) == null) {
+		if (userid == null || sessionmap.getSessionIDWithUserID(userid) == null) {
 			return false;
 		}
-		if (req.getSession().getId().equals(sessionmap.get(userid))) {
+		if (req.getSession().getId().equals(sessionmap.getSessionIDWithUserID(userid))) {
 			return true;
 		} else {
 			logout(req);
@@ -122,7 +119,6 @@ public class MemberDAO {
 
 	public void updateProfile(HttpServletRequest req) {
 		String fileName = fu.profileUpload(req);
-		System.out.println(fileName);
 		String userID = (String) req.getSession().getAttribute("loginUserID");
 		String userIMG = (String) req.getSession().getAttribute("loginUserIMG");
 		if (!("defaultprofile.jpg").equals(userIMG)) {

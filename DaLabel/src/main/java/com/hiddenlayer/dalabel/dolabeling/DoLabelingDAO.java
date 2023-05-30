@@ -12,14 +12,21 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.hiddenlayer.dalabel.session.UserLoginSession;
+
 @Service
 public class DoLabelingDAO {
 	@Autowired
 	private SqlSession ss;
+	
+	@Autowired
+	private UserLoginSession uls;
 
-	public String start(HttpServletRequest req) {
+	public void start(HttpServletRequest req) {
 		
-		return "home";
+		String userid = (String)req.getSession().getAttribute("loginUserID");
+		uls.putUserIDWithProjectNo(userid, null);
+		
 	}
 
 	public String nextData(HttpServletRequest req) {
