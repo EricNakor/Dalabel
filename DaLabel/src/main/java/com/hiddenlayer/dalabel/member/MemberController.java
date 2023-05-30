@@ -85,7 +85,7 @@ public class MemberController {
 		return "upload";
 	}
 
-	@RequestMapping(value = "/upload", method = RequestMethod.POST)
+	@RequestMapping(value = "/profile.upload", method = RequestMethod.POST)
 	public String updateProfile(HttpServletRequest req) {
 		mDAO.isLogined(req);
 		mDAO.updateProfile(req);

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="com.hiddenlayer.dalabel.manageBundle.ManageBundleMapper">
+	<insert id="regLabelingBundle"
+		parameterType="com.hiddenlayer.dalabel.manageLabeling.DataBundle">
+		<![CDATA[
+		insert into databundle values(databundle_seq.nextval, #{bundle_uploader}, #{bundle_uploaded_filename}, #{bundle_data_type}, #{bundle_descript}, 0, #{bundle_folder_name}, 0)
+	]]>
+	</insert>
+
+	<select id="getAllBundle"
+		parameterType="com.hiddenlayer.dalabel.manageBundle.ManageSelector"
+		resultType="com.hiddenlayer.dalabel.manageLabeling.DataBundle">
+		<![CDATA[
+		select *
+		from (
+			select rownum as rn, bundle_no, bundle_uploaded_filename, bundle_descript, bundle_unzip, bundle_folder_name
+			from (
+				select bundle_no, bundle_uploaded_filename, bundle_descript, bundle_unzip, bundle_folder_name from databundle
+				where bundle_uploader = #{login_user}
+			)
+		)
+		where rn >= #{start} and rn <= #{end}
+	]]>
+	</select>
+
+	<select id="getAllBundleCount" parameterType="java.lang.String"
+		resultType="java.lang.Integer">
+		<![CDATA[
+			select count(*) from databundle
+			where bundle_uploader = #{login_user}
+		]]>
+	</select>
+
+	<delete id="deleteBundle" parameterType="java.lang.Integer">
+		<![CDATA[
+		delete from databundle where bundle_no = #{bundle_no}
+	]]>
+	</delete>
+
+	<select id="getBundleNumber" parameterType="java.lang.String"
+		resultType="java.lang.Integer">
+		<![CDATA[
+			select bundle_no from databundle
+			where bundle_uploader = #{userId} and bundle_uploaded_filename=#{fileName}
+		]]>
+	</select>
+
+	<update id="updateBundleAfterUnzip"
+		parameterType="com.hiddenlayer.dalabel.manageLabeling.DataBundle">
+	<![CDATA[
+			update databundle
+			set bundle_unzip=1, bundle_file_count=#{bundle_file_count}
+			where bundle_no=#{bundle_no}
+		]]>
+	</update>
+
+	<update id="updateBundleFileName"
+		parameterType="com.hiddenlayer.dalabel.manageLabeling.DataBundle">
+	<![CDATA[
+			update databundle
+			set bundle_uploaded_filename = #{bundle_uploaded_filename}
+			where bundle_no=#{bundle_no}
+		]]>
+	</update>
+
+
+</mapper>

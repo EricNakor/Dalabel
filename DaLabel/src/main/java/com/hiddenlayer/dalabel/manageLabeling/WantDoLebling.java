@@ -1,17 +1,17 @@
-package com.hiddenlayer.dalabel.wantlabeling;
+package com.hiddenlayer.dalabel.manageLabeling;
 
 import java.math.BigDecimal;
-
-public class LabelingWantApply {
+ 
+public class WantDoLebling {
 	private String want_user;
 	private BigDecimal want_what;
-	private boolean want_avail;
+	private char want_avail;
 
-	public LabelingWantApply() {
+	public WantDoLebling() {
 		// TODO Auto-generated constructor stub
 	}
-
-	public LabelingWantApply(String want_user, BigDecimal want_what, boolean want_avail) {
+ 
+	public WantDoLebling(String want_user, BigDecimal want_what, char want_avail) {
 		super();
 		this.want_user = want_user;
 		this.want_what = want_what;
@@ -34,11 +34,12 @@ public class LabelingWantApply {
 		this.want_what = want_what;
 	}
 
-	public boolean isWant_avail() {
+	public char getWant_avail() {
 		return want_avail;
 	}
 
-	public void setWant_avail(boolean want_avail) {
+	public void setWant_avail(char want_avail) {
 		this.want_avail = want_avail;
 	}
+
 }

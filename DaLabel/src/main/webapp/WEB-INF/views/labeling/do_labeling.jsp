@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
-<body>
+ <body> <!--  -->
 	<form action="doLabelForm">
 		<img alt="라벨링할 이미지" src="resources/img/a.png"><br>
 		<button>개</button>

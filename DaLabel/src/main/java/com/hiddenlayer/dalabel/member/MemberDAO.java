@@ -11,7 +11,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.hiddenlayer.dalabel.fileupload.FileUpload;
+import com.hiddenlayer.dalabel.util.FileUpload;
 
 @Service
 public class MemberDAO {
@@ -58,6 +58,7 @@ public class MemberDAO {
 		sessionmap.remove((String) req.getSession().getAttribute("loginUserID"));
 		req.getSession().removeAttribute("loginUserID");
 		req.getSession().removeAttribute("loginUserIMG");
+		req.getSession().removeAttribute("bundleCount");
 	}
 
 	public boolean isLogined(HttpServletRequest req) {
