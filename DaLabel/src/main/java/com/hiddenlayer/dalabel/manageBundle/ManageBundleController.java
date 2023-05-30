@@ -20,7 +20,7 @@ public class ManageBundleController {
 	@Autowired
 	private ManageBundleDAO mbDAO;
 
-	@RequestMapping(value = "/upload.bundle.go", method = RequestMethod.GET)
+	@RequestMapping(value = "/upload.bundle.needlogin.go", method = RequestMethod.GET)
 	public String goRegBundle(HttpServletRequest req) {
 		mDAO.isLogined(req);
 		return "upload";
@@ -33,7 +33,7 @@ public class ManageBundleController {
 		return "home";
 	}
 
-	@RequestMapping(value = "/get.my.bundle", method = RequestMethod.GET)
+	@RequestMapping(value = "/get.my.needlogin.bundle", method = RequestMethod.GET)
 	public String getMyBundle(HttpServletRequest req) {
 		mDAO.isLogined(req);
 		mbDAO.getMyBundle(1, req);

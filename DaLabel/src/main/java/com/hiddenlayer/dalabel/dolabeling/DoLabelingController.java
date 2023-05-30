@@ -9,6 +9,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.hiddenlayer.dalabel.manageLabeling.LabelingProject;
 
 @Controller
 public class DoLabelingController {
@@ -18,23 +21,21 @@ public class DoLabelingController {
 	
 //	라벨링 시작시 호출.
 	@RequestMapping(value = "/doLabeling.start", method = RequestMethod.GET)
-	public String start(HttpServletRequest req) {
-		
+	public String start(HttpServletRequest req, LabelingProject lp) {
+		dlDAO.start(req,lp);
 		return "home";
 	}
 	
 //	라벨링중 다음 데이타 부르기용도. AJAX로 호출됨. 토큰을 이용한 보안설정 고려할것. 세션종료시 토큰무효화하도록 토큰설계.
-	@RequestMapping(value = "/doLabeling.next", method = RequestMethod.POST)
-	public String nextData(HttpServletRequest req) {
-		
-		return "home";
+
+	@RequestMapping(value = "/doLabeling.next", method = RequestMethod.GET)
+	public @ResponseBody String nextData(HttpServletRequest req, LabelData ld) {
+		return dlDAO.nextData(req, ld);
 	}
 	
 //	라벨링 종료버튼 누를시 호출됨.
 	@RequestMapping(value = "/doLabeling.done", method = RequestMethod.GET)
 	public String end(HttpServletRequest req) {
-
-		
 		return "home";
 	}
 	
