@@ -17,11 +17,19 @@
 		]]>
 	</insert>
 	<select id="findLabelDoList"
-		parameterType="com.hiddenlayer.dalabel.dolabeling.LabelDoList"
 		resultType="com.hiddenlayer.dalabel.dolabeling.LabelDoList">
 		<![CDATA[
-			select * from Labeling_Do
-			where dolabel_user=#{dolabel_user}
+			select dolabel_user, dolabel_project_no, dolabel_state, dolabel_score from
+				(select dolabel_user, dolabel_project_no, dolabel_state, dolabel_score, rownum as rn 
+				from Labeling_Do
+				where dolabel_user=#{userid})
+			where rn>=#{start} and rn<=#{end}
+		]]>
+	</select>
+	<select id="getJoinProjectCount" resultType="java.lang.Integer">
+		<![CDATA[
+			select count(*) from Labeling_Do
+			where dolabel_user=#{userid}
 		]]>
 	</select>
 	<update id="updateLabelState"
@@ -32,4 +40,5 @@
 			where dolabel_user=#{dolabel_user} and dolable_project_no=#{dolable_project_no}
 		]]>
 	</update>
+
 </mapper>

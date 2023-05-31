@@ -1,6 +1,7 @@
 package com.hiddenlayer.dalabel.dolabeling;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -46,19 +47,25 @@ public class DoLabelingDAO {
 	}
 	
 
-	public String getMypage(HttpServletRequest req) {
+	public void getMypageCount(HttpServletRequest req) {
+		if (req.getSession().getAttribute("joinProjectCount")==null) {
+			req.setAttribute("joinProjectCount", ss.getMapper(DataDoLabelingMapper.class).getJoinProjectCount((String)req.getSession().getAttribute("loginUserID")));
+		}
 		
-		return "home";
 	}
 
-	public String find(HttpServletRequest req) {
-
-		return "home";
+	public ArrayList<LabelDoList> find(HttpServletRequest req, int start, int end) {
+		return ss.getMapper(DataDoLabelingMapper.class).findLabelDoList((String)req.getSession().getAttribute("loginUserID"), start, end);
 	}
 
-	public String askjoin(HttpServletRequest req) {
-
-		return "home";
+	public void askjoin(HttpServletRequest req) {
+		if (req.getSession().getAttribute("joinProjectCount")!=null) {
+			req.getSession().setAttribute("joinProjectCount",(Integer)req.getSession().getAttribute("joinProjectCount")+1);
+		}
+		// 참여하겠다라고 db에 등록할것.
 	}
-
+	
+	public ArrayList<LabelDoList> show(HttpServletRequest req, int start, int end){
+		return null;
+	}
 }
