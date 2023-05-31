@@ -45,6 +45,7 @@ public class MemberDAO {
 							(user.getUser_img() != null) ? user.getUser_img() : "defaultprofile.jpg");
 					req.setAttribute("loginResult", "로그인 성공");
 					sessionmap.putUserIDWithSessionID(user.getUser_id(), req.getSession().getId());
+					req.getSession().setAttribute("loginUserRating", user.getUser_rating().intValue());
 				}
 			}
 		} catch (Exception e) {
@@ -56,6 +57,7 @@ public class MemberDAO {
 		sessionmap.removeUserIDWithSessionID((String) req.getSession().getAttribute("loginUserID"));
 		req.getSession().removeAttribute("loginUserID");
 		req.getSession().removeAttribute("loginUserIMG");
+		req.getSession().removeAttribute("loginUserRating");		
 	}
 
 	public boolean isLogined(HttpServletRequest req) {

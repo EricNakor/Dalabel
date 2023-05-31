@@ -8,6 +8,7 @@ class ProjectInfo {
 	private BigDecimal next_todo_no;
 	private BigDecimal data_count;
 	private Stack<BigDecimal> rest_data;
+	private int access_level;
 
 	ProjectInfo() {
 		rest_data = new Stack<BigDecimal>();

@@ -69,8 +69,8 @@ public class DoLabelingController {
 	
 //	라벨링 하겠다고 참여하기 버튼을 누른경우 호출됨.
 	@RequestMapping(value = "/doLabeling.needlogin.askjoin", method = RequestMethod.GET)
-	public String askjoin(HttpServletRequest req) {
-		dlDAO.askjoin(req);
+	public String askjoin(HttpServletRequest req, LabelDoList ld) {
+		dlDAO.askjoin(req, ld);
 		return "home";
 	}
 	
