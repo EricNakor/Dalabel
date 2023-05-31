@@ -29,6 +29,12 @@
 									<button>삭제</button>
 								</form>
 							</td>
+							<td>
+								<form action="get.bundle.data?bundle_no=${b.bundle_no }">
+									<input type="hidden" value="${b.bundle_no }" name="bundle_no">
+									<button>파일관리</button>
+								</form>
+							</td>
 						</tr>
 					</table>
 				</c:forEach></td>

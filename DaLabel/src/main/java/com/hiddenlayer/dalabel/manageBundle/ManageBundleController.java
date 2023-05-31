@@ -59,5 +59,4 @@ public class ManageBundleController {
 		mbDAO.updateBundleFolderName(db);
 		return "home";
 	}
-	
 }

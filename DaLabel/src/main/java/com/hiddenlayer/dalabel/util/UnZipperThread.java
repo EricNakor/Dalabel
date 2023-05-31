@@ -14,6 +14,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.hiddenlayer.dalabel.data.DataMapper;
 import com.hiddenlayer.dalabel.manageBundle.ManageBundleMapper;
 import com.hiddenlayer.dalabel.manageLabeling.Data;
 import com.hiddenlayer.dalabel.manageLabeling.DataBundle;
@@ -35,6 +36,7 @@ public class UnZipperThread extends Thread {
 	private String innerFileName;
 	private int idx;
 	private BigDecimal bundleNo;
+	private int status_running;
 
 	public UnZipperThread() {
 		super();
@@ -44,51 +46,63 @@ public class UnZipperThread extends Thread {
 
 	public void addTodo(UnZipInfos info) {
 		fileInfos.add(info);
-		if (!isAlive()) {
+		if (status_running == 0) {
 			start();
+			status_running = 1;
 		}
+
 	}
 
 	@Override
 	public void run() {
-		
-		while (this.fileInfos.size() > 0) {
-			fileInfo = fileInfos.poll();
-			fileName = fileInfo.getFileName();
-			endtag = fileInfo.getEndtag();
-			bundleNo = fileInfo.getBundleNumber();
-			folderName = fileName.substring(0, fileName.length() - 4);
-			try {
-				File zipFile = new File(fileName);
-				zis = new ZipInputStream(new BufferedInputStream(new FileInputStream(zipFile)));
-				makeFolder(folderName);
-				idx = 0;
+		while (true) {
+			if (this.fileInfos.size() > 0) {
+				fileInfo = fileInfos.poll();
+				fileName = fileInfo.getFileName();
+				endtag = fileInfo.getEndtag();
+				bundleNo = fileInfo.getBundleNumber();
+				folderName = fileName.substring(0, fileName.length() - 4);
+				try {
+					File zipFile = new File(fileName);
+					zis = new ZipInputStream(new BufferedInputStream(new FileInputStream(zipFile)));
+					makeFolder(folderName);
+					idx = 0;
 
-				while ((ze = zis.getNextEntry()) != null) {
-					innerFileName = ze.getName();
-					fileEnd = innerFileName.substring(innerFileName.lastIndexOf('.') + 1);
-					if (!endtag.equals(fileEnd)) {
-						continue;
-					}
-					idx++;
-					file = new File(folderName, idx + "." + fileEnd);
-					if (!ze.isDirectory()) {
-						try {
-							createFile(file, zis);
-//							ss.getMapper(ManageDataMapper.class).uploadData(new Data(idx+'.'+fileEnd, bundleNo));
-						} catch (Throwable e) {
-							e.printStackTrace();
+					while ((ze = zis.getNextEntry()) != null) {
+						innerFileName = ze.getName();
+						fileEnd = innerFileName.substring(innerFileName.lastIndexOf('.') + 1);
+						if (!endtag.equals(fileEnd)) {
+							continue;
+						}
+						idx++;
+						file = new File(folderName, idx + "." + fileEnd);
+						if (!ze.isDirectory()) {
+							try {
+								createFile(file, zis);
+								ss.getMapper(DataMapper.class)
+										.insertData(new Data(String.format("%08d", idx) + "." + fileEnd, bundleNo));
+							} catch (Throwable e) {
+								e.printStackTrace();
+							}
 						}
 					}
-				}
-				ss.getMapper(ManageBundleMapper.class).updateBundleAfterUnzip(new DataBundle(bundleNo,new BigDecimal(idx)));
-				
-			} catch (Exception e) {
-				return;
-			} finally {
-				try {
-					zis.close(); // catch로 빠져도 닫음
+					ss.getMapper(ManageBundleMapper.class)
+							.updateBundleAfterUnzip(new DataBundle(bundleNo, new BigDecimal(idx)));
+
 				} catch (Exception e) {
+					e.printStackTrace();
+					continue;
+				} finally {
+					try {
+						zis.close(); // catch로 빠져도 닫음
+					} catch (Exception e) {
+					}
+				}
+			} else {
+				try {
+					Thread.sleep(1000);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
 				}
 			}
 		}
