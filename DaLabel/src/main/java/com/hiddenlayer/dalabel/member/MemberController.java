@@ -29,7 +29,7 @@ public class MemberController {
 		return "home";
 	}
 
-	@RequestMapping(value = "/member.logout", method = RequestMethod.GET)
+	@RequestMapping(value = "/member.needlogin.logout", method = RequestMethod.GET)
 	public String memberLogout(HttpServletRequest req) {
 		mDAO.isLogined(req);
 		mDAO.logout(req);
@@ -50,7 +50,7 @@ public class MemberController {
 		return "home";
 	}
 
-	@RequestMapping(value = "/member.delete", method = RequestMethod.POST)
+	@RequestMapping(value = "/member.needlogin.delete", method = RequestMethod.POST)
 	public String memberDelete(HttpServletRequest req) {
 		mDAO.isLogined(req);
 		mDAO.deleteMember(req);
@@ -58,7 +58,7 @@ public class MemberController {
 		return "home";
 	}
 
-	@RequestMapping(value = "/member.info", method = RequestMethod.GET)
+	@RequestMapping(value = "/member.needlogin.info", method = RequestMethod.GET)
 	public String memberInfo(HttpServletRequest req) {
 		mDAO.isLogined(req);
 		mDAO.info(req);

@@ -16,13 +16,14 @@
 		<c:forEach var="d" items="${datas}">
 			<tr>
 				<td>
-					<form
-						action="delete.data?data_name=${d.data_name }">
+					<form action="delete.needlogin.data?data_name=${d.data_name }">
 						<input type="hidden" value="${d.data_where }" name="bundle_no">
 						<input readonly="readonly" value="${d.data_name }"
 							name="data_name">
-						<c:if test="${d.data_activation == 1 }">활성화</c:if>
-						<c:if test="${d.data_activation == 0 }">비활성화</c:if>
+						<c:choose>
+							<c:when test="${d.data_activation == '1' }">활성화</c:when>
+							<c:when test="${d.data_activation == '0' }">비활성화</c:when>
+						</c:choose>
 						<button>비활성화</button>
 					</form>
 				</td>

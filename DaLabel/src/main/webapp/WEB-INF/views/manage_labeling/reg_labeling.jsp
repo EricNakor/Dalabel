@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="reg.labeling.do" method="post">
+	<form action="reg.needlogin.labeling.do" method="post">
 	<input type="hidden" name="project_bundle_no" value="${bundle_no }">
 		<table>
 			<tr>
@@ -18,7 +18,7 @@
 			<tr>
 				<td>파일명 :</td>
 				<td>${bundle_name }</td>
-				<td><a href="get.my.bundle">변경</a></td>
+				<td><a href="get.needlogin.my.bundle">변경</a></td>
 			</tr>
 			<tr>
 				<td>가이드라인</td>

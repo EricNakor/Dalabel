@@ -13,13 +13,13 @@ public class DataController {
 	@Autowired
 	private DataDAO dDAO;
 
-	@RequestMapping(value = "/get.bundle.data", method = RequestMethod.GET)
+	@RequestMapping(value = "/get.needlogin.bundle.data", method = RequestMethod.GET)
 	public String getDataInBundle(@RequestParam(value = "bundle_no") int bundle_no, HttpServletRequest req) {
 		dDAO.getData(bundle_no, req);
 		return "bundle/bundleData";
 	}
 
-	@RequestMapping(value = "/delete.data", method = RequestMethod.GET)
+	@RequestMapping(value = "/delete.needlogin.data", method = RequestMethod.GET)
 	public String deleteData(@RequestParam(value = "data_name") String data_name,
 			@RequestParam(value = "bundle_no") int bundle_no, HttpServletRequest req) {
 		dDAO.deleteData(data_name);

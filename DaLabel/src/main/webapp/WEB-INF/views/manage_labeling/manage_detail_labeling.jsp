@@ -19,7 +19,7 @@
 		<tr>
 			<td>공개설정</td>
 			<td>
-				<form action="update.project.accessLevel">
+				<form action="update.needlogin.project.accessLevel">
 					<input type="hidden" value="${project.project_no }" name="project_no">
 					<input value="${project.project_access_level }" name="project_access_level">
 					<button>수정</button>

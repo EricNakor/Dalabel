@@ -18,7 +18,6 @@ public class DataDAO {
 	public void getData(int bundle_no, HttpServletRequest req) {
 		List<Data> datas = ss.getMapper(DataMapper.class).getData(bundle_no);
 		req.setAttribute("datas", datas);
-		System.out.println(datas);
 	}
 
 	public void deleteData(String data_name) {
