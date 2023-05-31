@@ -24,6 +24,14 @@
 					<input value="${project.project_access_level }" name="project_access_level">
 					<button>수정</button>
 				</form>
+				<form action="manage.labeling.user">
+					<input type="hidden" name="project_no" value="${project.project_no }">
+					<button>참가자 관리</button>
+				</form>
+				<h1>수락 IS UPDATE</h1> #a
+				<h1>아직 NO 수락 IS 대기</h1> #w
+				<h1>거절</h1> #r
+				<h1>킥</h1> #k
 			</td>
 		</tr>
 	</table>

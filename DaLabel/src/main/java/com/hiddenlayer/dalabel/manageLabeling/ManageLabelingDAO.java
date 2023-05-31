@@ -1,5 +1,6 @@
 package com.hiddenlayer.dalabel.manageLabeling;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -8,6 +9,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.hiddenlayer.dalabel.dolabeling.LabelDoList;
 import com.hiddenlayer.dalabel.manageBundle.ManageSelector;
 import com.hiddenlayer.dalabel.util.PageOption;
 
@@ -54,6 +56,12 @@ public class ManageLabelingDAO {
 		ss.getMapper(ManageLabelingMapper.class).updateProjectAccessLevel(lp);
 	}
 	// 정산시작하기
-	// 참여인원 관리 - 조회, 킥, 수락, 거부
-
+	// 참여인원 관리 - 조회, 대기, 수락, 거부, 밴, (초대)
+	public void select(int no, HttpServletRequest req) {
+		req.setAttribute("mlu", ss.getMapper(ManageLabelingMapper.class).selectLabelingUser(no)); // 모든 대기다 명단이 나옴
+	}
+//	
+	public void changeUserAccess(LabelDoList ld, HttpServletRequest req) {
+		ss.getMapper(ManageLabelingMapper.class).changeUserAccess(ld); // 수락, 거부, 밴할 때 호출할 함수
+	}
 }

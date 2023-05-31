@@ -1,6 +1,9 @@
 package com.hiddenlayer.dalabel.manageLabeling;
 
 import java.math.BigDecimal;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.stream.IntStream;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -10,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.hiddenlayer.dalabel.dolabeling.LabelDoList;
 import com.hiddenlayer.dalabel.member.MemberDAO;
 
 @Controller
@@ -39,6 +43,7 @@ public class ManageLabelingController {
 
 	@RequestMapping(value = "/get.myUpload.labeling", method = RequestMethod.GET)
 	public String getManageLabeling(HttpServletRequest req) {
+		mDAO.isLogined(req);
 		mlDAO.getMyLabeling(1, req);
 		return "manage_labeling/manage_labeling";
 	}
@@ -53,5 +58,18 @@ public class ManageLabelingController {
 	public String updateAccessLevel(LabelingProject lp, HttpServletRequest req) {
 		mlDAO.updateProjectAccessLevel(lp, req);
 		return "home";
+	}
+
+	@RequestMapping(value = "/manage.labeling.user", method = RequestMethod.GET)
+	public String getLabelingUser(@RequestParam(value = "project_no") int project_no, HttpServletRequest req) {
+		mlDAO.select(project_no, req);
+		return "manage_labeling/manage_labeling_user";
+	}
+
+	@RequestMapping(value = "/update.user.access", method = RequestMethod.GET)
+	public String updateUserLevel(LabelDoList ld, HttpServletRequest req) {
+		mlDAO.changeUserAccess(ld, req); // change
+		mlDAO.select(ld.getDolabel_project_no().intValue(), req);
+		return "manage_labeling/manage_labeling_user";
 	}
 }
