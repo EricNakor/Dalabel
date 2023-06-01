@@ -19,20 +19,22 @@ public class ManageLabelingDAO {
 
 	@Autowired
 	private PageOption po;
-	
+
 	public void regLabelingProject(LabelingProject lp, HttpServletRequest req) {
 		lp.setProject_requestor((String) req.getSession().getAttribute("loginUserID"));
 		ss.getMapper(ManageLabelingMapper.class).regLabelingProject(lp);
 	}
-	
+
 	public void getMyLabeling(int page, HttpServletRequest req) {
 		String user = (String) req.getSession().getAttribute("loginUserID");
 		if (req.getSession().getAttribute("projectCount") == null) {
-			req.getSession().setAttribute("projectCount", ss.getMapper(ManageLabelingMapper.class).getAllMyProjectCount(user));
+			req.getSession().setAttribute("projectCount",
+					ss.getMapper(ManageLabelingMapper.class).getAllMyProjectCount(user));
 		}
-		
-		int projectPageCount = (int) Math.ceil((Integer) req.getSession().getAttribute("projectCount") / (double) po.getProjectPerPage());
-		int start = (page - 1) * po.getProjectPerPage()+ 1;
+
+		int projectPageCount = (int) Math
+				.ceil((Integer) req.getSession().getAttribute("projectCount") / (double) po.getProjectPerPage());
+		int start = (page - 1) * po.getProjectPerPage() + 1;
 		int end = page * po.getProjectPerPage();
 		ManageSelector ms = new ManageSelector(user, start, end);
 		List<LabelingProject> projects = ss.getMapper(ManageLabelingMapper.class).getMyLabelingProject(ms);
@@ -40,10 +42,17 @@ public class ManageLabelingDAO {
 		req.setAttribute("projectPageCount", projectPageCount);
 		req.setAttribute("page", page);
 	}
-	
-	
+
+	public void getMyDeatilProject(HttpServletRequest req) {
+		LabelingProject project = ss.getMapper(ManageLabelingMapper.class)
+				.getMyDeatilProject(Integer.parseInt(req.getParameter("project_no")));
+		req.setAttribute("project", project);
+	}
 	
 	// 프로젝트 권한설정 관리
+	public void updateProjectAccessLevel(LabelingProject lp, HttpServletRequest req) {
+		ss.getMapper(ManageLabelingMapper.class).updateProjectAccessLevel(lp);
+	}
 	// 정산시작하기
 	// 참여인원 관리 - 조회, 킥, 수락, 거부
 

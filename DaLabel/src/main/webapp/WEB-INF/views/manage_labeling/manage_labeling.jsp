@@ -8,21 +8,25 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<a href="get.my.bundle">내 데이터 관리</a>
+	<a href="get.needlogin.my.bundle">내 데이터 관리</a>
 	<table>
 		<tr>
 			<td><c:forEach var="p" items="${projects }">
 					<table border="1">
 						<tr>
-							<td><a
-								href="detail.myproject.go?project_no=${p.project_no }">${p.project_title }</a>
+							<td>
+								<form action="get.needlogin.detail.myproject">
+									<input type="hidden" value="${p.project_no }" name="project_no">
+									<button>${p.project_title }</button>
+								</form>
+							</td>
 						</tr>	
 					</table>
 				</c:forEach></td>
 		</tr>
 		<tr>
 			<td><c:forEach var="p" begin="1" end="${bundlePageCount }">
-					<a href="bundle.page.change?page=${p }">${p }</a>
+					<a href="bundle.needlogin.page.change?page=${p }">${p }</a>
 				</c:forEach></td>
 		</tr>
 	</table>

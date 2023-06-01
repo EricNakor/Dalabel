@@ -9,7 +9,7 @@ public interface ManageLabelingMapper {
 
 	public abstract ArrayList<LabelingProject> getMyLabelingProject(ManageSelector ms);
 
-	public abstract LabelingProject getMyDetaillabelingProject(int project_no);
+	public abstract LabelingProject getMyDeatilProject(int project_no);
 	
 	public abstract int getAllMyProjectCount(String user_id);
 	
