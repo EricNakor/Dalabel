@@ -15,9 +15,7 @@
 	<form action="member.needlogin.delete" method="post">
 		<button>탈퇴</button>
 	</form>
-	<a href="try.needlogin.upload">프사 변경</a>
 	<a href="upload.needlogin.bundle.go">라벨링 파일 등록</a>
-	<img alt="따봉" src="resources/image/profile/ddabong.jpg">
 	<a href="get.needlogin.my.bundle">내 데이터 관리</a>
 	<a href="get.needlogin.myUpload.labeling"> 라벨링 프로젝트 관리</a>
 </body>

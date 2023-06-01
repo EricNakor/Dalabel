@@ -117,6 +117,7 @@ public class MemberDAO {
 
 	public void updateProfile(HttpServletRequest req) {
 		String fileName = fu.profileUpload(req);
+		req.setAttribute("rtVal", fileName);
 		System.out.println(fileName);
 		String userID = (String) req.getSession().getAttribute("loginUserID");
 		String userIMG = (String) req.getSession().getAttribute("loginUserIMG");
