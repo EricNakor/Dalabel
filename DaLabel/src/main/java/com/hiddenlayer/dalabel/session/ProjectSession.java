@@ -3,18 +3,39 @@ package com.hiddenlayer.dalabel.session;
 import java.math.BigDecimal;
 import java.util.HashMap;
 
+import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.hiddenlayer.dalabel.manageLabeling.Data;
 
 @Service
 public class ProjectSession {
 	private HashMap<BigDecimal, ProjectInfo> projectInfos;
 	private HashMap<String, BigDecimal> userIDtoProjectNo;
 	
+	@Autowired
+	private SqlSession ss;
+	
 	public ProjectSession() {
 		super();
 		userIDtoProjectNo = new HashMap<String, BigDecimal>();
 		projectInfos = new HashMap<BigDecimal, ProjectInfo>();
 	}
+	
+	public Data getNextData(String userid) {
+		// 매퍼로 가져올것.
+		BigDecimal projectno = getProjectNoWithUserID(userid);
+		return new Data("데이타명",new BigDecimal(10));
+	}
+	
+	public boolean isExist(BigDecimal project_no) {
+		if (projectInfos.get(project_no)==null) {
+			return false;
+		}
+		return true;
+	}
+	
 	public void removeUserIDWithProjectNo(String userid) {
 		userIDtoProjectNo.remove(userid);
 	}
@@ -34,6 +55,23 @@ public class ProjectSession {
 		info.setData_count(data_file_count);
 		info.setCycle_no(new BigDecimal(0));
 		projectInfos.put(project_no,info);
+	}
+	
+	public void createDoLabeling(BigDecimal project_no, BigDecimal data_file_count, BigDecimal project_access_level) {
+		ProjectInfo info = new ProjectInfo();
+		info.setNext_todo_no(new BigDecimal(1));
+		info.setData_count(data_file_count);
+		info.setCycle_no(new BigDecimal(0));
+		info.setAccess_level(project_access_level.intValue());
+		projectInfos.put(project_no,info);
+	}
+	
+	public void changeAccessLevel(BigDecimal project_no, BigDecimal project_access_level) {
+		projectInfos.get(project_no).setAccess_level(project_access_level.intValue());
+	}
+	
+	public int getAccessLevel(BigDecimal project_no) {
+		return projectInfos.get(project_no).getAccess_level();
 	}
 	
 	public void terminateDoLabeling(BigDecimal project_no) {

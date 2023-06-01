@@ -8,7 +8,9 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
+import com.hiddenlayer.dalabel.manageLabeling.Data;
 import com.hiddenlayer.dalabel.manageLabeling.LabelingProject;
 import com.hiddenlayer.dalabel.session.ProjectSession;
 
@@ -24,14 +26,18 @@ public class DoLabelingDAO {
 		ps.putUserIDWithProjectNo((String) req.getSession().getAttribute("loginUserID"), lp.getProject_no());
 	}
 
-	public String nextData(HttpServletRequest req, LabelData ld) {
-		if (req.getSession().getAttribute("loginUserID").equals(ld.getWorked_by())) {
+	public String nextDataName(HttpServletRequest req, LabelData ld) {
+		String userid = (String) req.getSession().getAttribute("loginUserID");
+		if (userid.equals(ld.getWorked_by())) {
 			if (req.getSession().getAttribute("workingNow") != null
-					&& req.getAttribute("workingNow").equals(ld.getData_no())) {
+					&& req.getSession().getAttribute("workingNow").equals(ld.getData_no())) {
 				ss.getMapper(DataDoLabelingMapper.class).addLabelData(ld);
 			}
-
-//			여기서 sql 쓸것. 다음 데이터 가져오기.
+			if (ps.getProjectNoWithUserID(userid) != null) {
+				Data d = ps.getNextData(userid);
+				req.getSession().setAttribute("workingNow", new BigDecimal(d.getData_name().split("[.]")[0]));
+				return d.getData_name();
+			}
 		}
 		return null;
 	}
@@ -59,16 +65,48 @@ public class DoLabelingDAO {
 				.findLabelDoList((String) req.getSession().getAttribute("loginUserID"), start, end);
 	}
 
-	public void askjoin(HttpServletRequest req, LabelDoList ld) {
-		if (req.getSession().getAttribute("joinProjectCount")!=null) {
-			req.getSession().setAttribute("joinProjectCount",(Integer)req.getSession().getAttribute("joinProjectCount")+1);
+	public void askjoin(HttpServletRequest req, BigDecimal project_no) {
+		if (ps.isExist(project_no)) {
+			int access_level = ps.getAccessLevel(project_no);
+			int user_rate = (Integer) req.getSession().getAttribute("loginUserRating");
+			if (access_level >= 16) {
+				if ((access_level & user_rate) == ((access_level - 16))) {
+					addJoinPermitted(req, project_no);
+				} else if (((access_level & user_rate) | 8) == access_level - 16) {
+					addJoinNeedPermission(req, project_no);
+				}
+			} else {
+				if ((access_level & user_rate) > 0) {
+					addJoinPermitted(req, project_no);
+				} else if ((access_level & 8) > 0) {
+					addJoinNeedPermission(req, project_no);
+				}
+			}
 		}
-		
-		ss.getMapper(DataDoLabelingMapper.class).addLabelDoList(ld);
-		// 권한 체크하기 + 만약 부족한 권한에 accepted 조건만 만족할 경우 수락대기로 넣기 + 그게 아니라면 바로 허용하기.
+
+	}
+
+	private void addJoinNeedPermission(HttpServletRequest req, BigDecimal project_no) {
+		ss.getMapper(DataDoLabelingMapper.class).addLabelDoList(new LabelDoList(
+				(String) req.getSession().getAttribute("loginUserID"), project_no, new BigDecimal(0), null));
+		incJoinPageCount(req);
+	}
+
+	private void addJoinPermitted(HttpServletRequest req, BigDecimal project_no) {
+		ss.getMapper(DataDoLabelingMapper.class).addLabelDoList(new LabelDoList(
+				(String) req.getSession().getAttribute("loginUserID"), project_no, new BigDecimal(1), null));
+		incJoinPageCount(req);
+	}
+
+	private void incJoinPageCount(HttpServletRequest req) {
+		if (req.getSession().getAttribute("joinProjectCount") != null) {
+			req.getSession().setAttribute("joinProjectCount",
+					(Integer) req.getSession().getAttribute("joinProjectCount") + 1);
+		}
 	}
 
 	public ArrayList<LabelDoList> show(HttpServletRequest req, int start, int end) {
-		return null;
+		return ss.getMapper(DataDoLabelingMapper.class)
+				.findLabelDoList((String) req.getSession().getAttribute("loginUserID"), start, end);
 	}
 }

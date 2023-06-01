@@ -1,5 +1,6 @@
 package com.hiddenlayer.dalabel.dolabeling;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Locale;
 
@@ -8,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -32,7 +34,7 @@ public class DoLabelingController {
 
 	@RequestMapping(value = "/doLabeling.needlogin.next", method = RequestMethod.GET)
 	public @ResponseBody String nextData(HttpServletRequest req, LabelData ld) {
-		return dlDAO.nextData(req, ld);
+		return dlDAO.nextDataName(req, ld);
 	}
 	
 //	라벨링 종료버튼 누를시 호출됨.
@@ -42,7 +44,7 @@ public class DoLabelingController {
 	}
 	
 //	라벨링 마이페이지. ajax로 상세리스트 조회하며, 여기서는 단순 페이지 리턴 + 총 데이터 수량만 조회한다.
-	@RequestMapping(value = "/doLabeling.needlogin.mypage", method = RequestMethod.GET, produces = "application/xml; charset=utf-8")
+	@RequestMapping(value = "/doLabeling.needlogin.mypage", method = RequestMethod.GET, produces = "application/json; charset=utf-8")
 	public String getMypage(HttpServletRequest req) {
 		dlDAO.getMypageCount(req);
 		return "home";
@@ -55,22 +57,22 @@ public class DoLabelingController {
 	}
 	
 //	참여가능페이지를 리턴한다.
-	@RequestMapping(value = "/doLabeling.needlogin.mypage", method = RequestMethod.GET, produces = "application/xml; charset=utf-8")
+	@RequestMapping(value = "/doLabeling.needlogin.mypage", method = RequestMethod.GET)
 	public String showAble(HttpServletRequest req) {
 		dlDAO.getMypageCount(req);
 		return "home";
 	}
 	
 	// 참여 가능한 프로젝트를 일정갯수 리턴한다. 이미 참여했다면 status까지 필요하다.
-	@RequestMapping(value = "/doLabeling.needlogin.show", method = RequestMethod.GET)
-	public ArrayList<LabelDoList> show(HttpServletRequest req,  @RequestParam(value="start") int start, @RequestParam(value="end")int end) {
+	@RequestMapping(value = "/doLabeling.needlogin.show", method = RequestMethod.GET, produces = "application/json; charset=utf-8")
+	public @ResponseBody ArrayList<LabelDoList> show(HttpServletRequest req,  @RequestParam(value="start") int start, @RequestParam(value="end")int end) {
 		return dlDAO.show(req, start, end);
 	}
 	
 //	라벨링 하겠다고 참여하기 버튼을 누른경우 호출됨.
 	@RequestMapping(value = "/doLabeling.needlogin.askjoin", method = RequestMethod.GET)
-	public String askjoin(HttpServletRequest req, LabelDoList ld) {
-		dlDAO.askjoin(req, ld);
+	public String askjoin(HttpServletRequest req, @RequestParam(value="project_no")int project_no) {
+		dlDAO.askjoin(req, new BigDecimal(project_no));
 		return "home";
 	}
 	

@@ -14,6 +14,14 @@ class ProjectInfo {
 		rest_data = new Stack<BigDecimal>();
 	}
 
+	int getAccess_level() {
+		return access_level;
+	}
+
+	void setAccess_level(int access_level) {
+		this.access_level = access_level;
+	}
+
 	BigDecimal getCycle_no() {
 		return cycle_no;
 	}

@@ -22,7 +22,7 @@
 			select dolabel_user, dolabel_project_no, dolabel_state, dolabel_score from
 				(select dolabel_user, dolabel_project_no, dolabel_state, dolabel_score, rownum as rn 
 				from Labeling_Do
-				where dolabel_user=#{userid})
+				where dolabel_user=#{userid}) and dolabel_state <> 2
 			where rn>=#{start} and rn<=#{end}
 		]]>
 	</select>

@@ -1,6 +1,7 @@
 
 package com.hiddenlayer.dalabel.member;
 
+import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
@@ -10,6 +11,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.hiddenlayer.dalabel.session.ProjectSession;
 import com.hiddenlayer.dalabel.session.UserLoginSession;
 import com.hiddenlayer.dalabel.util.FileUpload;
 
@@ -17,6 +19,9 @@ import com.hiddenlayer.dalabel.util.FileUpload;
 public class MemberDAO {
 	@Autowired
 	private UserLoginSession sessionmap;
+	
+	@Autowired
+	private ProjectSession ps;
 	
 	private static final SimpleDateFormat SDF = new SimpleDateFormat("yyyyMMdd");
 	@Autowired
@@ -55,6 +60,13 @@ public class MemberDAO {
 
 	public void logout(HttpServletRequest req) {
 		sessionmap.removeUserIDWithSessionID((String) req.getSession().getAttribute("loginUserID"));
+		String userid=(String)req.getSession().getAttribute("loginUserID");
+		if (req.getSession().getAttribute("workingNow")!=null) {
+			BigDecimal wN = (BigDecimal) req.getSession().getAttribute("workingNow");
+			ps.pushMissingData(ps.getProjectNoWithUserID(userid), wN);
+			req.getSession().removeAttribute("workingNow");
+			ps.removeUserIDWithProjectNo(userid);
+		}
 		req.getSession().removeAttribute("loginUserID");
 		req.getSession().removeAttribute("loginUserIMG");
 		req.getSession().removeAttribute("loginUserRating");		
