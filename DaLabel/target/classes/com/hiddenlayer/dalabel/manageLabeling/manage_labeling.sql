@@ -39,6 +39,8 @@ create sequence labeling_project_seq
 
 select * from labeling_project
 
+update labeling_project set project_access_level = 30 where project_title = 'absd'
+
 create table data(
 	data_name varchar2(15 char),
 	data_where number(8),
