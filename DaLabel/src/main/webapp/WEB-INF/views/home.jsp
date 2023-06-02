@@ -33,6 +33,11 @@
 	data-home-page="https://website4844962.nicepage.io/MainPage.html?version=26955cdb-ad9a-4139-8054-aecbcc5786d7"
 	data-home-page-title="MainPage" class="u-body u-xl-mode" data-lang="en">
 	<header class="u-clearfix u-header u-header" id="sec-61c1">
+		<form action=ㅁㄴㅇ"">
+			<input type="hidden" name="??" value="test12">
+			<input type="hidden" name="??" value="1234">
+			<button>로그인</button>
+		</form>
 		<div class="u-clearfix u-sheet u-sheet-1">
 			<a href="https://nicepage.com" class="u-image u-logo u-image-1"
 				data-image-width="80" data-image-height="40"> <img
@@ -127,21 +132,19 @@
 								class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-4">
 								<li class="u-nav-item"><a class="u-button-style u-nav-link">누구누구님 환영합니다?</a></li>
 								<li class="u-nav-item"><a class="u-button-style u-nav-link"
-									href="내 정보 페이지로감">내 정보</a></li>
-								<li class="u-nav-item"><a class="u-button-style u-nav-link"
-									href="라 벨링 페이지로감">라벨링 관련 (누르면 더 나옴)</a>
+									href="member.needlogin.info">내 정보</a></li>
+								<li class="u-nav-item"><a class="u-button-style u-nav-link">라벨링</a>
 									<div class="u-nav-popup">
 										<ul
 											class="u-h-spacing-20 u-nav u-unstyled u-v-spacing-10 u-nav-5">
 											<li class="u-nav-item"><a
-												class="u-button-style u-nav-link">라벨링 다운받기?</a></li>
+												class="u-button-style u-nav-link" href="get.needlogin.my.bundle">내 데이터 관리</a></li>
 											<li class="u-nav-item"><a
-												class="u-button-style u-nav-link" href="게시판 페이지로 감">라벨링하기</a>
+												class="u-button-style u-nav-link" href="get.needlogin.myUpload.labeling">라벨링 프로젝트 관리</a>
 											</li>
 										</ul>
 									</div></li>
-								<li class="u-nav-item"><a class="u-button-style u-nav-link"
-									href="게시판 페이지로 감">게시판 (누르면 더 나옴)</a>
+								<li class="u-nav-item"><a class="u-button-style u-nav-link">게시판</a>
 									<div class="u-nav-popup">
 										<ul
 											class="u-h-spacing-20 u-nav u-unstyled u-v-spacing-10 u-nav-6">
@@ -158,7 +161,7 @@
 								<li class="u-nav-item"><a class="u-button-style u-nav-link"
 									rel="nofollow">API</a></li>
 								<li class="u-nav-item"><a class="u-button-style u-nav-link"
-									href="라 벨링 페이지로감">로그아웃버튼 (평소엔 안 보이게 할 예정)</a>
+									href="member.needlogin.logout">로그아웃버튼</a>
 							</ul>
 						</div>
 					</div>
