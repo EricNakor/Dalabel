@@ -8,6 +8,12 @@
 <title>페이지 리스트</title>
 </head>
 <body>
+	<c:if test="${page != 1 }">
+	<div class = "boardL" onclick="boardPageChange(${page - 1});">&lt;</div>
+	</c:if>
+	<c:if test="${page != pageCount }">
+	<div class = "boardR" onclick="boardPageChange(${page + 1});">&gt;</div>
+	</c:if>
 	<c:forEach var="p" items="${posts }">
 				${p.board_id }<br>
 				${p.board_category }<br>
@@ -37,6 +43,13 @@
 			<td>페이지 이동 1 2 3 4 5</td>
 			<td>
 				<button>글쓰기</button>
+			</td>
+		</tr>
+		<tr>
+			<td align="center">
+				<form action="boardSearchForm" onsubmit="return boardSearchCheck();">
+					<input name="search" maxlength="20"><button>검색</button>
+				</form>
 			</td>
 		</tr>
 	</table>

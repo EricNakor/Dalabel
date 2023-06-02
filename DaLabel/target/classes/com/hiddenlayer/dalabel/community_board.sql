@@ -34,5 +34,5 @@ create table reply(
 );
 
 
-select board_id, board_category, user_id, board_title, board_content, board_file, board_regist
-from  board order by board_regist desc;
+--select board_id, board_category, user_id, board_title, board_content, board_file, board_regist
+--from  board order by board_regist desc;
