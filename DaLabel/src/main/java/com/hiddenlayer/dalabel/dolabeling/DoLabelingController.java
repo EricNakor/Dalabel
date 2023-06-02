@@ -44,14 +44,14 @@ public class DoLabelingController {
 	}
 	
 //	라벨링 마이페이지. ajax로 상세리스트 조회하며, 여기서는 단순 페이지 리턴 + 총 데이터 수량만 조회한다.
-	@RequestMapping(value = "/doLabeling.needlogin.mypage", method = RequestMethod.GET, produces = "application/json; charset=utf-8")
+	@RequestMapping(value = "/doLabeling.needlogin.mypage", method = RequestMethod.GET)
 	public String getMypage(HttpServletRequest req) {
 		dlDAO.getMypageCount(req);
 		return "home";
 	}
 
 //	페이지에 보여줄 데이터를 리턴한다.
-	@RequestMapping(value = "/doLabeling.needlogin.mypage.find", method = RequestMethod.GET)
+	@RequestMapping(value = "/doLabeling.needlogin.mypage.find", method = RequestMethod.GET,  produces = "application/json; charset=utf-8")
 	public @ResponseBody ArrayList<LabelDoList> find(HttpServletRequest req, @RequestParam(value="start") int start, @RequestParam(value="end")int end) {
 		return dlDAO.find(req, start, end);
 	}

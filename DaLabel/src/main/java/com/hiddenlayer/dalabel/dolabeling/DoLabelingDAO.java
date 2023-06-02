@@ -105,8 +105,12 @@ public class DoLabelingDAO {
 		}
 	}
 
-	public ArrayList<LabelDoList> show(HttpServletRequest req, int start, int end) {
+	
+	
+	
+	// 내가 라벨링 할 수 있는 프로젝트들을 보여주기. 수정해야함. //
+	public ArrayList<SearchResultDoLabelingList> show(HttpServletRequest req, int start, int getnum) {
 		return ss.getMapper(DataDoLabelingMapper.class)
-				.findLabelDoList((String) req.getSession().getAttribute("loginUserID"), start, end);
+				.findAccessableDoList((String)req.getSession().getAttribute("loginUserID"),(BigDecimal) req.getSession().getAttribute("loginUserRating"), start, getnum);
 	}
 }
