@@ -35,6 +35,8 @@ public class ManageBundleDAO {
 		db.setBundle_uploader(loginUser);
 		String[] names = fu.bundleUpload(req);
 		db.setBundle_uploaded_filename(names[0]);
+		db.setBundle_data_type(names[1]);
+		db.setBundle_descript(names[2]);
 		db.setBundle_folder_name(
 				db.getBundle_uploaded_filename().substring(0, db.getBundle_uploaded_filename().lastIndexOf(".")));
 		ss.getMapper(ManageBundleMapper.class).regLabelingBundle(db);

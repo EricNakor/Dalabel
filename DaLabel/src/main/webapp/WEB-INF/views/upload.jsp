@@ -22,6 +22,10 @@
 							<option value="txt">txt
 					</select></td>
 				</tr>
+				<tr>
+					<td>간단한 설명</td>
+					<td><input name="bundle_descript"></td>
+				</tr>
 			</c:if>
 			<tr>
 				<td colspan="2"><input type="file" name="fileName"

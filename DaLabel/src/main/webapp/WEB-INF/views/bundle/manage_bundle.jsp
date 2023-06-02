@@ -34,8 +34,9 @@
 							</td>
 							<td>
 								<form
-									action="get.needlogin.bundle.data?bundle_no=${b.bundle_no }">
+									action="bundle.needlogin.data.go">
 									<input type="hidden" value="${b.bundle_no }" name="bundle_no">
+									<input type="hidden" value="${b.bundle_folder_name }" name="bundle_folder_name">
 									<button>파일관리</button>
 								</form>
 							</td>

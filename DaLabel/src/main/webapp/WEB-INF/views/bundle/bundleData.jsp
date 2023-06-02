@@ -10,26 +10,31 @@
 <body>
 	<table>
 		<tr>
-			<th>데이터 이름</th>
-			<th>현재상태</th>
+			<td>
+				<form action="get.needlogin.bundle.data">
+					<input name="data_where" type="hidden" value="${data_where }">
+					<input name="bundle_folder_name" type="hidden"
+						value="${bundle_folder_name }"> <input name="data_name">
+					<button>검색</button>
+				</form>
+			</td>
 		</tr>
-		<c:forEach var="d" items="${datas}">
-			<tr>
-				<td>
-					<form action="delete.needlogin.data?data_name=${d.data_name }">
-						<input type="hidden" value="${d.data_where }" name="bundle_no">
-						<input readonly="readonly" value="${d.data_name }"
-							name="data_name">
+		<tr>
+			<td><c:if test="${dataName != null }">
+					<img
+						src="resources/data/${sessionScope.loginUserID }/${bundle_folder_name}/${dataName }"
+						alt="${dataName }">
+					<br>
+					${dataName }
+					<form action="delete.needlogin.data?">
+						<input name="data_where" type="hidden" value="${data_where }">
+						<input name="bundle_folder_name" type="hidden"
+							value="${bundle_folder_name }"> <input type="hidden"
+							value="${dataName }" name="data_name">
 						<button>비활성화</button>
 					</form>
-				</td>
-				<td><c:if test="${d.data_activation eq 49}">
-							활성화
-						</c:if> <c:if test="${d.data_activation eq 48}">
-							비활성화
-						</c:if></td>
-			</tr>
-		</c:forEach>
+				</c:if></td>
+		</tr>
 	</table>
 </body>
 </html>

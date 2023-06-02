@@ -15,7 +15,7 @@ create sequence databundle_seq
 
 CREATE INDEX idx_bundle_upload ON databundle (bundle_uploader, bundle_uploaded_filename);
 
-select * from databundle where bundle_uploader = 'test12' order by bundle_no desc
+select * from databundle
 
 drop table databundle cascade constraint purge
 
@@ -72,3 +72,5 @@ CREATE FUNCTION BOR(x IN NUMBER, y IN NUMBER) RETURN NUMBER AS
 BEGIN
 RETURN x + y - bitand(x,y);
 END;
+
+select data_name from data where data_where = 105 and data_name like '%1.%'
