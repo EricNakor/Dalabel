@@ -5,10 +5,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<script type="text/javascript" src="resources/js/jQuery.js"></script>
+<script type="text/javascript" src="resources/js/upload.js"></script>
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="member.needlogin.update.go" method="get">
+	<form action="member.needlogin.update.go" method="post">
 		<table id="infoTbl">
 			<th>회원정보</th>
 			<tr>

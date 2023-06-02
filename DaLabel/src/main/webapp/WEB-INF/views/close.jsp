@@ -9,6 +9,5 @@
 <title>Insert title here</title>
 </head>
 <body onload="close_self('resources/image/profile/${rtVal}');">
-${rtVal }
 </body>
 </html>

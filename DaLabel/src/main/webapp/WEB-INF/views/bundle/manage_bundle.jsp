@@ -6,9 +6,12 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript" src="resources/js/jQuery.js"></script>
+<script type="text/javascript" src="resources/js/upload.js"></script>
 </head>
 <body>
 	<a href="get.needlogin.myUpload.labeling"> 라벨링 프로젝트 관리</a>
+	<a onclick="fileUpload('upload.needlogin.bundle.go')">번들 등록</a>
 	<table>
 		<tr>
 			<td><c:forEach var="b" items="${bundles }">
@@ -30,7 +33,8 @@
 								</form>
 							</td>
 							<td>
-								<form action="get.needlogin.bundle.data?bundle_no=${b.bundle_no }">
+								<form
+									action="get.needlogin.bundle.data?bundle_no=${b.bundle_no }">
 									<input type="hidden" value="${b.bundle_no }" name="bundle_no">
 									<button>파일관리</button>
 								</form>
@@ -41,7 +45,7 @@
 		</tr>
 		<tr>
 			<td><c:forEach var="p" begin="1" end="${bundlePageCount }">
-					<a href="bundle.page.change?page=${p }">${p }</a>
+					<a href="bundle.needlogin.page.change?page=${p }">${p }</a>
 				</c:forEach></td>
 		</tr>
 	</table>

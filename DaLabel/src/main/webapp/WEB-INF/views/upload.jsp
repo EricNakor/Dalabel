@@ -10,12 +10,27 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="${link }" method="post" enctype="multipart/form-data" onsubmit="return checkFilevalidation();">
-		<input type="file" name="fileName" id="fileInput">
-		<c:if test="${link eq 'upload.needlogin.bundle.do' }">
-			<input name="bundle_data_type">
-		</c:if>
-		<button >업로드</button>
+	<form action="${link }" method="post" enctype="multipart/form-data"
+		onsubmit="return checkFilevalidation();">
+		<table>
+			<c:if test="${link eq \"upload.needlogin.bundle.do\" }">
+				<tr>
+					<td>파일 타입</td>
+					<td><select name="bundle_data_type">
+							<option value="jpg">jpg
+							<option value="png">png
+							<option value="txt">txt
+					</select></td>
+				</tr>
+			</c:if>
+			<tr>
+				<td colspan="2"><input type="file" name="fileName"
+					id="fileInput"></td>
+			</tr>
+			<tr>
+				<td colspan="2"><button>업로드</button></td>
+			</tr>
+		</table>
 	</form>
 </body>
 </html>

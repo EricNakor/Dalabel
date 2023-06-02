@@ -43,7 +43,7 @@
 				<td><img id="profile"
 					src="resources/image/profile/${sessionScope.loginUserIMG }"
 					alt="${sessionScope.loginUserIMG }"> <a
-					onclick="profileUpload()">프사변경</a></td>
+					onclick="fileUpload('try.needlogin.upload')">프사변경</a></td>
 			</tr>
 			<tr>
 				<td align="center">

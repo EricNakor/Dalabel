@@ -61,7 +61,7 @@ public class MemberController {
 		return "member/info";
 	}
 
-	@RequestMapping(value = "/member.needlogin.update.go", method = RequestMethod.GET)
+	@RequestMapping(value = "/member.needlogin.update.go", method = RequestMethod.POST)
 	public String goUpdate(HttpServletRequest req) {
 		mDAO.info(req);
 		return "member/update";
@@ -74,10 +74,8 @@ public class MemberController {
 	}
 
 	@RequestMapping(value = "/try.needlogin.upload", method = RequestMethod.GET)
-	public String profile(@RequestParam(value = "t") String type, HttpServletRequest req) {
-		if (type.equals("profile")) {
-			req.setAttribute("link", "profile.needlogin.upload");
-		}
+	public String profile(HttpServletRequest req) {
+		req.setAttribute("link", "profile.needlogin.upload");
 		return "upload";
 	}
 

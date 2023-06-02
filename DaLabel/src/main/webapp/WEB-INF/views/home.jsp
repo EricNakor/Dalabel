@@ -12,10 +12,6 @@
 	<a href="member.needlogin.logout">로그아웃</a>
 	<a href="member.join.go">회원가입</a>
 	<a href="member.needlogin.info">마이페이지</a>
-	<form action="member.needlogin.delete" method="post">
-		<button>탈퇴</button>
-	</form>
-	<a href="upload.needlogin.bundle.go">라벨링 파일 등록</a>
 	<a href="get.needlogin.my.bundle">내 데이터 관리</a>
 	<a href="get.needlogin.myUpload.labeling"> 라벨링 프로젝트 관리</a>
 </body>

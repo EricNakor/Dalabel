@@ -15,7 +15,7 @@ create sequence databundle_seq
 
 CREATE INDEX idx_bundle_upload ON databundle (bundle_uploader, bundle_uploaded_filename);
 
-select * from databundle
+select * from databundle where bundle_uploader = 'test12' order by bundle_no desc
 
 drop table databundle cascade constraint purge
 

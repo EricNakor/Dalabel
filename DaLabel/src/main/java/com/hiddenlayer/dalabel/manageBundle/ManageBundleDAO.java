@@ -41,6 +41,7 @@ public class ManageBundleDAO {
 
 		uzt.addTodo(new UnZipInfos(fu.getDataRealPath(loginUser) + names[0], names[1],
 				new BigDecimal(ss.getMapper(ManageBundleMapper.class).getBundleNumber(loginUser, names[0]))));
+		req.setAttribute("rtVal", db.getBundle_uploaded_filename());
 	}
 
 	public void getMyBundle(int page, HttpServletRequest req) {
