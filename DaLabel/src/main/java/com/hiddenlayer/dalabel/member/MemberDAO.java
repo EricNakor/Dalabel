@@ -60,27 +60,4 @@ public class MemberDAO {
 			return false;
 		}
 	}
-
-	public void joinMember(HttpServletRequest req) {
-
-	}
-
-	public void withdraw(HttpServletRequest req) {
-		try {
-			Member m = (Member) req.getSession().getAttribute("loginUserID");
-			if(ss.getMapper(AccountMapper.class).deleteMember(m) == 1) {
-				req.setAttribute("result", "탈퇴성공");
-				
-				String path = req.getSession().getServletContext().getRealPath("resources/profile");
-				String file = URLDecoder.decode(m.getUser_img(), "utf-8");
-				new File(path + "/" + file).delete();
-				
-			} else {
-				req.setAttribute("result", "탈퇴실패");				
-			}			
-		} catch (Exception e) {
-			req.setAttribute("result", "탈퇴실패");				
-		}
-	}
-	
 }
