@@ -25,7 +25,7 @@ public class HomeController {
 
 		model.addAttribute("serverTime", "Hello world! 한글테스트" );
 		
-		return "login";
+		return "home";
 	}
 	
 	@RequestMapping(value = "/goLabelling", method = RequestMethod.GET)
