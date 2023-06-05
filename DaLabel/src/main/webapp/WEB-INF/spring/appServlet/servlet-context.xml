@@ -66,12 +66,12 @@
 		<beans:constructor-arg name="sqlSessionFactory"
 			ref="sqlSessionFactory" />
 	</beans:bean>
-	<interceptors>
-		<interceptor>
-			<mapping path="*.needlogin.*" />
-			<beans:bean id="loginInterceptor"
-				class="com.hiddenlayer.dalabel.intercepter.AuthLoginInterceptor" />
-		</interceptor>
-	</interceptors>
+
+	<!-- 가이드라인 이미지 업로드할 때 필요 -->
+	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<!-- 업로드 가능 최대 용량 -->
+		<beans:property name="maxUploadSize" value="52428800" />
+		<beans:property name="defaultEncoding" value="utf-8" />
+	</beans:bean>
 
 </beans:beans>
