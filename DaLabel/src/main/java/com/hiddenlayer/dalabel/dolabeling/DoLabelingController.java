@@ -2,14 +2,11 @@ package com.hiddenlayer.dalabel.dolabeling;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -57,7 +54,7 @@ public class DoLabelingController {
 	}
 	
 //	참여가능페이지를 리턴한다.
-	@RequestMapping(value = "/doLabeling.needlogin.mypage", method = RequestMethod.GET)
+	@RequestMapping(value = "/doLabeling.needlogin.showable", method = RequestMethod.GET)
 	public String showAble(HttpServletRequest req) {
 		dlDAO.getMypageCount(req);
 		return "home";
