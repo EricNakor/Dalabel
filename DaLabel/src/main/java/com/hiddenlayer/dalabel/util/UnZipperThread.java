@@ -79,8 +79,7 @@ public class UnZipperThread extends Thread {
 						if (!ze.isDirectory()) {
 							try {
 								createFile(file, zis);
-								ss.getMapper(DataMapper.class)
-										.insertData(new Data(String.format("%08d", idx) + "." + fileEnd, bundleNo));
+								ss.getMapper(DataMapper.class).insertData(new Data(idx + "." + fileEnd, bundleNo));
 							} catch (Throwable e) {
 								e.printStackTrace();
 							}

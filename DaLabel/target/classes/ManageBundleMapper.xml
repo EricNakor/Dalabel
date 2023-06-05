@@ -19,6 +19,7 @@
 			from (
 				select bundle_no, bundle_uploaded_filename, bundle_descript, bundle_unzip, bundle_folder_name from databundle
 				where bundle_uploader = #{login_user}
+				order by bundle_no desc
 			)
 		)
 		where rn >= #{start} and rn <= #{end}
