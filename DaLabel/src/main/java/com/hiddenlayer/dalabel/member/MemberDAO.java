@@ -17,7 +17,9 @@ import com.hiddenlayer.dalabel.util.FileUpload;
 
 @Service
 public class MemberDAO {
-
+	@Autowired
+	private UserLoginSession sessionmap;
+	
 	@Autowired
 	private ProjectSession ps;
 	
