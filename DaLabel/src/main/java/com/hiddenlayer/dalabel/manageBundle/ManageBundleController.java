@@ -15,42 +15,42 @@ import com.hiddenlayer.dalabel.member.MemberDAO;
 public class ManageBundleController {
 
 	@Autowired
-	private MemberDAO mDAO;
+	private ManageBundleDAO mbDAO;
 
-	@Autowired
-	private ManageBundleDAO mlDAO;
-
-	@RequestMapping(value = "/upload.bundle.go", method = RequestMethod.GET)
+	@RequestMapping(value = "/upload.needlogin.bundle.go", method = RequestMethod.GET)
 	public String goRegBundle(HttpServletRequest req) {
-		mDAO.isLogined(req);
+		req.setAttribute("link", "upload.needlogin.bundle.do");
 		return "upload";
 	}
 
-	@RequestMapping(value = "/upload.bundle.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/upload.needlogin.bundle.do", method = RequestMethod.POST)
 	public String doRegBundle(HttpServletRequest req, DataBundle db) {
-		mDAO.isLogined(req);
-		mlDAO.uploadBundle(db, req);
+		mbDAO.uploadBundle(db, req);
+		return "close";
+	}
+
+
+	@RequestMapping(value = "/get.needlogin.my.bundle", method = RequestMethod.GET)
+	public String getMyBundle(HttpServletRequest req) {
+		mbDAO.getMyBundle(1, req);
+		return "bundle/manage_bundle";
+	}
+
+	@RequestMapping(value = "/bundle.needlogin.page.change", method = RequestMethod.GET)
+	public String snsPageChange(@RequestParam(value = "page") int page, HttpServletRequest req) {
+		mbDAO.getMyBundle(page, req);
+		return "bundle/manage_bundle";
+	}
+
+	@RequestMapping(value = "/delete.needlogin.bundle", method = RequestMethod.POST)
+	public String deleteBundle(@RequestParam(value = "bundle_no") int bundle_no, HttpServletRequest req) {
+		mbDAO.deleteBundle(bundle_no, req);
 		return "home";
 	}
 
-	@RequestMapping(value = "/get.my.bundle", method = RequestMethod.GET)
-	public String getMyBundle(HttpServletRequest req) {
-		mDAO.isLogined(req);
-		mlDAO.getMyBundle(1, req);
-		return "bundle/manage_bundle";
+	@RequestMapping(value = "/update.needlogin.file.name", method = RequestMethod.GET)
+	public String updateBundleFolderName(DataBundle db) {
+		mbDAO.updateBundleFolderName(db);
+		return "home";
 	}
-
-	@RequestMapping(value = "/bundle.page.change", method = RequestMethod.GET)
-	public String snsPageChange(@RequestParam(value = "page") int page, HttpServletRequest req) {
-		mDAO.isLogined(req);
-		mlDAO.getMyBundle(page, req);
-		return "bundle/manage_bundle";
-	}
-	
-	@RequestMapping(value = "/reg.bundle.go", method = RequestMethod.GET)
-	public String goRegLabeling(@RequestParam(value = "bundle") String bundle, HttpServletRequest req) {
-		mDAO.isLogined(req);
-		return "manage_labeling/reg_labeling";
-	}
-
 }

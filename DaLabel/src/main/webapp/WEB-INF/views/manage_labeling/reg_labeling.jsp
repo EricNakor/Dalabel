@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,16 +11,22 @@
 <script src="//cdn.ckeditor.com/4.21.0/standard/ckeditor.js"></script>
 </head>
 <body>
-	<form action="reg.labeling.do" method="post">
+	<form action="reg.needlogin.labeling.do" method="post">
+	<input type="hidden" name="project_bundle_no" value="${bundle_no }">
 		<table>
 			<tr>
 				<td>라벨링 제목</td>
-				<td><input name="bundle_title"></td>
+				<td><input name="project_title"></td>
+			</tr>
+			<tr>
+				<td>파일명 :</td>
+				<td>${bundle_name }</td>
+				<td><a href="get.needlogin.my.bundle">변경</a></td>
 			</tr>
 			<tr>
 				<td>가이드라인</td>
 				<td><textarea rows="50" cols="50" name="bundle_guide" id="bundle_guide">
-					
+
 					</textarea></td>
 				<script type="text/javascript">
 					CKEDITOR.replace('bundle_guide', {
@@ -29,19 +36,19 @@
 			</tr>
 			<tr>
 				<td>데이터 타입</td>
-				<td><select name="bundle_datatype">
+				<td><select name="bundle_data_type">
 						<option value="0">사진 분석</option>
 						<option value="1">텍스트 분석</option>
 				</select></td>
 			</tr>
 			<tr>
 				<td>라벨링할 데이터</td>
-				<td><input type="file" name="bundle_zip"></td>
+				<td>${labelingData }</td>
 			</tr>
 			<tr>
-				<td><select name="bundle_type" id="bundle_type"
+
+				<td><select name="project_how" id="project_how"
 					onchange="btnn();">
-						<option value="3">라벨링 방법</option>
 						<option value="0">버튼 누르기</option>
 						<option value="1">직접 타이핑</option>
 						<option value="2">영역 선택</option>
@@ -53,6 +60,7 @@
 				<td><select name="bundle_access">
 						<option value="1">선택</option>
 				</select></td>
+
 			</tr>
 			<tr>
 				<td>

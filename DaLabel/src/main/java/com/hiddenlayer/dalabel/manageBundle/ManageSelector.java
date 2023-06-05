@@ -1,15 +1,15 @@
 package com.hiddenlayer.dalabel.manageBundle;
 
-public class ManageBundleSelector {
+public class ManageSelector {
 	private String login_user;
 	private int start;
 	private int end;
 
-	public ManageBundleSelector() {
+	public ManageSelector() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public ManageBundleSelector(String login_user, int start, int end) {
+	public ManageSelector(String login_user, int start, int end) {
 		super();
 		this.login_user = login_user;
 		this.start = start;
