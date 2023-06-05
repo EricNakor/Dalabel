@@ -14,16 +14,12 @@ public class DataBundle {
 
 	public DataBundle() {
 		// TODO Auto-generated constructor stub
-		this.bundle_data_type = "0";
-		this.bundle_descript = "설명예시";
 	}
 
 	public DataBundle(BigDecimal bundle_no, BigDecimal bundle_file_count) {
 		// TODO Auto-generated constructor stub
 		this.bundle_no = bundle_no;
 		this.bundle_file_count = bundle_file_count;
-		this.bundle_data_type = "0";
-		this.bundle_descript = "설명예시";
 
 	}
 
@@ -34,13 +30,11 @@ public class DataBundle {
 		this.bundle_no = bundle_no;
 		this.bundle_uploader = bundle_uploader;
 		this.bundle_uploaded_filename = bundle_uploaded_filename;
-//		this.bundle_data_type = bundle_data_type;
-//		this.bundle_descript = bundle_descript;
+		this.bundle_data_type = bundle_data_type;
+		this.bundle_descript = bundle_descript;
 		this.bundle_folder_name = bundle_folder_name;
 		this.bundle_unzip = bundle_unzip;
 		this.bundle_file_count = bundle_file_count;
-		this.bundle_data_type = "0";
-		this.bundle_descript = "설명예시";
 	}
 
 	public BigDecimal getBundle_no() {

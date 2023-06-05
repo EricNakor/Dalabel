@@ -8,14 +8,14 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<a href="get.my.bundle">내 데이터 관리</a>
+	<a href="get.needlogin.my.bundle">내 데이터 관리</a>
 	<table>
 		<tr>
 			<td><c:forEach var="p" items="${projects }">
 					<table border="1">
 						<tr>
 							<td>
-								<form action="get.detail.myproject">
+								<form action="get.needlogin.detail.myproject">
 									<input type="hidden" value="${p.project_no }" name="project_no">
 									<button>${p.project_title }</button>
 								</form>
@@ -25,8 +25,8 @@
 				</c:forEach></td>
 		</tr>
 		<tr>
-			<td><c:forEach var="p" begin="1" end="${bundlePageCount }">
-					<a href="bundle.page.change?page=${p }">${p }</a>
+			<td><c:forEach var="p" begin="1" end="${projectPageCount }">
+					<a href="bundle.needlogin.page.change?page=${p }">${p }</a>
 				</c:forEach></td>
 		</tr>
 	</table>

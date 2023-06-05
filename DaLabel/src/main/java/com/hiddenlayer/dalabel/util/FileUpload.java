@@ -1,21 +1,11 @@
 package com.hiddenlayer.dalabel.util;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.math.BigDecimal;
-import java.util.zip.ZipEntry;
-import java.util.zip.ZipInputStream;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.ibatis.session.SqlSession;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.hiddenlayer.dalabel.manageBundle.ManageBundleMapper;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
@@ -23,8 +13,6 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 public class FileUpload {
 	private String profileIMGrealpath;
 	private String dataRealPath;
-	
-	
 
 	public String getDataRealPath(String loginUser) {
 		return dataRealPath + "\\" + loginUser + "\\";
@@ -58,7 +46,7 @@ public class FileUpload {
 	public String[] bundleUpload(HttpServletRequest req) {
 		MultipartRequest mr = null;
 		String userID = (String) req.getSession().getAttribute("loginUserID");
-		if(dataRealPath==null) {
+		if (dataRealPath == null) {
 			dataRealPath = req.getSession().getServletContext().getRealPath("resources/data/");
 		}
 		String path = dataRealPath + userID;
@@ -74,11 +62,13 @@ public class FileUpload {
 
 		try {
 			mr = new MultipartRequest(req, path, 5 * 1024 * 1024 * 1024, "utf-8", new DefaultFileRenamePolicy());
-			return new String[] {mr.getFilesystemName("fileName"),mr.getParameter("bundle_data_type")};
+			return new String[] { mr.getFilesystemName("fileName"), mr.getParameter("bundle_data_type"),
+					mr.getParameter("bundle_descript") };
 		} catch (Exception e) {
 			e.printStackTrace(); // 파일 용량 안 맞으면 error
 			System.out.println("error" + mr.getFilesystemName("fileName"));
-			return new String[] {mr.getFilesystemName("fileName"),mr.getParameter("bundle_data_type")};
+			return new String[] { mr.getFilesystemName("fileName"), mr.getParameter("bundle_data_type"),
+					mr.getParameter("bundle_descript") };
 		}
 
 	}

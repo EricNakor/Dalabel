@@ -39,6 +39,8 @@ create sequence labeling_project_seq
 
 select * from labeling_project
 
+update labeling_project set project_access_level = 30 where project_title = 'absd'
+
 create table data(
 	data_name varchar2(15 char),
 	data_where number(8),
@@ -46,16 +48,25 @@ create table data(
 	constraint data_pk primary key(data_where, data_name)
 )
 
+select * from data
+
 drop table data cascade constraint purge
 
-create table want_do_labeling (
-	want_user varchar2(15 char),
-	want_bundle number(8),
-	want_avail char(1) not null,
-	constraint want_labeling_pk primary key(want_user, want_bundle)
+create table labeling_do (
+	dolabel_user varchar2(15 char),
+	dolabel_project_no number(8),
+	dolabel_state char(1),
+	dolabel_score number(3, 2),
+	constraint want_labeling_pk primary key(dolabel_user, dolabel_project_no)
 )
 
-CREATE INDEX idx_want_bundle on want_do_labeling (want_bundle)
+insert into labeling_do values('t5', 3, 0, null)
+
+select * from labeling_do
+
+drop table want_do_labeling cascade constraint purge
+
+CREATE INDEX idx_want_project on want_do_labeling (want_project_no)
 
 select bitor(2,4) from dual
 
@@ -63,3 +74,5 @@ CREATE FUNCTION BOR(x IN NUMBER, y IN NUMBER) RETURN NUMBER AS
 BEGIN
 RETURN x + y - bitand(x,y);
 END;
+
+select data_name from data where data_where = 105 and data_name like '%1.%'

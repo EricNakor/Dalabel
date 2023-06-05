@@ -1,45 +1,56 @@
 package com.hiddenlayer.dalabel.dolabeling;
 
+import java.math.BigDecimal;
+
 public class LabelData {
-	private int data_bundle;
-	private int data_no;
+	private BigDecimal project_no;
+	private BigDecimal data_no;
 	private String worked_by;
 	private String label;
-	public LabelData(int data_bundle, int data_no, String worked_by, String label) {
+
+	public LabelData() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public LabelData(BigDecimal project_no, BigDecimal data_no, String worked_by, String label) {
 		super();
-		this.data_bundle = data_bundle;
+		this.project_no = project_no;
 		this.data_no = data_no;
 		this.worked_by = worked_by;
 		this.label = label;
 	}
-	public LabelData() {
-		super();
-		// TODO Auto-generated constructor stub
+
+	public BigDecimal getProject_no() {
+		return project_no;
 	}
-	public int getData_bundle() {
-		return data_bundle;
+
+	public void setProject_no(BigDecimal project_no) {
+		this.project_no = project_no;
 	}
-	public void setData_bundle(int data_bundle) {
-		this.data_bundle = data_bundle;
-	}
-	public int getData_no() {
+
+	public BigDecimal getData_no() {
 		return data_no;
 	}
-	public void setData_no(int data_no) {
+
+	public void setData_no(BigDecimal data_no) {
 		this.data_no = data_no;
 	}
+
 	public String getWorked_by() {
 		return worked_by;
 	}
+
 	public void setWorked_by(String worked_by) {
 		this.worked_by = worked_by;
 	}
+
 	public String getLabel() {
 		return label;
 	}
+
 	public void setLabel(String label) {
 		this.label = label;
 	}
-	
-	
+
+
 }
