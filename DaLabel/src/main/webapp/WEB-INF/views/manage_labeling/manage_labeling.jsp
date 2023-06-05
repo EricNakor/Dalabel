@@ -25,7 +25,7 @@
 				</c:forEach></td>
 		</tr>
 		<tr>
-			<td><c:forEach var="p" begin="1" end="${bundlePageCount }">
+			<td><c:forEach var="p" begin="1" end="${projectPageCount }">
 					<a href="bundle.needlogin.page.change?page=${p }">${p }</a>
 				</c:forEach></td>
 		</tr>
