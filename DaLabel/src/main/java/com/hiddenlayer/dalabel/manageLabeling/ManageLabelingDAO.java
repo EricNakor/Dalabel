@@ -1,6 +1,5 @@
 package com.hiddenlayer.dalabel.manageLabeling;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;

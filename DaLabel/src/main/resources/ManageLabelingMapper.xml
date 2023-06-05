@@ -61,7 +61,7 @@
 		parameterType="java.lang.Integer"
 		resultType="com.hiddenlayer.dalabel.dolabeling.LabelDoList">
 		<![CDATA[
-			select dolabel_user, dolabel_project_no from labeling_do where dolabel_project_no = #{dolabel_project_no}
+			select dolabel_user, dolabel_state, dolabel_project_no from labeling_do where dolabel_project_no = #{dolabel_project_no}
 		]]>
 	</select>
 

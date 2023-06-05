@@ -9,34 +9,32 @@
 </head>
 <body>
 	<%-- 멤버 라벨링 유저 --%>
-	<c:forEach var="mlu" items="${mlu }">
-		<table>
+	<table>
+		<tr>
+			<th>유저명</th>
+			<th>현재상태</th>
+		</tr>
+		<c:forEach var="mlu" items="${mlu }">
 			<tr>
-				<td><h1>${mlu.dolabel_user}</h1></td>
-				<td><form action="update.user.access">
-						<input type="hidden" name="dolabel_user" value="${mlu.dolabel_user }">
-						<input type="hidden" name="dolabel_project_no" value="${mlu.dolabel_project_no }">
-						<input type="hidden" name="dolabel_state" value="1">
-						<button>수락</button>
-					</form></td>
+				<td align="center">${mlu.dolabel_user}</td>
+				<form action="update.user.access">
+					<td><input type="hidden" name="dolabel_user"
+						value="${mlu.dolabel_user }"> <input type="hidden"
+						name="dolabel_project_no" value="${mlu.dolabel_project_no }">
+						<select name="dolabel_state" class="selectLevel">
+							<option value="0" ${mlu.dolabel_state=='0'?"selected":""}>대기
+							
+							<option value="1" ${mlu.dolabel_state=='1'?"selected":""}>수락
+							
+							<option value="2" ${mlu.dolabel_state=='2'?"selected":""}>거절
+							
+							<option value="3" ${mlu.dolabel_state=='3'?"selected":""}>밴
+							
+					</select>
+						<button>수정</button></td>
+				</form>
 			</tr>
-			<tr>
-				<td><form action="update.user.access">
-						<input type="hidden" name="dolabel_user" value="${mlu.dolabel_user }">
-						<input type="hidden" name="dolabel_project_no" value="${mlu.dolabel_project_no }">
-						<input type="hidden" name="dolabel_state" value="2">
-						<button>거절</button>
-					</form></td>
-			</tr>
-			<tr>
-				<td><form action="update.user.access">
-						<input type="hidden" name="dolabel_user" value="${mlu.dolabel_user }">
-						<input type="hidden" name="dolabel_project_no" value="${mlu.dolabel_project_no }">
-						<input type="hidden" name="dolabel_state" value="3">
-						<button>킥</button>
-					</form></td>
-			</tr>
-		</table>
-	</c:forEach>
+		</c:forEach>
+	</table>
 </body>
 </html>

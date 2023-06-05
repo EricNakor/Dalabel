@@ -60,7 +60,7 @@ create table labeling_do (
 	constraint want_labeling_pk primary key(dolabel_user, dolabel_project_no)
 )
 
-insert into labeling_do values('t5', 3, 0, null)
+insert into labeling_do values('라벨링하고싶어요', 3, 0, null)
 
 select * from labeling_do
 

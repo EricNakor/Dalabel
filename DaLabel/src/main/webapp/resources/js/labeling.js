@@ -1,6 +1,6 @@
 function btnn() {
-	var f = document.getElementById("bundle_type").options[document
-			.getElementById("bundle_type").selectedIndex].value;
+	var f = document.getElementById("project_how").options[document
+			.getElementById("project_how").selectedIndex].value;
 	if (f == "0") {
 		var i = $("<input>").attr("id", "type_input");
 		var b = $("<input>").attr({
@@ -43,3 +43,40 @@ function delBtn(obj) {
 	var trr = $(obj).parent().parent();
 	trr.remove();
 }
+
+function changeAccessLevel() {
+	let d = 0;
+	$(".access").each((a,b)=>{
+		if(b.checked){
+		d+=Number(b.value)}
+		})
+	if (d==16){
+		d=0;
+	}
+	if(d%2==1){
+		d=1;
+	}
+	$("#project_access_level").val(d);
+}
+
+function selectAll() {
+	$(".access").each((a,b)=>{
+		if(a!=0){
+		b.disabled= !b.disabled}
+	})
+}
+
+function loadProjectAccessLevel(val){
+	$(".access")[4].checked=true;
+	$(".access").each((a,b)=>{
+		if(val==1){
+			if(a!=0){
+				b.disabled=true;
+			}
+		}
+		if(b.value&val){
+			b.checked=true;
+		}
+	})
+}
+

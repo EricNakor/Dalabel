@@ -4,10 +4,12 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script type="text/javascript" src="resources/js/labeling.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
-<body>
+<body onload="loadProjectAccessLevel(${project.project_access_level})">
 	<table border="1">
 		<tr>
 			<th colspan="2" align="center">프로젝트</th>
@@ -17,23 +19,34 @@
 			<td>${project.project_title }</td>
 		</tr>
 		<tr>
-			<td>공개설정</td>
+			<td>참여설정</td>
 			<td>
-				<form action="update.needlogin.project.accessLevel">
-					<input type="hidden" value="${project.project_no }" name="project_no">
-					<input value="${project.project_access_level }" name="project_access_level">
+				<form action="update.needlogin.project.accessLevel"
+					onsubmit="return changeAccessLevel();">
+					<input type="hidden" value="${project.project_no }"
+						name="project_no"><input type="checkbox" value="1"
+						class="access" onchange="selectAll();">전체 <input
+						type="checkbox" value="2" class="access">숙련자 <input
+						type="checkbox" value="4" class="access">이메일 인증된 사람 <input
+						type="checkbox" value="8" class="access">요청 후 수락 <input
+						type="radio" value="0" class="access" name="andor">or <input
+						type="radio" value="16" class="access" name="andor">and <input
+						name="project_access_level" type="hidden"
+						id="project_access_level">
 					<button>수정</button>
 				</form>
+			</td>
+		</tr>
+		<tr>
+			<td>
 				<form action="manage.labeling.user">
-					<input type="hidden" name="project_no" value="${project.project_no }">
+					<input type="hidden" name="project_no"
+						value="${project.project_no }">
 					<button>참가자 관리</button>
 				</form>
-				<h1>수락 IS UPDATE</h1> #a
-				<h1>아직 NO 수락 IS 대기</h1> #w
-				<h1>거절</h1> #r
-				<h1>킥</h1> #k
 			</td>
 		</tr>
 	</table>
+	${project.project_guide }
 </body>
 </html>

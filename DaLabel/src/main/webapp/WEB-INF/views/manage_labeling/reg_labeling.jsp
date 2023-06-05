@@ -25,11 +25,11 @@
 			</tr>
 			<tr>
 				<td>가이드라인</td>
-				<td><textarea rows="50" cols="50" name="bundle_guide" id="bundle_guide">
+				<td><textarea rows="50" cols="50" name="project_guide" id="project_guide">
 
 					</textarea></td>
 				<script type="text/javascript">
-					CKEDITOR.replace('bundle_guide', {
+					CKEDITOR.replace('project_guide', {
 						filebrowserUploadUrl : 'upload.do'
 					});
 				</script>

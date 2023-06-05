@@ -1,9 +1,6 @@
 package com.hiddenlayer.dalabel.manageLabeling;
 
 import java.math.BigDecimal;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.stream.IntStream;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -14,16 +11,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.hiddenlayer.dalabel.dolabeling.LabelDoList;
-import com.hiddenlayer.dalabel.member.MemberDAO;
 
 @Controller
 public class ManageLabelingController {
 
 	@Autowired
 	private ManageLabelingDAO mlDAO;
-
-	@Autowired
-	private MemberDAO mDAO;
 
 	@RequestMapping(value = "/reg.needlogin.labeling.go", method = RequestMethod.GET)
 	public String goRegLabeling(@RequestParam(value = "bundle_name") String bundle_name,
@@ -41,11 +34,16 @@ public class ManageLabelingController {
 
 	@RequestMapping(value = "/get.needlogin.myUpload.labeling", method = RequestMethod.GET)
 	public String getManageLabeling(HttpServletRequest req) {
-		mDAO.isLogined(req);
 		mlDAO.getMyLabeling(1, req);
 		return "manage_labeling/manage_labeling";
 	}
 
+	@RequestMapping(value = "project.needlogin.page.change", method = RequestMethod.GET)
+	public String pageChangeProject(@RequestParam(value = "page") int page, HttpServletRequest req) {
+		mlDAO.getMyLabeling(page, req);
+		return "manage_labeling/manage_labeling";
+	}
+	
 	@RequestMapping(value = "/get.needlogin.detail.myproject", method = RequestMethod.GET)
 	public String goDetailProject(HttpServletRequest req) {
 		mlDAO.getMyDeatilProject(req);
