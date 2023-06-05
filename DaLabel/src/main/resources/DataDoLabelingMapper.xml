@@ -39,7 +39,7 @@
             		or(project_access_level<16
             			and bitand(bitor(userlevel,8), project_access_level) > 0)))
 				) as a
-			left join (select * from Labeling_Do where dolabel_user=#{userid} and dolabel_state<>2) as b
+			left join (select * from Labeling_Do where dolabel_user=#{userid}) as b
 			on a.project_no = b.dolabel_project_no
 			where rn<=#{getnum}
 		]]>
@@ -58,5 +58,4 @@
 			where dolabel_user=#{dolabel_user} and dolable_project_no=#{dolable_project_no}
 		]]>
 	</update>
-
 </mapper>

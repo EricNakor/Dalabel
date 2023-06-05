@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.hiddenlayer.dalabel.data.DataMapper;
 import com.hiddenlayer.dalabel.manageLabeling.Data;
 
 @Service
@@ -25,8 +26,25 @@ public class ProjectSession {
 	
 	public Data getNextData(String userid) {
 		// 매퍼로 가져올것.
-		BigDecimal projectno = getProjectNoWithUserID(userid);
-		return new Data("데이타명",new BigDecimal(10));
+		BigDecimal project_no = getProjectNoWithUserID(userid);
+		ProjectInfo pif = projectInfos.get(project_no);
+		if (pif==null) {
+			return null;
+		}
+		BigDecimal data_no = null;
+		Data rtData = null;
+		while(true) {
+			if((data_no = pif.getRest_data())==null) {
+				data_no = pif.getNext_todo_no();
+				return ss.getMapper(DataMapper.class).getNextBiggerData(project_no, data_no);
+			}else {
+				rtData=ss.getMapper(DataMapper.class).getNextData(project_no, data_no);
+				if(rtData!=null) {
+					return rtData;
+				}
+			}
+			
+		}
 	}
 	
 	public boolean isExist(BigDecimal project_no) {

@@ -65,7 +65,7 @@ public class DoLabelingController {
 	
 	// 참여 가능한 프로젝트를 일정갯수 리턴한다. 이미 참여했다면 status까지 필요하다.
 	@RequestMapping(value = "/doLabeling.needlogin.show", method = RequestMethod.GET, produces = "application/json; charset=utf-8")
-	public @ResponseBody ArrayList<LabelDoList> show(HttpServletRequest req,  @RequestParam(value="start") int start, @RequestParam(value="end")int end) {
+	public @ResponseBody ArrayList<SearchResultDoLabelingList> show(HttpServletRequest req,  @RequestParam(value="start") int start, @RequestParam(value="end")int end) {
 		return dlDAO.show(req, start, end);
 	}
 	
