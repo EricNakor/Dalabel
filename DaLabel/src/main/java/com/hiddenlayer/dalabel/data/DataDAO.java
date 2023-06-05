@@ -1,7 +1,5 @@
 package com.hiddenlayer.dalabel.data;
 
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.ibatis.session.SqlSession;
@@ -15,9 +13,10 @@ public class DataDAO {
 	@Autowired
 	private SqlSession ss;
 
-	public void getData(int bundle_no, HttpServletRequest req) {
-		List<Data> datas = ss.getMapper(DataMapper.class).getData(bundle_no);
-		req.setAttribute("datas", datas);
+	public void getData(String bundle_folder_name, Data data, HttpServletRequest req) {
+		String d = ss.getMapper(DataMapper.class).getData(data);
+		req.setAttribute("dataName", d);
+		req.setAttribute("bundle_folder_name", bundle_folder_name);
 	}
 
 	public void deleteData(String data_name) {

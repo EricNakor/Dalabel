@@ -8,13 +8,17 @@
 	]]>
 	</insert>
 
-	<select id="getData" parameterType="java.lang.Integer"
-		resultType="com.hiddenlayer.dalabel.manageLabeling.Data">
+
+	<select id="getData"
+		parameterType="com.hiddenlayer.dalabel.manageLabeling.Data"
+		resultType="java.lang.String">
 		<![CDATA[
-		select * from data
-		where data_where = #{bundle_no}
+		select data_name from data 
+		where data_where = #{data_where} and data_name 
+		like #{data_name}||'.%'
 	]]>
 	</select>
+
 	<select id="getNextData" resultType="com.hiddenlayer.dalabel.manageLabeling.Data">
 		<![CDATA[
 		with tempt as (select data_name, data_where, data_activation, row_number()over(order by data_name) as rn from data
@@ -37,6 +41,7 @@
 			where rn<=1
 		]]>
 	</select>
+  
 	<update id="deleteData" parameterType="java.lang.String">
 		<![CDATA[
 		update data set data_activation = 0

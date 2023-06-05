@@ -15,42 +15,35 @@ import com.hiddenlayer.dalabel.member.MemberDAO;
 public class ManageBundleController {
 
 	@Autowired
-	private MemberDAO mDAO;
-
-	@Autowired
 	private ManageBundleDAO mbDAO;
 
 	@RequestMapping(value = "/upload.needlogin.bundle.go", method = RequestMethod.GET)
 	public String goRegBundle(HttpServletRequest req) {
-		mDAO.isLogined(req);
+		req.setAttribute("link", "upload.needlogin.bundle.do");
 		return "upload";
 	}
 
 	@RequestMapping(value = "/upload.needlogin.bundle.do", method = RequestMethod.POST)
 	public String doRegBundle(HttpServletRequest req, DataBundle db) {
-		mDAO.isLogined(req);
 		mbDAO.uploadBundle(db, req);
-		return "home";
+		return "close";
 	}
 
 
 	@RequestMapping(value = "/get.needlogin.my.bundle", method = RequestMethod.GET)
 	public String getMyBundle(HttpServletRequest req) {
-		mDAO.isLogined(req);
 		mbDAO.getMyBundle(1, req);
 		return "bundle/manage_bundle";
 	}
 
 	@RequestMapping(value = "/bundle.needlogin.page.change", method = RequestMethod.GET)
 	public String snsPageChange(@RequestParam(value = "page") int page, HttpServletRequest req) {
-		mDAO.isLogined(req);
 		mbDAO.getMyBundle(page, req);
 		return "bundle/manage_bundle";
 	}
 
 	@RequestMapping(value = "/delete.needlogin.bundle", method = RequestMethod.POST)
 	public String deleteBundle(@RequestParam(value = "bundle_no") int bundle_no, HttpServletRequest req) {
-		mDAO.isLogined(req);
 		mbDAO.deleteBundle(bundle_no, req);
 		return "home";
 	}

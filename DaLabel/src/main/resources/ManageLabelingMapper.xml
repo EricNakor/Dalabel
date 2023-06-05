@@ -49,7 +49,20 @@
 			where project_no = #{project_no}
 		]]>
 	</update>
-	
-	
+
+	<update id="changeUserAccess"
+		parameterType="com.hiddenlayer.dalabel.dolabeling.LabelDoList">		<![CDATA[
+			update labeling_do set dolabel_state = #{dolabel_state}
+			where dolabel_user = #{dolabel_user} and dolabel_project_no = #{dolabel_project_no}
+		]]>
+	</update>
+
+	<select id="selectLabelingUser"
+		parameterType="java.lang.Integer"
+		resultType="com.hiddenlayer.dalabel.dolabeling.LabelDoList">
+		<![CDATA[
+			select dolabel_user, dolabel_state, dolabel_project_no from labeling_do where dolabel_project_no = #{dolabel_project_no}
+		]]>
+	</select>
 
 </mapper>

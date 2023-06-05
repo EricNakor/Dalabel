@@ -26,15 +26,10 @@ public class MemberDAO {
 	private static final SimpleDateFormat SDF = new SimpleDateFormat("yyyyMMdd");
 	@Autowired
 	private SqlSession ss;
-	
+
 	@Autowired
 	private FileUpload fu;
 
-	
-	public void deleteSessionFromSessionMap(String userid) {
-		sessionmap.removeUserIDWithSessionID(userid);			
-	}
-	
 	public MemberDAO() {
 		super();
 	}
@@ -105,7 +100,7 @@ public class MemberDAO {
 			m.setUser_id((String) req.getSession().getAttribute("loginUserID"));
 			ArrayList<Member> userinfo = ss.getMapper(AccountMapper.class).getUserinfo(m);
 			m = userinfo.get(0);
-			req.setAttribute("memberInfo", m);			
+			req.setAttribute("memberInfo", m);
 		} catch (Exception e) {
 		}
 	}
@@ -143,5 +138,6 @@ public class MemberDAO {
 		m.setUser_id(userID);
 		m.setUser_img(fileName);
 		ss.getMapper(AccountMapper.class).changeMemberIMG(m);
+		req.setAttribute("rtVal", fileName);
 	}
 }

@@ -4,22 +4,23 @@ import java.math.BigDecimal;
 
 public class LabelDoList {
 	private String dolabel_user;
-	private BigDecimal dolable_project_no;
+
+	private BigDecimal dolabel_project_no;
 	private BigDecimal dolabel_state;
 	private BigDecimal dolabel_score;
 
-	public LabelDoList(String dolabel_user, BigDecimal dolable_project_no, BigDecimal dolabel_state,
+	public LabelDoList() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public LabelDoList(String dolabel_user, BigDecimal dolabel_project_no, BigDecimal dolabel_state,
 			BigDecimal dolabel_score) {
 		super();
 		this.dolabel_user = dolabel_user;
-		this.dolable_project_no = dolable_project_no;
+		this.dolabel_project_no = dolabel_project_no;
 		this.dolabel_state = dolabel_state;
 		this.dolabel_score = dolabel_score;
-	}
 
-	public LabelDoList() {
-		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public String getDolabel_user() {
@@ -30,12 +31,12 @@ public class LabelDoList {
 		this.dolabel_user = dolabel_user;
 	}
 
-	public BigDecimal getDolable_project_no() {
-		return dolable_project_no;
+	public BigDecimal getDolabel_project_no() {
+		return dolabel_project_no;
 	}
 
-	public void setDolable_project_no(BigDecimal dolable_project_no) {
-		this.dolable_project_no = dolable_project_no;
+	public void setDolabel_project_no(BigDecimal dolabel_project_no) {
+		this.dolabel_project_no = dolabel_project_no;
 	}
 
 	public BigDecimal getDolabel_state() {
@@ -53,5 +54,4 @@ public class LabelDoList {
 	public void setDolabel_score(BigDecimal dolabel_score) {
 		this.dolabel_score = dolabel_score;
 	}
-
 }

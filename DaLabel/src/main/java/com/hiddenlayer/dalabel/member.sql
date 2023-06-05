@@ -13,4 +13,7 @@ create table member (
 
 select * from member
 
+update member set user_isdeleted = 0
+where user_id = 'test12'
+
 drop table member cascade constraint purge

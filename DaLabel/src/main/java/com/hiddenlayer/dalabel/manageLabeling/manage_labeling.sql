@@ -39,6 +39,8 @@ create sequence labeling_project_seq
 
 select * from labeling_project
 
+update labeling_project set project_access_level = 30 where project_title = 'absd'
+
 create table data(
 	data_name varchar2(15 char),
 	data_where number(8),
@@ -58,7 +60,7 @@ create table labeling_do (
 	constraint want_labeling_pk primary key(dolabel_user, dolabel_project_no)
 )
 
-insert into labeling_do values('t5', 3, 0, null)
+insert into labeling_do values('라벨링하고싶어요', 3, 0, null)
 
 select * from labeling_do
 
@@ -72,3 +74,5 @@ CREATE FUNCTION BOR(x IN NUMBER, y IN NUMBER) RETURN NUMBER AS
 BEGIN
 RETURN x + y - bitand(x,y);
 END;
+
+select data_name from data where data_where = 105 and data_name like '%1.%'
