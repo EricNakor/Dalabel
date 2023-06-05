@@ -17,6 +17,7 @@ public class Member {
 	private BigDecimal user_credit;
 
 	public Member() {
+		super();
 		// TODO Auto-generated constructor stub
 	}
 

@@ -29,6 +29,7 @@ public class ManageBundleController {
 		return "close";
 	}
 
+
 	@RequestMapping(value = "/get.needlogin.my.bundle", method = RequestMethod.GET)
 	public String getMyBundle(HttpServletRequest req) {
 		mbDAO.getMyBundle(1, req);

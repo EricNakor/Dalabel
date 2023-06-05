@@ -8,6 +8,7 @@
 	]]>
 	</insert>
 
+
 	<select id="getData"
 		parameterType="com.hiddenlayer.dalabel.manageLabeling.Data"
 		resultType="java.lang.String">
