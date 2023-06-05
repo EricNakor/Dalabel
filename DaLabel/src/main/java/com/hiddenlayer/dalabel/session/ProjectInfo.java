@@ -9,6 +9,7 @@ class ProjectInfo {
 	private BigDecimal data_count;
 	private Stack<BigDecimal> rest_data;
 	private int access_level;
+	private String type;
 
 	ProjectInfo() {
 		rest_data = new Stack<BigDecimal>();
@@ -31,7 +32,13 @@ class ProjectInfo {
 	}
 
 	BigDecimal getNext_todo_no() {
-		return next_todo_no;
+		BigDecimal ret = next_todo_no;
+		next_todo_no.add(new BigDecimal(1));
+		if(next_todo_no.compareTo(data_count)==0) {
+			cycle_no.add(new BigDecimal(1));
+			next_todo_no = new BigDecimal(1);
+		}
+		return ret;
 	}
 
 	void setNext_todo_no(BigDecimal next_todo_no) {
@@ -56,4 +63,13 @@ class ProjectInfo {
 		}
 		return rest_data.pop();
 	}
+
+	String getType() {
+		return type;
+	}
+
+	void setType(String type) {
+		this.type = type;
+	}
+	
 }

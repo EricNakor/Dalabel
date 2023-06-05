@@ -28,6 +28,8 @@ public class DoLabelingDAO {
 
 	public String nextDataName(HttpServletRequest req, LabelData ld) {
 		String userid = (String) req.getSession().getAttribute("loginUserID");
+		
+		// 조건식 수정해야할 수 있음. AJAX가 들어오는것에 따라 처리해야하기 때문에.
 		if (userid.equals(ld.getWorked_by())) {
 			if (req.getSession().getAttribute("workingNow") != null
 					&& req.getSession().getAttribute("workingNow").equals(ld.getData_no())) {
@@ -39,7 +41,12 @@ public class DoLabelingDAO {
 				return d.getData_name();
 			}
 		}
-		return null;
+		Data data = ps.getNextData(userid);
+		if (data==null) {
+			return null;
+		}else {
+			return data.getData_name();
+		}
 	}
 
 	public void end(HttpServletRequest req) {
@@ -104,9 +111,10 @@ public class DoLabelingDAO {
 					(Integer) req.getSession().getAttribute("joinProjectCount") + 1);
 		}
 	}
-
-	public ArrayList<LabelDoList> show(HttpServletRequest req, int start, int end) {
+	
+	// start는 project number. 프로젝트 고유넘버 기준으로 그것보다 작은걸 getnum개만큼 가져옴.
+	public ArrayList<SearchResultDoLabelingList> show(HttpServletRequest req, int start, int getnum) {
 		return ss.getMapper(DataDoLabelingMapper.class)
-				.findLabelDoList((String) req.getSession().getAttribute("loginUserID"), start, end);
+				.findAccessableDoList((String)req.getSession().getAttribute("loginUserID"),(BigDecimal) req.getSession().getAttribute("loginUserRating"), start, getnum);
 	}
 }
