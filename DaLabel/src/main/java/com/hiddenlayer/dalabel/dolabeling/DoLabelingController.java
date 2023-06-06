@@ -56,8 +56,7 @@ public class DoLabelingController {
 //	참여가능페이지를 리턴한다.
 	@RequestMapping(value = "/doLabeling.needlogin.showable", method = RequestMethod.GET)
 	public String showAble(HttpServletRequest req) {
-		dlDAO.getMypageCount(req);
-		return "home";
+		return "labeling/show_labelable_projects";
 	}
 	
 	// 참여 가능한 프로젝트를 일정갯수 리턴한다. 이미 참여했다면 status까지 필요하다.

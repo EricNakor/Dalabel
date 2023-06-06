@@ -61,7 +61,7 @@ public class DoLabelingDAO {
 
 	public void getMypageCount(HttpServletRequest req) {
 		if (req.getSession().getAttribute("joinProjectCount") == null) {
-			req.setAttribute("joinProjectCount", ss.getMapper(DataDoLabelingMapper.class)
+			req.getSession().setAttribute("joinProjectCount", ss.getMapper(DataDoLabelingMapper.class)
 					.getJoinProjectCount((String) req.getSession().getAttribute("loginUserID")));
 		}
 
