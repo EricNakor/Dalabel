@@ -1,10 +1,15 @@
 package com.hiddenlayer.dalabel.util;
 
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.OutputStream;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
@@ -21,7 +26,31 @@ public class FileUpload {
 	public boolean deleteProfileIMG(String fileName) {
 		return new File(profileIMGrealpath + fileName).delete();
 	}
-
+	
+	private String FileUpload(String path, MultipartHttpServletRequest multiFile) throws Exception{
+		
+		File uploadFolder = new File(path);
+		OutputStream os = null;
+		try {
+			if (!uploadFolder.exists()) {
+				uploadFolder.mkdir();
+			}
+			MultipartFile file = multiFile.getFile("fileName");
+			String fileName = UUID.randomUUID().toString() + "_" + file.getOriginalFilename();
+			String uploadPath = path+"/"+fileName;
+			os = new FileOutputStream(new File(uploadPath));
+			byte[] bytes = file.getBytes();
+			os.write(bytes);
+			return fileName;
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			return null;
+		} finally {
+			os.close();
+		}
+	}
+	
 	public String profileUpload(HttpServletRequest req) {
 		if (profileIMGrealpath == null) {
 			profileIMGrealpath = req.getSession().getServletContext().getRealPath("resources/image/profile/");
