@@ -7,6 +7,7 @@ import java.io.FileOutputStream;
 import java.math.BigDecimal;
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.UUID;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
@@ -75,11 +76,12 @@ public class UnZipperThread extends Thread {
 							continue;
 						}
 						idx++;
-						file = new File(folderName, idx + "." + fileEnd);
+						String innerFileName = UUID.randomUUID().toString()+"_"+String.format("%08d", idx) + "." + fileEnd;
+						file = new File(folderName, innerFileName);
 						if (!ze.isDirectory()) {
 							try {
 								createFile(file, zis);
-								ss.getMapper(DataMapper.class).insertData(new Data(idx + "." + fileEnd, bundleNo));
+								ss.getMapper(DataMapper.class).insertData(new Data(innerFileName, bundleNo));
 							} catch (Throwable e) {
 								e.printStackTrace();
 							}

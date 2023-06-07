@@ -45,7 +45,7 @@ public class imgUploadController {
 						String fileName = file.getOriginalFilename();
 						byte[] bytes = file.getBytes();
 
-						String uploadPath = req.getSession().getServletContext().getRealPath("/resources/img/ckImage"); // 저장경로
+						String uploadPath = req.getSession().getServletContext().getRealPath("/resources/image/ckImage"); // 저장경로
 
 						File uploadFile = new File(uploadPath);
 						if (!uploadFile.exists()) {
@@ -59,7 +59,7 @@ public class imgUploadController {
 						os.write(bytes);
 
 						pw = res.getWriter();
-						String fileUrl = req.getContextPath() + "/resources/img/ckImage/" + fileName2 + "_" + fileName; // url경로
+						String fileUrl = req.getContextPath() + "/resources/image/ckImage/" + fileName2 + "_" + fileName; // url경로
 						JsonObject json = new JsonObject();
 						json.addProperty("uploaded", 1);
 						json.addProperty("fileName", fileName);

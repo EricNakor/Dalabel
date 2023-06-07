@@ -37,7 +37,7 @@ public class FileUpload {
 			}
 			MultipartFile file = multiFile.getFile("fileName");
 			String fileName = UUID.randomUUID().toString() + "_" + file.getOriginalFilename();
-			String uploadPath = path+"/"+fileName;
+			String uploadPath = path+"\\"+fileName;
 			os = new FileOutputStream(new File(uploadPath));
 			byte[] bytes = file.getBytes();
 			os.write(bytes);

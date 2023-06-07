@@ -10,10 +10,10 @@ create table databundle(
 	constraint bundle_requestor foreign key (bundle_uploader)
 	references member(user_id) on delete cascade
 )
-
-create sequence databundle_seq
-
 CREATE INDEX idx_bundle_upload ON databundle (bundle_uploader, bundle_uploaded_filename);
+
+drop sequence databundle_seq
+create sequence databundle_seq
 
 select * from databundle
 
@@ -24,7 +24,7 @@ create table labeling_project (
 	project_title varchar2(100 char) not null,
 	project_requestor varchar2(15 char) not null,
 	project_access_level number(2) not null,
-	project_guide varchar2(1000 char) not null,
+	project_guide varchar2(2000 char) not null,
 	project_how number(2) not null,
 	project_category varchar2(500 char) not null,
 	project_progress char(1) not null,
@@ -35,6 +35,8 @@ create table labeling_project (
 	references databundle(bundle_no)
 )
 
+drop table labeling_project cascade constraint purge
+drop sequence labeling_project_seq
 create sequence labeling_project_seq
 
 select * from labeling_project
@@ -42,7 +44,7 @@ select * from labeling_project
 update labeling_project set project_access_level = 30 where project_title = 'absd'
 
 create table data(
-	data_name varchar2(15 char),
+	data_name varchar2(58 char),
 	data_where number(8),
 	data_activation char(1) not null,
 	constraint data_pk primary key(data_where, data_name)

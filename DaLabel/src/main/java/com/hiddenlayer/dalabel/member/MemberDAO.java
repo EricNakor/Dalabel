@@ -67,6 +67,7 @@ public class MemberDAO {
 		req.getSession().removeAttribute("loginUserIMG");
 		req.getSession().removeAttribute("loginUserRating");		
 		req.getSession().removeAttribute("joinProjectCount");		
+		req.getSession().removeAttribute("bundleCount");		
 	}
 
 	public boolean isLogined(HttpServletRequest req) {
