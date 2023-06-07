@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 @Controller
 public class MemberController {
@@ -80,8 +81,8 @@ public class MemberController {
 	}
 
 	@RequestMapping(value = "/profile.needlogin.upload", method = RequestMethod.POST)
-	public String updateProfile(HttpServletRequest req) {
-		mDAO.updateProfile(req);
+	public String updateProfile(HttpServletRequest req, MultipartHttpServletRequest multiFile) {
+		mDAO.updateProfile(req, multiFile);
 		return "close";
 	}
 }

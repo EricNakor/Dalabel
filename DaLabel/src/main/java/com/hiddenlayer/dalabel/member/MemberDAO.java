@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.hiddenlayer.dalabel.session.ProjectSession;
 import com.hiddenlayer.dalabel.session.UserLoginSession;
@@ -127,8 +128,8 @@ public class MemberDAO {
 		}
 	}
 
-	public void updateProfile(HttpServletRequest req) {
-		String fileName = fu.profileUpload(req);
+	public void updateProfile(HttpServletRequest req, MultipartHttpServletRequest multiFile) {
+		String fileName = fu.profileUpload(req, multiFile);
 		String userID = (String) req.getSession().getAttribute("loginUserID");
 		String userIMG = (String) req.getSession().getAttribute("loginUserIMG");
 		if (!("defaultprofile.jpg").equals(userIMG)) {

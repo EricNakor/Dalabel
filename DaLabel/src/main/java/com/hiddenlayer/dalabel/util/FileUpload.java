@@ -27,7 +27,7 @@ public class FileUpload {
 		return new File(profileIMGrealpath + fileName).delete();
 	}
 	
-	private String FileUpload(String path, MultipartHttpServletRequest multiFile) throws Exception{
+	private String fileUploadMr(String path, MultipartHttpServletRequest multiFile) throws Exception{
 		
 		File uploadFolder = new File(path);
 		OutputStream os = null;
@@ -51,46 +51,36 @@ public class FileUpload {
 		}
 	}
 	
-	public String profileUpload(HttpServletRequest req) {
+	public String profileUpload(HttpServletRequest req,MultipartHttpServletRequest multiFile) {
 		if (profileIMGrealpath == null) {
 			profileIMGrealpath = req.getSession().getServletContext().getRealPath("resources/image/profile/");
 		}
-		MultipartRequest mr = null;
 		try {
-			mr = new MultipartRequest(req, profileIMGrealpath, 50 * 1024 * 1024, "utf-8",
-					new DefaultFileRenamePolicy());
+			return fileUploadMr(profileIMGrealpath, multiFile);
 		} catch (Exception e) {
-			// 파일 용량 안맞으면
 			e.printStackTrace();
-			return null;
-		}
-		try {
-			String fileName = mr.getFilesystemName("fileName");
-			return fileName;
-		} catch (Exception e) {
 			return null;
 		}
 	}
 
-	public String[] bundleUpload(HttpServletRequest req) {
+	public String[] bundleUpload(HttpServletRequest req,MultipartHttpServletRequest multiFile) {
 		MultipartRequest mr = null;
 		String userID = (String) req.getSession().getAttribute("loginUserID");
 		if (dataRealPath == null) {
 			dataRealPath = req.getSession().getServletContext().getRealPath("resources/data/");
 		}
 		String path = dataRealPath + userID;
-		File folder = new File(path);
-
-		if (!folder.exists()) {
-			try {
-				folder.mkdir();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+		String returnName = null;
+		try {
+			returnName=fileUploadMr(path, multiFile);
+			return new String[] { returnName, multiFile.getParameter("bundle_data_type"),
+					multiFile.getParameter("bundle_descript") };
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
 		}
 
 		try {
-			mr = new MultipartRequest(req, path, 5 * 1024 * 1024 * 1024, "utf-8", new DefaultFileRenamePolicy());
 			return new String[] { mr.getFilesystemName("fileName"), mr.getParameter("bundle_data_type"),
 					mr.getParameter("bundle_descript") };
 		} catch (Exception e) {

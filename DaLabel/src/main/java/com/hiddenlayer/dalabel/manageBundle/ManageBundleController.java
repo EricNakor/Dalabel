@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.hiddenlayer.dalabel.manageLabeling.DataBundle;
 import com.hiddenlayer.dalabel.member.MemberDAO;
@@ -24,8 +25,8 @@ public class ManageBundleController {
 	}
 
 	@RequestMapping(value = "/upload.needlogin.bundle.do", method = RequestMethod.POST)
-	public String doRegBundle(HttpServletRequest req, DataBundle db) {
-		mbDAO.uploadBundle(db, req);
+	public String doRegBundle(HttpServletRequest req, DataBundle db, MultipartHttpServletRequest multiFile) {
+		mbDAO.uploadBundle(db, req, multiFile);
 		return "close";
 	}
 

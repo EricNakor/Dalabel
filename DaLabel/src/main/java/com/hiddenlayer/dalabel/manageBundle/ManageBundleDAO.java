@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.hiddenlayer.dalabel.manageLabeling.DataBundle;
 import com.hiddenlayer.dalabel.util.FileUpload;
@@ -30,10 +31,10 @@ public class ManageBundleDAO {
 	@Autowired
 	private PageOption po;
 
-	public void uploadBundle(DataBundle db, HttpServletRequest req) {
+	public void uploadBundle(DataBundle db, HttpServletRequest req, MultipartHttpServletRequest multiFile) {
 		String loginUser = (String) req.getSession().getAttribute("loginUserID");
 		db.setBundle_uploader(loginUser);
-		String[] names = fu.bundleUpload(req);
+		String[] names = fu.bundleUpload(req, multiFile);
 		db.setBundle_uploaded_filename(names[0]);
 		db.setBundle_data_type(names[1]);
 		db.setBundle_descript(names[2]);
