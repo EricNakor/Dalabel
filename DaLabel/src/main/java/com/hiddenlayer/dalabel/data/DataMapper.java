@@ -2,7 +2,6 @@ package com.hiddenlayer.dalabel.data;
 
 
 import java.math.BigDecimal;
-import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 

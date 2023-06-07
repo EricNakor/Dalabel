@@ -11,9 +11,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-import com.oreilly.servlet.MultipartRequest;
-import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
-
 @Service
 public class FileUpload {
 	private String profileIMGrealpath;
@@ -64,7 +61,6 @@ public class FileUpload {
 	}
 
 	public String[] bundleUpload(HttpServletRequest req,MultipartHttpServletRequest multiFile) {
-		MultipartRequest mr = null;
 		String userID = (String) req.getSession().getAttribute("loginUserID");
 		if (dataRealPath == null) {
 			dataRealPath = req.getSession().getServletContext().getRealPath("resources/data/");

@@ -5,8 +5,6 @@ import java.util.ArrayList;
 
 import org.apache.ibatis.annotations.Param;
 
-import com.hiddenlayer.dalabel.manageLabeling.Data;
-
 public interface DataDoLabelingMapper {
 	public abstract int addLabelData(LabelData labeldata);
 	public abstract int addLabelDoList(LabelDoList labeldolist);
