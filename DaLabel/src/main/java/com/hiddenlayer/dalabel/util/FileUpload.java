@@ -78,16 +78,7 @@ public class FileUpload {
 		} catch (Exception e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
-		}
-
-		try {
-			return new String[] { mr.getFilesystemName("fileName"), mr.getParameter("bundle_data_type"),
-					mr.getParameter("bundle_descript") };
-		} catch (Exception e) {
-			e.printStackTrace(); // 파일 용량 안 맞으면 error
-			System.out.println("error" + mr.getFilesystemName("fileName"));
-			return new String[] { mr.getFilesystemName("fileName"), mr.getParameter("bundle_data_type"),
-					mr.getParameter("bundle_descript") };
+			return null;
 		}
 
 	}
