@@ -11,22 +11,26 @@
 <script src="//cdn.ckeditor.com/4.21.0/standard/ckeditor.js"></script>
 </head>
 <body>
-	<form action="reg.needlogin.labeling.do" method="post">
-	<input type="hidden" name="project_bundle_no" value="${bundle_no }">
+	<form action="reg.needlogin.labeling.do" method="post" onsubmit="return toJSON()">
+		<input type="hidden" name="project_bundle_no" value="${bundle_no }">
 		<table>
 			<tr>
 				<td>라벨링 제목</td>
-				<td><input name="project_title"></td>
+				<td><input name="project_title" id="project_title"></td>
 			</tr>
+		</table>
+		<table>
 			<tr>
 				<td>파일명 :</td>
 				<td>${bundle_name }</td>
 				<td><a href="get.needlogin.my.bundle">변경</a></td>
 			</tr>
+		</table>
+		<table>
 			<tr>
 				<td>가이드라인</td>
-				<td><textarea rows="50" cols="50" name="project_guide" id="project_guide">
-
+				<td><textarea rows="50" cols="50" name="project_guide"
+						id="project_guide">
 					</textarea></td>
 				<script type="text/javascript">
 					CKEDITOR.replace('project_guide', {
@@ -34,6 +38,8 @@
 					});
 				</script>
 			</tr>
+		</table>
+		<table>
 			<tr>
 				<td>데이터 타입</td>
 				<td><select name="bundle_data_type">
@@ -41,20 +47,26 @@
 						<option value="1">텍스트 분석</option>
 				</select></td>
 			</tr>
+		</table>
+		<table>
 			<tr>
 				<td>라벨링할 데이터</td>
 				<td>${labelingData }</td>
 			</tr>
+		</table>
+		<table id="t">
 			<tr>
-
-				<td><select name="project_how" id="project_how"
-					onchange="btnn();">
-						<option value="0">버튼 누르기</option>
-						<option value="1">직접 타이핑</option>
-						<option value="2">영역 선택</option>
+				<td><select name="project_how" id="project_how" onchange="btn()">
+						<option value="0" selected="selected">직접 타이핑</option>
+						<option value="1">버튼 누르기</option>
+						<%-- <option value="2">영역 선택</option> --%>
 				</select></td>
+				<td></td>
 				<td id=btn_add></td>
 			</tr>
+			<tr><td><input  name="project_category" id="project_category"></td></tr>
+		</table>
+		<%-- <table>
 			<tr>
 				<td>공개설정</td>
 				<td><select name="bundle_access">
@@ -62,6 +74,8 @@
 				</select></td>
 
 			</tr>
+		</table> --%>
+		<table>
 			<tr>
 				<td>
 					<button>등록</button>

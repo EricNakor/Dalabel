@@ -26,7 +26,6 @@ public class DoLabelingController {
 		dlDAO.start(req,lp);
 		return "home";
 	}
-	
 //	라벨링중 다음 데이타 부르기용도. AJAX로 호출됨. 토큰을 이용한 보안설정 고려할것. 세션종료시 토큰무효화하도록 토큰설계.
 
 	@RequestMapping(value = "/doLabeling.needlogin.next", method = RequestMethod.GET)
