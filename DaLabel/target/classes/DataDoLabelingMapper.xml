@@ -29,19 +29,19 @@
 	<select id="findAccessableDoList"
 		resultType="com.hiddenlayer.dalabel.dolabeling.SearchResultDoLabelingList">
 		<![CDATA[
-			select a.project_no as project_no, a.project_title as project_title, a.project_requestor as project_requestor, a.project_how as project_how, b.dolabel_state as dolabel_state from
-				(
-				select project_no, project_title, project_requestor, project_how
-				from Labeling_project
-				where project_no<#{projectstart} and (
-					(project_access_level is not null) and( 
-        				(project_access_level>=16 and bitand(bitor(userlevel,8), project_access_level) = project_access_level-16 )
-            		or(project_access_level<16
-            			and bitand(bitor(userlevel,8), project_access_level) > 0)))
-				) as a
-			left join (select * from Labeling_Do where dolabel_user=#{userid}) as b
-			on a.project_no = b.dolabel_project_no
-			where rn<=#{getnum}
+			select project_no, project_title, project_requestor, project_how, dolabel_state from 
+                (
+                select project_no, project_title, project_requestor, project_how, row_number() over (order by project_no desc) as rn
+                from Labeling_project
+                where project_no<#{projectstart} and (
+                    (project_access_level is not null) and( 
+                        (project_access_level>=16 and bitand(bitor(#{grade},8), project_access_level) = project_access_level-16 )
+                    or(project_access_level<16
+                        and bitand(bitor(#{grade},8), project_access_level) > 0)))
+                )
+            left join(select * from labeling_do where dolabel_user=#{userid})
+            on project_no = dolabel_project_no
+            where rn<=#{getnum}
 		]]>
 	</select>
 	<select id="getJoinProjectCount" resultType="java.lang.Integer">

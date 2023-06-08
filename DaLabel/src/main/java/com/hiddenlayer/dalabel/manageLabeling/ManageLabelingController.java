@@ -68,4 +68,5 @@ public class ManageLabelingController {
 		mlDAO.select(ld.getDolabel_project_no().intValue(), req);
 		return "manage_labeling/manage_labeling_user";
 	}
+	
 }

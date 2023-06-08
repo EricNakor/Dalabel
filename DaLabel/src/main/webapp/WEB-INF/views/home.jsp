@@ -8,12 +8,13 @@
 <meta name="keywords" content="">
 <meta name="description" content="">
 <title>Home</title>
-<link rel="stylesheet" href="resources/css/nicepage.css" media="screen">
-<link rel="stylesheet" href="resources/css/MyPage.css" media="screen">
+<link rel="stylesheet" href="resources/css/c1.css" media="screen">
+<link rel="stylesheet" href="resources/css/c3.css" media="screen">
+<link rel="stylesheet" href="resources/css/c2.css" media="screen">
 <script class="u-script" type="text/javascript"
 	src="resources/js/jquery-3.5.1.min.js" defer=""></script>
 <script class="u-script" type="text/javascript"
-	src="resources/js/nicepage.js" defer=""></script>
+	src="resources/js/jq1.js" defer=""></script>
 <meta name="generator" content="Nicepage 5.9.15, nicepage.com">
 <meta name="referrer" content="origin">
 <link id="u-theme-google-font" rel="stylesheet"
@@ -39,7 +40,7 @@
 			<button>로그인</button>
 		</form>
 		<div class="u-clearfix u-sheet u-sheet-1">
-			<a href="https://nicepage.com" class="u-image u-logo u-image-1"
+			<a href="/dalabel" class="u-image u-logo u-image-1"
 				data-image-width="80" data-image-height="40"> <img
 				src="resources/images/logo.png" class="u-logo-image u-logo-image-1">
 			</a>
@@ -141,6 +142,9 @@
 												class="u-button-style u-nav-link" href="get.needlogin.my.bundle">내 데이터 관리</a></li>
 											<li class="u-nav-item"><a
 												class="u-button-style u-nav-link" href="get.needlogin.myUpload.labeling">라벨링 프로젝트 관리</a>
+											</li>
+											<li class="u-nav-item"><a
+												class="u-button-style u-nav-link" href="doLabeling.needlogin.showable">라벨링 할래요</a>
 											</li>
 										</ul>
 									</div></li>
