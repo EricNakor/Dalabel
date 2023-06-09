@@ -69,7 +69,7 @@ public class DoLabelingController {
 	@RequestMapping(value = "/doLabeling.needlogin.askjoin", method = RequestMethod.GET)
 	public String askjoin(HttpServletRequest req, @RequestParam(value="project_no")int project_no) {
 		dlDAO.askjoin(req, new BigDecimal(project_no));
-		return "home";
+		return "labeling/do_labeling";
 	}
 	
 }
