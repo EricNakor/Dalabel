@@ -20,7 +20,7 @@ public class BoardController {
 	@Autowired
 	private BoardDAO bDAO;
 
-	@RequestMapping(value = "/board.lists", method = RequestMethod.GET)
+	@RequestMapping(value = "/board.go", method = RequestMethod.GET)
 	public String boardLists(HttpServletRequest req) {
 		if (mDAO.isLogined(req)) {
 			bDAO.clearSearch(req);
@@ -59,7 +59,7 @@ public class BoardController {
 		return "home";
 	}
 	
-	@RequestMapping(value = "/board.write", method = RequestMethod.GET)
+	@RequestMapping(value = "/board.post.write", method = RequestMethod.GET)
 	public String writePost(Board b, HttpServletRequest req) {
 		if (mDAO.isLogined(req)) {
 			bDAO.writePost(b, req);
@@ -78,6 +78,20 @@ public class BoardController {
 		if (mDAO.isLogined(req)) {
 			bDAO.search(search, req);
 			bDAO.getAllPost(1, req);
+			TokenGenerator.generate(req);
+			req.setAttribute("contentPage", "community_board/write.jsp");
+		} else {
+			req.setAttribute("contentPage", "home.jsp");
+		}
+		return "home";
+	}
+	
+	@RequestMapping(value = "/board.comment.write", method = RequestMethod.GET)
+	public String writeComment(BoardComment bc, HttpServletRequest req) {
+		if (mDAO.isLogined(req)) {
+			bDAO.writeComment(bc, req);
+//			bDAO.clearSearch(req);
+//			bDAO.getAllPost(1, req);
 			TokenGenerator.generate(req);
 			req.setAttribute("contentPage", "community_board/write.jsp");
 		} else {

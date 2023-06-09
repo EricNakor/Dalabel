@@ -1,7 +1,10 @@
 package com.hiddenlayer.dalabel.board;
 
+import java.math.BigDecimal;
+import java.util.List;
+
 public class Board {
-	private int board_id;
+	private BigDecimal board_id;
 	private String board_category;
 	private String user_id;
 	private String board_title;
@@ -11,12 +14,15 @@ public class Board {
 	private String board_edit;
 	private int board_delete;
 
+	// 댓글
+	private List<BoardComment> b_comment;
+
 	public Board() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Board(int board_id, String board_category, String user_id, String board_title, String board_content,
-			String board_file, String board_regist, String board_edit, int board_delete) {
+	public Board(BigDecimal board_id, String board_category, String user_id, String board_title, String board_content,
+			String board_file, String board_regist, String board_edit, int board_delete, List<BoardComment> b_comment) {
 		super();
 		this.board_id = board_id;
 		this.board_category = board_category;
@@ -27,13 +33,14 @@ public class Board {
 		this.board_regist = board_regist;
 		this.board_edit = board_edit;
 		this.board_delete = board_delete;
+		this.b_comment = b_comment;
 	}
 
-	public int getBoard_id() {
+	public BigDecimal getBoard_id() {
 		return board_id;
 	}
 
-	public void setBoard_id(int board_id) {
+	public void setBoard_id(BigDecimal board_id) {
 		this.board_id = board_id;
 	}
 
@@ -99,6 +106,14 @@ public class Board {
 
 	public void setBoard_delete(int board_delete) {
 		this.board_delete = board_delete;
+	}
+
+	public List<BoardComment> getB_comment() {
+		return b_comment;
+	}
+
+	public void setB_comment(List<BoardComment> b_comment) {
+		this.b_comment = b_comment;
 	}
 
 }

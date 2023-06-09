@@ -1,3 +1,9 @@
+function bye() {
+	if (confirm("탈퇴하시겠습니까?")) {
+		location.href = "member.bye";
+	}
+}
+
 function boardPageChange(p) {
 	location.href = "board.page.change?p=" +p;
 }

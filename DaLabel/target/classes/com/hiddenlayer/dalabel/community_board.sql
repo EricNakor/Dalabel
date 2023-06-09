@@ -16,14 +16,23 @@ create table board(
 create sequence board_seq start with 1 increment by 1;
 
 create table comment(
-	board_id number references board(board_id),
 	comment_id number not null,
+	board_id number references board(board_id),
 	user_id varchar2(15 char) references member(user_id),
 	comment_content varchar2(600) not null,
 	comment_regist date default sysdate not null,
 	comment_edit date default sysdate not null,
+	comment_delete number(1) not null,
 	constraint comment_pk primary key (comment_id)
 );
+
+create sequence comment_seq;
+
+--select*
+--from comment
+--where board_id = 11
+
+
 
 create table reply(
 	comment_id number references comment(comment_id),
@@ -36,3 +45,6 @@ create table reply(
 
 --select board_id, board_category, user_id, board_title, board_content, board_file, board_regist
 --from  board order by board_regist desc;
+
+
+

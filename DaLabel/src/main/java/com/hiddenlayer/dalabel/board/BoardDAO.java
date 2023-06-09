@@ -21,6 +21,21 @@ public class BoardDAO {
 	@Autowired
 	private SqlSession ss;
 
+	public BoardDAO() {
+		super();
+		allPostCount = 0;
+	}
+
+	public int getAllPostCount() {
+		return allPostCount;
+	}
+
+	public void setAllPostCount(int allPostCount) {
+//		System.out.println(this.allPostCount);
+		this.allPostCount = allPostCount;
+//		System.out.println(this.allPostCount);
+	}
+
 	public void clearSearch(HttpServletRequest req) {
 		req.getSession().setAttribute("search", null);
 	}
@@ -54,7 +69,12 @@ public class BoardDAO {
 
 			BoardSelector bSel = new BoardSelector(search, start, end);
 
-			List<Board> posts = ss.getMapper(BoardMapper.class).getAllPost(bSel);
+			// 댓글 불러오기
+			List<Board> posts = ss.getMapper(BoardMapper.class).getPost(bSel);
+			for (Board b : posts) {
+				b.setB_comment(ss.getMapper(BoardMapper.class).getComment(b));
+			}
+
 			req.setAttribute("posts", posts);
 			req.setAttribute("pageCount", pageCount);
 			req.setAttribute("page", page);
@@ -74,23 +94,44 @@ public class BoardDAO {
 
 	public void writePost(Board b, HttpServletRequest req) {
 		try {
-//			String token = req.getParameter("token");
-//			String lastSuccessToken = (String)req.getSession().getAttribute("successToken");
-//			if (lastSuccessToken != null && token.equals(lastSuccessToken)) {
-//				req.setAttribute("result", "글쓰기 실패");
-//				return;
-//			}
+			String token = req.getParameter("token");
+			String lastSuccessToken = (String) req.getSession().getAttribute("successToken");
+			if (lastSuccessToken != null && token.equals(lastSuccessToken)) {
+				req.setAttribute("result", "글쓰기 실패");
+				return;
+			}
 
 			Member m = (Member) req.getSession().getAttribute("loginMember");
 			b.setUser_id(m.getUser_id());
 			b.setBoard_content(b.getBoard_content().replace("\r\n", "<br>"));
 			if (ss.getMapper(BoardMapper.class).writePost(b) == 1) {
 				req.setAttribute("result", "글쓰기 성공");
-//				req.getSession().setAttribute("successToken", token);
+				req.getSession().setAttribute("successToken", token);
 				allPostCount++;
 			}
 		} catch (Exception e) {
 			req.setAttribute("result", "글쓰기 실패");
+		}
+	}
+
+	public void writeComment(BoardComment bc, HttpServletRequest req) {
+		try {
+			String token = req.getParameter("token");
+			String lastSuccessToken = (String) req.getSession().getAttribute("successToken");
+			if (lastSuccessToken != null && token.equals(lastSuccessToken)) {
+				req.setAttribute("result", "댓글쓰기 실패");
+				return;
+			}
+
+			Member m = (Member) req.getSession().getAttribute("loginMember");
+			bc.setUser_id(m.getUser_id());
+			if (ss.getMapper(BoardMapper.class).writeComment(bc) == 1) {
+				req.setAttribute("result", "댓글쓰기 성공");
+				req.getSession().setAttribute("successToken", token);
+				allPostCount++;
+			}
+		} catch (Exception e) {
+			req.setAttribute("result", "댓글쓰기 실패");
 		}
 	}
 }
