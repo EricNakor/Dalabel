@@ -29875,8 +29875,8 @@ section.u-white:before,
 .u-white.u-sidenav:before,
 .u-container-layout.u-container-layout.u-white:before,
 .u-table-alt-white tr:nth-child(even) {
-  color: var(--white-text-color);
-  background-color: var(--white);
+  color: #111111;
+  background-color: #ffffff;
 }
 .u-input.u-white,
 .u-field-input.u-white,
