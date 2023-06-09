@@ -18,7 +18,7 @@ public class MemberController {
 
 	@RequestMapping(value = "/login.go", method = RequestMethod.GET)
 	public String goLogin(Member m, HttpServletRequest req) {
-		req.setAttribute("contentPage", "home.jsp");
+		req.setAttribute("contentPage", "member/login.jsp");
 		return "member/login";
 	}
 
@@ -38,7 +38,7 @@ public class MemberController {
 
 	@RequestMapping(value = "/member.join.go", method = RequestMethod.GET)
 	public String goJoin(HttpServletRequest req) {
-		req.setAttribute("contentPage", "home.jsp");
+		req.setAttribute("contentPage", "member/join.jsp");
 		return "member/join";
 	}
 

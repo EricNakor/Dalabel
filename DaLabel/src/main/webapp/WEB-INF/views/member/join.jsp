@@ -1,5 +1,29 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="resources/css/c3.css" media="screen">
+<link rel="stylesheet" href="resources/css/LoginRegPage.css" media="screen">
+<script class="u-script" type="text/javascript"
+	src="resources/js/jquery-3.5.1.min.js" defer=""></script>
+<script class="u-script" type="text/javascript"
+	src="resources/js/jq1.js" defer=""></script>
+<meta name="generator" content="Nicepage 5.9.15, nicepage.com">
+<meta name="referrer" content="origin">
+<link id="u-theme-google-font" rel="stylesheet"
+	href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
+<script type="application/ld+json">{
+		"@context": "http://schema.org",
+		"@type": "Organization",
+		"name": "",
+		"logo": "images/default-logo.png"
+}</script>
+</head>
+<body>
 	<section class="u-align-center u-clearfix u-white u-section-1"
 		id="carousel_491c">
 		<h2 class="u-align-center u-text u-text-default u-text-1">회원가입</h2>
@@ -76,3 +100,5 @@
 			</form>
 		</div>
 	</section>
+</body>
+</html>
