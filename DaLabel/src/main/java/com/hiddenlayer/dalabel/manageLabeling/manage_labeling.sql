@@ -62,9 +62,9 @@ create table labeling_do (
 	constraint want_labeling_pk primary key(dolabel_user, dolabel_project_no)
 )
 
-insert into labeling_do values('라벨링하고싶어요', 3, 0, null)
+insert into labeling_do values('test123', 49, 1, null)
 
-select * from labeling_do
+select * from labeling_do where dolabel_user = 'test12'
 
 drop table want_do_labeling cascade constraint purge
 

@@ -10,6 +10,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<a href="doLabeling.needlogin.mypage">참여중인 라벨링</a>
 	<form action="member.needlogin.update.go" method="post">
 		<table id="infoTbl">
 			<th>회원정보</th>

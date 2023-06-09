@@ -44,7 +44,7 @@ public class DoLabelingController {
 	@RequestMapping(value = "/doLabeling.needlogin.mypage", method = RequestMethod.GET)
 	public String getMypage(HttpServletRequest req) {
 		dlDAO.getMypageCount(req);
-		return "home";
+		return "member/my_labeling";
 	}
 
 //	페이지에 보여줄 데이터를 리턴한다.

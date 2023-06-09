@@ -19,10 +19,10 @@
 	<select id="findLabelDoList"
 		resultType="com.hiddenlayer.dalabel.dolabeling.LabelDoList">
 		<![CDATA[
-			select dolabel_user, dolabel_project_no, dolabel_state, dolabel_score from
-				(select dolabel_user, dolabel_project_no, dolabel_state, dolabel_score, rownum as rn 
-				from Labeling_Do
-				where dolabel_user=#{userid} and dolabel_state <> 2)
+			select dolabel_user, dolabel_project_no, project_title, dolabel_state, dolabel_score from
+				(select dolabel_user, dolabel_project_no, project_title, dolabel_state, dolabel_score, rownum as rn 
+				from Labeling_Do, labeling_project
+				where dolabel_user=#{userid} and dolabel_state <> 2 and dolabel_project_no = project_no)
 			where rn>=#{start} and rn<=#{end}
 		]]>
 	</select>

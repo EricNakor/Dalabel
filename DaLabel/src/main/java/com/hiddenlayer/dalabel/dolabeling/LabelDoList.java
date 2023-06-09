@@ -4,8 +4,8 @@ import java.math.BigDecimal;
 
 public class LabelDoList {
 	private String dolabel_user;
-
 	private BigDecimal dolabel_project_no;
+	private String project_title;
 	private BigDecimal dolabel_state;
 	private BigDecimal dolabel_score;
 
@@ -54,4 +54,13 @@ public class LabelDoList {
 	public void setDolabel_score(BigDecimal dolabel_score) {
 		this.dolabel_score = dolabel_score;
 	}
+
+	public String getProject_title() {
+		return project_title;
+	}
+
+	public void setProject_title(String project_title) {
+		this.project_title = project_title;
+	}
+
 }
