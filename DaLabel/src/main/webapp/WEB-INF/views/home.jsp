@@ -15,6 +15,7 @@
 <a href="member.logout">로그아웃</a>
 <a href="member.join.go">회원가입</a>
 <a href="member.info">마이페이지</a>
+<a href="board.go">게시판</a>
 <form action="member.delete" method="post">
 	<button>탈퇴</button>
 </form>

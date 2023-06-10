@@ -42,7 +42,7 @@
 		<tr>
 			<td>페이지 이동 1 2 3 4 5</td>
 			<td>
-				<button>글쓰기</button>
+				<a href="board.post.write">글쓰기</a>
 			</td>
 		</tr>
 		<tr>

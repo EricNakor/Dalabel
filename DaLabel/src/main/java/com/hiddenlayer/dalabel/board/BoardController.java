@@ -26,13 +26,15 @@ public class BoardController {
 			bDAO.clearSearch(req);
 			bDAO.getAllPost(1, req);
 			TokenGenerator.generate(req);
-			req.setAttribute("contentPage", "community_board/lists.jsp");
+			return "community_board/lists";
+//			req.setAttribute("contentPage", "community_board/lists.jsp");
 		} else {
-			req.setAttribute("contentPage", "home.jsp");
+			return "home";
+//			req.setAttribute("contentPage", "home.jsp");
 		}
-		return "home";
+//		return "home";
 	}
-	
+
 	@RequestMapping(value = "/board.delete", method = RequestMethod.GET)
 	public String deletePost(Board b, HttpServletRequest req) {
 		if (mDAO.isLogined(req)) {
@@ -40,11 +42,13 @@ public class BoardController {
 			bDAO.clearSearch(req);
 			bDAO.getAllPost(1, req);
 			TokenGenerator.generate(req);
-			req.setAttribute("contentPage", "community_board/write.jsp");
+//			req.setAttribute("contentPage", "community_board/detail.jsp");
+			return "community_board/detail";
 		} else {
-			req.setAttribute("contentPage", "home.jsp");
+//			req.setAttribute("contentPage", "home.jsp");
+			return "home";
 		}
-		return "home";
+//		return "home";
 	}
 
 	@RequestMapping(value = "/board.page.change", method = RequestMethod.GET)
@@ -52,13 +56,15 @@ public class BoardController {
 		if (mDAO.isLogined(req)) {
 			bDAO.getAllPost(p, req);
 			TokenGenerator.generate(req);
-			req.setAttribute("contentPage", "community_board/write.jsp");
+//			req.setAttribute("contentPage", "community_board/write.jsp");
+			return "community_board/write";
 		} else {
-			req.setAttribute("contentPage", "home.jsp");
+//			req.setAttribute("contentPage", "home.jsp");
+			return "home";
 		}
-		return "home";
+//		return "home";
 	}
-	
+
 	@RequestMapping(value = "/board.post.write", method = RequestMethod.GET)
 	public String writePost(Board b, HttpServletRequest req) {
 		if (mDAO.isLogined(req)) {
@@ -66,9 +72,10 @@ public class BoardController {
 			bDAO.clearSearch(req);
 			bDAO.getAllPost(1, req);
 			TokenGenerator.generate(req);
-			req.setAttribute("contentPage", "community_board/write.jsp");
+//			req.setAttribute("contentPage", "community_board/write.jsp");
+			return "community_board/write";
 		} else {
-			req.setAttribute("contentPage", "home.jsp");
+//			req.setAttribute("contentPage", "home.jsp");
 		}
 		return "home";
 	}
@@ -79,13 +86,15 @@ public class BoardController {
 			bDAO.search(search, req);
 			bDAO.getAllPost(1, req);
 			TokenGenerator.generate(req);
-			req.setAttribute("contentPage", "community_board/write.jsp");
+//			req.setAttribute("contentPage", "community_board/lists.jsp");
+			return "community_board/lists";
 		} else {
-			req.setAttribute("contentPage", "home.jsp");
+//			req.setAttribute("contentPage", "home.jsp");
+			return "home";
 		}
-		return "home";
+//		return "home";
 	}
-	
+
 	@RequestMapping(value = "/board.comment.write", method = RequestMethod.GET)
 	public String writeComment(BoardComment bc, HttpServletRequest req) {
 		if (mDAO.isLogined(req)) {
@@ -93,11 +102,13 @@ public class BoardController {
 //			bDAO.clearSearch(req);
 //			bDAO.getAllPost(1, req);
 			TokenGenerator.generate(req);
-			req.setAttribute("contentPage", "community_board/write.jsp");
+//			req.setAttribute("contentPage", "community_board/detail.jsp");
+			return "community_board/detail";
 		} else {
-			req.setAttribute("contentPage", "home.jsp");
+//			req.setAttribute("contentPage", "home.jsp");
+			return "home";
 		}
-		return "home";
+//		return "home";
 	}
-	
+
 }

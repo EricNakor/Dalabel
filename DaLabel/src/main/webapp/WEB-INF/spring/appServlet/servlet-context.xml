@@ -35,9 +35,9 @@
 		<beans:property name="driverClassName"
 			value="oracle.jdbc.driver.OracleDriver" />
 		<beans:property name="url"
-			value="jdbc:oracle:thin:@{address}" />
-		<beans:property name="username" value="{id}" />
-		<beans:property name="password" value="{pw}" />
+			value="jdbc:oracle:thin:@localhost:1521:xe" />
+		<beans:property name="username" value="ericna" />
+		<beans:property name="password" value="sk150317" />
 	</beans:bean>
 
 	<beans:bean id="transactionManager"
@@ -52,7 +52,7 @@
 			value="com.hiddenlayer.dalabel" />
 		<beans:property name="mapperLocations">
 			<beans:list>
-<!-- 				<beans:value>classpath:UserMapper.xml</beans:value> -->
+				<beans:value>classpath:AccountMapper.xml</beans:value>
 			</beans:list>
 		</beans:property>
 	</beans:bean>
@@ -63,5 +63,12 @@
 			ref="sqlSessionFactory" />
 	</beans:bean>
 
+	<!-- 게시물 조회 개수 -->
+	<beans:bean id="board" class="com.hiddenlayer.dalabel.DalabelOptions">
+		<beans:property name="boardPostPerPage" value="15"></beans:property>
+		<beans:property name="qnaPostPerPage" value="15"></beans:property>
+	</beans:bean>
+	
+	
 
 </beans:beans>

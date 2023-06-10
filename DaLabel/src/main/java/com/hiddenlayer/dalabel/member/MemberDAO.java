@@ -11,6 +11,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.hiddenlayer.dalabel.board.BoardDAO;
+import com.hiddenlayer.dalabel.board.BoardMapper;
 import com.hiddenlayer.dalabel.fileupload.FileUpload;
 
 @Service
@@ -18,13 +20,15 @@ public class MemberDAO {
 
 	private HashMap<String, String> sessionmap;
 	private static final SimpleDateFormat SDF = new SimpleDateFormat("yyyyMMdd");
-	
+
 	@Autowired
 	private SqlSession ss;
-	
+
 	@Autowired
 	private FileUpload fu;
-
+	
+	@Autowired
+	private BoardDAO bDAO;
 
 	public MemberDAO() {
 		super();
@@ -88,7 +92,7 @@ public class MemberDAO {
 			m.setUser_id((String) req.getSession().getAttribute("loginUserID"));
 			ArrayList<Member> userinfo = ss.getMapper(AccountMapper.class).getUserinfo(m);
 			m = userinfo.get(0);
-			req.setAttribute("memberInfo", m);			
+			req.setAttribute("memberInfo", m);
 		} catch (Exception e) {
 		}
 	}
@@ -109,9 +113,17 @@ public class MemberDAO {
 	public void deleteMember(HttpServletRequest req) {
 		Member m = new Member();
 		m.setUser_id((String) req.getSession().getAttribute("loginUserID"));
+		int postCount = ss.getMapper(BoardMapper.class).getPostCountByUser(m);
 		if (ss.getMapper(AccountMapper.class).deleteMember(m) == 1) {
+			// 탈퇴 시 글 카운트
+			int allPostCount = bDAO.getAllPostCount();
+			bDAO.setAllPostCount(allPostCount - postCount);
 			logout(req);
+		} else {
+
 		}
+
+
 	}
 
 	public void updateProfile(HttpServletRequest req) {
