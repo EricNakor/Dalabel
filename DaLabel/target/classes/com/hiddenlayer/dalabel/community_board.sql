@@ -5,7 +5,6 @@ create table board(
 --	제목, 내용은 넉넉잡았음
 	board_title varchar2(60) not null,
 	board_content varchar2(600) not null,
-	board_file varchar2(100 char),
 	board_regist date default sysdate not null,
 	board_edit date default sysdate not null,
 -- 0이 현재 노출 되는거, 1이 삭제한거
@@ -17,7 +16,7 @@ create table board(
 
 create sequence board_seq start with 1 increment by 1;
 
-
+select * from board
 
 --insert into board 
 --value (board_seq.nextval, board_id, board_category, board_writer, board_title, board_content, board_file, sysdate, sysdate, 0)

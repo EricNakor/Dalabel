@@ -1,5 +1,6 @@
 package com.hiddenlayer.dalabel.board;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -40,9 +41,9 @@ public class BoardDAO {
 		req.getSession().setAttribute("search", null);
 	}
 
-	public void deletePost(Board b, HttpServletRequest req) {
+	public void deletePost(BigDecimal board_id, HttpServletRequest req) {
 		try {
-			if (ss.getMapper(BoardMapper.class).deletePost(b) == 1) {
+			if (ss.getMapper(BoardMapper.class).deletePost(board_id) == 1) {
 				req.setAttribute("result", "삭제성공");
 				allPostCount--;
 			} else {
@@ -57,23 +58,24 @@ public class BoardDAO {
 		try {
 			int postCount = allPostCount;
 			String search = (String) req.getSession().getAttribute("search");
-			if (search == null) {
-				search = "";
-			} else {
-				BoardSelector bSel = new BoardSelector(search, 0, 0);
-				postCount = ss.getMapper(BoardMapper.class).getPostCount(bSel);
-			}
 			int pageCount = (int) Math.ceil(postCount / (double) DalableOptions.getBoardPostPerPage());
 			int start = (page - 1) * DalableOptions.getBoardPostPerPage() + 1;
 			int end = page * DalableOptions.getBoardPostPerPage();
-
+			
+			if (search == null) {
+				search = "";
+			} else {
+				BoardSelector bSel = new BoardSelector(search, start, end);
+				postCount = ss.getMapper(BoardMapper.class).getPostCount(bSel);
+			}
 			BoardSelector bSel = new BoardSelector(search, start, end);
-
+			
 			// 댓글 불러오기
 			List<Board> posts = ss.getMapper(BoardMapper.class).getPost(bSel);
-			for (Board b : posts) {
-				b.setB_comment(ss.getMapper(BoardMapper.class).getComment(b));
-			}
+			
+//			for (Board b : posts) {
+//				b.setB_comment(ss.getMapper(BoardMapper.class).getComment(b));
+//			}
 
 			req.setAttribute("posts", posts);
 			req.setAttribute("pageCount", pageCount);
@@ -83,6 +85,10 @@ public class BoardDAO {
 		}
 	}
 
+	public void getDetailBoard(int board_id, HttpServletRequest req) {
+		req.setAttribute("detailBoard", ss.getMapper(BoardMapper.class).getDetailBoard(board_id));
+	}
+	
 	public void search(String search, HttpServletRequest req) {
 		req.getSession().setAttribute("search", search);
 	}
@@ -100,11 +106,13 @@ public class BoardDAO {
 				req.setAttribute("result", "글쓰기 실패");
 				return;
 			}
-
-			Member m = (Member) req.getSession().getAttribute("loginMember");
-			b.setUser_id(m.getUser_id());
+			
+			String user =  (String) req.getSession().getAttribute("loginUserID");
+			b.setBoard_writer(user);
 			b.setBoard_content(b.getBoard_content().replace("\r\n", "<br>"));
+
 			if (ss.getMapper(BoardMapper.class).writePost(b) == 1) {
+				System.out.println("글쓰기 성공");
 				req.setAttribute("result", "글쓰기 성공");
 				req.getSession().setAttribute("successToken", token);
 				allPostCount++;

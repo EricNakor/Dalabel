@@ -1,5 +1,7 @@
 package com.hiddenlayer.dalabel.board;
 
+import java.math.BigDecimal;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,15 +37,15 @@ public class BoardController {
 //		return "home";
 	}
 
-	@RequestMapping(value = "/board.delete", method = RequestMethod.GET)
-	public String deletePost(Board b, HttpServletRequest req) {
+	@RequestMapping(value = "/board.post.delete", method = RequestMethod.GET)
+	public String deletePost(@RequestParam(value = "board_id") BigDecimal board_id, HttpServletRequest req) {
 		if (mDAO.isLogined(req)) {
-			bDAO.deletePost(b, req);
+			bDAO.deletePost(board_id, req);
 			bDAO.clearSearch(req);
 			bDAO.getAllPost(1, req);
 			TokenGenerator.generate(req);
 //			req.setAttribute("contentPage", "community_board/detail.jsp");
-			return "community_board/detail";
+			return "community_board/lists";
 		} else {
 //			req.setAttribute("contentPage", "home.jsp");
 			return "home";
@@ -65,7 +67,19 @@ public class BoardController {
 //		return "home";
 	}
 
-	@RequestMapping(value = "/board.post.write", method = RequestMethod.GET)
+	@RequestMapping(value = "/board.get.detail", method = RequestMethod.GET)
+	public String getDetailBoard(@RequestParam(value = "board_id") int board_id, HttpServletRequest req) {
+		System.out.println("detail");
+		bDAO.getDetailBoard(board_id, req);
+		return "community_board/details";
+	}
+	
+	@RequestMapping(value = "/board.post.write.go", method = RequestMethod.GET)
+	public String goWritePost() {
+		return "community_board/write";
+	}
+	
+	@RequestMapping(value = "/board.post.write.do", method = RequestMethod.POST)
 	public String writePost(Board b, HttpServletRequest req) {
 		if (mDAO.isLogined(req)) {
 			bDAO.writePost(b, req);
@@ -73,7 +87,7 @@ public class BoardController {
 			bDAO.getAllPost(1, req);
 			TokenGenerator.generate(req);
 //			req.setAttribute("contentPage", "community_board/write.jsp");
-			return "community_board/write";
+			return "community_board/lists";
 		} else {
 //			req.setAttribute("contentPage", "home.jsp");
 		}

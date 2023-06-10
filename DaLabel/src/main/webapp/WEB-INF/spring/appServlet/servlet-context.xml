@@ -53,6 +53,7 @@
 		<beans:property name="mapperLocations">
 			<beans:list>
 				<beans:value>classpath:AccountMapper.xml</beans:value>
+				<beans:value>classpath:BoardMapper.xml</beans:value>
 			</beans:list>
 		</beans:property>
 	</beans:bean>
@@ -68,7 +69,5 @@
 		<beans:property name="boardPostPerPage" value="15"></beans:property>
 		<beans:property name="qnaPostPerPage" value="15"></beans:property>
 	</beans:bean>
-	
-	
 
 </beans:beans>

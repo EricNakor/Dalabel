@@ -8,16 +8,25 @@
 <title>다라벨 게시판</title>
 </head>
 <body>
-	<form name="writePostForm" onsubmit="return writePostCheck();" action="">
+	<form name="writePostForm" onsubmit="return writePostCheck();" action="board.post.write.do" method="post">
 		<table id="writePost">
 			<tr>
 				<td align="center">
-					<input name="title" maxlength="50" placeholder="제목을 입력해주세요." autocomplete="off" autofocus="autofocus">
+					<select name="board_category">
+						<option value="notice"> 공지
+						<option value="board"> 게시판
+						<option value="qna"> 문의
+					</select> 
 				</td>
 			</tr>
 			<tr>
 				<td align="center">
-					<textarea name="content" maxlength="500" placeholder="내용을 입력해주세요." autocomplete="off"></textarea>
+					<input name="board_title" maxlength="50" placeholder="제목을 입력해주세요." autocomplete="off" autofocus="autofocus">
+				</td>
+			</tr>
+			<tr>
+				<td align="center">
+					<textarea name="board_content" maxlength="500" placeholder="내용을 입력해주세요." autocomplete="off"></textarea>
 				</td>
 			</tr>
 			<tr>

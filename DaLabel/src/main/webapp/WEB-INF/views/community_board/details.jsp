@@ -1,29 +1,26 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
-<script src="/resources/js/dalabelMove.js"></script>
+<script src="resources/js/dalabelMove.js"></script>
 <meta charset="UTF-8">
 <title>다라벨 게시판</title>
 </head>
 <body>
+	${detailBoard.board_id }
+	<br> ${detailBoard.board_category }
+	<br> ${detailBoard.board_regist }
+	<br> ${detailBoard.board_writer }
+	<br> <input value="${detailBoard.board_title }">
+	<br> ${detailBoard.board_content }
 	<table>
-		<c:forEach var="p" items="${posts }">
-				${p.board_id }<br>
-				${p.board_category }<br>
-				${p.board_regist }<br>
-				${p.user_id }<br>
-				${p.board_title }<br>
-				${p.board_content }<br>
-				${p.board_file }<br>
-		</c:forEach>
-		<c:if test="${sessionScope.loginMember.user_id == p.user_id }">
+		<c:if test="${sessionScope.loginUserID == detailBoard.board_writer }">
 			<tr>
 				<td>
 					<button>수정</button>
-					<button onclick="postDelete(${p.board_id })">삭제</button>
+					<button onclick="postDelete(${detailBoard.board_id })">삭제</button>
 				</td>
 			</tr>
 		</c:if>
@@ -37,7 +34,7 @@
 			<td>글내용은 이렇게</td>
 		</tr>
 		<tr>
-			<td><jsp:include page="reply.jsp" /></td>
+			<!-- <td><jsp:include page="reply.jsp" /></td>  --> <td>댓글</td>
 		</tr>
 	</table>
 </body>
