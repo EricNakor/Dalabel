@@ -32,9 +32,7 @@ public class BoardDAO {
 	}
 
 	public void setAllPostCount(int allPostCount) {
-//		System.out.println(this.allPostCount);
 		this.allPostCount = allPostCount;
-//		System.out.println(this.allPostCount);
 	}
 
 	public void clearSearch(HttpServletRequest req) {
@@ -61,7 +59,7 @@ public class BoardDAO {
 			int pageCount = (int) Math.ceil(postCount / (double) DalableOptions.getBoardPostPerPage());
 			int start = (page - 1) * DalableOptions.getBoardPostPerPage() + 1;
 			int end = page * DalableOptions.getBoardPostPerPage();
-			
+
 			if (search == null) {
 				search = "";
 			} else {
@@ -69,10 +67,10 @@ public class BoardDAO {
 				postCount = ss.getMapper(BoardMapper.class).getPostCount(bSel);
 			}
 			BoardSelector bSel = new BoardSelector(search, start, end);
-			
+
 			// 댓글 불러오기
 			List<Board> posts = ss.getMapper(BoardMapper.class).getPost(bSel);
-			
+
 //			for (Board b : posts) {
 //				b.setB_comment(ss.getMapper(BoardMapper.class).getComment(b));
 //			}
@@ -88,7 +86,7 @@ public class BoardDAO {
 	public void getDetailBoard(int board_id, HttpServletRequest req) {
 		req.setAttribute("detailBoard", ss.getMapper(BoardMapper.class).getDetailBoard(board_id));
 	}
-	
+
 	public void search(String search, HttpServletRequest req) {
 		req.getSession().setAttribute("search", search);
 	}
@@ -106,13 +104,12 @@ public class BoardDAO {
 				req.setAttribute("result", "글쓰기 실패");
 				return;
 			}
-			
-			String user =  (String) req.getSession().getAttribute("loginUserID");
+
+			String user = (String) req.getSession().getAttribute("loginUserID");
 			b.setBoard_writer(user);
 			b.setBoard_content(b.getBoard_content().replace("\r\n", "<br>"));
 
 			if (ss.getMapper(BoardMapper.class).writePost(b) == 1) {
-				System.out.println("글쓰기 성공");
 				req.setAttribute("result", "글쓰기 성공");
 				req.getSession().setAttribute("successToken", token);
 				allPostCount++;

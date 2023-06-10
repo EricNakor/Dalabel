@@ -65,7 +65,8 @@
 	</beans:bean>
 
 	<!-- 게시물 조회 개수 -->
-	<beans:bean id="board" class="com.hiddenlayer.dalabel.DalabelOptions">
+	<beans:bean id="board"
+		class="com.hiddenlayer.dalabel.DalabelOptions">
 		<beans:property name="boardPostPerPage" value="15"></beans:property>
 		<beans:property name="qnaPostPerPage" value="15"></beans:property>
 	</beans:bean>

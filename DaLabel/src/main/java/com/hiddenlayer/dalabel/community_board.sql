@@ -37,8 +37,6 @@ create sequence post_comment_seq;
 --from comment
 --where board_id = 11
 
-
-
 create table reply(
 	inherit_comment number(8) references post_comment(comment_id),
 	reply_writer varchar2(15 char) references member(user_id),
@@ -46,7 +44,6 @@ create table reply(
 	comment_regist date default sysdate not null,
 	comment_edit date default sysdate not null	
 );
-
 
 --select board_id, board_category, user_id, board_title, board_content, board_file, board_regist
 --from  board order by board_regist desc;

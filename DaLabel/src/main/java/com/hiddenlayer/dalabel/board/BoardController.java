@@ -69,7 +69,6 @@ public class BoardController {
 
 	@RequestMapping(value = "/board.get.detail", method = RequestMethod.GET)
 	public String getDetailBoard(@RequestParam(value = "board_id") int board_id, HttpServletRequest req) {
-		System.out.println("detail");
 		bDAO.getDetailBoard(board_id, req);
 		return "community_board/details";
 	}

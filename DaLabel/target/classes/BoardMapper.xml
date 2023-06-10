@@ -6,7 +6,7 @@
 		resultType="com.hiddenlayer.dalabel.board.Board"
 		parameterType="com.hiddenlayer.dalabel.board.BoardSelector">	
 		<![CDATA[
-		select board_writer, board_id, board_category, board_title,  board_regist
+		select board_writer, board_id, board_category, board_title, board_regist
 		from(
 			select * from (
 				select rownum as rn, board_id, board_category, board_writer, board_title, board_regist
@@ -34,13 +34,13 @@
 				)
 				where rn >= #{start} and rn <= #{end}
 			)
-	)
+		)
 		]]>
 
 	</select>
 
 	<select id="getDetailBoard" parameterType="java.lang.Integer"
-	resultType="com.hiddenlayer.dalabel.board.Board">
+		resultType="com.hiddenlayer.dalabel.board.Board">
 		<![CDATA[
 		select * from board
 		where board_id = #{board_id}
@@ -66,19 +66,10 @@
 		values(board_seq.nextval, #{board_writer}, #{board_category}, #{board_title}, #{board_content}, 0, sysdate, sysdate)
 		]]>
 	</insert>
-	
-	<!-- 게시글 수정 -->
-	<insert id="writePost"
-		parameterType="com.hiddenlayer.dalabel.board.Board">
-		<![CDATA[
-		insert into board(board_title, board_content, board_edit)
-		values(#{board_title}, #{board_content}, sysdate)
-		]]>
-	</insert>
+
 
 	<!-- 게시글 삭제 -->
-	<delete id="deletePost"
-		parameterType="java.math.BigDecimal">
+	<delete id="deletePost" parameterType="java.math.BigDecimal">
 		<![CDATA[
 		delete from board where board_id = #{board_id}
 		]]>
@@ -91,7 +82,7 @@
 		<![CDATA[
 		select count(*) 
 		from board
-		where user_id = #{user_id}
+		where board_writer = #{board_writer}
 		]]>
 	</select>
 
@@ -99,7 +90,7 @@
 	<insert id="writeComment"
 		parameterType="com.hiddenlayer.dalabel.board.BoardComment">
 		<![CDATA[
-		insert into board(comment_id, comment_content, comment_delete, board_regist)
+		insert into board(comment_id, comment_content, comment_delete, comment_regist)
 		values(comment_seq.nextval, #{comment_content}, 0, sysdate)
 		]]>
 	</insert>

@@ -3,7 +3,7 @@ package com.hiddenlayer.dalabel;
 public class DalabelOptions {
 	private int boardPostPerPage;
 	private int qnaPostPerPage;
-	
+
 	public DalabelOptions() {
 		// TODO Auto-generated constructor stub
 	}
@@ -29,6 +29,5 @@ public class DalabelOptions {
 	public void setQnaPostPerPage(int qnaPostPerPage) {
 		this.qnaPostPerPage = qnaPostPerPage;
 	}
-	
-	
+
 }

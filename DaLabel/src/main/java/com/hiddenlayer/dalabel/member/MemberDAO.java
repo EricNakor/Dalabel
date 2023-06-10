@@ -26,7 +26,7 @@ public class MemberDAO {
 
 	@Autowired
 	private FileUpload fu;
-	
+
 	@Autowired
 	private BoardDAO bDAO;
 
@@ -122,7 +122,6 @@ public class MemberDAO {
 		} else {
 
 		}
-
 
 	}
 
