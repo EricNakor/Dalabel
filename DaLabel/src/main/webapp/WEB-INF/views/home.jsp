@@ -11,10 +11,8 @@
 <link rel="stylesheet" href="resources/css/c1.css" media="screen">
 <link rel="stylesheet" href="resources/css/c3.css" media="screen">
 <link rel="stylesheet" href="resources/css/c2.css" media="screen">
-<script class="u-script" type="text/javascript"
-	src="resources/js/jquery-3.5.1.min.js" defer=""></script>
-<script class="u-script" type="text/javascript"
-	src="resources/js/jq1.js" defer=""></script>
+<script class="u-script" src="resources/js/jquery-3.5.1.min.js"></script>
+<script class="u-script" src="resources/js/jq1.js"></script>
 <meta name="generator" content="Nicepage 5.9.15, nicepage.com">
 <meta name="referrer" content="origin">
 <link id="u-theme-google-font" rel="stylesheet"

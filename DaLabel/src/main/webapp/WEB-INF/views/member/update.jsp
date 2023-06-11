@@ -1,61 +1,321 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
-<script type="text/javascript" src="resources/js/jQuery.js"></script>
-<script type="text/javascript" src="resources/js/upload.js"></script>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>LoginRegPage</title>
+<link rel="stylesheet" href="resources/css/c1.css" media="screen">
+<link rel="stylesheet" href="resources/css/c3.css" media="screen">
+<link rel="stylesheet" href="resources/css/c2.css" media="screen">
+<link rel="stylesheet" href="resources/css/MyPage.css" media="screen">
+<script class="u-script" src="resources/js/jquery-3.5.1.min.js"></script>
+<script class="u-script" src="resources/js/jq1.js"></script>
+<script class="u-script" src="resources/js/upload.js"></script>
+<meta name="generator" content="Nicepage 5.9.15, nicepage.com">
+<meta name="referrer" content="origin">
+<link id="u-theme-google-font" rel="stylesheet"
+	href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
+<script type="application/ld+json">{
+		"@context": "http://schema.org",
+		"@type": "Organization",
+		"name": "",
+		"logo": "images/default-logo.png"
+}</script>
+<style type="text/css">
+input, button {
+	border: none;
+}
+</style>
+<title>HiddenLayer</title>
 </head>
-<body>
-	<form action="member.needlogin.update.do" method="post">
-		<table id="infoTbl">
-			<th>회원정보</th>
-			<tr>
-				<td align="left">아이디</td>
-				<td>${memberInfo.user_id }</td>
-			</tr>
-			<tr>
-				<td align="left">이메일</td>
-				<td><input value="${memberInfo.user_email }" name="user_email"></td>
-			</tr>
-			<tr>
-				<td align="left">이름</td>
-				<td><input value="${memberInfo.user_name }" name="user_name"></td>
-			</tr>
-			<tr>
-				<td align="left">비밀번호</td>
-				<td><input value="${memberInfo.user_pw }" type="password"
-					name="user_pw"></td>
-			</tr>
-			<tr>
-				<td align="left">비밀번호 확인</td>
-				<td><input value="${memberInfo.user_pw }" type="password"></td>
-			</tr>
-			<tr>
-				<td align="left">생일</td>
-				<td><input value="20220905" name="birth"></td>
-			</tr>
-			<tr>
-				<td align="left">프로필 사진</td>
-				<td><img id="profile"
-					src="resources/image/profile/${sessionScope.loginUserIMG }"
-					alt="${sessionScope.loginUserIMG }"> <a
-					onclick="fileUpload('try.needlogin.upload')">프사변경</a></td>
-			</tr>
-			<tr>
-				<td align="center">
-					<button>수정</button>
-					</form>
-				</td>
-				<td>
-					<form action="member.needlogin.delete" method="post">
-						<button>탈퇴</button>
-					</form>
-				</td>
-			</tr>
-		</table>
+<body
+	data-home-page="https://website4844962.nicepage.io/MainPage.html?version=26955cdb-ad9a-4139-8054-aecbcc5786d7"
+	data-home-page-title="MainPage" class="u-body u-xl-mode" data-lang="en">
+
+	<header class="u-clearfix u-header u-header" id="sec-61c1">
+		<div class="u-clearfix u-sheet u-sheet-1">
+			<a href="/dalabel" class="u-image u-logo u-image-1"
+				data-image-width="80" data-image-height="40"> <img
+				src="resources/image/page_image/logo.png"
+				class="u-logo-image u-logo-image-1">
+			</a> <a href="login.go">로그인 하러가기</a>
+			<nav
+				class="u-align-left u-font-size-14 u-menu u-menu-hamburger u-nav-spacing-25 u-offcanvas u-menu-1"
+				data-responsive-from="XL">
+				<div class="menu-collapse">
+					<a class="u-button-style u-nav-link" href="#"
+						style="font-size: calc(1em + 18px);"> <svg class="u-svg-link"
+							preserveAspectRatio="xMidYMin slice" viewBox="0 0 302 302"
+							style="">
+							<use xlink:href="#svg-7b92"></use></svg> <svg
+							xmlns="http://www.w3.org/2000/svg"
+							xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"
+							id="svg-7b92" x="0px" y="0px" viewBox="0 0 302 302"
+							style="enable-background: new 0 0 302 302;" xml:space="preserve"
+							class="u-svg-content">
+							<g>
+							<rect y="36" width="302" height="30"></rect>
+							<rect y="236" width="302" height="30"></rect>
+							<rect y="136" width="302" height="30"></rect>
+</g>
+							<g></g>
+							<g></g>
+							<g></g>
+							<g></g>
+							<g></g>
+							<g></g>
+							<g></g>
+							<g></g>
+							<g></g>
+							<g></g>
+							<g></g>
+							<g></g>
+							<g></g>
+							<g></g>
+							<g></g></svg>
+					</a>
+				</div>
+				<div class="u-custom-menu u-nav-container">
+					<ul class="u-nav u-unstyled u-nav-1">
+						<li class="u-nav-item"><a
+							class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base"
+							style="padding: 10px 20px;">LoginPage</a></li>
+						<li class="u-nav-item"><a
+							class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base"
+							href="myPage" style="padding: 10px 20px;">MyPage</a></li>
+						<li class="u-nav-item"><a
+							class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base"
+							href="LabelingPage.html" style="padding: 10px 20px;">LabelingPage</a>
+							<div class="u-nav-popup">
+								<ul
+									class="u-h-spacing-20 u-nav u-unstyled u-v-spacing-10 u-nav-2">
+									<li class="u-nav-item"><a
+										class="u-button-style u-nav-link u-white">GetLabeling</a></li>
+									<li class="u-nav-item"><a
+										class="u-button-style u-nav-link u-white"
+										href="BoardPage.html">DoLabeling</a></li>
+								</ul>
+							</div></li>
+						<li class="u-nav-item"><a
+							class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base"
+							href="BoardPage.html" style="padding: 10px 20px;">BoardPage</a>
+							<div class="u-nav-popup">
+								<ul
+									class="u-h-spacing-20 u-nav u-unstyled u-v-spacing-10 u-nav-3">
+									<li class="u-nav-item"><a
+										class="u-button-style u-nav-link u-white">ShareInfo</a></li>
+									<li class="u-nav-item"><a
+										class="u-button-style u-nav-link u-white">QNA</a></li>
+									<li class="u-nav-item"><a
+										class="u-button-style u-nav-link u-white">Notice</a></li>
+								</ul>
+							</div></li>
+						<li class="u-nav-item"><a
+							class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base"
+							href="BoardPage.html" style="padding: 10px 20px;">Credit</a></li>
+						<li class="u-nav-item"><a
+							class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base"
+							rel="nofollow" style="padding: 10px 20px;">API</a></li>
+					</ul>
+				</div>
+				<div class="u-custom-menu u-nav-container-collapse">
+					<div
+						class="u-align-center u-container-style u-grey-25 u-inner-container-layout u-sidenav u-sidenav-1"
+						data-offcanvas-width="342.1635">
+						<div class="u-inner-container-layout u-sidenav-overflow">
+							<div class="u-menu-close"></div>
+							<ul
+								class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-4">
+								<li class="u-nav-item"><a class="u-button-style u-nav-link">${sessionScope.loginUserID}님
+										환영합니다</a></li>
+								<li class="u-nav-item"><a class="u-button-style u-nav-link"
+									href="member.needlogin.info">내 정보</a></li>
+								<li class="u-nav-item"><a class="u-button-style u-nav-link">라벨링</a>
+									<div class="u-nav-popup">
+										<ul
+											class="u-h-spacing-20 u-nav u-unstyled u-v-spacing-10 u-nav-5">
+											<li class="u-nav-item"><a
+												class="u-button-style u-nav-link"
+												href="get.needlogin.my.bundle">내 데이터 관리</a></li>
+											<li class="u-nav-item"><a
+												class="u-button-style u-nav-link"
+												href="get.needlogin.myUpload.labeling">라벨링 프로젝트 관리</a></li>
+											<li class="u-nav-item"><a
+												class="u-button-style u-nav-link"
+												href="doLabeling.needlogin.showable">라벨링 할래요</a></li>
+										</ul>
+									</div></li>
+								<li class="u-nav-item"><a class="u-button-style u-nav-link">게시판</a>
+									<div class="u-nav-popup">
+										<ul
+											class="u-h-spacing-20 u-nav u-unstyled u-v-spacing-10 u-nav-6">
+											<li class="u-nav-item"><a
+												class="u-button-style u-nav-link">공유</a></li>
+											<li class="u-nav-item"><a
+												class="u-button-style u-nav-link">질문</a></li>
+											<li class="u-nav-item"><a
+												class="u-button-style u-nav-link">공지</a></li>
+										</ul>
+									</div></li>
+								<li class="u-nav-item"><a class="u-button-style u-nav-link"
+									href="게시판 페이지로 감">크레딧</a></li>
+								<li class="u-nav-item"><a class="u-button-style u-nav-link"
+									rel="nofollow">API</a></li>
+								<li class="u-nav-item"><a class="u-button-style u-nav-link"
+									href="member.needlogin.logout">로그아웃버튼</a>
+							</ul>
+						</div>
+					</div>
+					<div class="u-menu-overlay"></div>
+				</div>
+			</nav>
+		</div>
+	</header>
+
+	<section
+		class="u-clearfix u-container-align-center-sm u-container-align-center-xs u-grey-5 u-section-1"
+		id="carousel_6806">
+		<div class="u-clearfix u-layout-wrap u-layout-wrap-1">
+			<div class="u-layout">
+				<div class="u-layout-row">
+					<div
+						class="u-container-style u-layout-cell u-size-60 u-layout-cell-1">
+						<div class="u-container-layout u-container-layout-1">
+							<div class="u-expanded-width u-form u-form-1">
+								<form action="member.needlogin.update.do" method="post"
+									style="padding: 10px;">
+									<div class="u-align-center u-form-group u-form-name">
+										<h3>내 정보</h3>
+									</div>
+									<div class="u-form-group u-form-name">
+										<label for="name-bb79" class="u-label">아이디</label> <input
+											type="text" id="name-bb79" value="1"
+											class="u-border-none u-input u-input-rectangle">
+									</div>
+									<div class="u-form-email u-form-group">
+										<label for="email-bb79" class="u-label">이메일</label> <input
+											type="email" id="email-bb79" name="user_email" value="1"
+											class="u-border-none u-input u-input-rectangle">
+									</div>
+									<div class="u-form-group u-form-name">
+										<label for="name-bb79" class="u-label">이름</label> <input
+											type="text" id="name-bb79" name="user_name" value="1"
+											class="u-border-none u-input u-input-rectangle">
+									</div>
+									<div class="u-form-group u-form-name">
+										<label for="name-bb79" class="u-label">비밀번호</label> <input
+											type="password" id="name-bb79" name="user_pw" value="1"
+											class="u-border-none u-input u-input-rectangle">
+									</div>
+									<div class="u-form-group u-form-name">
+										<label for="name-bb79" class="u-label">비밀번호 확인</label> <input
+											type="password" id="name-bb79" value="1"
+											class="u-border-none u-input u-input-rectangle">
+									</div>
+									<div class="u-form-group u-form-name">
+										<label for="name-bb79" class="u-label">생일</label> <input
+											type="text" id="name-bb79" name="birth" value="20220905"
+											class="u-border-none u-input u-input-rectangle">
+									</div>
+									<div class="u-form-group u-form-name">
+										<img id="profile"
+											src="resources/image/profile/${sessionScope.loginUserIMG }"
+											alt="${sessionScope.loginUserIMG }"><br>
+											<a onclick="fileUpload('try.needlogin.upload')">프사변경</a>
+									</div>
+									<div class="u-align-center u-form-group u-form-submit">
+										<button
+											style="background-color: #478ac9; color: #ffffff; margin-top: 1px; margin-bottom: 1px; padding: 10px 30px";>수정</button>
+									</div>
+									<div class="u-form-send-error u-form-send-message">
+										전송 실패
+									</div>
+								</form>
+								<form action="member.needlogin.delete" method="post" style="padding: 10px;">
+									<div class="u-align-center u-form-group u-form-submit">
+										<button
+											style="background-color: #478ac9; color: #ffffff; margin-top: 1px; margin-bottom: 1px; padding: 10px 30px";>탈퇴</button>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<footer class="u-clearfix u-footer u-grey-80" id="sec-027d">
+		<div class="u-clearfix u-sheet u-sheet-1">
+			<div
+				class="u-clearfix u-expanded-width-lg u-expanded-width-md u-expanded-width-xl u-expanded-width-xs u-gutter-30 u-layout-wrap u-layout-wrap-1">
+				<div class="u-gutter-0 u-layout">
+					<div class="u-layout-row">
+						<div
+							class="u-align-left-sm u-align-left-xl u-align-left-xs u-container-style u-layout-cell u-left-cell u-size-15 u-size-30-md u-layout-cell-1">
+							<div
+								class="u-container-layout u-valign-middle-xs u-valign-top-lg u-valign-top-md u-valign-top-sm u-container-layout-1">
+								<a href="푸터 쪽 로고 링크" class="u-image u-logo u-image-1"
+									data-image-width="80" data-image-height="40"> <img
+									src="resources/image/page_image/logo.png"
+									class="u-logo-image u-logo-image-1">
+								</a>
+								<p
+									class="u-align-left-lg u-align-left-md u-small-text u-text u-text-variant u-text-1">푸터
+									로고 밑쪽 텍스트</p>
+							</div>
+						</div>
+						<div
+							class="u-align-left-sm u-align-left-xs u-container-style u-layout-cell u-size-15 u-size-30-md u-layout-cell-2">
+							<div
+								class="u-container-layout u-valign-middle-xs u-valign-top-lg u-valign-top-md u-valign-top-sm u-valign-top-xl u-container-layout-2">
+								<h6 class="u-custom-font u-heading-font u-text u-text-2">푸터
+									1</h6>
+								<p
+									class="u-align-left-lg u-align-left-md u-small-text u-text u-text-variant u-text-3">푸터
+									1밑 텍스트</p>
+							</div>
+						</div>
+						<div
+							class="u-align-left-sm u-align-left-xs u-container-style u-layout-cell u-size-15 u-size-30-md u-layout-cell-3">
+							<div
+								class="u-container-layout u-valign-middle-xs u-valign-top-lg u-valign-top-md u-valign-top-sm u-valign-top-xl u-container-layout-3">
+								<h6 class="u-custom-font u-heading-font u-text u-text-4">푸터
+									2</h6>
+								<p
+									class="u-align-left-lg u-align-left-md u-small-text u-text u-text-variant u-text-5">푸터
+									2밑 텍스트</p>
+							</div>
+						</div>
+						<div
+							class="u-align-left-sm u-align-left-xs u-container-style u-layout-cell u-right-cell u-size-15 u-size-30-md u-layout-cell-4">
+							<div
+								class="u-container-layout u-valign-middle-xs u-valign-top-lg u-valign-top-md u-valign-top-sm u-valign-top-xl u-container-layout-4">
+								<h6 class="u-custom-font u-heading-font u-text u-text-6">푸터
+									3</h6>
+								<p
+									class="u-align-left-lg u-align-left-md u-small-text u-text u-text-variant u-text-7">푸터
+									3밑 텍스트</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</footer>
+
+	<section class="u-backlink u-clearfix u-grey-80">
+		<a class="u-link" href="https://nicepage.com/templates"
+			target="_blank"> <span>여기도 --->>>Template</span>
+		</a>
+		<p class="u-text">
+			<span>created with</span>
+		</p>
+		<a class="u-link" href="" target="_blank"> <span>Website
+				Builder Software ----뭔가쓸수 있을듯</span>
+		</a>.
+	</section>
+
 </body>
 </html>

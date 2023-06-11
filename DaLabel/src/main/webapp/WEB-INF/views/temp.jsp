@@ -8,38 +8,32 @@
 <link rel="stylesheet" href="resources/css/c1.css" media="screen">
 <link rel="stylesheet" href="resources/css/c3.css" media="screen">
 <link rel="stylesheet" href="resources/css/c2.css" media="screen">
-<link rel="stylesheet" href="resources/css/MyPage.css" media="screen">
-<script class="u-script" src="resources/js/jquery-3.5.1.min.js"></script>
-<script class="u-script" src="resources/js/jq1.js"></script>
-<script class="u-script" src="resources/js/upload.js"></script>
+<link rel="stylesheet" href="resources/css/LoginRegPage.css" media="screen">
+<script class="u-script" type="text/javascript"
+	src="resources/js/jquery-3.5.1.min.js" defer=""></script>
+<script class="u-script" type="text/javascript"
+	src="resources/js/jq1.js" defer=""></script>
 <meta name="generator" content="Nicepage 5.9.15, nicepage.com">
 <meta name="referrer" content="origin">
-<link id="u-theme-google-font" rel="stylesheet"
-	href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
+<link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
 <script type="application/ld+json">{
 		"@context": "http://schema.org",
 		"@type": "Organization",
 		"name": "",
 		"logo": "images/default-logo.png"
 }</script>
-<style type="text/css">
-input, button {
-	border: none;
-}
-</style>
 <title>HiddenLayer</title>
 </head>
-<body
-	data-home-page="https://website4844962.nicepage.io/MainPage.html?version=26955cdb-ad9a-4139-8054-aecbcc5786d7"
+<body data-home-page="https://website4844962.nicepage.io/MainPage.html?version=26955cdb-ad9a-4139-8054-aecbcc5786d7"
 	data-home-page-title="MainPage" class="u-body u-xl-mode" data-lang="en">
 
 	<header class="u-clearfix u-header u-header" id="sec-61c1">
 		<div class="u-clearfix u-sheet u-sheet-1">
 			<a href="/dalabel" class="u-image u-logo u-image-1"
 				data-image-width="80" data-image-height="40"> <img
-				src="resources/image/page_image/logo.png"
-				class="u-logo-image u-logo-image-1">
-			</a> <a href="login.go">로그인 하러가기</a>
+				src="resources/image/page_image/logo.png" class="u-logo-image u-logo-image-1">
+			</a>
+			<a href="login.go">로그인 하러가기</a>
 			<nav
 				class="u-align-left u-font-size-14 u-menu u-menu-hamburger u-nav-spacing-25 u-offcanvas u-menu-1"
 				data-responsive-from="XL">
@@ -127,8 +121,7 @@ input, button {
 							<div class="u-menu-close"></div>
 							<ul
 								class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-4">
-								<li class="u-nav-item"><a class="u-button-style u-nav-link">${sessionScope.loginUserID}님
-										환영합니다</a></li>
+								<li class="u-nav-item"><a class="u-button-style u-nav-link">${sessionScope.loginUserID}님 환영합니다</a></li>
 								<li class="u-nav-item"><a class="u-button-style u-nav-link"
 									href="member.needlogin.info">내 정보</a></li>
 								<li class="u-nav-item"><a class="u-button-style u-nav-link">라벨링</a>
@@ -136,14 +129,13 @@ input, button {
 										<ul
 											class="u-h-spacing-20 u-nav u-unstyled u-v-spacing-10 u-nav-5">
 											<li class="u-nav-item"><a
-												class="u-button-style u-nav-link"
-												href="get.needlogin.my.bundle">내 데이터 관리</a></li>
+												class="u-button-style u-nav-link" href="get.needlogin.my.bundle">내 데이터 관리</a></li>
 											<li class="u-nav-item"><a
-												class="u-button-style u-nav-link"
-												href="get.needlogin.myUpload.labeling">라벨링 프로젝트 관리</a></li>
+												class="u-button-style u-nav-link" href="get.needlogin.myUpload.labeling">라벨링 프로젝트 관리</a>
+											</li>
 											<li class="u-nav-item"><a
-												class="u-button-style u-nav-link"
-												href="doLabeling.needlogin.showable">라벨링 할래요</a></li>
+												class="u-button-style u-nav-link" href="doLabeling.needlogin.showable">라벨링 할래요</a>
+											</li>
 										</ul>
 									</div></li>
 								<li class="u-nav-item"><a class="u-button-style u-nav-link">게시판</a>
@@ -172,71 +164,6 @@ input, button {
 			</nav>
 		</div>
 	</header>
-
-	<section
-		class="u-clearfix u-container-align-center-sm u-container-align-center-xs u-grey-5 u-section-1"
-		id="carousel_6806">
-		<div class="u-clearfix u-layout-wrap u-layout-wrap-1">
-			<div class="u-layout">
-				<div class="u-layout-row">
-					<div
-						class="u-container-style u-layout-cell u-size-60 u-layout-cell-1">
-						<div class="u-container-layout u-container-layout-1">
-							<div class="u-expanded-width u-form u-form-1">
-								<a href="doLabeling.needlogin.mypage">참여중인 라벨링</a>
-								<form action="member.needlogin.update.go" method="post"
-									style="padding: 10px;">
-									<div class="u-align-center u-form-group u-form-name">
-										<h3>내 정보</h3>
-									</div>
-									<div class="u-form-group u-form-name">
-										<label for="name-bb79" class="u-label">아이디</label> <input
-											type="text" id="name-bb79" value="1" readonly
-											class="u-border-none u-input u-input-rectangle">
-									</div>
-									<div class="u-form-email u-form-group">
-										<label for="email-bb79" class="u-label">이메일</label> <input
-											type="email" id="email-bb79" name="user_email" value="1"
-											readonly class="u-border-none u-input u-input-rectangle">
-									</div>
-									<div class="u-form-group u-form-name">
-										<label for="name-bb79" class="u-label">이름</label> <input
-											type="text" id="name-bb79" name="user_name" value="1"
-											readonly class="u-border-none u-input u-input-rectangle">
-									</div>
-									<div class="u-form-group u-form-name">
-										<label for="name-bb79" class="u-label">비밀번호</label> <input
-											type="password" id="name-bb79" name="user_pw" value="1"
-											readonly class="u-border-none u-input u-input-rectangle">
-									</div>
-									<div class="u-form-group u-form-name">
-										<label for="name-bb79" class="u-label">비밀번호 확인</label> <input
-											type="password" id="name-bb79" value="1" readonly
-											class="u-border-none u-input u-input-rectangle">
-									</div>
-									<div class="u-form-group u-form-name">
-										<label for="name-bb79" class="u-label">생일</label> <input
-											type="text" id="name-bb79" name="birth" value="20220905"
-											readonly class="u-border-none u-input u-input-rectangle">
-									</div>
-									<div class="u-form-group u-form-name">
-										<img id="profile"
-											src="resources/image/profile/${sessionScope.loginUserIMG }"
-											alt="${sessionScope.loginUserIMG }">
-									</div>
-									<div class="u-align-center u-form-group u-form-submit">
-										<button
-											style="background-color: #478ac9; color: #ffffff; margin-top: 1px; margin-bottom: 1px; padding: 10px 30px";>수정하러
-											가기</button>
-									</div>
-								</form>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
 
 	<footer class="u-clearfix u-footer u-grey-80" id="sec-027d">
 		<div class="u-clearfix u-sheet u-sheet-1">
@@ -308,6 +235,6 @@ input, button {
 				Builder Software ----뭔가쓸수 있을듯</span>
 		</a>.
 	</section>
-
+	
 </body>
 </html>
