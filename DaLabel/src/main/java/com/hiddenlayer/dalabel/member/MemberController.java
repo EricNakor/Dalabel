@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 @Controller
@@ -85,4 +86,11 @@ public class MemberController {
 		mDAO.updateProfile(req, multiFile);
 		return "close";
 	}
+	
+	@RequestMapping(value = "/member.idcheck", method = RequestMethod.POST, produces = "application/json; charset=utf-8")
+	public @ResponseBody int idCheck(@RequestParam("user_id") String user_id) {
+		int result = mDAO.idCheck(user_id);
+		return result;
+	}
+
 }
