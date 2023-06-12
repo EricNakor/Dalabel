@@ -9,8 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-
-
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 @Controller
 public class MemberController {
@@ -20,7 +19,6 @@ public class MemberController {
 
 	@RequestMapping(value = "/login.go", method = RequestMethod.GET)
 	public String goLogin(Member m, HttpServletRequest req) {
-		mDAO.isLogined(req);
 		req.setAttribute("contentPage", "home.jsp");
 		return "member/login";
 	}
@@ -28,14 +26,12 @@ public class MemberController {
 	@RequestMapping(value = "/login.do", method = RequestMethod.POST)
 	public String memberLogin(Member m, HttpServletRequest req) {
 		mDAO.login(m, req);
-		mDAO.isLogined(req);
 		req.setAttribute("contentPage", "home.jsp");
 		return "home";
 	}
 
-	@RequestMapping(value = "/member.logout", method = RequestMethod.GET)
+	@RequestMapping(value = "/member.needlogin.logout", method = RequestMethod.GET)
 	public String memberLogout(HttpServletRequest req) {
-		mDAO.isLogined(req);
 		mDAO.logout(req);
 		req.setAttribute("contentPage", "home.jsp");
 		return "home";
@@ -54,46 +50,41 @@ public class MemberController {
 		return "home";
 	}
 
-	@RequestMapping(value = "/member.delete", method = RequestMethod.POST)
+	@RequestMapping(value = "/member.needlogin.delete", method = RequestMethod.POST)
 	public String memberDelete(HttpServletRequest req) {
-		mDAO.isLogined(req);
 		mDAO.deleteMember(req);
 		req.setAttribute("contentPage", "home.jsp");
 		return "home";
 	}
 
-	@RequestMapping(value = "/member.info", method = RequestMethod.GET)
+	@RequestMapping(value = "/member.needlogin.info", method = RequestMethod.GET)
 	public String memberInfo(HttpServletRequest req) {
-		mDAO.isLogined(req);
 		mDAO.info(req);
 		return "member/info";
 	}
 
-	@RequestMapping(value = "/member.update.go", method = RequestMethod.GET)
+	@RequestMapping(value = "/member.needlogin.update.go", method = RequestMethod.POST)
 	public String goUpdate(HttpServletRequest req) {
-		mDAO.isLogined(req);
 		mDAO.info(req);
 		return "member/update";
 	}
 
-	@RequestMapping(value = "/member.update.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/member.needlogin.update.do", method = RequestMethod.POST)
 	public String memberUpdate(HttpServletRequest req, Member m) {
-		mDAO.isLogined(req);
 		mDAO.update(m, req);
 		return "home";
 	}
 
-	@RequestMapping(value = "/try.upload", method = RequestMethod.GET)
+	@RequestMapping(value = "/try.needlogin.upload", method = RequestMethod.GET)
 	public String profile(HttpServletRequest req) {
-		mDAO.isLogined(req);
+		req.setAttribute("link", "profile.needlogin.upload");
 		return "upload";
 	}
 
-	@RequestMapping(value = "/upload", method = RequestMethod.POST)
-	public String updateProfile(HttpServletRequest req) {
-		mDAO.isLogined(req);
-		mDAO.updateProfile(req);
-		return "member/info";
+	@RequestMapping(value = "/profile.needlogin.upload", method = RequestMethod.POST)
+	public String updateProfile(HttpServletRequest req, MultipartHttpServletRequest multiFile) {
+		mDAO.updateProfile(req, multiFile);
+		return "close";
 	}
 	
 	@RequestMapping(value = "/member.idcheck", method = RequestMethod.POST, produces = "application/json; charset=utf-8")

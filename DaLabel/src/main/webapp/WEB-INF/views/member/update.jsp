@@ -1,14 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
+<script type="text/javascript" src="resources/js/jQuery.js"></script>
+<script type="text/javascript" src="resources/js/upload.js"></script>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="member.update.do" method="post" name="updateForm" onsubmit="return updateCheck();">
+	<form action="member.needlogin.update.do" method="post" name="updateForm" onsubmit="return updateCheck();">
 		<table id="infoTbl">
 			<th>회원정보</th>
 			<tr>
@@ -25,7 +27,8 @@
 			</tr>
 			<tr>
 				<td align="left">비밀번호</td>
-				<td><input value="${memberInfo.user_pw }" type="password" name="user_pw"></td>
+				<td><input value="${memberInfo.user_pw }" type="password"
+					name="user_pw"></td>
 			</tr>
 			<tr>
 				<td align="left">비밀번호 확인</td>
@@ -36,18 +39,23 @@
 				<td><input value="20220905" name="birth"></td>
 			</tr>
 			<tr>
-				<td align="left">프로필 사진 </td>
-				<td>
-					<img src="resources/image/profile/${sessionScope.loginUserIMG }">
-				</td>
+				<td align="left">프로필 사진</td>
+				<td><img id="profile"
+					src="resources/image/profile/${sessionScope.loginUserIMG }"
+					alt="${sessionScope.loginUserIMG }"> <a
+					onclick="fileUpload('try.needlogin.upload')">프사변경</a></td>
 			</tr>
 			<tr>
-				<td align="center" colspan="2">
-				<button >수정</button>
-	</form>
-				<button onclick="">탈퇴</button>
+				<td align="center">
+					<button>수정</button>
+					</form>
+				</td>
+				<td>
+					<form action="member.needlogin.delete" method="post">
+						<button>탈퇴</button>
+					</form>
 				</td>
 			</tr>
-	</table>
+		</table>
 </body>
 </html>

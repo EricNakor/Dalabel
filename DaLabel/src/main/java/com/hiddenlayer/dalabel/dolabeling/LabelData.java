@@ -3,7 +3,7 @@ package com.hiddenlayer.dalabel.dolabeling;
 import java.math.BigDecimal;
 
 public class LabelData {
-	private BigDecimal data_bundle;
+	private BigDecimal project_no;
 	private BigDecimal data_no;
 	private String worked_by;
 	private String label;
@@ -12,20 +12,20 @@ public class LabelData {
 		// TODO Auto-generated constructor stub
 	}
 
-	public LabelData(BigDecimal data_bundle, BigDecimal data_no, String worked_by, String label) {
+	public LabelData(BigDecimal project_no, BigDecimal data_no, String worked_by, String label) {
 		super();
-		this.data_bundle = data_bundle;
+		this.project_no = project_no;
 		this.data_no = data_no;
 		this.worked_by = worked_by;
 		this.label = label;
 	}
 
-	public BigDecimal getData_bundle() {
-		return data_bundle;
+	public BigDecimal getProject_no() {
+		return project_no;
 	}
 
-	public void setData_bundle(BigDecimal data_bundle) {
-		this.data_bundle = data_bundle;
+	public void setProject_no(BigDecimal project_no) {
+		this.project_no = project_no;
 	}
 
 	public BigDecimal getData_no() {
@@ -51,8 +51,6 @@ public class LabelData {
 	public void setLabel(String label) {
 		this.label = label;
 	}
-	
-	
-	
-	
+
+
 }

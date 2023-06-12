@@ -52,7 +52,11 @@
 			value="com.hiddenlayer.dalabel" />
 		<beans:property name="mapperLocations">
 			<beans:list>
-<!-- 				<beans:value>classpath:UserMapper.xml</beans:value> -->
+				<beans:value>classpath:AccountMapper.xml</beans:value>
+				<beans:value>classpath:DataDoLabelingMapper.xml</beans:value>
+				<beans:value>classpath:DataMapper.xml</beans:value>
+				<beans:value>classpath:ManageBundleMapper.xml</beans:value>
+				<beans:value>classpath:ManageLabelingMapper.xml</beans:value>
 			</beans:list>
 		</beans:property>
 	</beans:bean>
@@ -63,5 +67,11 @@
 			ref="sqlSessionFactory" />
 	</beans:bean>
 
+	<!-- 가이드라인 이미지 업로드할 때 필요 -->
+	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<!-- 업로드 가능 최대 용량 -->
+		<beans:property name="maxUploadSize" value="52428800" />
+		<beans:property name="defaultEncoding" value="utf-8" />
+	</beans:bean>
 
 </beans:beans>
