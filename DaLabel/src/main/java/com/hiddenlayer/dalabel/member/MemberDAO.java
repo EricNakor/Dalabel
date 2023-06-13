@@ -132,4 +132,10 @@ public class MemberDAO {
 		ss.getMapper(AccountMapper.class).changeMemberIMG(m);
 		req.setAttribute("rtVal", fileName);
 	}
+	
+
+	public int idCheck(String user_id) {
+		int result = ss.getMapper(AccountMapper.class).checkId(user_id);
+		return result;
+	}
 }
