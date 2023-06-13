@@ -178,7 +178,7 @@ img {
 		</div>
 	</header>
 
-	<section class="u-clearfix u-section-1" id="sec-aa7f">
+	<section class="u-clearfix do-labeling-section-1" id="sec-aa7f">
 		<form action="doLabeling.needlogin.done">
 			<div class="u-clearfix u-sheet u-sheet-1">
 				<div class="u-clearfix u-gutter-0 u-layout-wrap u-layout-wrap-1">
@@ -213,7 +213,7 @@ img {
 						<div
 							class="u-align-left-sm u-align-left-xl u-align-left-xs u-container-style u-layout-cell u-left-cell u-size-15 u-size-30-md u-layout-cell-1">
 							<div
-								class="u-container-layout u-valign-middle-xs u-valign-top-lg u-valign-top-md u-valign-top-sm u-container-layout-1">
+								class="do-labeling-layout u-valign-middle-xs u-valign-top-lg u-valign-top-md u-valign-top-sm do-labeling-layout-1">
 								<a href="푸터 쪽 로고 링크" class="u-image u-logo u-image-1"
 									data-image-width="80" data-image-height="40"> <img
 									src="resources/image/page_image/logo.png"
@@ -227,7 +227,7 @@ img {
 						<div
 							class="u-align-left-sm u-align-left-xs u-container-style u-layout-cell u-size-15 u-size-30-md u-layout-cell-2">
 							<div
-								class="u-container-layout u-valign-middle-xs u-valign-top-lg u-valign-top-md u-valign-top-sm u-valign-top-xl u-container-layout-2">
+								class="do-labeling-layout u-valign-middle-xs u-valign-top-lg u-valign-top-md u-valign-top-sm u-valign-top-xl do-labeling-layout-2">
 								<h6 class="u-custom-font u-heading-font u-text u-text-2">푸터
 									1</h6>
 								<p
@@ -238,7 +238,7 @@ img {
 						<div
 							class="u-align-left-sm u-align-left-xs u-container-style u-layout-cell u-size-15 u-size-30-md u-layout-cell-3">
 							<div
-								class="u-container-layout u-valign-middle-xs u-valign-top-lg u-valign-top-md u-valign-top-sm u-valign-top-xl u-container-layout-3">
+								class="do-labeling-layout u-valign-middle-xs u-valign-top-lg u-valign-top-md u-valign-top-sm u-valign-top-xl do-labeling-layout-3">
 								<h6 class="u-custom-font u-heading-font u-text u-text-4">푸터
 									2</h6>
 								<p
@@ -249,7 +249,7 @@ img {
 						<div
 							class="u-align-left-sm u-align-left-xs u-container-style u-layout-cell u-right-cell u-size-15 u-size-30-md u-layout-cell-4">
 							<div
-								class="u-container-layout u-valign-middle-xs u-valign-top-lg u-valign-top-md u-valign-top-sm u-valign-top-xl u-container-layout-4">
+								class="do-labeling-layout u-valign-middle-xs u-valign-top-lg u-valign-top-md u-valign-top-sm u-valign-top-xl do-labeling-layout-4">
 								<h6 class="u-custom-font u-heading-font u-text u-text-6">푸터
 									3</h6>
 								<p

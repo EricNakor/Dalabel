@@ -20,7 +20,7 @@
 		parameterType="com.hiddenlayer.dalabel.member.Member">
 	<![CDATA[
 		update member 
-		set user_name=#{user_name}, user_pw=#{user_pw}, user_birth=#{user_birth}
+		set user_name=#{user_name}, user_pw=#{user_pw}, user_birth=#{user_birth}, user_email = #{user_email}
 		where user_id=#{user_id}
 	]]>
 	</update>

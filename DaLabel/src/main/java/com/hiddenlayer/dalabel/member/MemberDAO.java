@@ -70,19 +70,6 @@ public class MemberDAO {
 		req.getSession().removeAttribute("bundleCount");		
 	}
 
-	public boolean isLogined(HttpServletRequest req) {
-		String userid = (String) req.getSession().getAttribute("loginUserID");
-		if (userid == null || sessionmap.getSessionIDWithUserID(userid) == null) {
-			return false;
-		}
-		if (req.getSession().getId().equals(sessionmap.getSessionIDWithUserID(userid))) {
-			return true;
-		} else {
-			logout(req);
-			return false;
-		}
-	}
-
 	public void joinMember(Member m, HttpServletRequest req) {
 		// user_birth는 받아서 넣어야 함 year + month + day
 		try {
@@ -103,6 +90,8 @@ public class MemberDAO {
 			m.setUser_id((String) req.getSession().getAttribute("loginUserID"));
 			ArrayList<Member> userinfo = ss.getMapper(AccountMapper.class).getUserinfo(m);
 			m = userinfo.get(0);
+			for (Member member : userinfo) {
+			}
 			req.setAttribute("memberInfo", m);
 		} catch (Exception e) {
 		}
