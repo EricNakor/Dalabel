@@ -20,7 +20,8 @@ public class DataController {
 			@RequestParam(value = "bundle_folder_name") String bundle_folder_name, HttpServletRequest req) {
 		req.setAttribute("data_where", bundle_no);
 		req.setAttribute("bundle_folder_name", bundle_folder_name);
-		return "bundle/bundleData";
+		req.setAttribute("contentPage", "bundle/bundleData.jsp");
+		return "index";
 	}
 
 	@RequestMapping(value = "/get.needlogin.bundle.data", method = RequestMethod.GET)
@@ -29,7 +30,8 @@ public class DataController {
 		dDAO.getData(bundle_folder_name, data, req);
 		req.setAttribute("data_where", data.getData_where());
 		req.setAttribute("bundle_folder_name", bundle_folder_name);
-		return "bundle/bundleData";
+		req.setAttribute("contentPage", "bundle/bundleData.jsp");
+		return "index";
 	}
 
 	@RequestMapping(value = "/delete.needlogin.data", method = RequestMethod.GET)
@@ -39,6 +41,7 @@ public class DataController {
 		dDAO.getData(bundle_folder_name, data, req);
 		req.setAttribute("data_where", data.getData_where());
 		req.setAttribute("bundle_folder_name", bundle_folder_name);
-		return "bundle/bundleData";
+		req.setAttribute("contentPage", "bundle/bundleData.jsp");
+		return "index";
 	}
 }

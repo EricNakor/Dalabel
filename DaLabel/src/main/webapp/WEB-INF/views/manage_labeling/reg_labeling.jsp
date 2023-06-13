@@ -49,6 +49,7 @@
 
 				<td><select name="project_how" id="project_how"
 					onchange="btnn();">
+						<option value="-1">---선택---</option>
 						<option value="0">버튼 누르기</option>
 						<option value="1">직접 타이핑</option>
 						<option value="2">영역 선택</option>
