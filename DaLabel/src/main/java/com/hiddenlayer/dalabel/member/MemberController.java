@@ -19,60 +19,64 @@ public class MemberController {
 
 	@RequestMapping(value = "/login.go", method = RequestMethod.GET)
 	public String goLogin(Member m, HttpServletRequest req) {
-		req.setAttribute("contentPage", "home.jsp");
-		return "member/login";
+		req.setAttribute("contentPage", "member/login.jsp");
+		return "index";
 	}
 
 	@RequestMapping(value = "/login.do", method = RequestMethod.POST)
 	public String memberLogin(Member m, HttpServletRequest req) {
 		mDAO.login(m, req);
 		req.setAttribute("contentPage", "home.jsp");
-		return "home";
+		return "index";
 	}
 
 	@RequestMapping(value = "/member.needlogin.logout", method = RequestMethod.GET)
 	public String memberLogout(HttpServletRequest req) {
 		mDAO.logout(req);
 		req.setAttribute("contentPage", "home.jsp");
-		return "home";
+		return "index";
 	}
 
 	@RequestMapping(value = "/member.join.go", method = RequestMethod.GET)
 	public String goJoin(HttpServletRequest req) {
-		req.setAttribute("contentPage", "home.jsp");
-		return "member/join";
+		req.setAttribute("contentPage", "member/join.jsp");
+		return "index";
 	}
 
 	@RequestMapping(value = "/member.join.do", method = RequestMethod.POST)
 	public String memberJoin(Member m, HttpServletRequest req) {
 		mDAO.joinMember(m, req);
 		req.setAttribute("contentPage", "home.jsp");
-		return "home";
+		return "index";
 	}
 
 	@RequestMapping(value = "/member.needlogin.delete", method = RequestMethod.POST)
 	public String memberDelete(HttpServletRequest req) {
 		mDAO.deleteMember(req);
 		req.setAttribute("contentPage", "home.jsp");
-		return "home";
+		return "index";
 	}
 
 	@RequestMapping(value = "/member.needlogin.info", method = RequestMethod.GET)
 	public String memberInfo(HttpServletRequest req) {
 		mDAO.info(req);
-		return "member/info";
+		req.setAttribute("contentPage", "member/info.jsp");
+		return "index";
 	}
 
 	@RequestMapping(value = "/member.needlogin.update.go", method = RequestMethod.POST)
 	public String goUpdate(HttpServletRequest req) {
 		mDAO.info(req);
-		return "member/update";
+		req.setAttribute("contentPage", "member/update.jsp");
+		return "index";
 	}
 
 	@RequestMapping(value = "/member.needlogin.update.do", method = RequestMethod.POST)
 	public String memberUpdate(HttpServletRequest req, Member m) {
 		mDAO.update(m, req);
-		return "home";
+		mDAO.info(req);
+		req.setAttribute("contentPage", "member/info.jsp");
+		return "index";
 	}
 
 	@RequestMapping(value = "/try.needlogin.upload", method = RequestMethod.GET)

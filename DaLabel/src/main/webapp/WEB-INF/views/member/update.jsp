@@ -3,59 +3,81 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
-<head>
-<script type="text/javascript" src="resources/js/jQuery.js"></script>
-<script type="text/javascript" src="resources/js/upload.js"></script>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
-	<form action="member.needlogin.update.do" method="post" name="updateForm" onsubmit="return updateCheck();">
-		<table id="infoTbl">
-			<th>회원정보</th>
-			<tr>
-				<td align="left">아이디</td>
-				<td>${memberInfo.user_id }</td>
-			</tr>
-			<tr>
-				<td align="left">이메일</td>
-				<td><input value="${memberInfo.user_email }" name="user_email"></td>
-			</tr>
-			<tr>
-				<td align="left">이름</td>
-				<td><input value="${memberInfo.user_name }" name="user_name"></td>
-			</tr>
-			<tr>
-				<td align="left">비밀번호</td>
-				<td><input value="${memberInfo.user_pw }" type="password"
-					name="user_pw"></td>
-			</tr>
-			<tr>
-				<td align="left">비밀번호 확인</td>
-				<td><input value="${memberInfo.user_pw }" type="password"></td>
-			</tr>
-			<tr>
-				<td align="left">생일</td>
-				<td><input value="20220905" name="birth"></td>
-			</tr>
-			<tr>
-				<td align="left">프로필 사진</td>
-				<td><img id="profile"
-					src="resources/image/profile/${sessionScope.loginUserIMG }"
-					alt="${sessionScope.loginUserIMG }"> <a
-					onclick="fileUpload('try.needlogin.upload')">프사변경</a></td>
-			</tr>
-			<tr>
-				<td align="center">
-					<button>수정</button>
-					</form>
-				</td>
-				<td>
-					<form action="member.needlogin.delete" method="post">
-						<button>탈퇴</button>
-					</form>
-				</td>
-			</tr>
-		</table>
+<body
+	data-home-page="https://website4844962.nicepage.io/MainPage.html?version=26955cdb-ad9a-4139-8054-aecbcc5786d7"
+	data-home-page-title="MainPage" class="u-body u-xl-mode" data-lang="en">
+
+	<section
+		class="u-clearfix u-container-align-center-sm u-container-align-center-xs u-grey-5 u-section-1"
+		id="carousel_6806">
+		<div class="u-clearfix u-layout-wrap u-layout-wrap-1">
+			<div class="u-layout">
+				<div class="u-layout-row">
+					<div
+						class="u-container-style u-layout-cell u-size-60 u-layout-cell-1">
+						<div class="u-container-layout u-container-layout-1">
+							<div class="u-expanded-width member-info-form member-info-form-1">
+								<a href="doLabeling.needlogin.mypage">참여중인 라벨링</a>
+								<form action="member.needlogin.update.do" method="post"
+									style="padding: 10px;">
+									<div class="u-align-center member-info-form-group member-info-form-name">
+										<h3>내 정보</h3>
+									</div>
+									<div class="member-info-form-group member-info-form-name">
+										<label for="name-bb79" class="u-label">아이디</label> 
+										<input
+											type="text" id="name-bb79" value="${memberInfo.user_id }"
+											readonly class="u-border-none u-input u-input-rectangle">
+									</div>
+									<div class="member-info-form-email member-info-form-group">
+										<label for="email-bb79" class="u-label">이메일</label> <input
+											type="email" id="email-bb79" name="user_email"
+											value="${memberInfo.user_email }"
+											class="u-border-none u-input u-input-rectangle">
+									</div>
+									<div class="member-info-form-group member-info-form-name">
+										<label for="name-bb79" class="u-label">이름</label> <input
+											type="text" id="name-bb79" name="user_name"
+											value="${memberInfo.user_name }"
+											class="u-border-none u-input u-input-rectangle">
+									</div>
+									<div class="member-info-form-group member-info-form-name">
+										<label for="name-bb79" class="u-label">비밀번호</label> <input
+											type="password" id="name-bb79" name="user_pw"
+											value="${memberInfo.user_pw }"
+											class="u-border-none u-input u-input-rectangle">
+									</div>
+									<div class="member-info-form-group member-info-form-name">
+										<label for="name-bb79" class="u-label">비밀번호 확인</label> <input
+											type="password" id="name-bb79" value="${memberInfo.user_pw }"
+											class="u-border-none u-input u-input-rectangle">
+									</div>
+									<div class="member-info-form-group member-info-form-name">
+										<label for="name-bb79" class="u-label">생일</label> <input
+											type="text" id="name-bb79" name="birth"
+											value="${memberInfo.user_birth }"
+											class="u-border-none u-input u-input-rectangle">
+									</div>
+									<div class="member-info-form-group member-info-form-name">
+										<label for="name-bb79" class="u-label">프로필</label><br> <img
+											id="profile"
+											src="resources/image/profile/${sessionScope.loginUserIMG }"
+											alt="${sessionScope.loginUserIMG }">
+									</div>
+									<div class="u-align-center member-info-form-group member-info-form-submit">
+										<button
+											style="background-color: #478ac9; color: #ffffff; margin-top: 1px; margin-bottom: 1px; padding: 10px 30px";>수정</button>
+								</form>
+								<button
+											style="background-color: #478ac9; color: #ffffff; margin-top: 1px; margin-bottom: 1px; padding: 10px 30px"; onclick="deleteMember();">탈퇴</button>
+									</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
 </body>
 </html>

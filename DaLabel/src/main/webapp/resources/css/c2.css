@@ -1,15 +1,5 @@
 /*begin-variables font-family*/
-.u-body {
-  font-family: 'Open Sans',sans-serif;
-}
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: Roboto,sans-serif;
-}
+
 /*end-variables font-family*/
 /*begin-variables color*/
 .u-overlap.u-overlap-transparent .u-header,
@@ -16590,7 +16580,7 @@ a.u-link.u-text-hover-grey-90:hover {
 }
 
 .u-header .u-logo-image-1 {
-  width: 100%;
+  width: 200px;
   height: 100%;
 }
 
@@ -16638,7 +16628,7 @@ a.u-link.u-text-hover-grey-90:hover {
 }
 
 .u-footer .u-logo-image-1 {
-  width: 100%;
+  width: 150px;
   height: 100%;
 }
 
@@ -16812,7 +16802,3 @@ a.u-link.u-text-hover-grey-90:hover {
     margin-right: 12px;
   }
 }
-
- /*begin-variables base-font-size*/ 
- html { font-size: 16px; }
- /*end-variables base-font-size*/

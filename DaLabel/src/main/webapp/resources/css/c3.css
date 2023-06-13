@@ -372,6 +372,7 @@ html {
   font-family: sans-serif;
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
+  font-size: 16px;
 }
 body {
   margin: 0;
@@ -17354,6 +17355,7 @@ div.u-video,
   right: 0;
   left: 0;
 }
+
 .u-offcanvas-unshifted-left .u-body > *,
 .u-offcanvas-unshifted-left.u-body > * {
   animation: menu-unshift-left 500ms normal forwards ease;
@@ -17453,6 +17455,7 @@ h6 {
   line-height: 1.2;
   font-weight: 500;
   color: inherit;
+  font-family: Roboto,sans-serif;
 }
 h1 {
   font-size: 2.25rem;
@@ -29875,8 +29878,8 @@ section.u-white:before,
 .u-white.u-sidenav:before,
 .u-container-layout.u-container-layout.u-white:before,
 .u-table-alt-white tr:nth-child(even) {
-  color: var(--white-text-color);
-  background-color: var(--white);
+  color: #111111;
+  background-color: #ffffff;
 }
 .u-input.u-white,
 .u-field-input.u-white,
