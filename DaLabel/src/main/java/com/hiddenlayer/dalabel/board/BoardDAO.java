@@ -17,18 +17,22 @@ public class BoardDAO {
 	private int allPostCount;
 
 	@Autowired
-	private DalabelOptions DalableOptions;
+	private DalabelOptions dalableOptions;
 
 	@Autowired
 	private SqlSession ss;
 
 	public BoardDAO() {
 		super();
-		allPostCount = 0;
 	}
 
 	public int getAllPostCount() {
 		return allPostCount;
+	}
+	
+	public void setAllPostCount() {
+		BoardSelector bSel2 = new BoardSelector("", 0, 0);
+		allPostCount = ss.getMapper(BoardMapper.class).getPostCount(bSel2);
 	}
 
 	public void setAllPostCount(int allPostCount) {
@@ -54,11 +58,13 @@ public class BoardDAO {
 
 	public void getAllPost(int page, HttpServletRequest req) {
 		try {
+			System.out.println(allPostCount);
 			int postCount = allPostCount;
+			System.out.println(postCount);
 			String search = (String) req.getSession().getAttribute("search");
-			int pageCount = (int) Math.ceil(postCount / (double) DalableOptions.getBoardPostPerPage());
-			int start = (page - 1) * DalableOptions.getBoardPostPerPage() + 1;
-			int end = page * DalableOptions.getBoardPostPerPage();
+			int pageCount = (int) Math.ceil(postCount / (double) dalableOptions.getBoardPostPerPage());
+			int start = (page - 1) * dalableOptions.getBoardPostPerPage() + 1;
+			int end = page * dalableOptions.getBoardPostPerPage();
 
 			if (search == null) {
 				search = "";
@@ -74,7 +80,6 @@ public class BoardDAO {
 //			for (Board b : posts) {
 //				b.setB_comment(ss.getMapper(BoardMapper.class).getComment(b));
 //			}
-
 			req.setAttribute("posts", posts);
 			req.setAttribute("pageCount", pageCount);
 			req.setAttribute("page", page);
@@ -91,17 +96,13 @@ public class BoardDAO {
 		req.getSession().setAttribute("search", search);
 	}
 
-	public void setAllPostCount() {
-		BoardSelector bSel2 = new BoardSelector("", 0, 0);
-		allPostCount = ss.getMapper(BoardMapper.class).getPostCount(bSel2);
-	}
 
 	public void writePost(Board b, HttpServletRequest req) {
 		try {
 			String token = req.getParameter("token");
 			String lastSuccessToken = (String) req.getSession().getAttribute("successToken");
 			if (lastSuccessToken != null && token.equals(lastSuccessToken)) {
-				req.setAttribute("result", "글쓰기 실패");
+				req.setAttribute("result", "글쓰기 실패 새로고침");
 				return;
 			}
 
@@ -119,6 +120,10 @@ public class BoardDAO {
 		}
 	}
 
+	public void updateBoard(HttpServletRequest req, Board b) {
+		ss.getMapper(BoardMapper.class).updatePost(b);
+	}
+	
 	public void writeComment(BoardComment bc, HttpServletRequest req) {
 		try {
 			String token = req.getParameter("token");
@@ -139,4 +144,5 @@ public class BoardDAO {
 			req.setAttribute("result", "댓글쓰기 실패");
 		}
 	}
+
 }

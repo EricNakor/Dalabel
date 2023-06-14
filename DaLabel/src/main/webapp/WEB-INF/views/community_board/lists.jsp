@@ -6,14 +6,9 @@
 <head>
 <meta charset="UTF-8">
 <title>페이지 리스트</title>
+<script type="text/javascript" src="resources/js/dalabelMove.js"></script>
 </head>
 <body>
-	<!--<c:if test="${page != 1 }">
-	<div class = "boardL" onclick="boardPageChange(${page - 1});">&lt;</div>
-	</c:if>
-	<c:if test="${page != pageCount }">
-	<div class = "boardR" onclick="boardPageChange(${page + 1});">&gt;</div>
-	</c:if>-->
 	<table>
 		<tr>
 			<td>
@@ -28,7 +23,9 @@
 
 					<c:forEach var="p" items="${posts }">
 						<tr>
-							<td><a href="board.get.detail?board_id=${p.board_id }">${p.board_id }</a></td>
+							<td>
+								<a href="board.get.detail?board_id=${p.board_id }">${p.board_id }</a>
+							</td>
 							<td>${p.board_category }</td>
 							<td>${p.board_title }</td>
 							<td>${p.board_writer }</td>
@@ -36,10 +33,10 @@
 						</tr>
 					</c:forEach>
 				</table>
-		</td>
+			</td>
 		</tr>
 		<tr>
-			<td>페이지 이동 1 2 3 4 5</td>
+			<td align="center">
 			<td><a href="board.post.write.go">글쓰기</a></td>
 		</tr>
 		<tr>
@@ -51,5 +48,14 @@
 			</td>
 		</tr>
 	</table>
+		<c:if test="${page != 1 }">
+			<div class="boardL" onclick="boardPageChange(${page - 1});">&lt;</div>
+		</c:if>
+	<c:forEach var="p" begin="1" end="${pageCount }">
+		<a>${p }</a>
+	</c:forEach>
+	<c:if test="${page != pageCount }">
+			<div class="boardR" onclick="boardPageChange(${page + 1});">&gt;</div>
+		</c:if>
 </body>
 </html>

@@ -18,22 +18,6 @@
 				)
 			)
 			where rn >= #{start} and rn <= #{end}
-		),(
-		select user_id
-		from member
-		where user_id in (
-			select board_writer
-			from (
-				select rownum as rn, board_id, board_writer, board_title, board_regist
-				from (
-					select*
-					from board
-					where board_writer like '%'||#{search}||'%' or board_title like '%'||#{search}||'%'
-					order by board_regist desc
-					)
-				)
-				where rn >= #{start} and rn <= #{end}
-			)
 		)
 		]]>
 
@@ -49,12 +33,11 @@
 
 	<!-- 게시글 카운트 -->
 	<select id="getPostCount"
-		parameterType="com.hiddenlayer.dalabel.board.BoardSelector"
-		resultType="java.lang.Integer">
+		parameterType="com.hiddenlayer.dalabel.board.BoardSelector">
 		<![CDATA[
 		select count(*) 
 		from board
-		where user_id like '%'||#{search}||'%' or board_title like '%'||#{search}||'%'
+		where board_writer like '%'||#{search}||'%' or board_title like '%'||#{search}||'%'
 		]]>
 	</select>
 
@@ -66,7 +49,14 @@
 		values(board_seq.nextval, #{board_writer}, #{board_category}, #{board_title}, #{board_content}, 0, sysdate, sysdate)
 		]]>
 	</insert>
-
+	
+	<!-- 게시글 수정 -->
+	<update id="updatePost" parameterType="com.hiddenlayer.dalabel.board.Board">
+		<![CDATA[
+		update board set board_title = #{board_title}, board_content = #{board_content}, board_edit = sysdate
+		where board_id = #{board_id}
+		]]>
+	</update>
 
 	<!-- 게시글 삭제 -->
 	<delete id="deletePost" parameterType="java.math.BigDecimal">

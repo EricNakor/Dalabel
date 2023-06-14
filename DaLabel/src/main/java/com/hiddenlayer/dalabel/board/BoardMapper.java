@@ -21,4 +21,6 @@ public interface BoardMapper {
 	public abstract int writeComment(BoardComment bc);
 
 	public abstract int writePost(Board b);
+	
+	public abstract int updatePost(Board b);
 }
