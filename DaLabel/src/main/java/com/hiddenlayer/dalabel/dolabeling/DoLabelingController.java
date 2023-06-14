@@ -2,8 +2,10 @@ package com.hiddenlayer.dalabel.dolabeling;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,6 +30,7 @@ public class DoLabelingController {
 	@RequestMapping(value = "/doLabeling.needlogin.start", method = RequestMethod.GET)
 	public String start(HttpServletRequest req, LabelingProject lp) {
 		dlDAO.start(req, lp);
+		req.setAttribute("contentPage", "labeling/do_labeling.jsp");
 		return "index";
 	}
 
@@ -88,4 +91,14 @@ public class DoLabelingController {
 		return dlDAO.show(req, start, end);
 	}
 
+	@RequestMapping(value = "/test.arr", method = RequestMethod.GET) // ★★★★★★★
+    public @ResponseBody ArrayList<String> testArr(HttpServletRequest req, HttpServletResponse res) {
+        res.setHeader("Access-Control-Allow-Origin", "*");
+        return new ArrayList<String>(Arrays.asList("teemo.jpg", "what.jpg", "jjanggu.jpg")); // ★★★★★★★
+    }
+	
+	@RequestMapping(value = "/test.go", method = RequestMethod.GET)
+	public String test() {
+		return "test";
+	}
 }

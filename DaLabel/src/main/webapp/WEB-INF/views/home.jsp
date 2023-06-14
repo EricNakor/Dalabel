@@ -32,13 +32,12 @@
 							<h2 class="u-align-center u-text u-text-1"
 								data-animation-name="customAnimationIn"
 								data-animation-duration="1500" data-animation-delay="500">
-								우리의 소개<br>
+								홈페이지 소개<br>
 							</h2>
-							<p class="u-align-center u-text u-text-2">빅데이터 어쩌구 저쩌구 여기다 내용
-								쓰면 됩니다</p>
-							<a href="https://nicepage.com"
-								class="u-active-black u-align-center u-border-none u-btn u-btn-round u-button-style u-hover-black u-palette-3-base u-radius-50 u-text-active-white u-text-body-alt-color u-text-hover-white u-btn-2">더
-								보기 누르면 이동</a>
+							<p class="u-align-center u-text u-text-2">인공지능 학습을 위한 라벨링 플랫폼</p>
+							<a href="#"
+								class="u-active-black u-align-center u-border-none u-btn u-btn-round u-button-style u-hover-black u-palette-3-base u-radius-50 u-text-active-white u-text-body-alt-color u-text-hover-white u-btn-2">
+								후원하기</a>
 						</div>
 					</div>
 				</div>
@@ -59,10 +58,7 @@
 							data-animation-duration="1500" data-animation-delay="250">
 							<div
 								class="u-container-layout u-valign-middle u-container-layout-1">
-								<h2 class="u-align-left u-text u-text-default u-text-1">여긴
-									뭘 소개하면 좋을까? 제목칸</h2>
-								<p class="u-align-left u-text u-text-default u-text-2">어쩌구
-									저쩌구 쓰면 됨 라벨링 소개를</p>
+								<h2 class="u-align-left u-text u-text-default u-text-1">MadeBy</h2>
 								<div class="u-expanded-width u-list u-list-1">
 									<div class="u-repeater u-repeater-1">
 										<div
@@ -71,21 +67,8 @@
 												class="u-container-layout u-similar-container u-valign-middle u-container-layout-2">
 												<h5
 													class="u-align-left u-custom-font u-text u-text-font u-text-3">
-													<a href="https://nicepage.app"
+													<a href="#"
 														class="u-active-none u-border-1 u-border-active-palette-3-base u-border-hover-palette-3-base u-border-no-left u-border-no-right u-border-no-top u-border-palette-3-base u-btn u-button-link u-button-style u-hover-none u-none u-text-active-palette-3-base u-text-body-color u-text-hover-palette-3-base u-btn-1"
-														target="_blank" data-animation-name=""
-														data-animation-duration="0" data-animation-delay="0"
-														data-animation-direction="">조원 ?</a>
-												</h5>
-											</div>
-										</div>
-										<div class="u-container-style u-list-item u-repeater-item">
-											<div
-												class="u-container-layout u-similar-container u-valign-middle u-container-layout-3">
-												<h5
-													class="u-align-left u-custom-font u-text u-text-font u-text-4">
-													<a href="https://nicepage.app"
-														class="u-active-none u-border-1 u-border-active-palette-3-base u-border-hover-palette-3-base u-border-no-left u-border-no-right u-border-no-top u-border-palette-3-base u-bottom-left-radius-0 u-bottom-right-radius-0 u-btn u-button-link u-button-style u-hover-none u-none u-radius-0 u-text-active-palette-3-base u-text-body-color u-text-hover-palette-3-base u-top-left-radius-0 u-top-right-radius-0 u-btn-2"
 														target="_blank" data-animation-name=""
 														data-animation-duration="0" data-animation-delay="0"
 														data-animation-direction="">신용대</a>
@@ -98,7 +81,7 @@
 												class="u-container-layout u-similar-container u-valign-middle u-container-layout-4">
 												<h5
 													class="u-align-left u-custom-font u-text u-text-font u-text-5">
-													<a href="https://nicepage.cloud"
+													<a href="#"
 														class="u-active-none u-border-1 u-border-active-palette-3-base u-border-hover-palette-3-base u-border-no-left u-border-no-right u-border-no-top u-border-palette-3-base u-btn u-button-link u-button-style u-hover-none u-none u-text-active-palette-3-base u-text-body-color u-text-hover-palette-3-base u-btn-3"
 														target="_blank" data-animation-name=""
 														data-animation-duration="0" data-animation-delay="0"
@@ -112,7 +95,7 @@
 												class="u-container-layout u-similar-container u-valign-middle u-container-layout-5">
 												<h5
 													class="u-align-left u-custom-font u-text u-text-font u-text-6">
-													<a href="https://nicepage.com/c/counter-html-templates"
+													<a href="#"
 														class="u-active-none u-border-1 u-border-active-palette-3-base u-border-hover-palette-3-base u-border-no-left u-border-no-right u-border-no-top u-border-palette-3-base u-btn u-button-link u-button-style u-hover-none u-none u-text-active-palette-3-base u-text-body-color u-text-hover-palette-3-base u-btn-4"
 														target="_blank" data-animation-name=""
 														data-animation-duration="0" data-animation-delay="0"
@@ -127,7 +110,7 @@
 												<h5
 													class="u-align-left u-custom-font u-text u-text-font u-text-7">
 													<a
-														href="https://nicepage.com/c/medicine-science-html-templates"
+														href="#"
 														class="u-active-none u-border-1 u-border-active-palette-3-base u-border-hover-palette-3-base u-border-no-left u-border-no-right u-border-no-top u-border-palette-3-base u-btn u-button-link u-button-style u-hover-none u-none u-text-active-palette-3-base u-text-body-color u-text-hover-palette-3-base u-btn-5"
 														target="_blank" data-animation-name=""
 														data-animation-duration="0" data-animation-delay="0"
@@ -141,7 +124,7 @@
 												class="u-container-layout u-similar-container u-valign-middle u-container-layout-7">
 												<h5
 													class="u-align-left u-custom-font u-text u-text-font u-text-8">
-													<a href="https://nicepage.com/website-templates"
+													<a href="#"
 														class="u-active-none u-border-1 u-border-active-palette-3-base u-border-hover-palette-3-base u-border-no-left u-border-no-right u-border-no-top u-border-palette-3-base u-btn u-button-link u-button-style u-hover-none u-none u-text-active-palette-3-base u-text-body-color u-text-hover-palette-3-base u-btn-6"
 														target="_blank" data-animation-name=""
 														data-animation-duration="0" data-animation-delay="0"
@@ -175,8 +158,7 @@
 		<div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
 			<h2 class="u-align-center u-text u-text-body-alt-color u-text-1"
 				data-animation-name="customAnimationIn"
-				data-animation-duration="1500" data-animation-delay="500">여긴 뭘
-				쓸까? 중간 층</h2>
+				data-animation-duration="1500" data-animation-delay="500">라벨링 추천</h2>
 			<div class="u-expanded-width u-list u-list-1">
 				<div class="u-repeater u-repeater-1">
 					<div
@@ -185,8 +167,8 @@
 						data-animation-duration="1500">
 						<div
 							class="u-container-layout u-similar-container u-container-layout-1">
-							<h4 class="u-text u-text-palette-1-base u-text-2">박스 1번 내용</h4>
-							<p class="u-text u-text-3">박스 1번 내용</p>
+							<h4 class="u-text u-text-palette-1-base u-text-2">개 고양이 분류</h4>
+							<p class="u-text u-text-3">이미지를 보고 개인지, 고양이인지 분류해주시면 됩니다.</p>
 						</div>
 					</div>
 					<div
