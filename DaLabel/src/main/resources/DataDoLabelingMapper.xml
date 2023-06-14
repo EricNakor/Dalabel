@@ -12,8 +12,8 @@
 	<insert id="addLabelDoList"
 		parameterType="com.hiddenlayer.dalabel.dolabeling.LabelDoList">
 		<![CDATA[
-			insert into Labeling_Do
-			values (#{dolabel_user}, #{dolable_project_no}, #{dolabel_state}, #{dolabel_score})
+			insert into Labeling_Do (dolabel_user, dolabel_project_no, dolabel_state)
+			values (#{dolabel_user}, #{dolabel_project_no}, #{dolabel_state})
 		]]>
 	</insert>
 	<select id="findLabelDoList"

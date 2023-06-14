@@ -33,8 +33,8 @@ class ProjectInfo {
 
 	BigDecimal getNext_todo_no() {
 		BigDecimal ret = next_todo_no;
-		next_todo_no.add(new BigDecimal(1));
-		if(next_todo_no.compareTo(data_count)==0) {
+		next_todo_no = next_todo_no.add(new BigDecimal(1));
+		if(next_todo_no.intValue() > data_count.intValue()) {
 			cycle_no.add(new BigDecimal(1));
 			next_todo_no = new BigDecimal(1);
 		}

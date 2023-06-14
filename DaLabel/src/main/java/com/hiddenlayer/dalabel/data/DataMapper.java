@@ -15,5 +15,4 @@ public interface DataMapper {
 	public abstract int deleteData(String data_name);
 	
 	public abstract Data getNextData(@Param("project_no")BigDecimal project_no, @Param("rest_no")BigDecimal rest_no);
-	public abstract Data getNextBiggerData(@Param("project_no")BigDecimal project_no, @Param("rest_no")BigDecimal rest_no);
 }

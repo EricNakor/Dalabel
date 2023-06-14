@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import com.hiddenlayer.dalabel.manageLabeling.Data;
 import com.hiddenlayer.dalabel.manageLabeling.LabelingProject;
+import com.hiddenlayer.dalabel.manageLabeling.ManageLabelingMapper;
 import com.hiddenlayer.dalabel.session.ProjectSession;
 
 @Service
@@ -23,28 +24,33 @@ public class DoLabelingDAO {
 
 	public void start(HttpServletRequest req, LabelingProject lp) {
 		ps.putUserIDWithProjectNo((String) req.getSession().getAttribute("loginUserID"), lp.getProject_no());
+		req.setAttribute("projectDetailInfo",ss.getMapper(ManageLabelingMapper.class).getMyDeatilProject(lp.getProject_no().intValue()));
 	}
 
 	public String nextDataName(HttpServletRequest req, LabelData ld) {
 		String userid = (String) req.getSession().getAttribute("loginUserID");
-
+		System.out.println(userid);
+		System.out.println("=======================");
+		System.out.println(req.getSession().getAttribute("workingNow"));
 		// 조건식 수정해야할 수 있음. AJAX가 들어오는것에 따라 처리해야하기 때문에.
+		Data d = null;
+		int flag = 0;
 		if (userid.equals(ld.getWorked_by())) {
 			if (req.getSession().getAttribute("workingNow") != null
 					&& req.getSession().getAttribute("workingNow").equals(ld.getData_no())) {
 				ss.getMapper(DataDoLabelingMapper.class).addLabelData(ld);
+				flag = 1;
 			}
-			if (ps.getProjectNoWithUserID(userid) != null) {
-				Data d = ps.getNextData(userid);
-				req.getSession().setAttribute("workingNow", new BigDecimal(d.getData_name().split("[.]")[0]));
-				return d.getData_name();
+			if (ps.getProjectNoWithUserID(userid) != null && (req.getSession().getAttribute("workingNow") == null  || flag == 1)) {
+				d = ps.getNextData(userid);
 			}
+
 		}
-		Data data = ps.getNextData(userid);
-		if (data == null) {
-			return null;
+		if (d == null) {
+			return (String)req.getSession().getAttribute("workingNow");
 		} else {
-			return data.getData_name();
+			req.getSession().setAttribute("workingNow", d.getData_name());
+			return d.getData_name();
 		}
 	}
 
@@ -116,7 +122,6 @@ public class DoLabelingDAO {
 		if (start == -1) {
 			start = Integer.MAX_VALUE;
 		}
-		
 		return ss.getMapper(DataDoLabelingMapper.class).findAccessableDoList(
 				(String) req.getSession().getAttribute("loginUserID"),
 				new BigDecimal((Integer) req.getSession().getAttribute("loginUserRating")), start, getnum);
