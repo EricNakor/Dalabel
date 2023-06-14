@@ -25,6 +25,19 @@
 		where rn >= #{start} and rn <= #{end}
 	]]>
 	</select>
+	
+	<select id="getBundleFilePath"
+	resultType="String">
+		<![CDATA[
+		select bundle_folder_name
+		from DataBundle
+		where bundle_no = (
+			select project_bundle_no
+			from Labeling_project
+			where project_no = #{bundle_no}
+		)
+		]]>
+	</select>
 
 	<select id="getAllBundleCount" parameterType="java.lang.String"
 		resultType="java.lang.Integer">

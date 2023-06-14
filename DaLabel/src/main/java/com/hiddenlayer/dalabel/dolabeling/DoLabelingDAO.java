@@ -9,6 +9,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.hiddenlayer.dalabel.manageBundle.ManageBundleMapper;
 import com.hiddenlayer.dalabel.manageLabeling.Data;
 import com.hiddenlayer.dalabel.manageLabeling.LabelingProject;
 import com.hiddenlayer.dalabel.manageLabeling.ManageLabelingMapper;
@@ -25,13 +26,12 @@ public class DoLabelingDAO {
 	public void start(HttpServletRequest req, LabelingProject lp) {
 		ps.putUserIDWithProjectNo((String) req.getSession().getAttribute("loginUserID"), lp.getProject_no());
 		req.setAttribute("projectDetailInfo",ss.getMapper(ManageLabelingMapper.class).getMyDeatilProject(lp.getProject_no().intValue()));
+		System.out.println(lp.getProject_no());
+		req.setAttribute("filePath",ss.getMapper(ManageBundleMapper.class).getBundleFilePath(lp.getProject_no().intValue()) );
 	}
 
 	public String nextDataName(HttpServletRequest req, LabelData ld) {
 		String userid = (String) req.getSession().getAttribute("loginUserID");
-		System.out.println(userid);
-		System.out.println("=======================");
-		System.out.println(req.getSession().getAttribute("workingNow"));
 		// 조건식 수정해야할 수 있음. AJAX가 들어오는것에 따라 처리해야하기 때문에.
 		Data d = null;
 		int flag = 0;

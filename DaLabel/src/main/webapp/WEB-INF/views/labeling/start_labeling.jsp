@@ -35,7 +35,7 @@ ${projectDetailInfo.project_bundle_no }<hr>
 				label: labelInfo
 			},
 			success: function(nextData){
-				$(".problem").attr("src", "resources/data/${projectDetailInfo.project_requestor}/"+nextData);
+				$(".problem").attr("src", "resources/data/${projectDetailInfo.project_requestor}/${filePath}/"+nextData);
 			}
 		})
 	}
@@ -66,7 +66,7 @@ ${projectDetailInfo.project_bundle_no }<hr>
 				project_no:"${projectDetailInfo.project_no}",
 			},
 			success: function(nextData){
-				$(".problem").attr("src", "resources/data/${projectDetailInfo.project_requestor}/"+nextData);
+				$(".problem").attr("src", "resources/data/${projectDetailInfo.project_requestor}/${filePath}/"+nextData);
 			}
 		})
 	})

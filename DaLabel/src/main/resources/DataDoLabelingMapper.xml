@@ -55,7 +55,7 @@
 		<![CDATA[
 			update Labeling_Do
 			set dolabel_state=#{dolabel_state}
-			where dolabel_user=#{dolabel_user} and dolable_project_no=#{dolable_project_no}
+			where dolabel_user=#{dolabel_user} and dolabel_project_no=#{dolabel_project_no}
 		]]>
 	</update>
 </mapper>
