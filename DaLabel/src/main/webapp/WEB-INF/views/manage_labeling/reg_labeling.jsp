@@ -11,12 +11,12 @@
 <script src="//cdn.ckeditor.com/4.21.0/standard/ckeditor.js"></script>
 </head>
 <body>
-	<form action="reg.needlogin.labeling.do" method="post">
-	<input type="hidden" name="project_bundle_no" value="${bundle_no }">
+	<form action="reg.needlogin.labeling.do" method="post" onsubmit="return json_()">
+		<input type="hidden" name="project_bundle_no" value="${bundle_no }">
 		<table>
 			<tr>
 				<td>라벨링 제목</td>
-				<td><input name="project_title"></td>
+				<td><input id="project_title" name="project_title"></td>
 			</tr>
 			<tr>
 				<td>파일명 :</td>
@@ -25,7 +25,8 @@
 			</tr>
 			<tr>
 				<td>가이드라인</td>
-				<td><textarea rows="50" cols="50" name="project_guide" id="project_guide">
+				<td><textarea rows="50" cols="50" name="project_guide"
+						id="project_guide">
 
 					</textarea></td>
 				<script type="text/javascript">
@@ -48,12 +49,16 @@
 			<tr>
 
 				<td><select name="project_how" id="project_how"
-					onchange="btnn();">
-						<option value="0">버튼 누르기</option>
-						<option value="1">직접 타이핑</option>
-						<option value="2">영역 선택</option>
+					onchange="select()">
+						<option value="-1">--라벨링 방법--</option>
+						<option value="0">직접 타이핑</option>
+						<option value="1">버튼 누르기</option>
+						<!-- 						<option value="2">영역 선택</option> -->
 				</select></td>
-				<td id=btn_add></td>
+				<td><input id="project_category" name="project_category" value=""></td>
+			</tr>
+			<tr>
+				<td id=space></td>
 			</tr>
 			<tr>
 				<td>공개설정</td>
@@ -65,7 +70,7 @@
 			<tr>
 				<td>
 					<button>등록</button>
-					<button>취소</button>
+					<button type="button" onclick="cancle()">취소</button>
 				</td>
 			</tr>
 		</table>
