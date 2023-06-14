@@ -91,14 +91,4 @@ public class DoLabelingController {
 		return dlDAO.show(req, start, end);
 	}
 
-	@RequestMapping(value = "/test.arr", method = RequestMethod.GET) // ★★★★★★★
-    public @ResponseBody ArrayList<String> testArr(HttpServletRequest req, HttpServletResponse res) {
-        res.setHeader("Access-Control-Allow-Origin", "*");
-        return new ArrayList<String>(Arrays.asList("teemo.jpg", "what.jpg", "jjanggu.jpg")); // ★★★★★★★
-    }
-	
-	@RequestMapping(value = "/test.go", method = RequestMethod.GET)
-	public String test() {
-		return "test";
-	}
 }

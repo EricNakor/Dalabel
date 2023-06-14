@@ -57,4 +57,5 @@ public class ManageBundleController {
 		req.setAttribute("contentPage", "home.jsp");
 		return "index";
 	}
+	
 }

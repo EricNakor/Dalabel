@@ -51,22 +51,3 @@ function my_labeling_load(x, y) {
 	})
 }
 
-function box(arr) {
-    let ret = $('.slider').bxSlider({
-        adaptiveHeight : true,
-        infiniteLoop : true,
-        touchEnabled : false,
-        pager : false,
-        slideWidth : 500,
-        mode : 'fade', // 'horizontal', 'vertical' 도 있음
-        nextSelector : '#slider-next', // <- -> 없애는 역할도 함
-        // prevSelector : '#slider-prev',
-        // nextText : '→ Go front',
-        // prevText : '← Go back'
-    })
-    for (const fileName of arr) {
-        $('.slider').append($('<img>').attr('src', 'resources/' + fileName))// ★★★★★★★
-    }
-    return ret
-} 
-
