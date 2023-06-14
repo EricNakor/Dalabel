@@ -65,4 +65,13 @@
 		]]>
 	</select>
 
+	<select id="getFileCount"
+		parameterType="com.hiddenlayer.dalabel.manageLabeling.LabelingProject"
+		resultType="java.math.BigDecimal">
+		<![CDATA[
+			select bundle_file_count from DataBundle
+			where bundle_no = (select project_bundle_no from labeling_project
+			where dolabel_project_no = #{dolabel_project_no})
+		]]>
+	</select>
 </mapper>
