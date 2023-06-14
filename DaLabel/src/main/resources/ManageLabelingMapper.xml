@@ -71,7 +71,7 @@
 		<![CDATA[
 			select bundle_file_count from DataBundle
 			where bundle_no = (select project_bundle_no from labeling_project
-			where dolabel_project_no = #{dolabel_project_no})
+			where project_no = #{project_no})
 		]]>
 	</select>
 </mapper>

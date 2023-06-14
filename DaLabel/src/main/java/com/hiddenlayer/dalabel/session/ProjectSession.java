@@ -24,6 +24,15 @@ public class ProjectSession {
 		projectInfos = new HashMap<BigDecimal, ProjectInfo>();
 	}
 	
+	@Override
+	public String toString() {
+		String rt = "{";
+		for(BigDecimal kv:projectInfos.keySet()) {
+			rt += kv+"-";
+		}
+		return rt+"}";
+	}
+	
 	public Data getNextData(String userid) {
 		// 매퍼로 가져올것.
 		BigDecimal project_no = getProjectNoWithUserID(userid);

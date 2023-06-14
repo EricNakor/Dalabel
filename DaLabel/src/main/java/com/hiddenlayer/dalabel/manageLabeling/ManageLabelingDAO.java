@@ -57,7 +57,8 @@ public class ManageLabelingDAO {
 	// 프로젝트 권한설정 관리
 	public void updateProjectAccessLevel(LabelingProject lp, HttpServletRequest req) {
 		ss.getMapper(ManageLabelingMapper.class).updateProjectAccessLevel(lp);
-		if(!lp.getProject_access_level().equals(0)) {
+		
+		if(lp.getProject_access_level().intValue()!=0) {
 			ps.createDoLabeling(lp.getProject_no(), 
 					ss.getMapper(ManageLabelingMapper.class).getFileCount(lp),
 					lp.getProject_access_level());
