@@ -1,6 +1,7 @@
 package com.hiddenlayer.dalabel.board;
 
 import java.math.BigDecimal;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -68,23 +69,18 @@ public class BoardDAO {
 			}
 			BoardSelector bSel = new BoardSelector(search, start, end);
 
-			// 댓글 불러오기
 			List<Board> posts = ss.getMapper(BoardMapper.class).getPost(bSel);
-
-//			for (Board b : posts) {
-//				b.setB_comment(ss.getMapper(BoardMapper.class).getComment(b));
-//			}
-
 			req.setAttribute("posts", posts);
 			req.setAttribute("pageCount", pageCount);
 			req.setAttribute("page", page);
 		} catch (Exception e) {
-
+			e.printStackTrace();
 		}
 	}
 
 	public void getDetailBoard(int board_id, HttpServletRequest req) {
 		req.setAttribute("detailBoard", ss.getMapper(BoardMapper.class).getDetailBoard(board_id));
+		req.setAttribute("comment", ss.getMapper(BoardMapper.class).getComment(board_id));
 	}
 
 	public void search(String search, HttpServletRequest req) {
@@ -108,13 +104,15 @@ public class BoardDAO {
 			String user = (String) req.getSession().getAttribute("loginUserID");
 			b.setBoard_writer(user);
 			b.setBoard_content(b.getBoard_content().replace("\r\n", "<br>"));
-
+			
+			System.out.println(user);
 			if (ss.getMapper(BoardMapper.class).writePost(b) == 1) {
 				req.setAttribute("result", "글쓰기 성공");
 				req.getSession().setAttribute("successToken", token);
 				allPostCount++;
 			}
 		} catch (Exception e) {
+			e.printStackTrace();
 			req.setAttribute("result", "글쓰기 실패");
 		}
 	}
@@ -128,15 +126,50 @@ public class BoardDAO {
 				return;
 			}
 
-			Member m = (Member) req.getSession().getAttribute("loginMember");
-			bc.setUser_id(m.getUser_id());
+			String user = (String) req.getSession().getAttribute("loginUserID");
+			bc.setComment_writer(user);
 			if (ss.getMapper(BoardMapper.class).writeComment(bc) == 1) {
 				req.setAttribute("result", "댓글쓰기 성공");
 				req.getSession().setAttribute("successToken", token);
-				allPostCount++;
 			}
 		} catch (Exception e) {
+			e.printStackTrace();
 			req.setAttribute("result", "댓글쓰기 실패");
 		}
 	}
+	
+	public void deleteComment(int comment_id, HttpServletRequest req) {
+		ss.getMapper(BoardMapper.class).deleteComment(comment_id);
+	}
+	
+	public void updateComment(BoardComment bc, HttpServletRequest req) {
+//		String user = (String) req.getSession().getAttribute("loginUserID");
+//		bc.setComment_writer(user);
+		ss.getMapper(BoardMapper.class).updateComment(bc);
+	}
+	
+	public void writeReply(BoardReply br, HttpServletRequest req) {
+		try {
+			String token = req.getParameter("token");
+			String lastSuccessToken = (String) req.getSession().getAttribute("successToken");
+			if (lastSuccessToken != null && token.equals(lastSuccessToken)) {
+				req.setAttribute("result", "대댓글쓰기 실패");
+				return;
+			}
+			
+			String user = (String) req.getSession().getAttribute("loginUserID");
+			br.setReply_writer(user);			
+			if (ss.getMapper(BoardMapper.class).writeReply(br) == 1) {
+				req.setAttribute("result", "대댓글쓰기 성공");
+				req.getSession().setAttribute("successToken", token);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void getReply(int comment_id, HttpServletRequest req) {
+		req.setAttribute("reply", ss.getMapper(BoardMapper.class).getReply(comment_id));
+	}
+	
 }

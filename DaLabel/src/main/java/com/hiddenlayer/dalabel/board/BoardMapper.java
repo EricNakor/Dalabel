@@ -16,9 +16,17 @@ public interface BoardMapper {
 
 	public abstract Board getDetailBoard(int board_id);
 
-	public abstract List<BoardComment> getComment(Board b);
+	public abstract List<BoardComment> getComment(int board_id);
 
 	public abstract int writeComment(BoardComment bc);
 
 	public abstract int writePost(Board b);
+	
+	public abstract int writeReply(BoardReply br);
+	
+	public abstract List<BoardReply> getReply(int comment_id);
+	
+	public abstract int deleteComment(int bc);
+	
+	public abstract int updateComment(BoardComment bc);
 }

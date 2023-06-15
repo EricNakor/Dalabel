@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,14 +26,13 @@
 						<td>글쓴사람</td>
 						<td>작성일</td>
 					</tr>
-
 					<c:forEach var="p" items="${posts }">
 						<tr>
 							<td><a href="board.get.detail?board_id=${p.board_id }">${p.board_id }</a></td>
 							<td>${p.board_category }</td>
 							<td>${p.board_title }</td>
 							<td>${p.board_writer }</td>
-							<td>${p.board_regist }</td>
+							<td><fmt:formatDate value="${p.board_regist }" type="date" dateStyle="short"/></td>
 						</tr>
 					</c:forEach>
 				</table>

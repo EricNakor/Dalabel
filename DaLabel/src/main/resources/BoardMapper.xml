@@ -18,22 +18,6 @@
 				)
 			)
 			where rn >= #{start} and rn <= #{end}
-		),(
-		select user_id
-		from member
-		where user_id in (
-			select board_writer
-			from (
-				select rownum as rn, board_id, board_writer, board_title, board_regist
-				from (
-					select*
-					from board
-					where board_writer like '%'||#{search}||'%' or board_title like '%'||#{search}||'%'
-					order by board_regist desc
-					)
-				)
-				where rn >= #{start} and rn <= #{end}
-			)
 		)
 		]]>
 
@@ -90,21 +74,53 @@
 	<insert id="writeComment"
 		parameterType="com.hiddenlayer.dalabel.board.BoardComment">
 		<![CDATA[
-		insert into board(comment_id, comment_content, comment_delete, comment_regist)
-		values(comment_seq.nextval, #{comment_content}, 0, sysdate)
+		insert into post_comment
+		values(post_comment_seq.nextval, #{inherit_post}, #{comment_writer}, #{comment_content}, sysdate, sysdate, 0)
 		]]>
 	</insert>
 
 	<!-- 댓글 조회 -->
 	<select id="getComment"
-		parameterType="com.hiddenlayer.dalabel.board.Board"
 		resultType="com.hiddenlayer.dalabel.board.BoardComment">
 		<![CDATA[
 		select*
-		from comment
-		where board_id = #{board_id}
+		from post_comment
+		where inherit_post = #{board_id}
 		order by comment_regist
 		]]>
 	</select>
-
+	
+	<!-- 댓글 삭제 -->
+	<delete id="deleteComment">
+		<![CDATA[
+			delete from post_comment
+			where comment_id = #{comment_id}
+		]]>
+	</delete>
+	
+	<update id="updateComment" parameterType="com.hiddenlayer.dalabel.board.BoardComment">
+		<![CDATA[
+			update post_comment
+			set comment_content = #{comment_content}, comment_edit = sysdate
+			where comment_id = #{comment_id}
+		]]>
+	</update>
+	
+	
+	<!-- 대댓글 작성 -->
+	<insert id="writeReply" parameterType="com.hiddenlayer.dalabel.board.BoardReply">
+		<![CDATA[
+		insert into reply
+		values(reply_seq.nextval, #{inherit_comment}, #{reply_writer}, #{reply_content}, sysdate, sysdate, 0)
+		]]>
+	</insert>
+	
+	<!-- 대댓글 조회 -->
+	<select id="getReply" resultType="com.hiddenlayer.dalabel.board.BoardReply">
+		<![CDATA[
+			select * from reply
+			where inherit_comment = #{comment_id}
+			order by reply_regist
+		]]>
+	</select>
 </mapper>
