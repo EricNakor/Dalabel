@@ -113,11 +113,11 @@ public class MemberDAO {
 	public void deleteMember(HttpServletRequest req) {
 		Member m = new Member();
 		m.setUser_id((String) req.getSession().getAttribute("loginUserID"));
-		int postCount = ss.getMapper(BoardMapper.class).getPostCountByUser(m);
+//		int postCount = ss.getMapper(BoardMapper.class).getPostCountByUser(m);
 		if (ss.getMapper(AccountMapper.class).deleteMember(m) == 1) {
 			// 탈퇴 시 글 카운트
-			int allPostCount = bDAO.getAllPostCount();
-			bDAO.setAllPostCount(allPostCount - postCount);
+//			int allPostCount = bDAO.getAllPostCount();
+//			bDAO.setAllPostCount(allPostCount - postCount);
 			logout(req);
 		} else {
 

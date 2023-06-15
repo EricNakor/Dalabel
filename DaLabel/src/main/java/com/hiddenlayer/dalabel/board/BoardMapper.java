@@ -8,19 +8,19 @@ import com.hiddenlayer.dalabel.member.Member;
 public interface BoardMapper {
 	public abstract int deletePost(BigDecimal b);
 
+	public abstract List<BoardComment> getComment(Board b);
+
+	public abstract Board getDetailBoard(int board_id);
+
 	public abstract List<Board> getPost(BoardSelector bs);
 
 	public abstract int getPostCount(BoardSelector bs);
 
 	public abstract int getPostCountByUser(Member m);
 
-	public abstract Board getDetailBoard(int board_id);
-
-	public abstract List<BoardComment> getComment(Board b);
+	public abstract int updatePost(Board b);
 
 	public abstract int writeComment(BoardComment bc);
 
 	public abstract int writePost(Board b);
-	
-	public abstract int updatePost(Board b);
 }

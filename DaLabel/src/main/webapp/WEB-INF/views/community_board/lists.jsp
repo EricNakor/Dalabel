@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <title>페이지 리스트</title>
 <script type="text/javascript" src="resources/js/dalabelMove.js"></script>
+<script type="text/javascript" src="resources/js/dalabelCheck.js"></script>
 </head>
 <body>
 	<table>
@@ -23,8 +24,7 @@
 
 					<c:forEach var="p" items="${posts }">
 						<tr>
-							<td>
-								<a href="board.get.detail?board_id=${p.board_id }">${p.board_id }</a>
+							<td><a href="board.get.detail?board_id=${p.board_id }">${p.board_id }</a>
 							</td>
 							<td>${p.board_category }</td>
 							<td>${p.board_title }</td>
@@ -41,21 +41,27 @@
 		</tr>
 		<tr>
 			<td align="center">
-				<form name="boardSearchForm" onsubmit="return boardSearchCheck();">
-					<input name="search" maxlength="20">
-					<button>검색</button>
+				<form action="board.search" name="boardSearchForm" onsubmit="return boardSearchCheck();">
+					<table id="searchArea">
+						<tr>
+							<td>
+							<input name="search" maxlength="20">
+								<button>검색</button>
+							</td>
+						</tr>
+					</table>
 				</form>
 			</td>
 		</tr>
 	</table>
-		<c:if test="${page != 1 }">
-			<div class="boardL" onclick="boardPageChange(${page - 1});">&lt;</div>
-		</c:if>
+	<c:if test="${page != 1 }">
+		<div class="boardL" onclick="boardPageChange(${page - 1});">&lt;</div>
+	</c:if>
 	<c:forEach var="p" begin="1" end="${pageCount }">
 		<a>${p }</a>
 	</c:forEach>
 	<c:if test="${page != pageCount }">
-			<div class="boardR" onclick="boardPageChange(${page + 1});">&gt;</div>
-		</c:if>
+		<div class="boardR" onclick="boardPageChange(${page + 1});">&gt;</div>
+	</c:if>
 </body>
 </html>

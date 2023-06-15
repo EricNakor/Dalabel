@@ -26,19 +26,6 @@ public class BoardDAO {
 		super();
 	}
 
-	public int getAllPostCount() {
-		return allPostCount;
-	}
-	
-	public void setAllPostCount() {
-		BoardSelector bSel2 = new BoardSelector("", 0, 0);
-		allPostCount = ss.getMapper(BoardMapper.class).getPostCount(bSel2);
-	}
-
-	public void setAllPostCount(int allPostCount) {
-		this.allPostCount = allPostCount;
-	}
-
 	public void clearSearch(HttpServletRequest req) {
 		req.getSession().setAttribute("search", null);
 	}
@@ -58,34 +45,33 @@ public class BoardDAO {
 
 	public void getAllPost(int page, HttpServletRequest req) {
 		try {
-			System.out.println(allPostCount);
 			int postCount = allPostCount;
-			System.out.println(postCount);
 			String search = (String) req.getSession().getAttribute("search");
-			int pageCount = (int) Math.ceil(postCount / (double) dalableOptions.getBoardPostPerPage());
-			int start = (page - 1) * dalableOptions.getBoardPostPerPage() + 1;
-			int end = page * dalableOptions.getBoardPostPerPage();
 
 			if (search == null) {
 				search = "";
 			} else {
-				BoardSelector bSel = new BoardSelector(search, start, end);
+				BoardSelector bSel = new BoardSelector(search, 0, 0);
+//				BoardSelector bSel = new BoardSelector(search, start, end);
 				postCount = ss.getMapper(BoardMapper.class).getPostCount(bSel);
 			}
+			int pageCount = (int) Math.ceil(postCount / (double) dalableOptions.getBoardPostPerPage());
+			int start = (page - 1) * dalableOptions.getBoardPostPerPage() + 1;
+			int end = page * dalableOptions.getBoardPostPerPage();
+
 			BoardSelector bSel = new BoardSelector(search, start, end);
 
-			// 댓글 불러오기
 			List<Board> posts = ss.getMapper(BoardMapper.class).getPost(bSel);
-
-//			for (Board b : posts) {
-//				b.setB_comment(ss.getMapper(BoardMapper.class).getComment(b));
-//			}
 			req.setAttribute("posts", posts);
 			req.setAttribute("pageCount", pageCount);
 			req.setAttribute("page", page);
 		} catch (Exception e) {
 
 		}
+	}
+
+	public int getAllPostCount() {
+		return allPostCount;
 	}
 
 	public void getDetailBoard(int board_id, HttpServletRequest req) {
@@ -96,6 +82,39 @@ public class BoardDAO {
 		req.getSession().setAttribute("search", search);
 	}
 
+	public void setAllPostCount() {
+		BoardSelector bSel2 = new BoardSelector("", 0, 0);
+		allPostCount = ss.getMapper(BoardMapper.class).getPostCount(bSel2);
+	}
+
+	public void setAllPostCount(int allPostCount) {
+		this.allPostCount = allPostCount;
+	}
+
+	public void updateBoard(HttpServletRequest req, Board b) {
+		ss.getMapper(BoardMapper.class).updatePost(b);
+	}
+
+	public void writeComment(BoardComment bc, HttpServletRequest req) {
+		try {
+			String token = req.getParameter("token");
+			String lastSuccessToken = (String) req.getSession().getAttribute("successToken");
+			if (lastSuccessToken != null && token.equals(lastSuccessToken)) {
+				req.setAttribute("result", "댓글쓰기 실패");
+				return;
+			}
+
+			Member m = (Member) req.getSession().getAttribute("loginMember");
+			bc.setUser_id(m.getUser_id());
+			if (ss.getMapper(BoardMapper.class).writeComment(bc) == 1) {
+				req.setAttribute("result", "댓글쓰기 성공");
+				req.getSession().setAttribute("successToken", token);
+				allPostCount++;
+			}
+		} catch (Exception e) {
+			req.setAttribute("result", "댓글쓰기 실패");
+		}
+	}
 
 	public void writePost(Board b, HttpServletRequest req) {
 		try {
@@ -117,31 +136,6 @@ public class BoardDAO {
 			}
 		} catch (Exception e) {
 			req.setAttribute("result", "글쓰기 실패");
-		}
-	}
-
-	public void updateBoard(HttpServletRequest req, Board b) {
-		ss.getMapper(BoardMapper.class).updatePost(b);
-	}
-	
-	public void writeComment(BoardComment bc, HttpServletRequest req) {
-		try {
-			String token = req.getParameter("token");
-			String lastSuccessToken = (String) req.getSession().getAttribute("successToken");
-			if (lastSuccessToken != null && token.equals(lastSuccessToken)) {
-				req.setAttribute("result", "댓글쓰기 실패");
-				return;
-			}
-
-			Member m = (Member) req.getSession().getAttribute("loginMember");
-			bc.setUser_id(m.getUser_id());
-			if (ss.getMapper(BoardMapper.class).writeComment(bc) == 1) {
-				req.setAttribute("result", "댓글쓰기 성공");
-				req.getSession().setAttribute("successToken", token);
-				allPostCount++;
-			}
-		} catch (Exception e) {
-			req.setAttribute("result", "댓글쓰기 실패");
 		}
 	}
 
