@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.hiddenlayer.dalabel.manageLabeling.DataBundle;
-import com.hiddenlayer.dalabel.member.MemberDAO;
 
 @Controller
 public class ManageBundleController {
@@ -34,24 +33,29 @@ public class ManageBundleController {
 	@RequestMapping(value = "/get.needlogin.my.bundle", method = RequestMethod.GET)
 	public String getMyBundle(HttpServletRequest req) {
 		mbDAO.getMyBundle(1, req);
-		return "bundle/manage_bundle";
+		req.setAttribute("contentPage", "bundle/manage_bundle.jsp");
+		return "index";
 	}
 
 	@RequestMapping(value = "/bundle.needlogin.page.change", method = RequestMethod.GET)
 	public String snsPageChange(@RequestParam(value = "page") int page, HttpServletRequest req) {
 		mbDAO.getMyBundle(page, req);
-		return "bundle/manage_bundle";
+		req.setAttribute("contentPage", "bundle/manage_bundle.jsp");
+		return "index";
 	}
 
 	@RequestMapping(value = "/delete.needlogin.bundle", method = RequestMethod.POST)
 	public String deleteBundle(@RequestParam(value = "bundle_no") int bundle_no, HttpServletRequest req) {
 		mbDAO.deleteBundle(bundle_no, req);
-		return "home";
+		req.setAttribute("contentPage", "home.jsp");
+		return "index";
 	}
 
 	@RequestMapping(value = "/update.needlogin.file.name", method = RequestMethod.GET)
-	public String updateBundleFolderName(DataBundle db) {
+	public String updateBundleFolderName(DataBundle db, HttpServletRequest req) {
 		mbDAO.updateBundleFolderName(db);
-		return "home";
+		req.setAttribute("contentPage", "home.jsp");
+		return "index";
 	}
+	
 }

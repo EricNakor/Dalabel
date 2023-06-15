@@ -50,9 +50,17 @@ create table data(
 	constraint data_pk primary key(data_where, data_name)
 )
 
+update data set data_activation = '1' where data_where = '22'
+
 select * from data
 
-drop table data cascade constraint purge
+select * from LABELING_PROJECT
+select * from labeling_done
+
+baba 카테고리 '{type:"button",info:["버튼1", "개", "고양이", "car"]}'로 업데이트좀ㅈ 해봐
+update labeling_project set project_category = '{type:"button",info:["버튼1", "개", "고양이", "car"]}' where project_title = 'baba'
+
+
 
 create table labeling_do (
 	dolabel_user varchar2(15 char),
@@ -60,6 +68,17 @@ create table labeling_do (
 	dolabel_state char(1),
 	dolabel_score number(3, 2),
 	constraint want_labeling_pk primary key(dolabel_user, dolabel_project_no)
+)
+
+create table labeling_done (
+	project_no number(8) not null,
+	data_no varchar2(58 char) not null,
+	worked_by varchar2(15 char) not null,
+	label varchar2(300 char) not null,
+	constraint done_project_no foreign key (project_no) 
+	references labeling_project(project_no) on delete cascade,
+	constraint done_worked_by foreign key (worked_by) 
+	references member(user_id) on delete cascade
 )
 
 insert into labeling_do values('test123', 49, 1, null)

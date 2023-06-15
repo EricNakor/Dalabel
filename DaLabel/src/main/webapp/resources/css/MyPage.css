@@ -1,3 +1,6 @@
+input, button {
+	border: none;
+}
  .u-section-1 {
   background-image: none;
 /*   min-height: 806px; */
@@ -16,7 +19,7 @@
   padding: 30px;
 }
 
-.u-section-1 .u-form-1 {
+.u-section-1 .member-info-form-1 {
   margin-bottom: 0;
   margin-top: 0;
 }

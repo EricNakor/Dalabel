@@ -1,5 +1,7 @@
 package com.hiddenlayer.dalabel.data;
 
+import java.util.ArrayList;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.hiddenlayer.dalabel.manageLabeling.Data;
 
@@ -20,7 +23,8 @@ public class DataController {
 			@RequestParam(value = "bundle_folder_name") String bundle_folder_name, HttpServletRequest req) {
 		req.setAttribute("data_where", bundle_no);
 		req.setAttribute("bundle_folder_name", bundle_folder_name);
-		return "bundle/bundleData";
+		req.setAttribute("contentPage", "bundle/bundleData.jsp");
+		return "index";
 	}
 
 	@RequestMapping(value = "/get.needlogin.bundle.data", method = RequestMethod.GET)
@@ -29,7 +33,8 @@ public class DataController {
 		dDAO.getData(bundle_folder_name, data, req);
 		req.setAttribute("data_where", data.getData_where());
 		req.setAttribute("bundle_folder_name", bundle_folder_name);
-		return "bundle/bundleData";
+		req.setAttribute("contentPage", "bundle/bundleData.jsp");
+		return "index";
 	}
 
 	@RequestMapping(value = "/delete.needlogin.data", method = RequestMethod.GET)
@@ -39,6 +44,12 @@ public class DataController {
 		dDAO.getData(bundle_folder_name, data, req);
 		req.setAttribute("data_where", data.getData_where());
 		req.setAttribute("bundle_folder_name", bundle_folder_name);
-		return "bundle/bundleData";
+		req.setAttribute("contentPage", "bundle/bundleData.jsp");
+		return "index";
+	}
+	
+	@RequestMapping(value = "/data.needlogin.get.reported")
+	public @ResponseBody ArrayList<Data> reportedData(HttpServletRequest req, @RequestParam(value = "data_where") int data_where) {
+		return dDAO.getReportedData(data_where); 
 	}
 }

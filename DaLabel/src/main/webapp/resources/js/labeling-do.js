@@ -20,7 +20,7 @@ function labeling_do_loads(x, y) {
 					$("<table></table>").attr("id", "projectTbl")
 					.append(titleTd, requestorTd, howTd, stateTd)
 					.on("click", function() {
-						location.href = "doLabeling.needlogin.askjoin?project_no="
+						location.href = "doLabeling.needlogin.showIntro?project_no="
 							+ project2.project_no
 				}))
 			})
@@ -50,3 +50,4 @@ function my_labeling_load(x, y) {
 		}
 	})
 }
+

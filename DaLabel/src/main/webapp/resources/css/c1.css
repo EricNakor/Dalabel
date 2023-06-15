@@ -1,3 +1,9 @@
+.profileImg {
+	max-width: 50px;
+	max-height: 50px;
+	border-radius: 70%;
+}
+
 .u-section-1 {
 	min-height: 691px;
 	background-image:

@@ -104,3 +104,21 @@ function loadProjectAccessLevel(val){
 	})
 }
 
+function getReportedData(no, user) {
+	$.ajax({
+		type : "get",
+		url : "data.needlogin.get.reported",
+		data : {
+			"data_where" : no
+		},
+		success : function(reportedData) {
+			$.each(reportedData, function(index, reportedData2) {
+				$("#reportedDataTable").append($("<tr><td></td></tr>")
+						.append($("<img>").attr("src", "resources/data/" + user + "/" + reportedData2)))
+			})
+		},
+		error : function() {
+			alert("없음")
+		}
+	})
+}
