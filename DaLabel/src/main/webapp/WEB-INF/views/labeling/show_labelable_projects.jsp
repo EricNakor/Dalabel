@@ -9,7 +9,7 @@
 <script type="text/javascript" src="resources/js/labeling-do.js"></script>
 <title>Insert title here</title>
 </head>
-<body onload="labeling_do_loads(-1,10)">
+<body onload="labeling_do_loads(-1,3)">
 	<div class="projectsontainer">
 	
 	</div>

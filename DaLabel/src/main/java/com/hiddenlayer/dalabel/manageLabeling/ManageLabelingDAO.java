@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.hiddenlayer.dalabel.dolabeling.LabelDoList;
 import com.hiddenlayer.dalabel.manageBundle.ManageSelector;
+import com.hiddenlayer.dalabel.session.ProjectSession;
 import com.hiddenlayer.dalabel.util.PageOption;
 
 @Service
@@ -17,7 +18,10 @@ public class ManageLabelingDAO {
 	// 등록 - 데이터 선택해서 오픈하기.
 	@Autowired
 	private SqlSession ss;
-
+	
+	@Autowired
+	private ProjectSession ps;
+	
 	@Autowired
 	private PageOption po;
 
@@ -53,6 +57,14 @@ public class ManageLabelingDAO {
 	// 프로젝트 권한설정 관리
 	public void updateProjectAccessLevel(LabelingProject lp, HttpServletRequest req) {
 		ss.getMapper(ManageLabelingMapper.class).updateProjectAccessLevel(lp);
+		
+		if(lp.getProject_access_level().intValue()!=0) {
+			ps.createDoLabeling(lp.getProject_no(), 
+					ss.getMapper(ManageLabelingMapper.class).getFileCount(lp),
+					lp.getProject_access_level());
+		}else {
+			ps.terminateDoLabeling(lp.getProject_no());
+		}
 	}
 	// 정산시작하기
 	// 참여인원 관리 - 조회, 대기, 수락, 거부, 밴, (초대)

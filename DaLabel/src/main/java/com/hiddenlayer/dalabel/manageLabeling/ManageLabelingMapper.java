@@ -1,5 +1,6 @@
 package com.hiddenlayer.dalabel.manageLabeling;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 
 import com.hiddenlayer.dalabel.dolabeling.LabelDoList;
@@ -19,4 +20,6 @@ public interface ManageLabelingMapper {
 	public abstract int changeUserAccess(LabelDoList lp);
 	
 	public abstract ArrayList<LabelDoList> selectLabelingUser(int no);
+	
+	public abstract BigDecimal getFileCount(LabelingProject lp);
 }

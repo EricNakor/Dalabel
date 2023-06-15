@@ -15,7 +15,7 @@ CREATE INDEX idx_bundle_upload ON databundle (bundle_uploader, bundle_uploaded_f
 drop sequence databundle_seq
 create sequence databundle_seq
 
-select * from databundle
+select * from databundle order by bundle_no desc
 
 drop table databundle cascade constraint purge
 
@@ -41,7 +41,11 @@ create sequence labeling_project_seq
 
 select * from labeling_project
 
+insert into labeling_done values(50, '4b50ad61-7a9d-4cfb-947d-e5d6f89dfaac_00000001.jpg', 'test111', '')
+
 update labeling_project set project_access_level = 30 where project_title = 'absd'
+
+select * from labeling_done
 
 create table data(
 	data_name varchar2(58 char),
@@ -53,6 +57,9 @@ create table data(
 update data set data_activation = '1' where data_where = '22'
 
 select * from data
+select * from LABELING_DO
+
+
 
 select * from LABELING_PROJECT
 select * from labeling_done

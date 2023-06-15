@@ -8,6 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<div>${bundle_folder_name }</div>
 	<table>
 		<tr>
 			<td>
@@ -16,6 +17,11 @@
 					<input name="bundle_folder_name" type="hidden"
 						value="${bundle_folder_name }"> <input name="data_name">
 					<button>검색</button>
+				</form>
+				<form action="update.needlogin.folder.name">
+					<input type="hidden" value="${data_where }" name="bundle_no">
+					<input name="bundle_folder_name">
+					<button>폴더명 수정</button>
 				</form>
 			</td>
 		</tr>

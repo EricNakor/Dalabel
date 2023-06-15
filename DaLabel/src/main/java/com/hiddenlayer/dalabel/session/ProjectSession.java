@@ -24,6 +24,15 @@ public class ProjectSession {
 		projectInfos = new HashMap<BigDecimal, ProjectInfo>();
 	}
 	
+	@Override
+	public String toString() {
+		String rt = "{";
+		for(BigDecimal kv:projectInfos.keySet()) {
+			rt += kv+"-";
+		}
+		return rt+"}";
+	}
+	
 	public Data getNextData(String userid) {
 		// 매퍼로 가져올것.
 		BigDecimal project_no = getProjectNoWithUserID(userid);
@@ -36,12 +45,19 @@ public class ProjectSession {
 		while(true) {
 			if((data_no = pif.getRest_data())==null) {
 				data_no = pif.getNext_todo_no();
-				return ss.getMapper(DataMapper.class).getNextBiggerData(project_no, data_no);
+				rtData = ss.getMapper(DataMapper.class).getNextData(project_no, data_no);
+				if(rtData!=null) {
+					return rtData;
+				}
 			}else {
 				rtData=ss.getMapper(DataMapper.class).getNextData(project_no, data_no);
 				if(rtData!=null) {
 					return rtData;
 				}
+			}
+			if(pif.getCycle_no().intValue()==15) {
+				terminateDoLabeling(project_no);
+				return null;
 			}
 			
 		}

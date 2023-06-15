@@ -24,7 +24,6 @@ public class DataDAO {
 	public void deleteData(String data_name) {
 		ss.getMapper(DataMapper.class).deleteData(data_name);
 	}
-	
 	public ArrayList<Data> getReportedData(int data_where) {
 		return (ArrayList<Data>) ss.getMapper(DataMapper.class).getReportedData(data_where); 
 	}

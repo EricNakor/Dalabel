@@ -11,9 +11,9 @@ public class PageOption {
 	private int projectPerPage;
 
 	public PageOption() {
-		dataBundlePerPage = 5;
-		manageLabelingPerPage = 5;
-		projectPerPage = 5;
+		dataBundlePerPage = 6;
+		manageLabelingPerPage = 6;
+		projectPerPage = 6;
 	}
 
 	public PageOption(int dataBundlePerPage, int manageLabelingPerPage, int projectPerPage) {

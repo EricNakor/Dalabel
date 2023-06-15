@@ -38,8 +38,9 @@ public class ManageBundleDAO {
 		db.setBundle_uploaded_filename(names[0]);
 		db.setBundle_data_type(names[1]);
 		db.setBundle_descript(names[2]);
+		String foldername = db.getBundle_uploaded_filename().substring(names[0].indexOf("_") + 1, names[0].length());
 		db.setBundle_folder_name(
-				db.getBundle_uploaded_filename().substring(0, db.getBundle_uploaded_filename().lastIndexOf(".")));
+				foldername.substring(0, foldername.lastIndexOf(".")));
 		ss.getMapper(ManageBundleMapper.class).regLabelingBundle(db);
 
 		uzt.addTodo(new UnZipInfos(fu.getDataRealPath(loginUser) + names[0], names[1],
@@ -60,6 +61,7 @@ public class ManageBundleDAO {
 		int end = page * po.getDataBundlePerPage();
 		ManageSelector ms = new ManageSelector(user, start, end);
 		List<DataBundle> bundles = ss.getMapper(ManageBundleMapper.class).getAllBundle(ms);
+
 		req.setAttribute("bundles", bundles);
 		req.setAttribute("bundlePageCount", bundlePageCount);
 		req.setAttribute("page", page);
@@ -70,6 +72,6 @@ public class ManageBundleDAO {
 	}
 
 	public void updateBundleFolderName(DataBundle db) {
-		ss.getMapper(ManageBundleMapper.class).updateBundleFileName(db);
+		ss.getMapper(ManageBundleMapper.class).updateFolderName(db);
 	}
 }

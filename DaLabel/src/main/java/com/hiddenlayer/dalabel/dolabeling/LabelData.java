@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 
 public class LabelData {
 	private BigDecimal project_no;
-	private BigDecimal data_no;
+	private String data_no;
 	private String worked_by;
 	private String label;
 
@@ -12,7 +12,7 @@ public class LabelData {
 		// TODO Auto-generated constructor stub
 	}
 
-	public LabelData(BigDecimal project_no, BigDecimal data_no, String worked_by, String label) {
+	public LabelData(BigDecimal project_no, String data_no, String worked_by, String label) {
 		super();
 		this.project_no = project_no;
 		this.data_no = data_no;
@@ -28,11 +28,11 @@ public class LabelData {
 		this.project_no = project_no;
 	}
 
-	public BigDecimal getData_no() {
+	public String getData_no() {
 		return data_no;
 	}
 
-	public void setData_no(BigDecimal data_no) {
+	public void setData_no(String data_no) {
 		this.data_no = data_no;
 	}
 

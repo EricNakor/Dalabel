@@ -10,7 +10,8 @@
 </head>
 <body onload="my_labeling_load(-1, 10)">
 	<div class="my_labeling">
-		
+
 	</div>
+	
 </body>
 </html>

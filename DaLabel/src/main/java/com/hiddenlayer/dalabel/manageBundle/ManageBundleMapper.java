@@ -13,5 +13,6 @@ public interface ManageBundleMapper {
 	public abstract int deleteBundle(int bundle_no);
 	public abstract int getBundleNumber(@Param("userId") String id, @Param("fileName") String fileName);
 	public abstract int updateBundleAfterUnzip(DataBundle db);
-	public abstract int updateBundleFileName(DataBundle db);
+	public abstract int updateFolderName(DataBundle db);
+	public abstract String getBundleFilePath(@Param("bundle_no")int project_no);
 }

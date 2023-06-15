@@ -30,7 +30,7 @@ public class DoLabelingController {
 	@RequestMapping(value = "/doLabeling.needlogin.start", method = RequestMethod.GET)
 	public String start(HttpServletRequest req, LabelingProject lp) {
 		dlDAO.start(req, lp);
-		req.setAttribute("contentPage", "labeling/do_labeling.jsp");
+		req.setAttribute("contentPage","labeling/start_labeling.jsp" );
 		return "index";
 	}
 
@@ -46,6 +46,7 @@ public class DoLabelingController {
 
 	@RequestMapping(value = "/doLabeling.needlogin.next", method = RequestMethod.GET)
 	public @ResponseBody String nextData(HttpServletRequest req, LabelData ld) {
+		System.out.println("신호는 받음");
 		return dlDAO.nextDataName(req, ld);
 	}
 
