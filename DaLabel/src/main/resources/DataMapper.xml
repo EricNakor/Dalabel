@@ -18,7 +18,8 @@
 		like #{data_name}||'.%'
 	]]>
 	</select>
-	<select id="getNextData" resultType="com.hiddenlayer.dalabel.manageLabeling.Data">
+	<select id="getNextData"
+		resultType="com.hiddenlayer.dalabel.manageLabeling.Data">
 		<![CDATA[
 		with tempt as (select data_name, data_where, data_activation, row_number()over(order by data_name) as rn from data
 					where data_where = (select project_bundle_no from Labeling_project where project_no = #{project_no})) 
@@ -26,7 +27,27 @@
 			where rn = #{rest_no} and data_activation=1
 		]]>
 	</select>
-
+	<select id="getNextBiggerData"
+		resultType="com.hiddenlayer.dalabel.manageLabeling.Data">
+		<![CDATA[
+			select data_name, data_where from(
+			select data_name, data_where, rownum as rn from(
+			with tempt as (select data_name, data_where, data_activation, row_number()over(order by data_name) as rn from data
+					where data_where = (select project_bundle_no from Labeling_project where project_no = #{project_no}))
+			select data_name, data_where from tempt
+			where rn >= #{rest_no} and data_activation=1
+			UNION all
+			select data_name, data_where from tempt
+			where rn >= 0 and data_activation=1))
+			where rn<=1
+		]]>
+	</select>
+	<select id="getReportedData"
+		resultType="com.hiddenlayer.dalabel.manageLabeling.Data">
+		<![CDATA[
+			select data_name from data where data_where =  #{data_where} and data_activation = 2
+		]]>
+	</select>
 	<update id="deleteData" parameterType="java.lang.String">
 		<![CDATA[
 		update data set data_activation = 0

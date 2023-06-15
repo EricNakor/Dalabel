@@ -1,5 +1,7 @@
 package com.hiddenlayer.dalabel.data;
 
+import java.util.ArrayList;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.hiddenlayer.dalabel.manageLabeling.Data;
 
@@ -43,5 +46,10 @@ public class DataController {
 		req.setAttribute("bundle_folder_name", bundle_folder_name);
 		req.setAttribute("contentPage", "bundle/bundleData.jsp");
 		return "index";
+	}
+	
+	@RequestMapping(value = "/data.needlogin.get.reported")
+	public @ResponseBody ArrayList<Data> reportedData(HttpServletRequest req, @RequestParam(value = "data_where") int data_where) {
+		return dDAO.getReportedData(data_where); 
 	}
 }

@@ -62,4 +62,5 @@ public class ManageBundleController {
 		req.setAttribute("contentPage", "bundle/bundleData.jsp");
 		return "index";
 	}
+	
 }

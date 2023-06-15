@@ -42,5 +42,12 @@
 				</c:if></td>
 		</tr>
 	</table>
+	<table id="reportedDataTable">
+		<tr>
+			<td><button
+					onclick="getReportedData(${bundle_no}, ${sessionScope.loginUserID })">신고된
+					데이터 보기</button></td>
+		</tr>
+	</table>
 </body>
 </html>
