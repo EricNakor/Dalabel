@@ -70,11 +70,11 @@
 		]]>
 	</update>
 
-	<update id="updateBundleFileName"
+	<update id="updateFolderName"
 		parameterType="com.hiddenlayer.dalabel.manageLabeling.DataBundle">
 	<![CDATA[
 			update databundle
-			set bundle_uploaded_filename = #{bundle_uploaded_filename}
+			set bundle_folder_name = #{bundle_folder_name}
 			where bundle_no=#{bundle_no}
 		]]>
 	</update>
