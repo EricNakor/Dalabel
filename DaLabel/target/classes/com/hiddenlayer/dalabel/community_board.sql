@@ -16,26 +16,56 @@ create table board(
 
 create sequence board_seq start with 1 increment by 1;
 
-select * from board
+select * from board;
 
 --insert into board 
 --value (board_seq.nextval, board_id, board_category, board_writer, board_title, board_content, board_file, sysdate, sysdate, 0)
 
 create table post_comment(
 	comment_id number(8) not null primary key,
-	inherit_post number(8) references board(board_id),
-	comment_writer varchar2(15 char) references member(user_id),
+	inherit_post number(8) not null,
+	comment_writer varchar2(15 char) not null,
 	comment_content varchar2(600) not null,
 	comment_regist date default sysdate not null,
 	comment_edit date default sysdate not null,
-	comment_delete number(1) not null
+	comment_delete number(1) not null,
+	constraint b_comment
+		foreign key(inherit_post) references board(board_id)
+		on delete cascade,
+	foreign key(comment_writer) references member(user_id)
 );
 
+drop table post_comment cascade constraints purge;
+drop sequence post_comment_seq;
 create sequence post_comment_seq;
+
+select * from post_comment;
 
 --select*
 --from comment
 --where board_id = 11
+
+select * from member;
+
+create table reply(
+	reply_id number(8) primary key,
+	inherit_comment number(8) not null,
+	reply_writer varchar2(15 char) not null,
+	reply_content varchar2(600) not null,
+	reply_regist date not null,
+	reply_edit date not null,
+	reply_delete number(1) not null,
+	foreign key(inherit_comment) references post_comment(comment_id),
+	foreign key(reply_writer) references member(user_id)
+);
+
+create sequence reply_seq;
+
+select * from reply;
+
+drop table reply cascade constraints purge;
+drop sequence reply_seq cascade constraints purge;
+
 
 create table reply(
 	inherit_comment number(8) references post_comment(comment_id),
