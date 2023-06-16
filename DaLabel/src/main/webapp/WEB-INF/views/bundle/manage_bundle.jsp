@@ -47,11 +47,13 @@
 									class="u-active-black u-align-center u-border-none u-btn u-btn-round u-button-style u-hover-black u-palette-3-base u-radius-50 u-text-active-white u-text-body-alt-color u-text-hover-white u-btn-2">삭제</button>
 							</form>
 							<form action="bundle.needlogin.data.go">
-								<input type="hidden" value="${b.bundle_no }" name="bundle_no">
+								<input type="hidden" value="${b.bundle_no }" name="data_where">
 								<input type="hidden" value="${b.bundle_folder_name }"
 									name="bundle_folder_name">
+								<input type="hidden" value="${b.bundle_uploaded_filename }"
+									name="bundle_uploaded_filename">
 								<button
-									class="u-active-black u-align-center u-border-none u-btn u-btn-round u-button-style u-hover-black u-palette-3-base u-radius-50 u-text-active-white u-text-body-alt-color u-text-hover-white u-btn-2">파일관리</button>
+									class="u-active-black u-align-center u-border-none u-btn u-btn-round u-button-style u-hover-black u-palette-3-base u-radius-50 u-text-active-white u-text-body-alt-color u-text-hover-white u-btn-2">파일 관리</button>
 							</form>
 						</div>
 					</div>

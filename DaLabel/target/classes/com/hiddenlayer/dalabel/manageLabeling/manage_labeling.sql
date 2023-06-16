@@ -15,7 +15,7 @@ CREATE INDEX idx_bundle_upload ON databundle (bundle_uploader, bundle_uploaded_f
 drop sequence databundle_seq
 create sequence databundle_seq
 
-select * from databundle order by bundle_no desc
+select * from databundle
 
 drop table databundle cascade constraint purge
 
@@ -34,6 +34,10 @@ create table labeling_project (
 	constraint project_file_no foreign key (project_bundle_no)
 	references databundle(bundle_no)
 )
+
+select * from LABELING_PROJECT
+
+select * from LABELING_DONE
 
 drop table labeling_project cascade constraint purge
 drop sequence labeling_project_seq
@@ -104,3 +108,17 @@ RETURN x + y - bitand(x,y);
 END;
 
 select data_name from data where data_where = 105 and data_name like '%1.%'
+
+delete data where data_where = 67
+
+select * from data
+
+select data_name
+from data
+where data_where = 70
+and substr(data_name, instr(data_name, '_') + 1, instr(data_name, '.')
+- INSTR(data_name, '_') - 1) = 3
+
+select data_name from data where data_where = 70
+
+

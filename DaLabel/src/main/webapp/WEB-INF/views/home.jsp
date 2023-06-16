@@ -5,7 +5,6 @@
 <body
 	data-home-page="https://website4844962.nicepage.io/MainPage.html?version=26955cdb-ad9a-4139-8054-aecbcc5786d7"
 	data-home-page-title="MainPage" class="u-body u-xl-mode" data-lang="en">
-
 	<section
 		class="u-clearfix u-image u-valign-middle-lg u-valign-middle-md u-valign-middle-sm u-valign-middle-xs u-section-1"
 		id="carousel_0d2a" data-image-width="1980" data-image-height="1200">
@@ -35,9 +34,9 @@
 								홈페이지 소개<br>
 							</h2>
 							<p class="u-align-center u-text u-text-2">인공지능 학습을 위한 라벨링 플랫폼</p>
-							<a href="#"
+							<a href="https://github.com/HiddenLayerSDGN/HiddenLayer"
 								class="u-active-black u-align-center u-border-none u-btn u-btn-round u-button-style u-hover-black u-palette-3-base u-radius-50 u-text-active-white u-text-body-alt-color u-text-hover-white u-btn-2">
-								후원하기</a>
+								GitHub</a>
 						</div>
 					</div>
 				</div>

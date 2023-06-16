@@ -20,12 +20,12 @@
 								<a href="doLabeling.needlogin.mypage">참여중인 라벨링</a>
 								<form action="member.needlogin.update.do" method="post"
 									style="padding: 10px;">
-									<div class="u-align-center member-info-form-group member-info-form-name">
+									<div
+										class="u-align-center member-info-form-group member-info-form-name">
 										<h3>내 정보</h3>
 									</div>
 									<div class="member-info-form-group member-info-form-name">
-										<label for="name-bb79" class="u-label">아이디</label> 
-										<input
+										<label for="name-bb79" class="u-label">아이디</label> <input
 											type="text" id="name-bb79" value="${memberInfo.user_id }"
 											readonly class="u-border-none u-input u-input-rectangle">
 									</div>
@@ -63,14 +63,17 @@
 											id="profile"
 											src="resources/image/profile/${sessionScope.loginUserIMG }"
 											alt="${sessionScope.loginUserIMG }">
+										<button type="button" onclick="fileUpload('try.needlogin.upload')">프사 변경</button>
 									</div>
-									<div class="u-align-center member-info-form-group member-info-form-submit">
+									<div
+										class="u-align-center member-info-form-group member-info-form-submit">
 										<button
 											style="background-color: #478ac9; color: #ffffff; margin-top: 1px; margin-bottom: 1px; padding: 10px 30px";>수정</button>
-								</form>
-								<button
-											style="background-color: #478ac9; color: #ffffff; margin-top: 1px; margin-bottom: 1px; padding: 10px 30px"; onclick="deleteMember();">탈퇴</button>
+										<button type="button"
+											style="background-color: #478ac9; color: #ffffff; margin-top: 1px; margin-bottom: 1px; padding: 10px 30px"
+											; onclick="deleteMember();">탈퇴</button>
 									</div>
+								</form>
 							</div>
 						</div>
 					</div>
