@@ -29,7 +29,8 @@
 							<td>${p.board_category }</td>
 							<td>${p.board_title }</td>
 							<td>${p.board_writer }</td>
-							<td><fmt:formatDate value="${p.board_regist }" type="date" dateStyle="short"/></td>
+							<td><fmt:formatDate value="${p.board_regist }" type="date"
+									dateStyle="short" /></td>
 						</tr>
 					</c:forEach>
 				</table>
@@ -41,13 +42,12 @@
 		</tr>
 		<tr>
 			<td align="center">
-				<form action="board.search" name="boardSearchForm" onsubmit="return boardSearchCheck();">
+				<form action="board.search" name="boardSearchForm"
+					onsubmit="return boardSearchCheck();">
 					<table id="searchArea">
 						<tr>
-							<td>
-							<input name="search" maxlength="20">
-								<button>검색</button>
-							</td>
+							<td><input name="search" maxlength="20">
+								<button>검색</button></td>
 						</tr>
 					</table>
 				</form>
@@ -58,7 +58,7 @@
 		<div class="boardL" onclick="boardPageChange(${page - 1});">&lt;</div>
 	</c:if>
 	<c:forEach var="p" begin="1" end="${pageCount }">
-		<a>${p }</a>
+		<a href="board.page.change?p=${p }">${p }</a>
 	</c:forEach>
 	<c:if test="${page != pageCount }">
 		<div class="boardR" onclick="boardPageChange(${page + 1});">&gt;</div>

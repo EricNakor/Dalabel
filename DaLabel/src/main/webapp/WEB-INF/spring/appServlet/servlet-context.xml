@@ -40,6 +40,7 @@
 		<beans:property name="password" value="sk150317" />
 	</beans:bean>
 
+
 	<beans:bean id="transactionManager"
 		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<beans:property name="dataSource" ref="dataSource" />

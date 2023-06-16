@@ -47,7 +47,6 @@ public class BoardDAO {
 		try {
 			int postCount = allPostCount;
 			String search = (String) req.getSession().getAttribute("search");
-
 			if (search == null) {
 				search = "";
 			} else {
@@ -58,10 +57,11 @@ public class BoardDAO {
 			int pageCount = (int) Math.ceil(postCount / (double) dalableOptions.getBoardPostPerPage());
 			int start = (page - 1) * dalableOptions.getBoardPostPerPage() + 1;
 			int end = page * dalableOptions.getBoardPostPerPage();
-
+			
 			BoardSelector bSel = new BoardSelector(search, start, end);
 
 			List<Board> posts = ss.getMapper(BoardMapper.class).getPost(bSel);
+			
 			req.setAttribute("posts", posts);
 			req.setAttribute("pageCount", pageCount);
 			req.setAttribute("page", page);
