@@ -71,7 +71,4 @@ public class ManageBundleDAO {
 		ss.getMapper(ManageBundleMapper.class).deleteBundle(bundle_no);
 	}
 
-	public void updateBundleFolderName(DataBundle db) {
-		ss.getMapper(ManageBundleMapper.class).updateFolderName(db);
-	}
 }

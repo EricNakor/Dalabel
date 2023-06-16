@@ -23,11 +23,6 @@
 						name="data_name">
 					<button>검색</button>
 				</form>
-				<form action="update.needlogin.folder.name">
-					<input type="hidden" value="${data.data_where }" name="bundle_no">
-					<input name="bundle_folder_name">
-					<button>폴더명 수정</button>
-				</form>
 			</td>
 		</tr>
 		<tr>

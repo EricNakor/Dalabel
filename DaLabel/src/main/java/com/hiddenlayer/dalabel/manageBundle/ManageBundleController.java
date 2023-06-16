@@ -53,14 +53,4 @@ public class ManageBundleController {
 		return "index";
 	}
 
-	@RequestMapping(value = "/update.needlogin.folder.name", method = RequestMethod.GET)
-	public String updateBundleFolderName(DataBundle db, HttpServletRequest req, @RequestParam(value = "bundle_no") int bundle_no,
-			@RequestParam(value = "bundle_folder_name") String bundle_folder_name) {
-		mbDAO.updateBundleFolderName(db);
-		req.setAttribute("data_where", bundle_no);
-		req.setAttribute("bundle_folder_name", bundle_folder_name);
-		req.setAttribute("contentPage", "bundle/bundleData.jsp");
-		return "index";
-	}
-	
 }

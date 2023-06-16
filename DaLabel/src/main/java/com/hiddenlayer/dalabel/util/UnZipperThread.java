@@ -62,7 +62,7 @@ public class UnZipperThread extends Thread {
 				fileName = fileInfo.getFileName();
 				endtag = fileInfo.getEndtag();
 				bundleNo = fileInfo.getBundleNumber();
-				folderName = fileName.substring(0, fileName.length() - 4);
+				folderName = fileName.substring(fileName.indexOf("_") + 1, fileName.length() - 4);
 				try {
 					File zipFile = new File(fileName);
 					zis = new ZipInputStream(new BufferedInputStream(new FileInputStream(zipFile)));

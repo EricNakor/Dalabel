@@ -43,6 +43,8 @@ drop table labeling_project cascade constraint purge
 drop sequence labeling_project_seq
 create sequence labeling_project_seq
 
+select * from data
+
 select * from labeling_project
 
 insert into labeling_done values(50, '4b50ad61-7a9d-4cfb-947d-e5d6f89dfaac_00000001.jpg', 'test111', '')
@@ -113,6 +115,8 @@ delete data where data_where = 67
 
 select * from data
 
+select * from labeling_project
+
 select data_name
 from data
 where data_where = 70
@@ -121,4 +125,9 @@ and substr(data_name, instr(data_name, '_') + 1, instr(data_name, '.')
 
 select data_name from data where data_where = 70
 
+select bundle_folder_name from databundle where bundle_no = (select project_bundle_no from labeling_project where project_no = 183)
 
+insert into labeling_done values(183, 'aaa8cfca-55ed-4c39-8b78-3b90296bb2e0_00000003.jpg', 'test111', '잠봉')
+
+select * from dataBundle
+select * from labeling_done

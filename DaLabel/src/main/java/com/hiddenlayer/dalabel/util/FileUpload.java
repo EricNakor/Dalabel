@@ -25,7 +25,6 @@ public class FileUpload {
 	}
 	
 	private String fileUploadMr(String path, MultipartHttpServletRequest multiFile) throws Exception{
-		
 		File uploadFolder = new File(path);
 		OutputStream os = null;
 		try {
@@ -34,6 +33,7 @@ public class FileUpload {
 			}
 			MultipartFile file = multiFile.getFile("fileName");
 			String fileName = UUID.randomUUID().toString() + "_" + file.getOriginalFilename();
+			fileName= fileName.substring(fileName.indexOf("_") + 1, fileName.length());
 			String uploadPath = path+"\\"+fileName;
 			os = new FileOutputStream(new File(uploadPath));
 			byte[] bytes = file.getBytes();
