@@ -11,6 +11,8 @@
 </head>
 
 <body>
+	<a href="/dalabel/">홈으로</a>
+	<a href="/dalabel/board.go">목록으로</a>
 	<form action="board.post.update.go?board_id=${detailBoard.board_id }">
 		<input type="hidden" value="${detailBoard.board_id }" name="board_id">
 		<table>

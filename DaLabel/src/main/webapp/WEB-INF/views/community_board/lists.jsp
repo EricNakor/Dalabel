@@ -13,8 +13,10 @@
 <body>
 	<input name="token" value="${token }" type="hidden">
 	<table>
+	
 		<tr>
 			<td>
+				<a href="/dalabel/">홈으로</a>
 				<table>
 					<tr>
 						<td>글넘버</td>
@@ -43,39 +45,35 @@
 		</tr>
 		<tr>
 			<td align="center">
-				<form action="board.search" name="boardSearchForm"
-					onsubmit="return boardSearchCheck();">
+				<form action="board.search" name="boardSearchForm" onsubmit="return boardSearchCheck();">
 					<table id="boardSearchArea">
 						<tr>
-							<td><input name="search" maxlength="20" autocomplete="off">
-							<td><button>검색</button></td>
+							<td>
+								<input id="search" name="search" maxlength="20" autocomplete="off">
+							</td>
+							<td>
+								<button>검색</button>
+							</td>
 						</tr>
 					</table>
 				</form>
 			</td>
 		</tr>
-	</table>
-	<table>
 		<tr>
-			<td align="center">
-				<c:if test="${prev}">
-					<span>[ <a href="board.page.change?p=${page - 1}">이전</a> ]</span>
-				</c:if> 
-				<c:forEach begin="${startPageNum}" end="${endPageNum}" var="num">
- 					<span>
-						<c:if test="${page != num}">
+			<td align="center"><c:if test="${prev}">
+					<span>[ <a href="board.page.change?p=${page - 1}">이전</a> ]
+					</span>
+				</c:if> <c:forEach begin="${startPageNum}" end="${endPageNum}" var="num">
+					<span> <c:if test="${page != num}">
 							<a href="board.page.change?p=${num}">${num}</a>
-						</c:if>    
-						<c:if test="${page == num}">
+						</c:if> <c:if test="${page == num}">
 							<b>${num}</b>
 						</c:if>
 					</span>
-				</c:forEach>
-				<c:if test="${next}">
-					<span>[ <a href="board.page.change?p=${page + 1}">다음</a> ]</span>
-				</c:if> 
-			
-			</td>
+				</c:forEach> <c:if test="${next}">
+					<span>[ <a href="board.page.change?p=${page + 1}">다음</a> ]
+					</span>
+				</c:if></td>
 		</tr>
 	</table>
 </body>

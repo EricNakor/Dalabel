@@ -1,8 +1,8 @@
 function writePostCheck() {
-	var titleInput = document.writePostForm.board_title;
-	var contentInput = document.writePostForm.board_content;
+	var titleInput = document.getElementById("board_title").value;
+	var contentInput = document.getElementById("board_content").value;
 
-	if (isEmpty(titleInput) || isEmpty(contentInput)) {
+	if (titleInput==""|| contentInput=="") {
 		alert("입력 값을 확인해주세요");
 		titleInput.value = "";
 		contentInput.value = "";
