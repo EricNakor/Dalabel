@@ -106,5 +106,4 @@ public class Board {
 	public void setB_comment(List<BoardComment> b_comment) {
 		this.b_comment = b_comment;
 	}
-
 }

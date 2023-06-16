@@ -29,4 +29,6 @@ public interface BoardMapper {
 	public abstract int deleteComment(int bc);
 	
 	public abstract int updateComment(BoardComment bc);
+	
+	public abstract int writeCommentReply(CommentReply cr);
 }

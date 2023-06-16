@@ -8,14 +8,13 @@
 <title>다라벨 게시판</title>
 </head>
 <body>
-	<form name="writePostForm" onsubmit="return writePostCheck();" action="board.post.write.do" method="post">
+	<form name="writePostForm" onsubmit="return writePostCheck();" action="board.post.write.do" method="post" >
 		<table id="writePost">
 			<tr>
 				<td align="center">
 					<select name="board_category">
 						<option value="notice"> 공지
 						<option value="board"> 게시판
-						<option value="qna"> 문의
 					</select> 
 				</td>
 			</tr>

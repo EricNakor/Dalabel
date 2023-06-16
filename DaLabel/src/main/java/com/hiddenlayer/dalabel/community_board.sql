@@ -77,3 +77,20 @@ create table reply(
 
 --select board_id, board_category, user_id, board_title, board_content, board_file, board_regist
 --from  board order by board_regist desc;
+
+
+create table comment_reply (
+	comment_id number(8) not null primary key,
+	inherit_post number(8) not null,
+	cr_depth number(1) not null,
+	cr_parent_id number(8) not null,
+	cr_writer varchar2(15 char) not null,
+	cr_content varchar2(600) not null,
+	cr_regist date not null,
+	cr_edit date not null,
+	constraint b_c
+		foreign key(inherit_post) references board(board_id)
+		on delete cascade
+);
+
+create sequence comment_reply_seq;

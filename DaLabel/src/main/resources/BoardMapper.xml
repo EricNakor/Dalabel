@@ -123,4 +123,11 @@
 			order by reply_regist
 		]]>
 	</select>
+	
+	<insert id="writeCommentReply" parameterType="com.hiddenlayer.dalabel.board.CommentReply">
+		<![CDATA[
+			insert into comment_reply
+			values(comment_reply_seq.nextval, #{inherit_post}, #{cr_depth}, #{cr_parent_id}, #{cr_writer}, #{cr_content}, sysdate, sysdate)
+		]]>
+	</insert>
 </mapper>

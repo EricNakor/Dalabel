@@ -81,7 +81,7 @@
 												value="${r.comment_id}" id="${r.comment_id}" type="hidden"> <input
 												name="token" value="${token}" type="hidden"></td>
 										</tr>
-										
+
 									</table>
 
 								</form>
@@ -104,21 +104,35 @@
 			id : "writeReply",
 			onclick : "addReply(${r.comment_id});"
 		}).text("작성");
+		var c = $("<input>").attr({
+			name : "cr_parent_id",
+			value : "${r.comment_id}",
+			type : "hidden"
+		});
+		var ccTd = $("<td></td>").html(cc);
 		var idTd = $("<td></td>").html(id);
 		var iTd = $("<td></td>").html(i);
 		var bTd = $("<td></td>").html(b);
-		var tr = $("<tr></tr>").append(idTd, iTd, bTd);
+		var tr = $("<tr></tr>").append(ccTd, idTd, iTd, bTd);
 
 		$("#" + idd).append(tr);
 	}
 	
 	function addReply(ccc) {
-
+		var reply = {
+			comment_id : "${r.comment_id}",
+			cr_depth : cr_depth,
+			cr_parent_id : "",
+			
+		} 
+		
 		$.ajax({
 			url : "board.reply.write",
 			data : $("#commentForm").serialize(),
-			success : function(idd){
+			success : function(){
 				location.href = "board.reply.write";
+				
+			
 				
 			}
 			
