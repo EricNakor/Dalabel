@@ -11,6 +11,7 @@
 <script type="text/javascript" src="resources/js/dalabelCheck.js"></script>
 </head>
 <body>
+	<input name="token" value="${token }" type="hidden">
 	<table>
 		<tr>
 			<td>
@@ -54,14 +55,18 @@
 			</td>
 		</tr>
 	</table>
-	<c:if test="${page != 1 }">
-		<div class="boardL" onclick="boardPageChange(${page - 1});">&lt;</div>
-	</c:if>
-	<c:forEach var="p" begin="1" end="${pageCount }">
-		<a href="board.page.change?p=${p }">${p }</a>
-	</c:forEach>
-	<c:if test="${page != pageCount }">
-		<div class="boardR" onclick="boardPageChange(${page + 1});">&gt;</div>
-	</c:if>
+	<table>
+		<tr>
+			<td align="center">
+				<c:if test="${page != 1 }">
+					<div style="display:inline;" class="boardL" onclick="boardPageChange(${page - 1});">&lt; &nbsp;</div>
+				</c:if> <c:forEach var="p" begin="1" end="${pageCount }">
+					<a href="board.page.change?p=${p }">${p }</a>
+				</c:forEach> <c:if test="${page != pageCount }">
+					<div style="display:inline;" class="boardR" onclick="boardPageChange(${page + 1});">&nbsp; &gt;</div>
+				</c:if>
+			</td>
+		</tr>
+	</table>
 </body>
 </html>

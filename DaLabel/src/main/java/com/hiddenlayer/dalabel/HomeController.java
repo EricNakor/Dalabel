@@ -32,10 +32,10 @@ public class HomeController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
 
-//		if (firstReq) {
-//			bDAO.setAllPostCount();
-//			firstReq = false;
-//		}
+		if (firstReq) {
+			bDAO.setAllPostCount();
+			firstReq = false;
+		}
 
 		model.addAttribute("serverTime", "Hello world! 한글테스트");
 

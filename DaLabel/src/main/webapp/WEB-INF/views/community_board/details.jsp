@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
@@ -69,7 +69,8 @@
 										<input name="inherit_post" value="${detailBoard.board_id}"
 											type="hidden"> <input name="comment_content"
 											value="${r.comment_content }"> -
-										<fmt:formatDate value="${r.comment_regist }" type="date" dateStyle="short" />
+										<fmt:formatDate value="${r.comment_regist }" type="date"
+											dateStyle="short" />
 										<c:if test="${sessionScope.loginUserID == r.comment_writer }">
 											<button type="submit">수정</button>
 											<button type="button"
@@ -82,8 +83,8 @@
 									<table id="${r.comment_id }">
 										<tr>
 											<td><input name="inherit_comment"
-												value="${r.comment_id}" id="${r.comment_id}" type="hidden"> <input
-												name="token" value="${token}" type="hidden"></td>
+												value="${r.comment_id}" id="${r.comment_id}" type="hidden">
+												<input name="token" value="${token}" type="hidden"></td>
 										</tr>
 
 									</table>

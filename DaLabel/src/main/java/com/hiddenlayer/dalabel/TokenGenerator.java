@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 public class TokenGenerator {
 	public static void generate(HttpServletRequest req) {
 		Date now = new Date();
-		SimpleDateFormat sdf = new SimpleDateFormat("hhmmssSS");
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmssSS");
 		req.setAttribute("token", sdf.format(now));
 	}
 }

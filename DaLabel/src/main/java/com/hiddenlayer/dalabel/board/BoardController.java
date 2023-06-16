@@ -14,7 +14,7 @@ import com.hiddenlayer.dalabel.TokenGenerator;
 
 @Controller
 public class BoardController {
-
+	
 	@Autowired
 	private BoardDAO bDAO;
 
@@ -70,7 +70,8 @@ public class BoardController {
 	}
 
 	@RequestMapping(value = "/board.post.write.go", method = RequestMethod.GET)
-	public String goWritePost() {
+	public String goWritePost(HttpServletRequest req) {
+		TokenGenerator.generate(req);
 		return "community_board/write";
 	}
 
