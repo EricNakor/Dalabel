@@ -35,13 +35,21 @@ create table labeling_project (
 	references databundle(bundle_no)
 )
 
+select * from LABELING_PROJECT
+
+select * from LABELING_DONE
+
 drop table labeling_project cascade constraint purge
 drop sequence labeling_project_seq
 create sequence labeling_project_seq
 
 select * from labeling_project
 
+insert into labeling_done values(50, '4b50ad61-7a9d-4cfb-947d-e5d6f89dfaac_00000001.jpg', 'test111', '')
+
 update labeling_project set project_access_level = 30 where project_title = 'absd'
+
+select * from labeling_done
 
 create table data(
 	data_name varchar2(58 char),
@@ -50,9 +58,20 @@ create table data(
 	constraint data_pk primary key(data_where, data_name)
 )
 
-select * from data
+update data set data_activation = '1' where data_where = '22'
 
-drop table data cascade constraint purge
+select * from data
+select * from LABELING_DO
+
+
+
+select * from LABELING_PROJECT
+select * from labeling_done
+
+baba 카테고리 '{type:"button",info:["버튼1", "개", "고양이", "car"]}'로 업데이트좀ㅈ 해봐
+update labeling_project set project_category = '{type:"button",info:["버튼1", "개", "고양이", "car"]}' where project_title = 'baba'
+
+
 
 create table labeling_do (
 	dolabel_user varchar2(15 char),
@@ -60,6 +79,17 @@ create table labeling_do (
 	dolabel_state char(1),
 	dolabel_score number(3, 2),
 	constraint want_labeling_pk primary key(dolabel_user, dolabel_project_no)
+)
+
+create table labeling_done (
+	project_no number(8) not null,
+	data_no varchar2(58 char) not null,
+	worked_by varchar2(15 char) not null,
+	label varchar2(300 char) not null,
+	constraint done_project_no foreign key (project_no) 
+	references labeling_project(project_no) on delete cascade,
+	constraint done_worked_by foreign key (worked_by) 
+	references member(user_id) on delete cascade
 )
 
 insert into labeling_do values('test123', 49, 1, null)
@@ -78,3 +108,17 @@ RETURN x + y - bitand(x,y);
 END;
 
 select data_name from data where data_where = 105 and data_name like '%1.%'
+
+delete data where data_where = 67
+
+select * from data
+
+select data_name
+from data
+where data_where = 70
+and substr(data_name, instr(data_name, '_') + 1, instr(data_name, '.')
+- INSTR(data_name, '_') - 1) = 3
+
+select data_name from data where data_where = 70
+
+

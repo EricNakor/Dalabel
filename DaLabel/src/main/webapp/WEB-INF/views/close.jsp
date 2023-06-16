@@ -4,7 +4,6 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<script type="text/javascript" src="resources/js/jQuery.js"></script>
 <script type="text/javascript" src="resources/js/upload.js"></script>
 <title>Insert title here</title>
 </head>

@@ -1,5 +1,7 @@
 package com.hiddenlayer.dalabel.data;
 
+import java.util.ArrayList;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,8 +9,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.hiddenlayer.dalabel.manageLabeling.Data;
+import com.hiddenlayer.dalabel.manageLabeling.DataBundle;
 
 @Controller
 public class DataController {
@@ -16,32 +20,31 @@ public class DataController {
 	private DataDAO dDAO;
 
 	@RequestMapping(value = "/bundle.needlogin.data.go", method = RequestMethod.GET)
-	public String goManageData(@RequestParam(value = "bundle_no") int bundle_no,
-			@RequestParam(value = "bundle_folder_name") String bundle_folder_name, HttpServletRequest req) {
-		req.setAttribute("data_where", bundle_no);
-		req.setAttribute("bundle_folder_name", bundle_folder_name);
+	public String goManageData(HttpServletRequest req, Data data, DataBundle db) {
+		req.setAttribute("bundle", db);
+		req.setAttribute("data", data);
 		req.setAttribute("contentPage", "bundle/bundleData.jsp");
 		return "index";
 	}
 
 	@RequestMapping(value = "/get.needlogin.bundle.data", method = RequestMethod.GET)
-	public String getDataInBundle(@RequestParam(value = "bundle_folder_name") String bundle_folder_name, Data data,
-			HttpServletRequest req) {
-		dDAO.getData(bundle_folder_name, data, req);
-		req.setAttribute("data_where", data.getData_where());
-		req.setAttribute("bundle_folder_name", bundle_folder_name);
+	public String getDataInBundle(Data data, HttpServletRequest req, DataBundle db) {
+		dDAO.getData(db, data, req);
 		req.setAttribute("contentPage", "bundle/bundleData.jsp");
 		return "index";
 	}
 
 	@RequestMapping(value = "/delete.needlogin.data", method = RequestMethod.GET)
-	public String deleteData(@RequestParam(value = "bundle_folder_name") String bundle_folder_name, Data data,
+	public String deleteData(DataBundle db, Data data,
 			HttpServletRequest req) {
-		dDAO.deleteData(data.getData_name());
-		dDAO.getData(bundle_folder_name, data, req);
-		req.setAttribute("data_where", data.getData_where());
-		req.setAttribute("bundle_folder_name", bundle_folder_name);
+		dDAO.deleteData(db, data, req);
 		req.setAttribute("contentPage", "bundle/bundleData.jsp");
 		return "index";
+	}
+
+	@RequestMapping(value = "/data.needlogin.get.reported")
+	public @ResponseBody ArrayList<Data> reportedData(HttpServletRequest req,
+			@RequestParam(value = "data_where") int data_where) {
+		return dDAO.getReportedData(data_where);
 	}
 }

@@ -1,82 +1,124 @@
-function btnn() {
-	var f = document.getElementById("project_how").options[document
-			.getElementById("project_how").selectedIndex].value;
-	if (f == "0") {
-		var i = $("<input>").attr("id", "type_input");
-		var b = $("<input>").attr({
-			type : "button",
-			value : "추가",
-			id : "add",
-			onclick : "add_btn();"
-		});
-		var table = $("<table></table>").attr("id", "tablee");
-		$("#btn_add").append(table, i, b);
-		$("#tablee").show();
+var obj = {}
 
+function select() {
+	let v = document.getElementById('project_how').options[document
+			.getElementById('project_how').selectedIndex].value
+	if (v === '1') {
+		obj['type'] = 'button'
+		obj['info'] = []
+		let typing = $('<input>').attr('id', 'typing')
+		let btn = $('<input>').attr({
+			type : 'button',
+			value : '추가',
+			id : 'added',
+			onclick : 'add_btn()'
+		})
+		let tbl = $('<table></table>').attr('id', 'tbl')
+		$('#space').append(tbl, typing, btn)
 	} else {
-		$("#type_input").remove();
-		$("#add").remove();
-		$("#tablee").hide();
+		obj['type'] = 'input'
+		$('#tbl').remove()
+		$('#space').empty()
 	}
 }
 
 function add_btn() {
-	var inputValue = document.getElementById("type_input").value;
-	var bb = $("<input>").attr({
-		type : "button",
-		value : inputValue,
-	});
-	var del = $("<input>").attr({
-		type : "button",
-		value : "삭제",
-		onclick : "delBtn(this);",
-	});
-
-	var nTd = $("<td></td>").html(bb);
-	var dTd = $("<td></td>").html(del);
-	var tr = $("<tr></tr>").append(nTd, dTd);
-	$("#tablee").append(tr);
-	$("#type_input").val("");
+	let res = $('<input>').attr({
+		type : 'button',
+		'class' : 'for_eachs',
+		value : document.getElementById('typing').value,
+	})
+	let del = $('<input>').attr({
+		type : 'button',
+		value : '삭제',
+		onclick : 'del_btn(this)',
+	})
+	let tr = $('<tr></tr>').append($('<td></td>').html(res), $('<td></td>').html(del))
+	$('#tbl').append(tr)
+	$('#typing').val('')
 }
 
-function delBtn(obj) {
-	var trr = $(obj).parent().parent();
-	trr.remove();
+function del_btn(obj) {
+	$(obj).parent().parent().remove()
+}
+
+function json_() {
+	let arr = []
+	if ($('#project_how').val() === '-1') {
+		return false
+	}
+	if ($('#project_title').val() === '' || $('#project_guide').val() === '') {
+		return false
+	}
+	if (obj['type'] === 'input') {
+		let obj = {}
+		obj['type'] = 'input'
+		$('#project_category').attr('value', JSON.stringify(obj))
+		return false
+	}
+	$('.for_eachs').each((i, e) => {
+		arr[i] = e.value;
+	})
+	obj['info'] = arr
+	$('#project_category').attr('value', JSON.stringify(obj))
+	return true
+}
+
+function cancle() {
+	location.href = "get.needlogin.my.bundle"
 }
 
 function changeAccessLevel() {
-	let d = 0;
-	$(".access").each((a,b)=>{
+	var d = 0
+	$('.access').each((a,b)=>{
 		if(b.checked){
 		d+=Number(b.value)}
 		})
 	if (d==16){
-		d=0;
+		d=0
 	}
 	if(d%2==1){
-		d=1;
+		d=1
 	}
-	$("#project_access_level").val(d);
+	$('#project_access_level').val(d)
 }
 
 function selectAll() {
-	$(".access").each((a,b)=>{
+	$('.access').each((a,b)=>{
 		if(a!=0){
 		b.disabled= !b.disabled}
 	})
 }
 
 function loadProjectAccessLevel(val){
-	$(".access")[4].checked=true;
-	$(".access").each((a,b)=>{
+	$('.access')[4].checked=true
+	$('.access').each((a,b)=>{
 		if(val==1){
 			if(a!=0){
-				b.disabled=true;
+				b.disabled=true
 			}
 		}
 		if(b.value&val){
-			b.checked=true;
+			b.checked=true
 		}
 	})
 }
 
+function getReportedData(no, user) {
+	$.ajax({
+		type : "get",
+		url : "data.needlogin.get.reported",
+		data : {
+			"data_where" : no
+		},
+		success : function(reportedData) {
+			$.each(reportedData, function(index, reportedData2) {
+				$("#reportedDataTable").append($("<tr><td></td></tr>")
+						.append($("<img>").attr("src", "resources/data/" + user + "/" + reportedData2)))
+			})
+		},
+		error : function() {
+			alert("없음")
+		}
+	})
+}

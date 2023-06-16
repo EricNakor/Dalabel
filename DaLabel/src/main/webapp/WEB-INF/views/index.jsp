@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <!DOCTYPE html>
 <html style="font-size: 16px;" lang="en">
 <head>
@@ -13,15 +14,22 @@
 <link rel="stylesheet" href="resources/css/c3.css" media="screen">
 <link rel="stylesheet" href="resources/css/c2.css" media="screen">
 <link rel="stylesheet" href="resources/css/MyPage.css" media="screen">
-<link rel="stylesheet" href="resources/css/LoginRegPage.css" media="screen">
+<link rel="stylesheet" href="resources/css/LoginRegPage.css"
+	media="screen">
+<link rel="stylesheet" href="resources/css/Manage.css" media="screen">
 <script class="u-script" type="text/javascript"
 	src="resources/js/jquery-3.5.1.min.js"></script>
+<script type="text/javascript" src="resources/js/move.js"></script>
+<script type="text/javascript" src="resources/js/upload.js"></script>
 <script class="u-script" type="text/javascript"
 	src="resources/js/jq1.js"></script>
+<script type="text/javascript" src="resources/js/upload.js"></script>
 <meta name="generator" content="Nicepage 5.9.15, nicepage.com">
 <meta name="referrer" content="origin">
 <link id="u-theme-google-font" rel="stylesheet"
 	href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
+<link id="u-page-google-font" rel="stylesheet"
+	href="https://fonts.googleapis.com/css?family=Ubuntu:300,300i,400,400i,500,500i,700,700i">
 <script type="application/ld+json">{
 		"@context": "http://schema.org",
 		"@type": "Organization",
@@ -29,7 +37,7 @@
 		"logo": "images/logo.png"
 }</script>
 <meta name="theme-color" content="#478ac9">
-<meta property="og:title" content="MyPage">
+<meta property="og:title" content="hiddenlayer">
 <meta property="og:type" content="website">
 <meta data-intl-tel-input-cdn-path="intlTelInput/">
 </head>
@@ -130,17 +138,15 @@
 										<ul
 											class="u-h-spacing-20 u-nav u-unstyled u-v-spacing-10 u-nav-6">
 											<li class="u-nav-item"><a
-												class="u-button-style u-nav-link">공유</a></li>
+												class="u-button-style u-nav-link">자유게시판</a></li>
 											<li class="u-nav-item"><a
-												class="u-button-style u-nav-link">질문</a></li>
+												class="u-button-style u-nav-link">공지사항</a></li>
 											<li class="u-nav-item"><a
-												class="u-button-style u-nav-link">공지</a></li>
+												class="u-button-style u-nav-link">라벨링 질문 게시판</a></li>
 										</ul>
 									</div></li>
 								<li class="u-nav-item"><a class="u-button-style u-nav-link"
-									href="게시판 페이지로 감">크레딧</a></li>
-								<li class="u-nav-item"><a class="u-button-style u-nav-link"
-									rel="nofollow">API</a></li>
+									rel="nofollow">고객센터</a></li>
 								<li class="u-nav-item"><a class="u-button-style u-nav-link"
 									href="member.needlogin.logout">로그아웃</a>
 							</ul>
@@ -169,42 +175,50 @@
 									src="resources/image/page_image/logo.png"
 									class="u-logo-image u-logo-image-1">
 								</a>
+								<h5
+									class="u-align-left-lg u-align-left-md u-small-text u-text u-text-variant u-text-1">
+									고객센터</h5>
 								<p
-									class="u-align-left-lg u-align-left-md u-small-text u-text u-text-variant u-text-1">푸터
-									로고 밑쪽 텍스트</p>
+									class="u-align-left-lg u-align-left-md u-small-text u-text u-text-variant u-text-1">
+									1644-1644</p>
 							</div>
 						</div>
 						<div
 							class="u-align-left-sm u-align-left-xs u-container-style u-layout-cell u-size-15 u-size-30-md u-layout-cell-2">
 							<div
 								class="u-container-layout u-valign-middle-xs u-valign-top-lg u-valign-top-md u-valign-top-sm u-valign-top-xl u-container-layout-2">
-								<h6 class="u-custom-font u-heading-font u-text u-text-2">푸터
-									1</h6>
+								<h5 class="u-custom-font u-heading-font u-text u-text-2">팀원</h5>
 								<p
-									class="u-align-left-lg u-align-left-md u-small-text u-text u-text-variant u-text-3">푸터
-									1밑 텍스트</p>
+									class="u-align-left-lg u-align-left-md u-small-text u-text u-text-variant u-text-3">
+									신용대 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 나준호</p>
+								<p
+									class="u-align-left-lg u-align-left-md u-small-text u-text u-text-variant u-text-3">
+									박아멘 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 유성훈</p>
+								<p
+									class="u-align-left-lg u-align-left-md u-small-text u-text u-text-variant u-text-3">
+									이미주</p>
 							</div>
 						</div>
 						<div
 							class="u-align-left-sm u-align-left-xs u-container-style u-layout-cell u-size-15 u-size-30-md u-layout-cell-3">
 							<div
 								class="u-container-layout u-valign-middle-xs u-valign-top-lg u-valign-top-md u-valign-top-sm u-valign-top-xl u-container-layout-3">
-								<h6 class="u-custom-font u-heading-font u-text u-text-4">푸터
-									2</h6>
+								<h6 class="u-custom-font u-heading-font u-text u-text-4">영업시간</h6>
 								<p
-									class="u-align-left-lg u-align-left-md u-small-text u-text u-text-variant u-text-5">푸터
-									2밑 텍스트</p>
+									class="u-align-left-lg u-align-left-md u-small-text u-text u-text-variant u-text-5">평일
+									: 09:00 ~ 18:00</p>
+								<p
+									class="u-align-left-lg u-align-left-md u-small-text u-text u-text-variant u-text-5">주말
+									: 09:00 ~ 16:00</p>
 							</div>
 						</div>
 						<div
 							class="u-align-left-sm u-align-left-xs u-container-style u-layout-cell u-right-cell u-size-15 u-size-30-md u-layout-cell-4">
 							<div
 								class="u-container-layout u-valign-middle-xs u-valign-top-lg u-valign-top-md u-valign-top-sm u-valign-top-xl u-container-layout-4">
-								<h6 class="u-custom-font u-heading-font u-text u-text-6">푸터
-									3</h6>
+								<h6 class="u-custom-font u-heading-font u-text u-text-6">위치</h6>
 								<p
-									class="u-align-left-lg u-align-left-md u-small-text u-text u-text-variant u-text-7">푸터
-									3밑 텍스트</p>
+									class="u-align-left-lg u-align-left-md u-small-text u-text u-text-variant u-text-7">솔데스크 강남</p>
 							</div>
 						</div>
 					</div>
@@ -212,17 +226,14 @@
 			</div>
 		</div>
 	</footer>
-
 	<section class="u-backlink u-clearfix u-grey-80">
-		<a class="u-link" href="https://nicepage.com/templates"
-			target="_blank"> <span>여기도 --->>>Template</span>
-		</a>
+		<span>Copyright @2023 | Designed With by </span>
+
 		<p class="u-text">
 			<span>created with</span>
 		</p>
-		<a class="u-link" href="" target="_blank"> <span>Website
-				Builder Software ----뭔가쓸수 있을듯</span>
-		</a>.
+		<span>Hiddenlayer</span>
+
 	</section>
 
 </body>
