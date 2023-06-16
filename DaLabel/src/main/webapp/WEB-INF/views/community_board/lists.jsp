@@ -45,10 +45,10 @@
 			<td align="center">
 				<form action="board.search" name="boardSearchForm"
 					onsubmit="return boardSearchCheck();">
-					<table id="searchArea">
+					<table id="boardSearchArea">
 						<tr>
-							<td><input name="search" maxlength="20">
-								<button>검색</button></td>
+							<td><input name="search" maxlength="20" autocomplete="off">
+							<td><button>검색</button></td>
 						</tr>
 					</table>
 				</form>
@@ -58,13 +58,23 @@
 	<table>
 		<tr>
 			<td align="center">
-				<c:if test="${page != 1 }">
-					<div style="display:inline;" class="boardL" onclick="boardPageChange(${page - 1});">&lt; &nbsp;</div>
-				</c:if> <c:forEach var="p" begin="1" end="${pageCount }">
-					<a href="board.page.change?p=${p }">${p }</a>
-				</c:forEach> <c:if test="${page != pageCount }">
-					<div style="display:inline;" class="boardR" onclick="boardPageChange(${page + 1});">&nbsp; &gt;</div>
-				</c:if>
+				<c:if test="${prev}">
+					<span>[ <a href="board.page.change?p=${page - 1}">이전</a> ]</span>
+				</c:if> 
+				<c:forEach begin="${startPageNum}" end="${endPageNum}" var="num">
+ 					<span>
+						<c:if test="${page != num}">
+							<a href="board.page.change?p=${num}">${num}</a>
+						</c:if>    
+						<c:if test="${page == num}">
+							<b>${num}</b>
+						</c:if>
+					</span>
+				</c:forEach>
+				<c:if test="${next}">
+					<span>[ <a href="board.page.change?p=${page + 1}">다음</a> ]</span>
+				</c:if> 
+			
 			</td>
 		</tr>
 	</table>

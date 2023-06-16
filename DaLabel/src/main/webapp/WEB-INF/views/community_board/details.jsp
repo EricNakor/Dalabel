@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script src="resources/js/dalabelMove.js"></script>
+<script type="text/javascript" src="resources/js/dalabelMove.js"></script>
 <meta charset="UTF-8">
 <title>다라벨 게시판</title>
 </head>

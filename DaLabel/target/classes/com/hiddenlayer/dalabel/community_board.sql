@@ -19,6 +19,7 @@ create table board(
 create sequence board_seq start with 1 increment by 1;
 
 select * from board
+--insert into board (board_id, board_writer, board_category, board_title, board_content, board_delete, board_regist, board_edit) values(board_seq.nextval, 'wasd', 'board', 'test', 'test', 0, sysdate, sysdate)
 
 create table post_comment(
 	comment_id number(8) not null primary key,

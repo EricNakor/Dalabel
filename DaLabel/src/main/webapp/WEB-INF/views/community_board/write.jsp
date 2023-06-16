@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script type="text/javascript" src="resources/js/validCheck.js"></script>
 <meta charset="UTF-8">
 <title>다라벨 게시판</title>
 </head>

@@ -21,3 +21,5 @@ function commentUpdate(id, txt) {
 	location.href = "board.comment.update?comment_id=" + id + "&comment_content=" + txt;
 }
 
+
+
