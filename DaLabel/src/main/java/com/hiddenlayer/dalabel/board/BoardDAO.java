@@ -76,6 +76,7 @@ public class BoardDAO {
 
 	public void getDetailBoard(int board_id, HttpServletRequest req) {
 		req.setAttribute("detailBoard", ss.getMapper(BoardMapper.class).getDetailBoard(board_id));
+		req.setAttribute("comment", ss.getMapper(BoardMapper.class).getComment(board_id));
 	}
 
 	public void search(String search, HttpServletRequest req) {
@@ -104,14 +105,14 @@ public class BoardDAO {
 				return;
 			}
 
-			Member m = (Member) req.getSession().getAttribute("loginMember");
-			bc.setUser_id(m.getUser_id());
+			String user = (String) req.getSession().getAttribute("loginUserID");
+			bc.setComment_writer(user);
 			if (ss.getMapper(BoardMapper.class).writeComment(bc) == 1) {
 				req.setAttribute("result", "댓글쓰기 성공");
 				req.getSession().setAttribute("successToken", token);
-				allPostCount++;
 			}
 		} catch (Exception e) {
+			e.printStackTrace();
 			req.setAttribute("result", "댓글쓰기 실패");
 		}
 	}
@@ -139,4 +140,39 @@ public class BoardDAO {
 		}
 	}
 
+	
+	public void deleteComment(int comment_id, HttpServletRequest req) {
+		ss.getMapper(BoardMapper.class).deleteComment(comment_id);
+	}
+	
+	public void updateComment(BoardComment bc, HttpServletRequest req) {
+//		String user = (String) req.getSession().getAttribute("loginUserID");
+//		bc.setComment_writer(user);
+		ss.getMapper(BoardMapper.class).updateComment(bc);
+	}
+	
+	public void writeReply(BoardReply br, HttpServletRequest req) {
+		try {
+			String token = req.getParameter("token");
+			String lastSuccessToken = (String) req.getSession().getAttribute("successToken");
+			if (lastSuccessToken != null && token.equals(lastSuccessToken)) {
+				req.setAttribute("result", "대댓글쓰기 실패");
+				return;
+			}
+			
+			String user = (String) req.getSession().getAttribute("loginUserID");
+			br.setReply_writer(user);			
+			if (ss.getMapper(BoardMapper.class).writeReply(br) == 1) {
+				req.setAttribute("result", "대댓글쓰기 성공");
+				req.getSession().setAttribute("successToken", token);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void getReply(int comment_id, HttpServletRequest req) {
+		req.setAttribute("reply", ss.getMapper(BoardMapper.class).getReply(comment_id));
+	}
+	
 }

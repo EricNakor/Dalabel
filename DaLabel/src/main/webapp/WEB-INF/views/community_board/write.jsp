@@ -8,7 +8,7 @@
 <title>다라벨 게시판</title>
 </head>
 <body>
-	<form name="writePostForm" onsubmit="return writePostCheck();" action="board.post.write.do" method="post">
+	<form name="writePostForm" onsubmit="return writePostCheck();" action="board.post.write.do" method="post" >
 		<table id="writePost">
 			<tr>
 				<td align="center">
