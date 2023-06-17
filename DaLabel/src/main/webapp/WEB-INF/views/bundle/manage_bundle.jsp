@@ -10,16 +10,19 @@
 </head>
 <body class="u-body u-xl-mode">
 	<section
-		class="u-align-center u-clearfix u-container-align-center-lg u-container-align-center-md manage-container-align-center-sm u-container-align-center-xl u-palette-1-base u-valign-middle manage-section-1"
+		class="u-align-center u-clearfix u-container-align-center-lg u-container-align-center-md manage-container-align-center-sm u-container-align-center-xl manage-palette-1-base u-valign-middle manage-section-1"
 		id="carousel_491c" data-image-width="1980" data-image-height="1200">
 		<div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
-			<button
-				class="u-active-black u-align-center u-border-none u-btn u-btn-round u-button-style u-hover-black u-palette-3-base u-radius-50 u-text-active-white u-text-body-alt-color u-text-hover-white u-btn-2"
-				onclick="location.href='get.needlogin.myUpload.labeling'">내가
-				참여한 라벨링</button>
-			<button
-				class="u-active-black u-align-center u-border-none u-btn u-btn-round u-button-style u-hover-black u-palette-3-base u-radius-50 u-text-active-white u-text-body-alt-color u-text-hover-white u-btn-2"
-				onclick="fileUpload('upload.needlogin.bundle.go')">번들 등록</button>
+			<h4>내 번들 관리</h4>
+			<div class="u-align-left manage-btn-div">
+				<button
+					class="u-active-black u-align-center u-border-none u-btn-round manage-button-style u-hover-black u-palette-3-base u-radius-50 u-text-active-white u-text-body-alt-color u-text-hover-white manage-btn-2"
+					onclick="location.href='get.needlogin.myUpload.labeling'">내가
+					참여한 라벨링</button>
+				<button
+					class="u-active-black u-align-center u-border-none u-btn-round manage-button-style u-hover-black u-palette-3-base u-radius-50 u-text-active-white u-text-body-alt-color u-text-hover-white manage-btn-2"
+					onclick="fileUpload('upload.needlogin.bundle.go')">번들 등록</button>
+			</div>
 			<div class="manage-list manage-list manage-list-1">
 				<div class="u-repeater u-repeater-1">
 					<c:forEach var="b" items="${bundles }">
@@ -47,16 +50,16 @@
 										value="${b.bundle_uploaded_filename }"
 										name="bundle_uploaded_filename">
 									<button
-										class="u-active-black u-align-center u-border-none u-btn u-btn-round u-button-style u-hover-black u-palette-3-base u-radius-50 u-text-active-white u-text-body-alt-color u-text-hover-white u-btn-2">파일
+										class="u-active-black u-align-center u-border-none manage-btn u-btn-round manage-button-style u-hover-black u-palette-3-base u-radius-50 u-text-active-white u-text-body-alt-color u-text-hover-white manage-btn-2">파일
 										관리</button>
 									<button type="button" onclick="deleteBundle(${b.bundle_no });"
-										class="u-active-black u-align-center u-border-none u-btn u-btn-round u-button-style u-hover-black u-palette-3-base u-radius-50 u-text-active-white u-text-body-alt-color u-text-hover-white u-btn-2">삭제</button>
+										class="u-active-black u-align-center u-border-none manage-btn u-btn-round manage-button-style u-hover-black u-palette-3-base u-radius-50 u-text-active-white u-text-body-alt-color u-text-hover-white manage-btn-2">삭제</button>
 								</form>
 							</div>
 						</div>
 					</c:forEach>
 				</div>
-				<div>
+				<div class="page-div">
 					<c:forEach var="p" begin="1" end="${bundlePageCount }">
 						<a href="bundle.needlogin.page.change?page=${p }">${p }</a>
 					</c:forEach>
