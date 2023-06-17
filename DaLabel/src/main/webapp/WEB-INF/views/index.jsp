@@ -24,6 +24,7 @@
 <script class="u-script" type="text/javascript"
 	src="resources/js/jq1.js"></script>
 <script type="text/javascript" src="resources/js/upload.js"></script>
+<script src="//cdn.ckeditor.com/4.21.0/standard/ckeditor.js"></script>
 <meta name="generator" content="Nicepage 5.9.15, nicepage.com">
 <meta name="referrer" content="origin">
 <link id="u-theme-google-font" rel="stylesheet"

@@ -61,13 +61,6 @@
 				<td id=space></td>
 			</tr>
 			<tr>
-				<td>공개설정</td>
-				<td><select name="bundle_access">
-						<option value="1">선택</option>
-				</select></td>
-
-			</tr>
-			<tr>
 				<td>
 					<button>등록</button>
 					<button type="button" onclick="cancle()">취소</button>

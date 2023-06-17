@@ -18,7 +18,7 @@
 				<button
 					class="u-active-black u-align-center u-border-none u-btn-round manage-button-style u-hover-black u-palette-3-base u-radius-50 u-text-active-white u-text-body-alt-color u-text-hover-white manage-btn-2"
 					onclick="location.href='get.needlogin.myUpload.labeling'">내가
-					참여한 라벨링</button>
+					등록한 라벨링</button>
 				<button
 					class="u-active-black u-align-center u-border-none u-btn-round manage-button-style u-hover-black u-palette-3-base u-radius-50 u-text-active-white u-text-body-alt-color u-text-hover-white manage-btn-2"
 					onclick="fileUpload('upload.needlogin.bundle.go')">번들 등록</button>
@@ -36,11 +36,10 @@
 									class="u-expanded-width u-image u-image-round u-radius-12 u-image-1"
 									data-image-width="363" data-image-height="363"
 									src="resources/data/zip.png">
-								<h6
+								<h5
 									class="u-align-center u-custom-font u-font-ubuntu u-text u-text-default u-text-palette-1-base u-text-3">
-									<a
-										href="reg.needlogin.labeling.go?bundle_name=${b.bundle_uploaded_filename }&bundle_no=${b.bundle_no }">${b.bundle_folder_name}</a>
-								</h6>
+									${b.bundle_folder_name}
+								</h5>
 								<p class="u-align-left u-text u-text-grey-40 u-text-4">
 									${b.bundle_descript }</p>
 								<form action="bundle.needlogin.data.go">
@@ -49,6 +48,10 @@
 										name="bundle_folder_name"> <input type="hidden"
 										value="${b.bundle_uploaded_filename }"
 										name="bundle_uploaded_filename">
+									<button type="button"
+									onclick="location.href='reg.needlogin.labeling.go?bundle_name=${b.bundle_uploaded_filename}&bundle_no=${b.bundle_no }'"
+										class="u-active-black u-align-center u-border-none manage-btn u-btn-round manage-button-style u-hover-black u-palette-3-base u-radius-50 u-text-active-white u-text-body-alt-color u-text-hover-white manage-btn-2">라벨링
+										등록</button>
 									<button
 										class="u-active-black u-align-center u-border-none manage-btn u-btn-round manage-button-style u-hover-black u-palette-3-base u-radius-50 u-text-active-white u-text-body-alt-color u-text-hover-white manage-btn-2">파일
 										관리</button>
