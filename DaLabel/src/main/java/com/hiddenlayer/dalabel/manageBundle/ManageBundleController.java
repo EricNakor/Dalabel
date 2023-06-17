@@ -45,7 +45,7 @@ public class ManageBundleController {
 		return "index";
 	}
 
-	@RequestMapping(value = "/delete.needlogin.bundle", method = RequestMethod.POST)
+	@RequestMapping(value = "/delete.needlogin.bundle", method = RequestMethod.GET)
 	public String deleteBundle(@RequestParam(value = "bundle_no") int bundle_no, HttpServletRequest req) {
 		mbDAO.deleteBundle(bundle_no, req);
 		mbDAO.getMyBundle(1, req);
