@@ -15,7 +15,7 @@
 				<form action="reg.needlogin.labeling.do" method="post"
 					onsubmit="return json_()"
 					class="u-clearfix u-form-spacing-10 u-form-vertical u-inner-form"
-					style="padding: 10px" source="email" name="form">
+					style="padding: 10px" name="form">
 					<div class="u-form-group u-form-name u-label-none">
 						<input type="hidden" name="project_bundle_no"
 							value="${bundle_no }">
@@ -35,7 +35,7 @@
 					<div class="u-form-group u-form-message u-label-none">
 						<label for="message-3b9a" class="u-label">GuideLine</label>
 						<textarea placeholder="가이드라인" rows="50" cols="50"
-							name="project_guide" id="project_guide message-3b9a"
+							name="project_guide" id="project_guide"
 							class="u-input u-input-rectangle">
 					</textarea>
 						<script type="text/javascript">

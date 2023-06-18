@@ -30,7 +30,7 @@ public class ManageLabelingController {
 	@RequestMapping(value = "/reg.needlogin.labeling.do", method = RequestMethod.POST)
 	public String doRegLabeling(LabelingProject lp, HttpServletRequest req) {
 		mlDAO.regLabelingProject(lp, req);
-		req.setAttribute("contentPage", "home.jsp");
+		req.setAttribute("contentPage", "manage_labeling/manage_labeling.jsp");
 		return "index";
 	}
 
@@ -62,7 +62,7 @@ public class ManageLabelingController {
 		return "index";
 	}
 
-	@RequestMapping(value = "/manage.labeling.user", method = RequestMethod.GET)
+	@RequestMapping(value = "/manage.needlogin.labeling.user", method = RequestMethod.GET)
 	public String getLabelingUser(@RequestParam(value = "project_no") int project_no, HttpServletRequest req) {
 		mlDAO.select(project_no, req);
 		req.setAttribute("contentPage", "manage_labeling/manage_labeling_user.jsp");
