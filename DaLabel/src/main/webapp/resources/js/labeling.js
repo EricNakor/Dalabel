@@ -6,7 +6,7 @@ function select() {
 	if (v === '1') {
 		obj['type'] = 'button'
 		obj['info'] = []
-		let typing = $('<input>').attr('id', 'typing')
+		let typing = $('<input>').attr('id', 'typing').attr('placeholder', '버튼을 추가해주세요.')
 		let btn = $('<input>').attr({
 			type : 'button',
 			value : '추가',
@@ -24,8 +24,9 @@ function select() {
 
 function add_btn() {
 	let res = $('<input>').attr({
-		type : 'button',
+		type : 'text',
 		'class' : 'for_eachs',
+		readonly : 'readonly',
 		value : document.getElementById('typing').value,
 	})
 	let del = $('<input>').attr({
