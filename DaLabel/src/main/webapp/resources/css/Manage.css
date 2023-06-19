@@ -80,7 +80,7 @@
 	margin: 20px 0 0;
 }
 
-@media ( max-width : 1600px) {
+@media ( max-width : 1200px) {
 	.manage-section-1 .u-sheet-1 {
 		max-height: 2000px;
 	}

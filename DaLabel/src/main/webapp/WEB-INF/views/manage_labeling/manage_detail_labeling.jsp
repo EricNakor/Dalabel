@@ -39,18 +39,29 @@
 										<input type="radio" value="16" class="access" name="andor">and
 										<input name="project_access_level" type="hidden"
 											id="project_access_level">
-										<div class="member-info-form-group member-info-form-name">
-										
-										</div>
-										<div
-											class="u-align-center member-info-form-group member-info-form-submit">
-											<button
-												style="background-color: #478ac9; color: #ffffff; margin-top: 1px; margin-bottom: 1px; padding: 10px 30px">수정</button>
-											<button type="button"
-												onclick="location.href='manage.needlogin.labeling.user?project_no=${project.project_no}'"
-												style="background-color: #478ac9; color: #ffffff; margin-top: 1px; margin-bottom: 1px; padding: 10px 30px">참가자
-												관리</button>
-										</div>
+									</div>
+									<div class="u-form-group u-form-message u-label-none">
+										<label for="message-3b9a" class="u-label">GuideLine</label>
+										<textarea placeholder="가이드라인" rows="50" cols="50"
+											name="project_guide" id="project_guide"
+											class="u-input u-input-rectangle">
+											${project.project_guide }
+										</textarea>
+										<script type="text/javascript">
+											CKEDITOR.replace('project_guide', {
+											filebrowserUploadUrl : 'upload.do',
+											height: '400px'
+											});
+										</script>
+									</div>
+									<div
+										class="u-align-center member-info-form-group member-info-form-submit">
+										<button
+											style="background-color: #478ac9; color: #ffffff; margin-top: 1px; margin-bottom: 1px; padding: 10px 30px">수정</button>
+										<button type="button"
+											onclick="location.href='manage.needlogin.labeling.user?project_no=${project.project_no}'"
+											style="background-color: #478ac9; color: #ffffff; margin-top: 1px; margin-bottom: 1px; padding: 10px 30px">참가자
+											관리</button>
 									</div>
 								</form>
 							</div>
@@ -58,7 +69,6 @@
 					</div>
 				</div>
 			</div>
-			${project.project_guide }
 		</div>
 	</section>
 </body>

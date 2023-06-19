@@ -26,13 +26,11 @@ create table labeling_project (
 	project_access_level number(2) not null,
 	project_guide varchar2(2000 char) not null,
 	project_how number(2) not null,
-	project_category varchar2(500 char) not null,
+	project_category varchar2(2000 char) not null,
 	project_progress char(1) not null,
 	project_bundle_no number(8) not null,
 	constraint project_requestor2 foreign key (project_requestor)
-	references member(user_id) on delete cascade,
-	constraint project_file_no foreign key (project_bundle_no)
-	references databundle(bundle_no)
+	references member(user_id) on delete cascade
 )
 
 select * from LABELING_PROJECT
@@ -47,7 +45,7 @@ select * from data
 
 select * from labeling_project
 
-insert into labeling_done values(50, '4b50ad61-7a9d-4cfb-947d-e5d6f89dfaac_00000001.jpg', 'test111', '')
+insert into labeling_done values(198, '83441816-12b0-454d-9cf8-9172b2445735_00000002.jpg', 'test12', '안녕')
 
 update labeling_project set project_access_level = 30 where project_title = 'absd'
 
@@ -57,7 +55,7 @@ create table data(
 	data_name varchar2(58 char),
 	data_where number(8),
 	data_activation char(1) not null,
-	constraint data_pk primary key(data_where, data_name)
+	constraint data_where2 foreign key (data_where)
 )
 
 update data set data_activation = '1' where data_where = '22'
@@ -84,6 +82,7 @@ create table labeling_do (
 )
 
 create table labeling_done (
+	labelgin_done_no number(8) primary key,
 	project_no number(8) not null,
 	data_no varchar2(58 char) not null,
 	worked_by varchar2(15 char) not null,
@@ -93,6 +92,12 @@ create table labeling_done (
 	constraint done_worked_by foreign key (worked_by) 
 	references member(user_id) on delete cascade
 )
+
+create sequence labeling_done_seq
+
+select * from labeling_done
+
+drop table labeling_done cascade constraint purge
 
 insert into labeling_do values('test123', 49, 1, null)
 
@@ -131,3 +136,6 @@ insert into labeling_done values(183, 'aaa8cfca-55ed-4c39-8b78-3b90296bb2e0_0000
 
 select * from dataBundle
 select * from labeling_done
+
+select * from labeling_project
+select * from databundle 

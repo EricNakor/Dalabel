@@ -68,6 +68,7 @@ public class MemberDAO {
 		req.getSession().removeAttribute("loginUserRating");		
 		req.getSession().removeAttribute("joinProjectCount");		
 		req.getSession().removeAttribute("bundleCount");		
+		req.getSession().removeAttribute("projectCount");		
 	}
 
 	public void joinMember(Member m, HttpServletRequest req) {

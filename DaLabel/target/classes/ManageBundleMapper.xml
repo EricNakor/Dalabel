@@ -29,7 +29,7 @@
 	<select id="getBundleFilePath"
 	resultType="String">
 		<![CDATA[
-		select bundle_folder_name
+		select bundle_uploaded_filename
 		from DataBundle
 		where bundle_no = (
 			select project_bundle_no

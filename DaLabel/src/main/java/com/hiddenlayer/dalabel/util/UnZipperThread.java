@@ -88,14 +88,14 @@ public class UnZipperThread extends Thread {
 							}
 						}
 					}
-					ss.getMapper(ManageBundleMapper.class)
-							.updateBundleAfterUnzip(new DataBundle(bundleNo, new BigDecimal(idx)));
 
 				} catch (Exception e) {
 					e.printStackTrace();
 					continue;
 				} finally {
 					try {
+						ss.getMapper(ManageBundleMapper.class)
+						.updateBundleAfterUnzip(new DataBundle(bundleNo, new BigDecimal(idx)));
 						zis.close(); // catch로 빠져도 닫음
 					} catch (Exception e) {
 					}

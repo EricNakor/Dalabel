@@ -25,9 +25,10 @@ public class DoLabelingDAO {
 
 	public void start(HttpServletRequest req, LabelingProject lp) {
 		ps.putUserIDWithProjectNo((String) req.getSession().getAttribute("loginUserID"), lp.getProject_no());
-		req.setAttribute("projectDetailInfo",ss.getMapper(ManageLabelingMapper.class).getMyDeatilProject(lp.getProject_no().intValue()));
-		System.out.println(lp.getProject_no());
-		req.setAttribute("filePath",ss.getMapper(ManageBundleMapper.class).getBundleFilePath(lp.getProject_no().intValue()) );
+		req.setAttribute("projectDetailInfo",
+				ss.getMapper(ManageLabelingMapper.class).getMyDeatilProject(lp.getProject_no().intValue()));
+		String filePath = ss.getMapper(ManageBundleMapper.class).getBundleFilePath(lp.getProject_no().intValue());
+		req.setAttribute("filePath", filePath.substring(0, filePath.length() - 4));
 	}
 
 	public String nextDataName(HttpServletRequest req, LabelData ld) {
@@ -36,18 +37,20 @@ public class DoLabelingDAO {
 		Data d = null;
 		int flag = 0;
 		if (userid.equals(ld.getWorked_by())) {
-			if (req.getSession().getAttribute("workingNow") != null
+			if (ps.getProjectNoWithUserID(userid) != null 
+					&& req.getSession().getAttribute("workingNow") != null
 					&& req.getSession().getAttribute("workingNow").equals(ld.getData_no())) {
 				ss.getMapper(DataDoLabelingMapper.class).addLabelData(ld);
 				flag = 1;
 			}
-			if (ps.getProjectNoWithUserID(userid) != null && (req.getSession().getAttribute("workingNow") == null  || flag == 1)) {
+			if (ps.getProjectNoWithUserID(userid) != null
+					&& (req.getSession().getAttribute("workingNow") == null || flag == 1)) {
 				d = ps.getNextData(userid);
 			}
 
 		}
 		if (d == null) {
-			return (String)req.getSession().getAttribute("workingNow");
+			return (String) req.getSession().getAttribute("workingNow");
 		} else {
 			req.getSession().setAttribute("workingNow", d.getData_name());
 			return d.getData_name();
@@ -95,7 +98,6 @@ public class DoLabelingDAO {
 				}
 			}
 		}
-
 	}
 
 	private void addJoinNeedPermission(HttpServletRequest req, BigDecimal project_no) {

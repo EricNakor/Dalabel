@@ -14,8 +14,7 @@
 <link rel="stylesheet" href="resources/css/c3.css" media="screen">
 <link rel="stylesheet" href="resources/css/c2.css" media="screen">
 <link rel="stylesheet" href="resources/css/MyPage.css" media="screen">
-<link rel="stylesheet" href="resources/css/LoginRegPage.css"
-	media="screen">
+<link rel="stylesheet" href="resources/css/LoginJoin.css" media="screen">
 <link rel="stylesheet" href="resources/css/Manage.css" media="screen">
 <script class="u-script" type="text/javascript"
 	src="resources/js/jquery-3.5.1.min.js"></script>
@@ -220,7 +219,8 @@
 								class="u-container-layout u-valign-middle-xs u-valign-top-lg u-valign-top-md u-valign-top-sm u-valign-top-xl u-container-layout-4">
 								<h6 class="u-custom-font u-heading-font u-text u-text-6">위치</h6>
 								<p
-									class="u-align-left-lg u-align-left-md u-small-text u-text u-text-variant u-text-7">솔데스크 강남</p>
+									class="u-align-left-lg u-align-left-md u-small-text u-text u-text-variant u-text-7">솔데스크
+									강남</p>
 							</div>
 						</div>
 					</div>

@@ -66,7 +66,7 @@ ${projectDetailInfo.project_bundle_no }<hr>
 				project_no:"${projectDetailInfo.project_no}",
 			},
 			success: function(nextData){
-				$(".problem").attr("src", "resources/data/${projectDetailInfo.project_requestor}/${filePath}/"+nextData);
+				$(".problem").attr("src", "resources/data/${projectDetailInfo.project_requestor}/${filePath}/"+nextData).css("width", "5 00px").css("height", "300px");
 			}
 		})
 	})

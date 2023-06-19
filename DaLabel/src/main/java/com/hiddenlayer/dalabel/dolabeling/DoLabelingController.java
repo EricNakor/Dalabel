@@ -46,7 +46,6 @@ public class DoLabelingController {
 
 	@RequestMapping(value = "/doLabeling.needlogin.next", method = RequestMethod.GET)
 	public @ResponseBody String nextData(HttpServletRequest req, LabelData ld) {
-		System.out.println("신호는 받음");
 		return dlDAO.nextDataName(req, ld);
 	}
 

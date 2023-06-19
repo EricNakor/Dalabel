@@ -6,7 +6,7 @@ function select() {
 	if (v === '1') {
 		obj['type'] = 'button'
 		obj['info'] = []
-		let typing = $('<input>').attr('id', 'typing').attr('placeholder', '버튼을 추가해주세요.')
+		let typing = $('<input>').attr('id', 'typing')
 		let btn = $('<input>').attr({
 			type : 'button',
 			value : '추가',
@@ -24,9 +24,8 @@ function select() {
 
 function add_btn() {
 	let res = $('<input>').attr({
-		type : 'text',
+		type : 'button',
 		'class' : 'for_eachs',
-		readonly : 'readonly',
 		value : document.getElementById('typing').value,
 	})
 	let del = $('<input>').attr({
@@ -45,23 +44,27 @@ function del_btn(obj) {
 
 function json_() {
 	let arr = []
-	if ($('#project_how').val() === '-1') {
+	if ($('#project_how').val() === '-1' || $('#bundle_data_type').val() === '-1') {
 		return false
 	}
 	if ($('#project_title').val() === '' || $('#project_guide').val() === '') {
 		return false
 	}
-	if (obj['type'] === 'input') {
-		let obj = {}
+	if ($('#project_how').val() === '0') {
 		obj['type'] = 'input'
 		$('#project_category').attr('value', JSON.stringify(obj))
-		return false
+		console.log($('#project_category').val())
+		return true
 	}
 	$('.for_eachs').each((i, e) => {
 		arr[i] = e.value;
 	})
 	obj['info'] = arr
 	$('#project_category').attr('value', JSON.stringify(obj))
+	console.log($('#project_category').val())
+	if ($('#project_how').val() === '1' && obj['info'].length === 0) {
+		return false
+	}
 	return true
 }
 

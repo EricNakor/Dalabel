@@ -45,7 +45,8 @@
 	<update id="updateProjectAccessLevel"
 		parameterType="com.hiddenlayer.dalabel.manageLabeling.LabelingProject">
 		<![CDATA[
-			update labeling_project set project_access_level = #{project_access_level}
+			update labeling_project set project_access_level = #{project_access_level},
+			project_guide = #{project_guide}
 			where project_no = #{project_no}
 		]]>
 	</update>
@@ -71,7 +72,7 @@
 		<![CDATA[
 			select bundle_file_count from DataBundle
 			where bundle_no = (select project_bundle_no from labeling_project
-			where project_no = #{project_no})
+								where project_no = #{project_no})
 		]]>
 	</select>
 </mapper>

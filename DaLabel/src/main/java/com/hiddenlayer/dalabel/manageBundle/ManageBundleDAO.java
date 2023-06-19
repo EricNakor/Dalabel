@@ -31,8 +31,6 @@ public class ManageBundleDAO {
 	@Autowired
 	private PageOption po;
 
-	private int bundleCount;
-
 	public void uploadBundle(DataBundle db, HttpServletRequest req, MultipartHttpServletRequest multiFile) {
 		String loginUser = (String) req.getSession().getAttribute("loginUserID");
 		db.setBundle_uploader(loginUser);
@@ -47,14 +45,16 @@ public class ManageBundleDAO {
 		uzt.addTodo(new UnZipInfos(fu.getDataRealPath(loginUser) + names[0], names[1],
 				new BigDecimal(ss.getMapper(ManageBundleMapper.class).getBundleNumber(loginUser, names[0]))));
 		req.setAttribute("rtVal", db.getBundle_uploaded_filename());
-		req.getSession().setAttribute("bundleCount", bundleCount + 1);
+		if (req.getSession().getAttribute("bundleCount") != null) {
+			req.getSession().setAttribute("bundleCount", (Integer) req.getSession().getAttribute("bundleCount") + 1);
+		}
 	}
 
 	public void getMyBundle(int page, HttpServletRequest req) {
 		String user = (String) req.getSession().getAttribute("loginUserID");
 		if (req.getSession().getAttribute("bundleCount") == null) {
-			bundleCount = ss.getMapper(ManageBundleMapper.class).getAllBundleCount(user);
-			req.getSession().setAttribute("bundleCount", bundleCount);
+			req.getSession().setAttribute("bundleCount",
+					ss.getMapper(ManageBundleMapper.class).getAllBundleCount(user));
 		}
 
 		int bundlePageCount = (int) Math
@@ -71,7 +71,9 @@ public class ManageBundleDAO {
 
 	public void deleteBundle(int bundle_no, HttpServletRequest req) {
 		ss.getMapper(ManageBundleMapper.class).deleteBundle(bundle_no);
-		req.getSession().setAttribute("bundleCount", bundleCount + -1);
+		if (req.getSession().getAttribute("bundleCount") != null) {
+			req.getSession().setAttribute("bundleCount", (Integer) req.getSession().getAttribute("bundleCount") - 1);
+		}
 	}
 
 }
