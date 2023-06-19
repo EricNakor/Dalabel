@@ -4,7 +4,7 @@
 	<insert id="addMember"
 		parameterType="com.hiddenlayer.dalabel.member.Member">
 	<![CDATA[
-		insert into member(user_id, user_name, user_pw, user_birth, user_isdeleted) values(#{user_id}, #{user_name}, #{user_pw}, #{user_birth},  0)
+		insert into member(user_id, user_name, user_pw, user_birth, user_isdeleted, user_rating, user_credit) values(#{user_id}, #{user_name}, #{user_pw}, #{user_birth}, 0, 1, 0)
 	]]>
 	</insert>
 
@@ -13,6 +13,38 @@
 		resultType="com.hiddenlayer.dalabel.member.Member">
 	<![CDATA[
 		select * from member where user_id=#{user_id} and user_isdeleted=0
+	]]>
+	</select>
+
+	<update id="changeMember"
+		parameterType="com.hiddenlayer.dalabel.member.Member">
+	<![CDATA[
+		update member 
+		set user_name=#{user_name}, user_pw=#{user_pw}, user_birth=#{user_birth}, user_email = #{user_email}
+		where user_id=#{user_id}
+	]]>
+	</update>
+
+	<update id="changeMemberIMG"
+		parameterType="com.hiddenlayer.dalabel.member.Member">
+	<![CDATA[
+		update member 
+		set user_img=#{user_img}
+		where user_id=#{user_id}
+	]]>
+	</update>
+
+	<update id="deleteMember"
+		parameterType="com.hiddenlayer.dalabel.member.Member">
+	<![CDATA[
+		update member 
+		set user_isdeleted=1, user_deleted_date=sysdate
+		where user_id=#{user_id}
+	]]>
+	</update>
+	<select id="checkId" parameterType="java.lang.String" resultType="java.lang.Integer">
+	<![CDATA[
+		select count(*) from member where user_id=#{user_id} and user_isdeleted=0
 	]]>
 	</select>
 

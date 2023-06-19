@@ -55,6 +55,10 @@
 			<beans:list>
 				<beans:value>classpath:AccountMapper.xml</beans:value>
 				<beans:value>classpath:BoardMapper.xml</beans:value>
+				<beans:value>classpath:DataDoLabelingMapper.xml</beans:value>
+				<beans:value>classpath:DataMapper.xml</beans:value>
+				<beans:value>classpath:ManageBundleMapper.xml</beans:value>
+				<beans:value>classpath:ManageLabelingMapper.xml</beans:value>
 			</beans:list>
 		</beans:property>
 	</beans:bean>
@@ -70,6 +74,20 @@
 		class="com.hiddenlayer.dalabel.DalabelOptions">
 		<beans:property name="boardPostPerPage" value="15"></beans:property>
 		<beans:property name="qnaPostPerPage" value="15"></beans:property>
+  </beans:bean>
+	<!-- 가이드라인 이미지 업로드할 때 필요 -->
+	<beans:bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<!-- 업로드 가능 최대 용량 -->
+		<beans:property name="maxUploadSize" value="52428800" />
+		<beans:property name="defaultEncoding" value="utf-8" />
 	</beans:bean>
 
+	<interceptors>
+		<interceptor>
+			<mapping path="*.needlogin.*" />
+			<beans:bean id="loginInterceptor"
+				class="com.hiddenlayer.dalabel.intercepter.AuthLoginInterceptor" />
+		</interceptor>
+	</interceptors>
 </beans:beans>

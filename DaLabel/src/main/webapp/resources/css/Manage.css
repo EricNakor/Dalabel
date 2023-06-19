@@ -1,0 +1,136 @@
+.manage-button-style {
+	background-color: #0080ff;
+}
+
+.manage-repeater-item {
+	max-height: 300px;
+}
+
+.manage-text-palette-1-base {
+	color: black;
+}
+
+.manage-btn-div {
+	margin-top: -15px;
+	margin-bottom: -30px;
+}
+
+.manage-palette-1-base {
+	background-color: #b3b3b3;
+}
+
+.manage-section-1 .u-sheet-1 {
+	min-height: 1048px;
+}
+
+.manage-section-1 .manage-list-1 {
+	margin-top: 60px;
+	margin-bottom: 0;
+}
+
+.manage-section-1 .u-repeater-1 {
+	grid-template-columns: repeat(4, calc(25% - 13.5px));
+	min-height: 699px;
+	grid-gap: 18px;
+}
+
+.manage-section-1 .manage-list-item {
+	background-image: none;
+	box-shadow: 5px 5px 20px 0px rgba(0, 0, 0, 0.2);
+}
+
+.manage-section-1 .manage-container-layout-1 {
+	padding: 20px 20px 30px;
+}
+
+.manage-section-1 .u-image-1 {
+	height: 208px;
+	margin-top: 0;
+	margin-bottom: 0;
+}
+
+.manage-section-1 .u-text-3 {
+	text-transform: uppercase;
+	font-size: 17px;
+	letter-spacing: 2px;
+	font-weight: 700;
+	margin: 20px 0px -10px;
+}
+
+.manage-section-1 .labeling-text-3 {
+	margin: 5px 0px -10px;
+}
+
+.manage-section-1 .manage-btn-2 {
+	font-size: 0.875rem;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+	font-weight: 500;
+	transition-duration: 0.5s;
+	margin-top: 10px;
+	padding: 7px;
+}
+
+}
+.manage-section-1 .u-text-4 {
+	text-transform: uppercase;
+	font-size: 1rem;
+	letter-spacing: 2px;
+	font-weight: 700;
+	margin: 20px 0 0;
+}
+
+@media ( max-width : 1200px) {
+	.manage-section-1 .u-sheet-1 {
+		max-height: 2000px;
+	}
+	.manage-section-1 .u-repeater-1 {
+		min-height: 574px;
+	}
+	.manage-section-1 .u-image-1 {
+		height: 166px;
+	}
+}
+
+@media ( max-width : 900px) {
+	.manage-section-1 .u-sheet-1 {
+		max-height: 5000px;
+	}
+	.manage-section-1 .u-repeater-1 {
+		grid-template-columns: repeat(2, calc(50% - 9px));
+		min-height: 1816px;
+	}
+	.manage-section-1 .u-image-1 {
+		height: 272px;
+	}
+}
+
+@media ( max-width : 500px) {
+	.manage-section-1 .u-sheet-1 {
+		max-height: 3000px;
+	}
+	.manage-section-1 .u-repeater-1 {
+		grid-template-columns: 100%;
+	}
+	.manage-section-1 .u-image-1 {
+		height: 442px;
+	}
+}
+
+@media ( max-width : 575px) {
+	.manage-section-1 .u-sheet-1 {
+		min-height: 313px;
+	}
+	.manage-section-1 .u-image-1 {
+		height: 283px;
+	}
+}
+
+.manage-section-2 .u-sheet-1 {
+	min-height: 400px;
+}
+
+#labeling-progress {
+	margin-top: 155px;
+	font-size: 13px;
+}
