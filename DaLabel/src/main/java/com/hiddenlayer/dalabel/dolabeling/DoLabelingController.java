@@ -30,7 +30,7 @@ public class DoLabelingController {
 	@RequestMapping(value = "/doLabeling.needlogin.start", method = RequestMethod.GET)
 	public String start(HttpServletRequest req, LabelingProject lp) {
 		dlDAO.start(req, lp);
-		req.setAttribute("contentPage","labeling/start_labeling.jsp" );
+		req.setAttribute("contentPage", "labeling/start_labeling.jsp");
 		return "index";
 	}
 
@@ -92,4 +92,19 @@ public class DoLabelingController {
 		return dlDAO.show(req, start, end);
 	}
 
+	// 신고 페이지
+	@RequestMapping(value = "/doLabeling.needlogin.report.go", method = RequestMethod.GET)
+	public String reportGo(HttpServletRequest req) {
+		dlDAO.getCurrentData(req);
+		req.setAttribute("contentPage", "labeling/report_labeling.jsp");
+		return "index";
+	}
+	
+	@RequestMapping(value = "/doLabeling.needlogin.report.do", method = RequestMethod.POST)
+	public String reportDo(HttpServletRequest req, String data_name) {
+		
+		dlDAO.reportData(req, data_name);
+		req.setAttribute("contentPage", "member/my_labeling.jsp");
+		return "index";
+	}
 }

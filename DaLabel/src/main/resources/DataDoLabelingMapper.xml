@@ -58,4 +58,14 @@
 			where dolabel_user=#{dolabel_user} and dolabel_project_no=#{dolabel_project_no}
 		]]>
 	</update>
+	
+	<!-- 데이터 신고 처리 -->
+	<update id="deactivateData"
+		parameterType="com.hiddenlayer.dalabel.manageLabeling.Data">
+		<![CDATA[
+			update data
+			set data_activation = 2
+			where data_name = ${data_name}
+		]]>
+	</update>
 </mapper>

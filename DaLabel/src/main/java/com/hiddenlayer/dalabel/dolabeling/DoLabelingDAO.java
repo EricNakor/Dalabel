@@ -25,9 +25,11 @@ public class DoLabelingDAO {
 
 	public void start(HttpServletRequest req, LabelingProject lp) {
 		ps.putUserIDWithProjectNo((String) req.getSession().getAttribute("loginUserID"), lp.getProject_no());
-		req.setAttribute("projectDetailInfo",ss.getMapper(ManageLabelingMapper.class).getMyDeatilProject(lp.getProject_no().intValue()));
+		req.setAttribute("projectDetailInfo",
+				ss.getMapper(ManageLabelingMapper.class).getMyDeatilProject(lp.getProject_no().intValue()));
 		System.out.println(lp.getProject_no());
-		req.setAttribute("filePath",ss.getMapper(ManageBundleMapper.class).getBundleFilePath(lp.getProject_no().intValue()) );
+		req.setAttribute("filePath",
+				ss.getMapper(ManageBundleMapper.class).getBundleFilePath(lp.getProject_no().intValue()));
 	}
 
 	public String nextDataName(HttpServletRequest req, LabelData ld) {
@@ -41,13 +43,14 @@ public class DoLabelingDAO {
 				ss.getMapper(DataDoLabelingMapper.class).addLabelData(ld);
 				flag = 1;
 			}
-			if (ps.getProjectNoWithUserID(userid) != null && (req.getSession().getAttribute("workingNow") == null  || flag == 1)) {
+			if (ps.getProjectNoWithUserID(userid) != null
+					&& (req.getSession().getAttribute("workingNow") == null || flag == 1)) {
 				d = ps.getNextData(userid);
 			}
 
 		}
 		if (d == null) {
-			return (String)req.getSession().getAttribute("workingNow");
+			return (String) req.getSession().getAttribute("workingNow");
 		} else {
 			req.getSession().setAttribute("workingNow", d.getData_name());
 			return d.getData_name();
@@ -125,5 +128,21 @@ public class DoLabelingDAO {
 		return ss.getMapper(DataDoLabelingMapper.class).findAccessableDoList(
 				(String) req.getSession().getAttribute("loginUserID"),
 				new BigDecimal((Integer) req.getSession().getAttribute("loginUserRating")), start, getnum);
+	}
+
+	// 현재 작업 데이터 가져오기
+	public void getCurrentData(HttpServletRequest req) {
+		String userid = (String) req.getSession().getAttribute("loginUserID");
+		Data d = null;
+		if (ps.getProjectNoWithUserID(userid) != null && (req.getSession().getAttribute("workingNow") == null)) {
+			d = ps.getCurrentData(userid);
+		}
+		req.getSession().setAttribute("currentDataName", d.getData_name());
+		req.getSession().setAttribute("currentDataWhere", d.getData_where());
+		req.getSession().setAttribute("currentDataActication", d.getData_activation());
+	}
+	
+	public void reportData(HttpServletRequest req, String data_name) {
+		ss.getMapper(DataDoLabelingMapper.class).deactivateData(data_name);
 	}
 }

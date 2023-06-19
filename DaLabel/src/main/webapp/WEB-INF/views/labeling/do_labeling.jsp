@@ -179,6 +179,12 @@ img {
 	</header>
 
 	<section class="u-clearfix do-labeling-section-1" id="sec-aa7f">
+		<form  name="writeReportForm" action="doLabeling.needlogin.report.do" method="post">
+			<input name="data_name" value="${currentDataName }" type="hidden">
+			<input name="data_where" value="${currentDatawhere }" type="hidden">
+			<input name="data_activation" value="${currentDataActivation }" type="hidden">
+			<button>신고하기</button>
+		</form>
 		<form action="doLabeling.needlogin.done">
 			<div class="u-clearfix u-sheet u-sheet-1">
 				<div class="u-clearfix u-gutter-0 u-layout-wrap u-layout-wrap-1">
@@ -198,7 +204,8 @@ img {
 					아님</button>
 				<div class="u-align-center u-form-group u-form-submit">
 					<button
-						style="background-color: #478ac9; color: #ffffff; margin-top: 1px; margin-bottom: 1px; padding: 10px 30px";>라벨링 종료 후 나가기</button>
+						style="background-color: #478ac9; color: #ffffff; margin-top: 1px; margin-bottom: 1px; padding: 10px 30px";>라벨링
+						종료 후 나가기</button>
 				</div>
 			</div>
 		</form>
