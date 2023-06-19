@@ -138,7 +138,7 @@
 									<div class="u-nav-popup">
 										<ul
 											class="u-h-spacing-20 u-nav u-unstyled u-v-spacing-10 u-nav-6">
-											<li class="u-nav-item"><a
+											<li class="u-nav-item"><a href="board.needlogin.go"
 												class="u-button-style u-nav-link">자유게시판</a></li>
 											<li class="u-nav-item"><a
 												class="u-button-style u-nav-link">공지사항</a></li>
