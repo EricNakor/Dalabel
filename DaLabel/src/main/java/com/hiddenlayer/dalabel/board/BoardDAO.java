@@ -30,6 +30,10 @@ public class BoardDAO {
 		req.getSession().setAttribute("search", null);
 	}
 
+	public void deleteComment(int comment_id, HttpServletRequest req) {
+		ss.getMapper(BoardMapper.class).deleteComment(comment_id);
+	}
+
 	public void deletePost(BigDecimal board_id, HttpServletRequest req) {
 		try {
 			if (ss.getMapper(BoardMapper.class).deletePost(board_id) == 1) {
@@ -100,6 +104,15 @@ public class BoardDAO {
 		req.setAttribute("comment", ss.getMapper(BoardMapper.class).getComment(board_id));
 	}
 
+	public void getReply(int comment_id, HttpServletRequest req) {
+		req.setAttribute("reply", ss.getMapper(BoardMapper.class).getReply(comment_id));
+	}
+	
+	public void getCurNotice(int board_category, HttpServletRequest req) {
+		List<Board> curNotice = ss.getMapper(BoardMapper.class).getCurNotice(board_category);
+		req.setAttribute("curNotice", curNotice);
+	}
+
 	public void search(String search, HttpServletRequest req) {
 		req.getSession().setAttribute("search", search);
 	}
@@ -115,6 +128,12 @@ public class BoardDAO {
 
 	public void updateBoard(HttpServletRequest req, Board b) {
 		ss.getMapper(BoardMapper.class).updatePost(b);
+	}
+
+	public void updateComment(BoardComment bc, HttpServletRequest req) {
+//		String user = (String) req.getSession().getAttribute("loginUserID");
+//		bc.setComment_writer(user);
+		ss.getMapper(BoardMapper.class).updateComment(bc);
 	}
 
 	public void writeComment(BoardComment bc, HttpServletRequest req) {
@@ -161,16 +180,6 @@ public class BoardDAO {
 		}
 	}
 
-	public void deleteComment(int comment_id, HttpServletRequest req) {
-		ss.getMapper(BoardMapper.class).deleteComment(comment_id);
-	}
-
-	public void updateComment(BoardComment bc, HttpServletRequest req) {
-//		String user = (String) req.getSession().getAttribute("loginUserID");
-//		bc.setComment_writer(user);
-		ss.getMapper(BoardMapper.class).updateComment(bc);
-	}
-
 	public void writeReply(BoardReply br, HttpServletRequest req) {
 		try {
 			String token = req.getParameter("token");
@@ -189,10 +198,6 @@ public class BoardDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	}
-
-	public void getReply(int comment_id, HttpServletRequest req) {
-		req.setAttribute("reply", ss.getMapper(BoardMapper.class).getReply(comment_id));
 	}
 
 }

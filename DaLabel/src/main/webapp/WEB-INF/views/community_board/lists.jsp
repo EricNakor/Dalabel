@@ -13,10 +13,9 @@
 <body>
 	<input name="token" value="${token }" type="hidden">
 	<table>
-	
+
 		<tr>
-			<td>
-				<a href="/dalabel/">홈으로</a>
+			<td><a href="/dalabel/">홈으로</a>
 				<table>
 					<tr>
 						<td>글넘버</td>
@@ -25,6 +24,19 @@
 						<td>글쓴사람</td>
 						<td>작성일</td>
 					</tr>
+
+					<c:forEach var="n" items="${curNotice }">
+						<tr>
+							<td><strong><a href="board.get.detail?board_id=${n.board_id }">공지</a></strong>
+							</td>
+							<td><strong>${n.board_category }</strong></td>
+							<td><strong>${n.board_title }</strong></td>
+							<td><strong>관리자</strong></td>
+							<td><strong><fmt:formatDate value="${n.board_regist }" type="date"
+									dateStyle="short" /></strong></td>
+						</tr>
+					</c:forEach>
+
 					<c:forEach var="p" items="${posts }">
 						<tr>
 							<td><a href="board.get.detail?board_id=${p.board_id }">${p.board_id }</a>
@@ -36,8 +48,7 @@
 									dateStyle="short" /></td>
 						</tr>
 					</c:forEach>
-				</table>
-			</td>
+				</table></td>
 		</tr>
 		<tr>
 			<td align="center">
@@ -45,12 +56,12 @@
 		</tr>
 		<tr>
 			<td align="center">
-				<form action="board.search" name="boardSearchForm" onsubmit="return boardSearchCheck();">
+				<form action="board.search" name="boardSearchForm"
+					onsubmit="return boardSearchCheck();">
 					<table id="boardSearchArea">
 						<tr>
-							<td>
-								<input id="search" name="search" maxlength="20" autocomplete="off">
-							</td>
+							<td><input id="search" name="search" maxlength="20"
+								autocomplete="off"></td>
 							<td>
 								<button>검색</button>
 							</td>
