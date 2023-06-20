@@ -118,7 +118,7 @@
 	<insert id="writeReply" parameterType="com.hiddenlayer.dalabel.board.BoardReply">
 		<![CDATA[
 		insert into reply
-		values(reply_seq.nextval, #{inherit_comment}, #{reply_writer}, #{reply_content}, sysdate, sysdate, 0)
+		values(reply_seq.nextval, #{inherit_post}, #{inherit_comment}, #{reply_writer}, #{reply_content}, sysdate, sysdate, 0)
 		]]>
 	</insert>
 	
@@ -126,15 +126,26 @@
 	<select id="getReply" resultType="com.hiddenlayer.dalabel.board.BoardReply">
 		<![CDATA[
 			select * from reply
-			where inherit_comment = #{comment_id}
+			where inherit_post = #{board_id}
 			order by reply_regist
 		]]>
 	</select>
 	
-	<insert id="writeCommentReply" parameterType="com.hiddenlayer.dalabel.board.CommentReply">
+	<delete id="deleteReply">
 		<![CDATA[
-			insert into comment_reply
-			values(comment_reply_seq.nextval, #{inherit_post}, #{cr_depth}, #{cr_parent_id}, #{cr_writer}, #{cr_content}, sysdate, sysdate)
+			delete from reply
+			where reply_id = #{reply_id}
 		]]>
-	</insert>
+	</delete>
+	
+	<update id="updateReply" parameterType="com.hiddenlayer.dalabel.board.BoardReply">
+		<![CDATA[
+			update reply
+			set reply_content = #{reply_content}, reply_edit = sysdate
+			where reply_id = #{reply_id}
+		]]>
+	</update>
+	
+	
+	
 </mapper>

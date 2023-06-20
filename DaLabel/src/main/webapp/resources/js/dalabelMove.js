@@ -17,7 +17,13 @@ function commentDelete(cId, bId) {
 	location.href = "board.comment.delete?comment_id=" + cId + "&inherit_post=" + bId;
 }
 
-function commentUpdate(id, txt) {
-	location.href = "board.comment.update?comment_id=" + id + "&comment_content=" + txt;
+function replyDelete(a, b, c) {
+	location.href = "board.reply.delete?inherit_post=" + a + "&inherit_comment=" + b + "&reply_id=" + c;
+}
+
+
+
+function goLists() {
+	location.href = "board.go";
 }
 

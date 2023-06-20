@@ -57,7 +57,7 @@ public class BoardController {
 	}
 
 	@RequestMapping(value = "/board.get.detail", method = RequestMethod.GET)
-	public String getDetailBoard(@RequestParam(value = "board_id") int board_id, HttpServletRequest req) {
+	public String getDetailBoard(@RequestParam(value = "board_id") int board_id,  HttpServletRequest req) {
 		bDAO.getDetailBoard(board_id, req);
 		TokenGenerator.generate(req);
 		return "community_board/details";
@@ -75,8 +75,8 @@ public class BoardController {
 		return "community_board/write";
 	}
 
-@RequestMapping(value = "/board.comment.write", method = RequestMethod.GET)
-	public String writeComment(@RequestParam(value = "inherit_post") int board_id, BoardComment bc,
+@RequestMapping(value = "/board.comment.write", method = RequestMethod.POST)
+	public String writeComment(@RequestParam(value = "inherit_post") int board_id,  BoardComment bc,
 			HttpServletRequest req) {
 		bDAO.writeComment(bc, req);
 //			bDAO.clearSearch(req);
@@ -121,25 +121,25 @@ public class BoardController {
 
 	}
 	
-	@RequestMapping(value="/board.comment.update", method = RequestMethod.GET)
-	public String updateComment(@RequestParam(value = "inherit_post") int board_id, BoardComment bc, HttpServletRequest req) {
+	@RequestMapping(value="/board.comment.update", method = RequestMethod.POST)
+	public String updateComment(@RequestParam(value = "inherit_post") int board_id,  BoardComment bc, HttpServletRequest req) {
 		bDAO.updateComment(bc, req);
 		bDAO.getDetailBoard(board_id, req);
 		TokenGenerator.generate(req);
 		return "community_board/details";
 	}
 
-	@RequestMapping(value = "/board.reply.write", method = RequestMethod.GET)
-	public String writeReply(@RequestParam(value = "inherit_post") int board_id, BoardReply br, HttpServletRequest req) {
+	@RequestMapping(value = "/board.reply.write", method = RequestMethod.POST)
+	public String writeReply(@RequestParam(value = "inherit_post") int board_id,  BoardReply br, HttpServletRequest req) {
 		bDAO.writeReply(br, req);
-		bDAO.getDetailBoard(board_id, req);
 		TokenGenerator.generate(req);
+		bDAO.getDetailBoard(board_id, req);
 		return "community_board/details";
 
 	}
 
 	@RequestMapping(value = "/board.comment.delete", method = RequestMethod.GET)
-	public String deleteComment(@RequestParam(value = "inherit_post") int board_id, @RequestParam(value = "comment_id") int comment_id,HttpServletRequest req) {
+	public String deleteComment(@RequestParam(value = "inherit_post") int board_id, @RequestParam(value = "comment_id") int comment_id, HttpServletRequest req) {
 		bDAO.deleteComment(comment_id, req);
 		bDAO.getDetailBoard(board_id, req);
 		TokenGenerator.generate(req);
@@ -149,9 +149,28 @@ public class BoardController {
 	@RequestMapping(value = "/board.get.reply", method = RequestMethod.GET)
 	public String getReply(@RequestParam(value = "board_id") int board_id, @RequestParam(value = "inherit_comment") int comment_id,HttpServletRequest req) {
 		bDAO.getDetailBoard(board_id, req);
-		bDAO.getReply(comment_id, req);
 		TokenGenerator.generate(req);
 		return "community_board/details";
 	}
+	
+	@RequestMapping(value = "/board.reply.delete", method = RequestMethod.GET)
+	public String deleteReply(@RequestParam(value = "inherit_post") int board_id, @RequestParam(value = "inherit_comment") int comment_id, @RequestParam(value = "reply_id") int reply_id,HttpServletRequest req) {
+		bDAO.deleteReply(reply_id, req);
+		bDAO.getDetailBoard(board_id, req);
+		TokenGenerator.generate(req);
+		return "community_board/details";
+	}
+	
+	@RequestMapping(value="/board.reply.update", method = RequestMethod.POST)
+	public String updateReply(@RequestParam(value = "inherit_post") int board_id, @RequestParam(value = "reply_id") int reply_id,  BoardReply br, HttpServletRequest req) {
+		bDAO.updateReply(br, req);
+		bDAO.getDetailBoard(board_id, req);
+		TokenGenerator.generate(req);
+		return "community_board/details";
+	}
+
+
+	
+	
 
 }
