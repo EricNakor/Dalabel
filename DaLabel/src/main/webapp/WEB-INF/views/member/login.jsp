@@ -15,11 +15,11 @@
               <form action="login.do" method="post" class="u-clearfix u-form-custom-backend u-form-spacing-10 u-form-vertical u-inner-form" source="custom" name="form" style="padding: 0px;">
                 <div class="u-form-group u-form-name">
                   <label for="username-a30d" class="u-label u-text-grey-5 u-label-1">아이디</label>
-                  <input type="text" placeholder="Enter your Username" id="username-a30d" name="user_id" class="u-border-2 u-border-grey-10 u-grey-10 u-input u-input-rectangle u-input-1" required="">
+                  <input type="text" placeholder="아이디를 입력해주세요." id="username-a30d" name="user_id" class="u-border-2 u-border-grey-10 u-grey-10 u-input u-input-rectangle u-input-1" required="">
                 </div>
                 <div class="u-form-group u-form-password">
                   <label for="password-a30d" class="u-label u-text-grey-5 u-label-2">비밀번호</label>
-                  <input type="password" placeholder="Enter your Password" id="password-a30d" name="user_pw" class="u-border-2 u-border-grey-10 u-grey-10 u-input u-input-rectangle u-input-2" required="">
+                  <input type="password" placeholder="비밀번호를 입력해주세요." id="password-a30d" name="user_pw" class="u-border-2 u-border-grey-10 u-grey-10 u-input u-input-rectangle u-input-2" required="">
                 </div>
                 <div class="u-form-checkbox u-form-group">
                   <input type="checkbox" id="checkbox-a30d" name="remember" value="On" class="u-field-input">

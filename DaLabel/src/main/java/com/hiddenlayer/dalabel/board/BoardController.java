@@ -18,9 +18,19 @@ public class BoardController {
 	@Autowired
 	private BoardDAO bDAO;
 
+	private boolean firstReq;
+	
+	public BoardController() {
+		firstReq = true;
+	}
+	
 	@RequestMapping(value = "/board.needlogin.go", method = RequestMethod.GET)
 	public String boardLists(HttpServletRequest req) {
 		bDAO.clearSearch(req);
+		if (firstReq) {
+			bDAO.setAllPostCount();
+			firstReq = false;
+		}
 		bDAO.getAllPost(1, req);
 		TokenGenerator.generate(req);
 		return "community_board/lists";

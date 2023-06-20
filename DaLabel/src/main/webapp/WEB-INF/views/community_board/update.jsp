@@ -9,10 +9,8 @@
 <title>다라벨 게시글 수정</title>
 </head>
 <body>
-	<a href="/dalabel/">홈으로</a>
-	<a href="/dalabel/board.go">목록으로</a>
 	<form name="writePostForm" onsubmit="return writePostCheck();"
-		action="board.post.update.do" method="post">
+		action="board.needlogin.post.update.do" method="post">
 		<table id="writePost">
 			<tr>
 				<td align="center"><input type="hidden" name="board_id"

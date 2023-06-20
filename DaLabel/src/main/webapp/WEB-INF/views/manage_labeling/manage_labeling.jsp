@@ -28,8 +28,10 @@
 							<div
 								class="u-container-layout u-container-layout-1 manage-container-layout u-similar-container manage-container-layout-1"
 								onclick="location.href='get.needlogin.detail.myproject?project_no=${p.project_no}'">
+								<div class="titleDiv">
 								<h5
 									class="u-align-left u-custom-font u-font-ubuntu u-text u-text-default manage-text-palette-1-base u-text-3 labeling-text-3">${p.project_title }</h5>
+								</div>
 								<p class="u-align-left u-text u-text-grey-40 u-text-4">
 									#
 									<c:if test="${p.project_how == 0}">
@@ -38,23 +40,20 @@
 									<c:if test="${p.project_how == 1}">
 									버튼 누르기
 								</c:if>
-									<c:if test="${p.project_how == 2}">
-									영역 드래그
-								</c:if>
 								</p>
-								<p class="u-align-left u-text u-text-grey-40 u-text-4"
-									id="labeling-progress">
-									프로젝트 진행상태 :
-									<c:if test="${p.project_progress == 48}">
+									<p class="u-align-left u-text u-text-grey-40 u-text-4"
+										id="labeling-progress">
+										프로젝트 진행상태 :
+										<c:if test="${p.project_progress == 48}">
 									시작 안함
 								</c:if>
-									<c:if test="${p.project_progress == 49}">
+										<c:if test="${p.project_progress == 49}">
 									진행 중
 								</c:if>
-									<c:if test="${p.project_progress == 50}">
+										<c:if test="${p.project_progress == 50}">
 									종료(정산됨)
 								</c:if>
-								</p>
+									</p>
 							</div>
 						</div>
 					</c:forEach>
