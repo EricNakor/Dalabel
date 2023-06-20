@@ -38,11 +38,11 @@ function labeling_do_loads(x, y) {
                 .append(
                     $("<div></div>").attr("id", "projectTbl").attr("class", "u-container-layout u-container-layout-1 manage-container-layout u-similar-container manage-container-layout-1")
                     .append(titleDiv, howTd, requestorTd, stateTd))
-                $("#projectsontainer").append(div)
+                $("#projectsontainer").append(div
                     .on("click", function() {
                         location.href = "doLabeling.needlogin.showIntro?project_no=" +
                             project2.project_no + "&flag=" + flag
-                    })
+                    }))
             })
 
             if (project.length < y) {
@@ -66,8 +66,11 @@ function my_labeling_load(x, y) {
             "end": y
         },
         success: function(myLabeling) {
-            $(".my_labeling").empty();
+        	$("#my_labeling").empty();
             $.each(myLabeling, function(index, myLabeling2) {
+            	if (myLabeling2 == null) {
+            		$("#my_labeling").append("<h5>아직 라벨링을 시작하지 않았습니다.</h5>")
+				}
                 if (myLabeling2.dolabel_state == 3) {
                     return true;
                 }
@@ -79,15 +82,15 @@ function my_labeling_load(x, y) {
                 } else if (myLabeling2.dolabel_score != null) {
                     tbinf.append("<tr><td>스코어</td><td>" + dolabel_score + "</td></tr>");
                 } else if (myLabeling2.dolabel_state == 1) {
-                    tbinf.append("<tr><td>상태</td><td>" + "<button onclick=\"location.href='doLabeling.needlogin.start?project_no=" + myLabeling2.dolabel_project_no + "'\">라벨링 시작하기</button>" + "</td></tr>");
+                    tbinf.append("<tr><td>상태</td><td>" + "수락됨" + "<button onclick=\"location.href='doLabeling.needlogin.start?project_no=" + myLabeling2.dolabel_project_no + "'\">라벨링 시작하기</button>" + "</td></tr>");
                 } else if (myLabeling2.dolabel_state == 4) {
                     tbinf.append("<tr><td>상태</td><td>" +
                         "<button>초대받기</button>" +
                         "</td></tr>")
                 }
 
-                $(".my_labeling").append(tbinf);
-                $(".my_labeling").append("<hr>");
+                $("#my_labeling").append(tbinf);
+                $("#my_labeling").append("<hr>");
             })
         },
         error: function() {

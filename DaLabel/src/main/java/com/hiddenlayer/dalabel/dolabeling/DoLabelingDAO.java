@@ -24,6 +24,12 @@ public class DoLabelingDAO {
 	private ProjectSession ps;
 
 	public void start(HttpServletRequest req, LabelingProject lp) {
+		if(req.getSession().getAttribute("workingNowNumber")!=null) {
+			req.getSession().removeAttribute("workingNow");
+			ps.pushMissingData(ps.getProjectNoWithUserID((String)req.getSession().getAttribute("loginUserID")), (BigDecimal)req.getSession().getAttribute("workingNowNumber"));
+			req.getSession().removeAttribute("workingNowNumber");
+		}
+		
 		ps.putUserIDWithProjectNo((String) req.getSession().getAttribute("loginUserID"), lp.getProject_no());
 		req.setAttribute("projectDetailInfo",
 				ss.getMapper(ManageLabelingMapper.class).getMyDeatilProject(lp.getProject_no().intValue()));
@@ -53,6 +59,7 @@ public class DoLabelingDAO {
 			return (String) req.getSession().getAttribute("workingNow");
 		} else {
 			req.getSession().setAttribute("workingNow", d.getData_name());
+			req.getSession().setAttribute("workingNowNumber", d.getData_where());
 			return d.getData_name();
 		}
 	}

@@ -135,8 +135,9 @@ insert into labeling_done values(183, 'aaa8cfca-55ed-4c39-8b78-3b90296bb2e0_0000
 
 delete labeling_done where labelgin_done_no = 15
 
+
 select * from dataBundle
 select * from labeling_done
-
-select * from labeling_project where project_no = 201
-select * from databundle where bundle_no = 102
+select * from data
+select * from labeling_project
+select * from databundle where bundle_no = 103
