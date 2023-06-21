@@ -6,14 +6,14 @@
 <html>
 <head>
 <script type="text/javascript" src="resources/js/dalabelMove.js"></script>
+<script type="text/javascript" src="resources/js/move.js"></script>
 <meta charset="UTF-8">
 <title>다라벨 게시판</title>
 </head>
-
 <body>
-	<a href="/dalabel/">홈으로</a>
-	<a href="/dalabel/board.go">목록으로</a>
-	<form action="board.post.update.go?board_id=${detailBoard.board_id }">
+	<hr>
+	<form
+		action="board.needlogin.post.update.go?board_id=${detailBoard.board_id }">
 		<input type="hidden" value="${detailBoard.board_id }" name="board_id">
 		<table>
 			<tr>
@@ -49,8 +49,8 @@
 				<table>
 					<tr>
 						<td class="commentTd">
-							<form action="board.comment.write" name="boardCommentWriteForm"
-								onsubmit="">
+							<form action="board.needlogin.comment.write"
+								name="boardCommentWriteForm" onsubmit="">
 								<!-- js 설정 후 -->
 								<span class="commentWriter">${sessionScope.loginUserID }&nbsp;</span>
 								<input name="token" value="${token}" type="hidden"> <input
@@ -63,7 +63,7 @@
 					</tr>
 					<tr>
 						<td><c:forEach var="r" items="${comment }">
-								<form action="board.comment.update" name="commentForm"
+								<form action="board.needlogin.comment.update" name="commentForm"
 									id="commentForm">
 									<p>
 										<span class="commentWriter">${r.comment_writer }&nbsp;&nbsp;</span>
@@ -134,10 +134,10 @@
 		} 
 		
 		$.ajax({
-			url : "board.reply.write",
+			url : "board.needlogin.reply.write",
 			data : $("#commentForm").serialize(),
 			success : function(){
-				location.href = "board.reply.write";
+				location.href = "board.needlogin.reply.write";
 				
 			
 				

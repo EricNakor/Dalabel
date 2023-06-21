@@ -47,11 +47,13 @@ public class ProjectSession {
 				data_no = pif.getNext_todo_no();
 				rtData = ss.getMapper(DataMapper.class).getNextData(project_no, data_no);
 				if(rtData!=null) {
+					rtData.setData_where(data_no);
 					return rtData;
 				}
 			}else {
 				rtData=ss.getMapper(DataMapper.class).getNextData(project_no, data_no);
 				if(rtData!=null) {
+					rtData.setData_where(data_no);
 					return rtData;
 				}
 			}
@@ -113,10 +115,19 @@ public class ProjectSession {
 	}
 	
 	public void pushMissingData(BigDecimal project_no, BigDecimal data_no) {
-		projectInfos.get(project_no).putRest_data(data_no);
+		try {
+			projectInfos.get(project_no).putRest_data(data_no);
+		}catch (Exception e) {
+			// TODO: handle exception
+		}
 	}
 	public BigDecimal getMissingData(BigDecimal project_no) {
-		return projectInfos.get(project_no).getRest_data();
+		try {
+			return projectInfos.get(project_no).getRest_data();
+			
+		} catch (Exception e) {
+			return null;
+		}
 	}
 	
 }

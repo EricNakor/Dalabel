@@ -255,10 +255,12 @@
 								</h3>
 								<p
 									class="u-align-center-md u-align-center-sm u-align-center-xs u-align-left-lg u-align-left-xl u-text u-text-2">
-									사고나 학습등 인간이 가진 지적 능력을 컴퓨터를 통해 구현하는 기술로, 컴퓨터가 스스로 학습하여 인공지능의 성능을 향상 시키는 기술 방법인 머신러닝과 인간의 뉴런과 비슷한 인공신경망으로 정보를 처리하는 딥러닝 방법이 있습니다.</p>
+									사고나 학습등 인간이 가진 지적 능력을 컴퓨터를 통해 구현하는 기술로, 컴퓨터가 스스로 학습하여 인공지능의 성능을
+									향상 시키는 기술 방법인 머신러닝과 인간의 뉴런과 비슷한 인공신경망으로 정보를 처리하는 딥러닝 방법이 있습니다.</p>
 								<a
 									href="https://nicepage.com/c/full-width-slider-html-templates"
-									class="u-active-black u-align-left u-border-none u-btn u-btn-round u-button-style u-hover-black u-palette-3-base u-radius-50 u-text-active-white u-text-body-alt-color u-text-hover-white u-btn-2">더 알아보기</a>
+									class="u-active-black u-align-left u-border-none u-btn u-btn-round u-button-style u-hover-black u-palette-3-base u-radius-50 u-text-active-white u-text-body-alt-color u-text-hover-white u-btn-2">더
+									알아보기</a>
 							</div>
 						</div>
 						<div
@@ -496,15 +498,15 @@
 		class="u-align-center u-black u-clearfix u-container-align-center u-section-7"
 		id="carousel_8164">
 		<div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
-			<h2 class="u-align-center u-text u-text-default u-text-1"
+			<h2 id="qna" class="u-align-center u-text u-text-default u-text-1"
 				data-animation-name="customAnimationIn"
-				data-animation-duration="1500">오류 신고</h2>
+				data-animation-duration="1500">고객센터</h2>
 			<div class="u-form u-form-1">
 				<form action="https://forms.nicepagesrv.com/v2/form/process"
 					class="u-clearfix u-form-horizontal u-form-spacing-0 u-inner-form"
 					source="email" name="form" style="padding: 11px;">
 					<div class="u-form-email u-form-group u-label-none">
-						<input id="email-6564" placeholder="오류 내용을 입력해주세요." name="email"
+						<input id="email-6564" placeholder="문의 내용을 입력해주세요." name="email"
 							class="u-border-none u-input u-input-rectangle u-input-1"
 							required="" wfd-id="id83">
 					</div>

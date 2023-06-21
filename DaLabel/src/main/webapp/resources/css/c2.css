@@ -16601,7 +16601,9 @@ a.u-link.u-text-hover-grey-90:hover {
   }
 }
 
-
+#footer-number {
+	margin-left: 95px;
+}
 
 .u-footer .u-sheet-1 {
   min-height: 220px;
@@ -16630,6 +16632,7 @@ a.u-link.u-text-hover-grey-90:hover {
 .u-footer .u-logo-image-1 {
   width: 150px;
   height: 100%;
+  margin: -35px 0px -15px 40px;
 }
 
 .u-footer .u-text-1 {
