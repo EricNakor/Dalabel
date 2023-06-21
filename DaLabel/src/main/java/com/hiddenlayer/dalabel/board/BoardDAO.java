@@ -102,6 +102,8 @@ public class BoardDAO {
 	public void getDetailBoard(int board_id, HttpServletRequest req) {
 		req.setAttribute("detailBoard", ss.getMapper(BoardMapper.class).getDetailBoard(board_id));
 		req.setAttribute("comment", ss.getMapper(BoardMapper.class).getComment(board_id));
+		req.setAttribute("reply", ss.getMapper(BoardMapper.class).getReply(board_id));
+		
 	}
 
 	public void getReply(int comment_id, HttpServletRequest req) {
@@ -198,6 +200,18 @@ public class BoardDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public void getReply(int board_id, HttpServletRequest req) {
+		req.setAttribute("reply", ss.getMapper(BoardMapper.class).getReply(board_id));
+	}
+	
+	public void deleteReply(int reply_id, HttpServletRequest req) {
+		ss.getMapper(BoardMapper.class).deleteReply(reply_id);
+	}
+	
+	public void updateReply(BoardReply br, HttpServletRequest req) {
+		ss.getMapper(BoardMapper.class).updateReply(br);
 	}
 
 }

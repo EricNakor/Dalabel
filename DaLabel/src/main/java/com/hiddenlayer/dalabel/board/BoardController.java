@@ -172,8 +172,8 @@ public class BoardController {
 	@RequestMapping(value = "/board.needlogin.reply.write", method = RequestMethod.GET)
 	public String writeReply(@RequestParam(value = "inherit_post") int board_id, BoardReply br, HttpServletRequest req) {
 		bDAO.writeReply(br, req);
-		bDAO.getDetailBoard(board_id, req);
 		TokenGenerator.generate(req);
+		bDAO.getDetailBoard(board_id, req);
 		return "community_board/details";
 
 	}
@@ -193,12 +193,31 @@ public class BoardController {
 	@RequestMapping(value = "/board.needlogin.get.reply", method = RequestMethod.GET)
 	public String getReply(@RequestParam(value = "board_id") int board_id, @RequestParam(value = "inherit_comment") int comment_id,HttpServletRequest req) {
 		bDAO.getDetailBoard(board_id, req);
-		bDAO.getReply(comment_id, req);
 		TokenGenerator.generate(req);
 //			req.setAttribute("contentPage", "community_board/lists.jsp");
 		return "community_board/lists";
 //			req.setAttribute("contentPage", "home.jsp");
 
 	}
+	
+	@RequestMapping(value = "/board.reply.delete", method = RequestMethod.GET)
+	public String deleteReply(@RequestParam(value = "inherit_post") int board_id, @RequestParam(value = "inherit_comment") int comment_id, @RequestParam(value = "reply_id") int reply_id,HttpServletRequest req) {
+		bDAO.deleteReply(reply_id, req);
+		bDAO.getDetailBoard(board_id, req);
+		TokenGenerator.generate(req);
+		return "community_board/details";
+	}
+	
+	@RequestMapping(value="/board.reply.update", method = RequestMethod.POST)
+	public String updateReply(@RequestParam(value = "inherit_post") int board_id, @RequestParam(value = "reply_id") int reply_id,  BoardReply br, HttpServletRequest req) {
+		bDAO.updateReply(br, req);
+		bDAO.getDetailBoard(board_id, req);
+		TokenGenerator.generate(req);
+		return "community_board/details";
+	}
+
+
+	
+	
 
 }

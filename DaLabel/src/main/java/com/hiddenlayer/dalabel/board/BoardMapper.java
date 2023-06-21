@@ -28,11 +28,14 @@ public interface BoardMapper {
 	
 	public abstract int writeReply(BoardReply br);
 	
-	public abstract List<BoardReply> getReply(int comment_id);
+	public abstract List<BoardReply> getReply(int board_id);
 	
 	public abstract int deleteComment(int bc);
 	
 	public abstract int updateComment(BoardComment bc);
+		
+	public abstract int deleteReply(int br);
 	
-	public abstract int writeCommentReply(CommentReply cr);
+	public abstract int updateReply(BoardReply br);
+
 }

@@ -5,6 +5,7 @@ import java.util.Date;
 
 public class BoardReply {
 	private BigDecimal reply_id;
+	private BigDecimal inherit_post;
 	private BigDecimal inherit_comment;
 	private String reply_writer;
 	private String reply_content;
@@ -15,11 +16,16 @@ public class BoardReply {
 	public BoardReply() {
 		// TODO Auto-generated constructor stub
 	}
+	
+	
 
-	public BoardReply(BigDecimal reply_id, BigDecimal inherit_comment, String reply_writer, String reply_content,
-			Date reply_regist, Date reply_edit, int reply_delete) {
+
+
+	public BoardReply(BigDecimal reply_id, BigDecimal inherit_post, BigDecimal inherit_comment, String reply_writer,
+			String reply_content, Date reply_regist, Date reply_edit, int reply_delete) {
 		super();
 		this.reply_id = reply_id;
+		this.inherit_post = inherit_post;
 		this.inherit_comment = inherit_comment;
 		this.reply_writer = reply_writer;
 		this.reply_content = reply_content;
@@ -28,12 +34,24 @@ public class BoardReply {
 		this.reply_delete = reply_delete;
 	}
 
+
+
+
+
 	public BigDecimal getReply_id() {
 		return reply_id;
 	}
 
 	public void setReply_id(BigDecimal reply_id) {
 		this.reply_id = reply_id;
+	}
+
+	public BigDecimal getInherit_post() {
+		return inherit_post;
+	}
+
+	public void setInherit_post(BigDecimal inherit_post) {
+		this.inherit_post = inherit_post;
 	}
 
 	public BigDecimal getInherit_comment() {
@@ -83,5 +101,8 @@ public class BoardReply {
 	public void setReply_delete(int reply_delete) {
 		this.reply_delete = reply_delete;
 	}
-
+	
+	
+	
+	
 }
