@@ -6,7 +6,7 @@
 <table>
 	<tr>
 		<td class="commentTd">			
-			<form action="board.comment.write"
+			<form action="board.needlogin.comment.write"
 				name="boardCommentWriteForm" onsubmit="return ???(this);">
 				<span class="commentWriter">${sessionScope.loginUserId.commentWriter }&nbsp;</span>
 				<input name="token" value="&{token}"> 

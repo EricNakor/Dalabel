@@ -30,6 +30,10 @@ public class BoardDAO {
 		req.getSession().setAttribute("search", null);
 	}
 
+	public void deleteComment(int comment_id, HttpServletRequest req) {
+		ss.getMapper(BoardMapper.class).deleteComment(comment_id);
+	}
+
 	public void deletePost(BigDecimal board_id, HttpServletRequest req) {
 		try {
 			if (ss.getMapper(BoardMapper.class).deletePost(board_id) == 1) {
@@ -51,20 +55,41 @@ public class BoardDAO {
 				search = "";
 			} else {
 				BoardSelector bSel = new BoardSelector(search, 0, 0);
-//				BoardSelector bSel = new BoardSelector(search, start, end);
 				postCount = ss.getMapper(BoardMapper.class).getPostCount(bSel);
 			}
 			int pageCount = (int) Math.ceil(postCount / (double) dalableOptions.getBoardPostPerPage());
 			int start = (page - 1) * dalableOptions.getBoardPostPerPage() + 1;
 			int end = page * dalableOptions.getBoardPostPerPage();
-			
+
+			// 한번에 표시할 페이징 번호의 갯수
+			int pageNum_cnt = 10;
+
+			// 표시되는 페이지 번호 중 마지막 번호
+			int endPageNum = (int) (Math.ceil((double) page / (double) pageNum_cnt) * pageNum_cnt);
+
+			// 표시되는 페이지 번호 중 첫번째 번호
+			int startPageNum = endPageNum - (pageNum_cnt - 1);
+
+			// 마지막 번호 재계산
+
+			if (endPageNum > pageCount) {
+				endPageNum = pageCount;
+			}
+
+			boolean prev = page <= 1 ? false : true;
+			boolean next = page >= pageCount ? false : true;
+
 			BoardSelector bSel = new BoardSelector(search, start, end);
 
 			List<Board> posts = ss.getMapper(BoardMapper.class).getPost(bSel);
-			
+
 			req.setAttribute("posts", posts);
-			req.setAttribute("pageCount", pageCount);
 			req.setAttribute("page", page);
+			req.setAttribute("startPageNum", startPageNum);
+			req.setAttribute("endPageNum", endPageNum);
+			req.setAttribute("prev", prev);
+			req.setAttribute("next", next);
+
 		} catch (Exception e) {
 
 		}
@@ -79,6 +104,15 @@ public class BoardDAO {
 		req.setAttribute("comment", ss.getMapper(BoardMapper.class).getComment(board_id));
 		req.setAttribute("reply", ss.getMapper(BoardMapper.class).getReply(board_id));
 		
+	}
+
+	public void getReply(int comment_id, HttpServletRequest req) {
+		req.setAttribute("reply", ss.getMapper(BoardMapper.class).getReply(comment_id));
+	}
+	
+	public void getCurNotice(int board_category, HttpServletRequest req) {
+		List<Board> curNotice = ss.getMapper(BoardMapper.class).getCurNotice(board_category);
+		req.setAttribute("curNotice", curNotice);
 	}
 
 	public void search(String search, HttpServletRequest req) {
@@ -96,6 +130,12 @@ public class BoardDAO {
 
 	public void updateBoard(HttpServletRequest req, Board b) {
 		ss.getMapper(BoardMapper.class).updatePost(b);
+	}
+
+	public void updateComment(BoardComment bc, HttpServletRequest req) {
+//		String user = (String) req.getSession().getAttribute("loginUserID");
+//		bc.setComment_writer(user);
+		ss.getMapper(BoardMapper.class).updateComment(bc);
 	}
 
 	public void writeComment(BoardComment bc, HttpServletRequest req) {
@@ -142,17 +182,6 @@ public class BoardDAO {
 		}
 	}
 
-	
-	public void deleteComment(int comment_id, HttpServletRequest req) {
-		ss.getMapper(BoardMapper.class).deleteComment(comment_id);
-	}
-	
-	public void updateComment(BoardComment bc, HttpServletRequest req) {
-//		String user = (String) req.getSession().getAttribute("loginUserID");
-//		bc.setComment_writer(user);
-		ss.getMapper(BoardMapper.class).updateComment(bc);
-	}
-	
 	public void writeReply(BoardReply br, HttpServletRequest req) {
 		try {
 			String token = req.getParameter("token");
@@ -161,9 +190,9 @@ public class BoardDAO {
 				req.setAttribute("result", "대댓글쓰기 실패");
 				return;
 			}
-			
+
 			String user = (String) req.getSession().getAttribute("loginUserID");
-			br.setReply_writer(user);			
+			br.setReply_writer(user);
 			if (ss.getMapper(BoardMapper.class).writeReply(br) == 1) {
 				req.setAttribute("result", "대댓글쓰기 성공");
 				req.getSession().setAttribute("successToken", token);
@@ -184,10 +213,5 @@ public class BoardDAO {
 	public void updateReply(BoardReply br, HttpServletRequest req) {
 		ss.getMapper(BoardMapper.class).updateReply(br);
 	}
-	
 
-	
-	
-	
-	
 }

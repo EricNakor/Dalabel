@@ -7,12 +7,15 @@
 <head>
 <script src="resources/js/dalabelMove.js"></script>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script type="text/javascript" src="resources/js/dalabelMove.js"></script>
+<script type="text/javascript" src="resources/js/move.js"></script>
 <meta charset="UTF-8">
 <title>다라벨 게시판</title>
 </head>
-
 <body>
-	<form action="board.post.update.go?board_id=${detailBoard.board_id }">
+	<hr>
+	<form
+		action="board.needlogin.post.update.go?board_id=${detailBoard.board_id }">
 		<input type="hidden" value="${detailBoard.board_id }" name="board_id">
 		<button type="button" onclick="goLists();">목록으로</button>
 		<table>
@@ -202,9 +205,25 @@
 		
 	}
 	
-	function update(xx){
-		$("#orgReply" + xx).attr("style", "display: none");
-		$("#updReply" + xx).removeAttr("style");
+	function addReply(ccc) {
+		var reply = {
+			comment_id : "${r.comment_id}",
+			cr_depth : cr_depth,
+			cr_parent_id : "",
+			
+		} 
+		
+		$.ajax({
+			url : "board.needlogin.reply.write",
+			data : $("#commentForm").serialize(),
+			success : function(){
+				location.href = "board.needlogin.reply.write";
+				
+			
+				
+			}
+			
+		});
 	}
 	
 	function updateComm(yy) {

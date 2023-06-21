@@ -4,25 +4,40 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script type="text/javascript" src="resources/js/validCheck.js"></script>
+<script src="//cdn.ckeditor.com/4.21.0/full/ckeditor.js"></script>
+<script class="u-script" type="text/javascript"
+	src="resources/js/jquery-3.5.1.min.js"></script>
 <meta charset="UTF-8">
-<title>다라벨 게시판</title>
+<title>다라벨 게시글 수정</title>
 </head>
 <body>
-	<form name="writePostForm" onsubmit="return writePostCheck();" action="board.post.update.do" method="post">
+	<form name="writePostForm" onsubmit="return writePostCheck();"
+		action="board.needlogin.post.update.do" method="post">
 		<table id="writePost">
 			<tr>
-				<td align="center">
-					<input type="hidden" name="board_id" value=${detailBoard.board_id }>
-					<input name="board_title" value=${detailBoard.board_title } maxlength="50" placeholder="제목을 입력해주세요." autocomplete="off" autofocus="autofocus">
+				<td align="center"><input type="hidden" name="board_id"
+					value=${detailBoard.board_id }> <input name="board_title"
+					value=${detailBoard.board_title } maxlength="50"
+					placeholder="제목을 입력해주세요." autocomplete="off" autofocus="autofocus">
 				</td>
 			</tr>
 			<tr>
-				<td align="center">
-					<textarea name="board_content" maxlength="500" placeholder="내용을 입력해주세요." autocomplete="off">
-						${detailBoard.board_content }
-					</textarea>
-					
-				</td>
+				<td align="center"><textarea id="board_content"
+						name="board_content" maxlength="500" placeholder="내용을 입력해주세요."
+						autocomplete="off" id="board_content">${detailBoard.board_content }</textarea>
+					<script type="text/javascript">
+						CKEDITOR.replace('board_content', {
+							filebrowserUploadUrl : 'upload.do',
+							height : '400px',
+						});
+
+						function submitForm() {
+							if (ckeditorValidate()) {
+								// Submit the form
+							}
+						}
+					</script></td>
 			</tr>
 			<tr>
 				<td align="center">

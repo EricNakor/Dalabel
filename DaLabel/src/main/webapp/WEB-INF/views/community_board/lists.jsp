@@ -9,10 +9,12 @@
 <title>페이지 리스트</title>
 <script type="text/javascript" src="resources/js/dalabelMove.js"></script>
 <script type="text/javascript" src="resources/js/dalabelCheck.js"></script>
+<script type="text/javascript" src="resources/js/move.js"></script>
 </head>
 <body>
 	<input name="token" value="${token }" type="hidden">
 	<table>
+
 		<tr>
 			<td>
 				<table>
@@ -23,9 +25,23 @@
 						<td>글쓴사람</td>
 						<td>작성일</td>
 					</tr>
+
+					<c:forEach var="n" items="${curNotice }">
+						<tr>
+							<td><strong><a href="board.get.detail?board_id=${n.board_id }">공지</a></strong>
+							</td>
+							<td><strong>${n.board_category }</strong></td>
+							<td><strong>${n.board_title }</strong></td>
+							<td><strong>관리자</strong></td>
+							<td><strong><fmt:formatDate value="${n.board_regist }" type="date"
+									dateStyle="short" /></strong></td>
+						</tr>
+					</c:forEach>
+
 					<c:forEach var="p" items="${posts }">
 						<tr>
-							<td><a href="board.get.detail?board_id=${p.board_id }">${p.board_id }</a>
+							<td><a
+								href="board.needlogin.get.detail?board_id=${p.board_id }">${p.board_id }</a>
 							</td>
 							<td>${p.board_category }</td>
 							<td>${p.board_title }</td>
@@ -34,38 +50,45 @@
 									dateStyle="short" /></td>
 						</tr>
 					</c:forEach>
-				</table>
-			</td>
+				</table></td>
 		</tr>
 		<tr>
 			<td align="center">
-			<td><a href="board.post.write.go">글쓰기</a></td>
+			<td><a href="board.needlogin.post.write.go">글쓰기</a></td>
 		</tr>
 		<tr>
 			<td align="center">
-				<form action="board.search" name="boardSearchForm"
+				<form action="board.needlogin.search" name="boardSearchForm"
 					onsubmit="return boardSearchCheck();">
-					<table id="searchArea">
+					<table id="boardSearchArea">
 						<tr>
-							<td><input name="search" maxlength="20">
-								<button>검색</button></td>
+							<td><input id="search" name="search" maxlength="20"
+								autocomplete="off"></td>
+							<td>
+								<button>검색</button>
+							</td>
 						</tr>
 					</table>
 				</form>
 			</td>
 		</tr>
-	</table>
-	<table>
 		<tr>
-			<td align="center">
-				<c:if test="${page != 1 }">
-					<div style="display:inline;" class="boardL" onclick="boardPageChange(${page - 1});">&lt; &nbsp;</div>
-				</c:if> <c:forEach var="p" begin="1" end="${pageCount }">
-					<a href="board.page.change?p=${p }">${p }</a>
-				</c:forEach> <c:if test="${page != pageCount }">
-					<div style="display:inline;" class="boardR" onclick="boardPageChange(${page + 1});">&nbsp; &gt;</div>
-				</c:if>
-			</td>
+			<td align="center"><c:if test="${prev}">
+					<span>[ <a href="board.needlogin.page.change?p=${page - 1}">이전</a>
+						]
+					</span>
+				</c:if> <c:forEach begin="${startPageNum}" end="${endPageNum}" var="num">
+					<span> <c:if test="${page != num}">
+							<a href="board.needlogin.page.change?p=${num}">${num}</a>
+						</c:if> <c:if test="${page == num}">
+							<b>${num}</b>
+						</c:if>
+					</span>
+				</c:forEach> <c:if test="${next}">
+					<span>[ <a href="board.needlogin.page.change?p=${page + 1}">다음</a>
+						]
+					</span>
+				</c:if></td>
 		</tr>
 	</table>
 </body>
