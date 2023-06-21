@@ -28,7 +28,7 @@
 
 					<c:forEach var="n" items="${curNotice }">
 						<tr>
-							<td><strong><a href="board.get.detail?board_id=${n.board_id }">공지</a></strong>
+							<td><strong><a href="board.needlogin.get.detail?board_id=${n.board_id }">공지</a></strong>
 							</td>
 							<td><strong>${n.board_category }</strong></td>
 							<td><strong>${n.board_title }</strong></td>

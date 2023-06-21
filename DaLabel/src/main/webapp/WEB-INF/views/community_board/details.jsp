@@ -51,21 +51,17 @@
 			<td>
 				<table>
 					<tr>
-						<td>
-						<c:forEach var="r" items="${comment }">
-						<div id="orgComment${r.comment_id }">
-								
+						<td><c:forEach var="r" items="${comment }">
+								<div id="orgComment${r.comment_id }">
+
 									<p>
 										<span class="commentWriter">${r.comment_writer }&nbsp;&nbsp;</span>
 										<input name="comment_id" value="${r.comment_id}" type="hidden">
 										<input name="inherit_post" value="${detailBoard.board_id}"
-											type="hidden">
-										${r.comment_content }
-											 -
-										<span>[ <fmt:formatDate
-															value="${r.comment_edit }" type="date"
-															pattern="yy.MM.dd HH:mm" /> ]
-														</span> 
+											type="hidden"> ${r.comment_content } - <span>[
+											<fmt:formatDate value="${r.comment_edit }" type="date"
+												pattern="yy.MM.dd HH:mm" /> ]
+										</span>
 										<c:if test="${sessionScope.loginUserID == r.comment_writer }">
 											<button type="button" onclick="updateComm(${r.comment_id});">수정</button>
 											<button type="button"
@@ -74,80 +70,77 @@
 										<button onclick="writeReply(${r.comment_id}, ${token});"
 											type="button" id="wr" value="0">대댓글</button>
 									</p>
-						</div>
-						<div id="updComment${r.comment_id }" style="display: none">
-								<form action="board.comment.update" name="commentForm"
-									id="commentForm${r.comment_id }" method="post">
-									<p>
-										<span class="commentWriter">${r.comment_writer }&nbsp;&nbsp;</span>
-										<input name="comment_id" value="${r.comment_id}" type="hidden">
-										<input name="inherit_post" value="${detailBoard.board_id}"
-											type="hidden">
-										<textarea name="comment_content">${r.comment_content }</textarea>
-											 -
-										<span>[ <fmt:formatDate
-															value="${r.comment_edit }" type="date"
-															pattern="yy.MM.dd HH:mm" /> ]
-														</span> 
-										<c:if test="${sessionScope.loginUserID == r.comment_writer }">
-											<button type="submit">수정</button>
-											<button type="button"
-												onclick="commentDelete(${r.comment_id }, ${detailBoard.board_id })">삭제</button>
-										</c:if>
-										<button onclick="writeReply(${r.comment_id}, ${token});"
-											type="button" id="wr" value="0">대댓글</button>
-									</p>
-								</form>
-						</div>
+								</div>
+								<div id="updComment${r.comment_id }" style="display: none">
+									<form action="board.needlogin.comment.update"
+										name="commentForm" id="commentForm${r.comment_id }"
+										method="post">
+										<p>
+											<span class="commentWriter">${r.comment_writer }&nbsp;&nbsp;</span>
+											<input name="comment_id" value="${r.comment_id}"
+												type="hidden"> <input name="inherit_post"
+												value="${detailBoard.board_id}" type="hidden">
+											<textarea name="comment_content">${r.comment_content }</textarea>
+											- <span>[ <fmt:formatDate value="${r.comment_edit }"
+													type="date" pattern="yy.MM.dd HH:mm" /> ]
+											</span>
+											<c:if test="${sessionScope.loginUserID == r.comment_writer }">
+												<button type="submit">수정</button>
+												<button type="button"
+													onclick="commentDelete(${r.comment_id }, ${detailBoard.board_id })">삭제</button>
+											</c:if>
+											<button onclick="writeReply(${r.comment_id}, ${token});"
+												type="button" id="wr" value="0">대댓글</button>
+										</p>
+									</form>
+								</div>
 								<table>
 
 									<c:forEach var="rr" items="${reply }">
 										<c:if test="${rr.inherit_comment == r.comment_id}">
 											<tr id="orgReply${rr.reply_id }">
-													<td colspan=4>└&nbsp;&nbsp;<span class="commentWriter">${rr.reply_writer }&nbsp;</span>
-														<input name="reply_id" value="${rr.reply_id }"
-														type="hidden"> <input name="inherit_post"
-														value="${detailBoard.board_id }" type="hidden"> <input
-														name="inherit_comment" value="${r.comment_id }"
-														type="hidden">
-														${rr.reply_content }
-														<span>[ <fmt:formatDate
-															value="${rr.reply_edit }" type="date"
+												<td colspan=4>└&nbsp;&nbsp;<span class="commentWriter">${rr.reply_writer }&nbsp;</span>
+													<input name="reply_id" value="${rr.reply_id }"
+													type="hidden"> <input name="inherit_post"
+													value="${detailBoard.board_id }" type="hidden"> <input
+													name="inherit_comment" value="${r.comment_id }"
+													type="hidden"> ${rr.reply_content } <span>[
+														<fmt:formatDate value="${rr.reply_edit }" type="date"
 															pattern="yy.MM.dd HH:mm" /> ]
-														</span> <c:if
-															test="${sessionScope.loginUserID == rr.reply_writer }">
-															<button type="button" id="btn" onclick="update(${rr.reply_id});">수정</button>
-															<button type="button"
-																onclick="replyDelete(${detailBoard.board_id}, ${r.comment_id}, ${rr.reply_id })">삭제</button>
-														</c:if>
-													</td>
+												</span> <c:if
+														test="${sessionScope.loginUserID == rr.reply_writer }">
+														<button type="button" id="btn"
+															onclick="update(${rr.reply_id});">수정</button>
+														<button type="button"
+															onclick="replyDelete(${detailBoard.board_id}, ${r.comment_id}, ${rr.reply_id })">삭제</button>
+													</c:if>
+												</td>
 											</tr>
-											<tr id="updReply${rr.reply_id }" style="display: none">
-												<form action="board.reply.update" method="post">
-													<td colspan=4>└&nbsp;&nbsp;<span class="commentWriter">${rr.reply_writer }&nbsp;</span>
-														<input name="reply_id" value="${rr.reply_id }"
-														type="hidden"> <input name="inherit_post"
+											<form action="board.needlogin.reply.update" method="post">
+												<tr id="updReply${rr.reply_id }" style="display: none">
+													<td colspan="4">└&nbsp;&nbsp;<span
+														class="commentWriter">${rr.reply_writer }&nbsp;</span> <input
+														name="reply_id" value="${rr.reply_id }" type="hidden">
+														<input name="inherit_post"
 														value="${detailBoard.board_id }" type="hidden"> <input
 														name="inherit_comment" value="${r.comment_id }"
-														type="hidden">
-														<textarea name="reply_content"> ${rr.reply_content }</textarea>
-														<span>[ <fmt:formatDate
-															value="${rr.reply_edit }" type="date"
-															pattern="yy.MM.dd HH:mm" /> ]
-														</span> <c:if
+														type="hidden"> <textarea name="reply_content"> ${rr.reply_content }</textarea>
+														<span>[ <fmt:formatDate value="${rr.reply_edit }"
+																type="date" pattern="yy.MM.dd HH:mm" /> ]
+													</span> <c:if
 															test="${sessionScope.loginUserID == rr.reply_writer }">
 															<button type="submit">수정</button>
 															<button type="button"
 																onclick="replyDelete(${detailBoard.board_id}, ${r.comment_id}, ${rr.reply_id })">삭제</button>
 														</c:if>
 													</td>
-												</form>
-											</tr>
+												</tr>
+											</form>
 										</c:if>
 									</c:forEach>
 									<tr>
 										<td>
-											<form action="board.reply.write" method="post">
+											<form action="board.needlogin.reply.write" method="post">
 												<table id="${r.comment_id }">
 													<tr>
 														<td colspan=4><input name="inherit_post"
@@ -165,14 +158,15 @@
 					</tr>
 					<tr>
 						<td class="commentTd">
-							<form action="board.comment.write" name="boardCommentWriteForm"
-								onsubmit="" method="post">
+							<form action="board.needlogin.comment.write"
+								name="boardCommentWriteForm" onsubmit="" method="post">
 								<!-- js 설정 후 -->
 								<span class="commentWriter">${sessionScope.loginUserID }&nbsp;</span>
 								<input name="token" value="${token}" type="hidden"> <input
 									name="inherit_post" value="${detailBoard.board_id}"
-									type="hidden"><textarea name="comment_content"
-									maxlength="500" class="commentContent" placeholder="댓글 입력"></textarea>
+									type="hidden">
+								<textarea name="comment_content" maxlength="500"
+									class="commentContent" placeholder="댓글 입력"></textarea>
 								<button>작성</button>
 							</form>
 						</td>

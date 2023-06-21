@@ -106,8 +106,8 @@ public class BoardDAO {
 		
 	}
 
-	public void getReply(int comment_id, HttpServletRequest req) {
-		req.setAttribute("reply", ss.getMapper(BoardMapper.class).getReply(comment_id));
+	public void getComment(int comment_id, HttpServletRequest req) {
+		req.setAttribute("reply", ss.getMapper(BoardMapper.class).getComment((comment_id)));
 	}
 	
 	public void getCurNotice(int board_category, HttpServletRequest req) {

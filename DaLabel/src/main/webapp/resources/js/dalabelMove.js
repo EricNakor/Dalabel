@@ -18,7 +18,7 @@ function commentDelete(cId, bId) {
 }
 
 function replyDelete(a, b, c) {
-	location.href = "board.reply.delete?inherit_post=" + a + "&inherit_comment=" + b + "&reply_id=" + c;
+	location.href = "board.needlogin.reply.delete?inherit_post=" + a + "&inherit_comment=" + b + "&reply_id=" + c;
 }
 
 
@@ -27,7 +27,5 @@ function goLists() {
 	location.href = "board.go";
 function commentUpdate(id, txt) {
 	location.href = "board.needlogin.comment.update?comment_id=" + id + "&comment_content=" + txt;
+	}
 }
-
-
-
