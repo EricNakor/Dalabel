@@ -4,22 +4,38 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script type="text/javascript" src="resources/js/validCheck.js"></script>
 <meta charset="UTF-8">
-<title>다라벨 게시판</title>
+<title>다라벨 게시글 작성</title>
 </head>
 <body>
-	<form>
-		<table>
+	<form name="writePostForm" onsubmit="return writePostCheck();" action="board.needlogin.post.write.do" method="post">
+		<input name="token" value="${token }" type="hidden">
+		<table id="writePost">
 			<tr>
-				<td>제목 <input />
+				<td align="center"><select name="board_category">
+						<option value="notice">공지
+						<option value="board">게시판
+				</select></td>
+			</tr>
+			<tr>
+				<td align="center">
+					<input id="board_title" name="board_title" maxlength="50"
+						placeholder="제목을 입력해주세요." autocomplete="off" autofocus="autofocus">
 				</td>
 			</tr>
 			<tr>
-				<td>글내용 <textarea></textarea>
+				<td align="center">
+					<textarea id="board_content" name="board_content"
+						maxlength="500" placeholder="내용을 입력해주세요." autocomplete="off"></textarea>
+				</td>
+			</tr>
+			<tr>
+				<td align="center">
+					<button>등록하기</button>
 				</td>
 			</tr>
 		</table>
-		<button>등록하기</button>
 	</form>
 </body>
 </html>

@@ -6,8 +6,14 @@ create table member (
 	user_birth date not null,
 	user_img varchar2(100 char),
 	user_isdeleted number(1) not null, -- 0이 탈퇴 안한거, 1이 탈퇴한거
-	user_deleted_date date
+	user_deleted_date date,
+	user_rating number(2) not null,
+	user_credit number(9) not null
 )
 
 select * from member
 
+update member set user_isdeleted = 0
+where user_id = 'test12'
+
+drop table member cascade constraint purge
