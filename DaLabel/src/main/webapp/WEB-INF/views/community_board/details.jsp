@@ -6,13 +6,14 @@
 <html>
 <head>
 <script type="text/javascript" src="resources/js/dalabelMove.js"></script>
+<script type="text/javascript" src="resources/js/move.js"></script>
 <meta charset="UTF-8">
 <title>다라벨 게시판</title>
 </head>
-
 <body>
-	<a href="board.needlogin.go">목록으로</a>
-	<form action="board.needlogin.post.update.go?board_id=${detailBoard.board_id }">
+	<hr>
+	<form
+		action="board.needlogin.post.update.go?board_id=${detailBoard.board_id }">
 		<input type="hidden" value="${detailBoard.board_id }" name="board_id">
 		<table>
 			<tr>
@@ -48,8 +49,8 @@
 				<table>
 					<tr>
 						<td class="commentTd">
-							<form action="board.needlogin.comment.write" name="boardCommentWriteForm"
-								onsubmit="">
+							<form action="board.needlogin.comment.write"
+								name="boardCommentWriteForm" onsubmit="">
 								<!-- js 설정 후 -->
 								<span class="commentWriter">${sessionScope.loginUserID }&nbsp;</span>
 								<input name="token" value="${token}" type="hidden"> <input
