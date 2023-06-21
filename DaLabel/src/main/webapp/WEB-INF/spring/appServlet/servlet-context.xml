@@ -75,7 +75,8 @@
 		class="com.hiddenlayer.dalabel.DalabelOptions">
 		<beans:property name="boardPostPerPage" value="15"></beans:property>
 		<beans:property name="qnaPostPerPage" value="15"></beans:property>
-  </beans:bean>
+	</beans:bean>
+
 	<!-- 가이드라인 이미지 업로드할 때 필요 -->
 	<beans:bean id="multipartResolver"
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
