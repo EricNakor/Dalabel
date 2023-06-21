@@ -59,6 +59,7 @@
 				<beans:value>classpath:DataMapper.xml</beans:value>
 				<beans:value>classpath:ManageBundleMapper.xml</beans:value>
 				<beans:value>classpath:ManageLabelingMapper.xml</beans:value>
+				<beans:value>classpath:ReportMapper.xml</beans:value>
 			</beans:list>
 		</beans:property>
 	</beans:bean>

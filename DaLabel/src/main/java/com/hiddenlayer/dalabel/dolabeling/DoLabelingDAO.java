@@ -143,21 +143,24 @@ public class DoLabelingDAO {
 
 	public int writeReport(Report r, HttpServletRequest req) {
 		try {
-			String token = req.getParameter("token");
-			String lastSuccessToken = (String) req.getSession().getAttribute("successToken");
-			if (lastSuccessToken != null && token.equals(lastSuccessToken)) {
-				req.setAttribute("result", "글쓰기 실패 새로고침");
-				return 0;
-			}
+			System.out.println("신고try");
+//			String token = req.getParameter("token");
+//			String lastSuccessToken = (String) req.getSession().getAttribute("successToken");
+//			if (lastSuccessToken != null && token.equals(lastSuccessToken)) {
+//				req.setAttribute("result", "글쓰기 실패 새로고침");
+//				return 0;
+//			}
 
 			String user = (String) req.getSession().getAttribute("loginUserID");
 			r.setReport_by(user);
 			r.setReport_content(r.getReport_content().replace("\r\n", "<br>"));
 
 			req.setAttribute("result", "글쓰기 성공");
-			req.getSession().setAttribute("successToken", token);
+//			req.getSession().setAttribute("successToken", token);
 			return ss.getMapper(ReportMapper.class).writeReport(r);
 		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("신고catch");
 			req.setAttribute("result", "글쓰기 실패");
 			return 0;
 		}

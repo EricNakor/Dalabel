@@ -8,21 +8,18 @@ public class Report {
 	private String report_by;
 	private String report_content;
 	private String report_data;
-	private BigDecimal report_data_path;
 	private Date report_date;
 
 	public Report() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Report(BigDecimal report_no, String report_by, String report_content, String report_data,
-			BigDecimal report_data_path, Date report_date) {
+	public Report(BigDecimal report_no, String report_by, String report_content, String report_data, Date report_date) {
 		super();
 		this.report_no = report_no;
 		this.report_by = report_by;
 		this.report_content = report_content;
 		this.report_data = report_data;
-		this.report_data_path = report_data_path;
 		this.report_date = report_date;
 	}
 
@@ -58,14 +55,6 @@ public class Report {
 		this.report_data = report_data;
 	}
 
-	public BigDecimal getReport_data_path() {
-		return report_data_path;
-	}
-
-	public void setReport_data_path(BigDecimal report_data_path) {
-		this.report_data_path = report_data_path;
-	}
-
 	public Date getReport_date() {
 		return report_date;
 	}
@@ -73,6 +62,5 @@ public class Report {
 	public void setReport_date(Date report_date) {
 		this.report_date = report_date;
 	}
-	
-	
+
 }
