@@ -5,7 +5,7 @@ function bye() {
 }
 
 function boardPageChange(p) {
-	location.href = "board.needlogin.page.change?p=" +p;
+	location.href = "board.needlogin.page.change?p=" + p;
 }
 
 function postDelete(id) {
@@ -14,18 +14,20 @@ function postDelete(id) {
 }
 
 function commentDelete(cId, bId) {
-	location.href = "board.needlogin.comment.delete?comment_id=" + cId + "&inherit_post=" + bId;
+	location.href = "board.needlogin.comment.delete?comment_id=" + cId
+			+ "&inherit_post=" + bId;
 }
 
 function replyDelete(a, b, c) {
-	location.href = "board.needlogin.reply.delete?inherit_post=" + a + "&inherit_comment=" + b + "&reply_id=" + c;
+	location.href = "board.needlogin.reply.delete?inherit_post=" + a
+			+ "&inherit_comment=" + b + "&reply_id=" + c;
 }
 
-
-
 function goLists() {
-	location.href = "board.go";
-function commentUpdate(id, txt) {
-	location.href = "board.needlogin.comment.update?comment_id=" + id + "&comment_content=" + txt;
+	location.href = "board.needlogin.go";
+
+	function commentUpdate(id, txt) {
+		location.href = "board.needlogin.comment.update?comment_id=" + id
+				+ "&comment_content=" + txt;
 	}
 }

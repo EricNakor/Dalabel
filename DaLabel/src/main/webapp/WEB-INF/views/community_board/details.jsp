@@ -14,8 +14,7 @@
 </head>
 <body>
 	<hr>
-	<form
-		action="board.needlogin.post.update.go?board_id=${detailBoard.board_id }">
+	<form action="board.needlogin.post.update.go?board_id=${detailBoard.board_id }">
 		<input type="hidden" value="${detailBoard.board_id }" name="board_id">
 		<button type="button" onclick="goLists();">목록으로</button>
 		<table>
@@ -95,7 +94,6 @@
 									</form>
 								</div>
 								<table>
-
 									<c:forEach var="rr" items="${reply }">
 										<c:if test="${rr.inherit_comment == r.comment_id}">
 											<tr id="orgReply${rr.reply_id }">
@@ -116,12 +114,11 @@
 													</c:if>
 												</td>
 											</tr>
-											<form action="board.needlogin.reply.update" method="post">
-												<tr id="updReply${rr.reply_id }" style="display: none">
-													<td colspan="4">└&nbsp;&nbsp;<span
-														class="commentWriter">${rr.reply_writer }&nbsp;</span> <input
-														name="reply_id" value="${rr.reply_id }" type="hidden">
-														<input name="inherit_post"
+											<tr id="updReply${rr.reply_id }" style="display: none">
+												<form action="board.needlogin.reply.update" method="post">
+													<td colspan=4>└&nbsp;&nbsp;<span class="commentWriter">${rr.reply_writer }&nbsp;</span>
+														<input name="reply_id" value="${rr.reply_id }"
+														type="hidden"> <input name="inherit_post"
 														value="${detailBoard.board_id }" type="hidden"> <input
 														name="inherit_comment" value="${r.comment_id }"
 														type="hidden"> <textarea name="reply_content"> ${rr.reply_content }</textarea>
@@ -134,8 +131,8 @@
 																onclick="replyDelete(${detailBoard.board_id}, ${r.comment_id}, ${rr.reply_id })">삭제</button>
 														</c:if>
 													</td>
-												</tr>
-											</form>
+												</form>
+											</tr>
 										</c:if>
 									</c:forEach>
 									<tr>
@@ -220,10 +217,15 @@
 		});
 	}
 	
+	function update(xx){
+	      $("#orgReply" + xx).attr("style", "display: none;");
+	      $("#updReply" + xx).removeAttr("style");
+	   }
+	   
 	function updateComm(yy) {
-		$("#orgComment" + yy).attr("style", "display: none");
-		$("#updComment" + yy).removeAttr("style");
-	}
+	      $("#orgComment" + yy).attr("style", "display: none;");
+	      $("#updComment" + yy).removeAttr("style");
+	   }
 	
 	
 </script>
