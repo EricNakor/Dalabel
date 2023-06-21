@@ -68,7 +68,6 @@ select * from LABELING_DO
 select * from LABELING_PROJECT
 select * from labeling_done
 
-baba 카테고리 '{type:"button",info:["버튼1", "개", "고양이", "car"]}'로 업데이트좀ㅈ 해봐
 update labeling_project set project_category = '{type:"button",info:["버튼1", "개", "고양이", "car"]}' where project_title = 'baba'
 
 
@@ -82,7 +81,7 @@ create table labeling_do (
 )
 
 create table labeling_done (
-	labelgin_done_no number(8) primary key,
+	labeling_done_no number(8) primary key,
 	project_no number(8) not null,
 	data_no varchar2(58 char) not null,
 	worked_by varchar2(15 char) not null,
@@ -134,8 +133,11 @@ select bundle_folder_name from databundle where bundle_no = (select project_bund
 
 insert into labeling_done values(183, 'aaa8cfca-55ed-4c39-8b78-3b90296bb2e0_00000003.jpg', 'test111', '잠봉')
 
+delete labeling_done where labelgin_done_no = 15
+
+
 select * from dataBundle
 select * from labeling_done
-
+select * from data
 select * from labeling_project
-select * from databundle 
+select * from databundle where bundle_no = 103

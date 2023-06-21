@@ -13,3 +13,12 @@ function writePostCheck() {
 	  }
 	  return true;
 	}
+
+function reportCheck() {
+	var contentInput = document.getElementById("report").value;
+	if (contentInput == "") {
+		alert("신고 사유를 입력해주세요.");
+		return false;
+	}
+	return true;
+}

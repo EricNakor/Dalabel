@@ -17207,6 +17207,7 @@ div.u-video,
   width: auto;
   height: 1em;
   vertical-align: top;
+  margin-top: -75px;
 }
 .menu-collapse .u-nav-link svg + svg {
   position: absolute;

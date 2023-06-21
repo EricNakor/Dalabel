@@ -15,6 +15,15 @@ ${projectDetailInfo.project_bundle_no }<hr>
 <br>
 <img class="problem" src="" alt="파일못찾음">
 
+<!-- 신고버튼 -->
+<input type="button" value="데이터 신고" onclick="reportData()">
+<div id="reportArea" style="display: none;">
+	<textarea id="reportTextArea" cols="100" rows="5" placeholder="신고 사유를 입력해주세요." maxlength="500"></textarea>
+	<input type="button" value="신고" onclick="reportArea()">
+</div><hr>
+<!-- 신고버튼 -->
+
+
 
 <div class="userInput">
 	
@@ -66,9 +75,34 @@ ${projectDetailInfo.project_bundle_no }<hr>
 				project_no:"${projectDetailInfo.project_no}",
 			},
 			success: function(nextData){
-				$(".problem").attr("src", "resources/data/${projectDetailInfo.project_requestor}/${filePath}/"+nextData).css("width", "5 00px").css("height", "300px");
+				if(nextData){
+					$(".problem").attr("src", "resources/data/${projectDetailInfo.project_requestor}/${filePath}/"+nextData).css("width", "5 00px").css("height", "300px");
+				}
+				else{
+					alert("반응없음");
+				}
 			}
 		})
 	})
+	function reportArea() {
+		let v = $(".problem").attr("src").split("/");
+		let no = v[v.length-1];
+		$.ajax({
+			type:"post",
+			url:"doLabeling.needlogin.report",
+			data: {
+				report_by: "${sessionScope.loginUserID}",
+				report_content: $("#reportTextArea").val(),
+				report_data: no
+			}, success: function() {
+				alert("아무 버튼이나 눌러주세요")
+			}
+		})
+	}
+
+	function reportData() {
+			var reportArea = document.getElementById("reportArea");
+			reportArea.style.display = "block";
+		}
 
 </script>

@@ -9,14 +9,14 @@
 <title>페이지 리스트</title>
 <script type="text/javascript" src="resources/js/dalabelMove.js"></script>
 <script type="text/javascript" src="resources/js/dalabelCheck.js"></script>
+<script type="text/javascript" src="resources/js/move.js"></script>
 </head>
 <body>
 	<input name="token" value="${token }" type="hidden">
 	<table>
-	
+
 		<tr>
 			<td>
-				<a href="/dalabel/">홈으로</a>
 				<table>
 					<tr>
 						<td>글넘버</td>
@@ -27,7 +27,8 @@
 					</tr>
 					<c:forEach var="p" items="${posts }">
 						<tr>
-							<td><a href="board.get.detail?board_id=${p.board_id }">${p.board_id }</a>
+							<td><a
+								href="board.needlogin.get.detail?board_id=${p.board_id }">${p.board_id }</a>
 							</td>
 							<td>${p.board_category }</td>
 							<td>${p.board_title }</td>
@@ -41,16 +42,16 @@
 		</tr>
 		<tr>
 			<td align="center">
-			<td><a href="board.post.write.go">글쓰기</a></td>
+			<td><a href="board.needlogin.post.write.go">글쓰기</a></td>
 		</tr>
 		<tr>
 			<td align="center">
-				<form action="board.search" name="boardSearchForm" onsubmit="return boardSearchCheck();">
+				<form action="board.needlogin.search" name="boardSearchForm"
+					onsubmit="return boardSearchCheck();">
 					<table id="boardSearchArea">
 						<tr>
-							<td>
-								<input id="search" name="search" maxlength="20" autocomplete="off">
-							</td>
+							<td><input id="search" name="search" maxlength="20"
+								autocomplete="off"></td>
 							<td>
 								<button>검색</button>
 							</td>
@@ -61,17 +62,19 @@
 		</tr>
 		<tr>
 			<td align="center"><c:if test="${prev}">
-					<span>[ <a href="board.page.change?p=${page - 1}">이전</a> ]
+					<span>[ <a href="board.needlogin.page.change?p=${page - 1}">이전</a>
+						]
 					</span>
 				</c:if> <c:forEach begin="${startPageNum}" end="${endPageNum}" var="num">
 					<span> <c:if test="${page != num}">
-							<a href="board.page.change?p=${num}">${num}</a>
+							<a href="board.needlogin.page.change?p=${num}">${num}</a>
 						</c:if> <c:if test="${page == num}">
 							<b>${num}</b>
 						</c:if>
 					</span>
 				</c:forEach> <c:if test="${next}">
-					<span>[ <a href="board.page.change?p=${page + 1}">다음</a> ]
+					<span>[ <a href="board.needlogin.page.change?p=${page + 1}">다음</a>
+						]
 					</span>
 				</c:if></td>
 		</tr>

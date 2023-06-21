@@ -21,7 +21,6 @@
 				<td align="center"><select name="board_category">
 						<option value="notice">공지
 						<option value="board">게시판
-						<option value="qna">문의
 				</select></td>
 			</tr>
 			<tr>

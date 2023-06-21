@@ -18,13 +18,14 @@
 <link rel="stylesheet" href="resources/css/Manage.css" media="screen">
 <script class="u-script" type="text/javascript"
 	src="resources/js/jquery-3.5.1.min.js"></script>
-<script type="text/javascript" src="resources/js/move.js"></script>
-<script type="text/javascript" src="resources/js/upload.js"></script>
 <script class="u-script" type="text/javascript"
 	src="resources/js/jq1.js"></script>
+<script type="text/javascript" src="resources/js/move.js"></script>
+<script type="text/javascript" src="resources/js/upload.js"></script>
 <script type="text/javascript" src="resources/js/upload.js"></script>
 <script src="//cdn.ckeditor.com/4.21.0/standard/ckeditor.js"></script>
 <script type="text/javascript" src="resources/js/labeling.js"></script>
+<script type="text/javascript" src="resources/js/labeling-do.js"></script>
 <meta name="generator" content="Nicepage 5.9.15, nicepage.com">
 <meta name="referrer" content="origin">
 <link id="u-theme-google-font" rel="stylesheet"
@@ -64,7 +65,7 @@
 							id="svg-7b92" x="0px" y="0px" viewBox="0 0 302 302"
 							style="enable-background: new 0 0 302 302;" xml:space="preserve"
 							class="u-svg-content">
-							<g>
+							<g>-
 							<rect y="36" width="302" height="30"></rect>
 							<rect y="236" width="302" height="30"></rect>
 							<rect y="136" width="302" height="30"></rect>
@@ -134,20 +135,10 @@
 												href="doLabeling.needlogin.showable">라벨링 할래요</a></li>
 										</ul>
 									</div></li>
-								<li class="u-nav-item"><a class="u-button-style u-nav-link">게시판</a>
-									<div class="u-nav-popup">
-										<ul
-											class="u-h-spacing-20 u-nav u-unstyled u-v-spacing-10 u-nav-6">
-											<li class="u-nav-item"><a href="board.needlogin.go"
-												class="u-button-style u-nav-link">자유게시판</a></li>
-											<li class="u-nav-item"><a
-												class="u-button-style u-nav-link">공지사항</a></li>
-											<li class="u-nav-item"><a
-												class="u-button-style u-nav-link">라벨링 질문 게시판</a></li>
-										</ul>
-									</div></li>
-								<li class="u-nav-item"><a class="u-button-style u-nav-link"
-									rel="nofollow">고객센터</a></li>
+								<li class="u-nav-item"><a href="board.needlogin.go"
+									class="u-button-style u-nav-link">게시판</a>
+								<li class="u-nav-item"><a href="/dalabel#qna"
+									class="u-button-style u-nav-link" rel="nofollow">고객센터</a></li>
 								<li class="u-nav-item"><a class="u-button-style u-nav-link"
 									href="member.needlogin.logout">로그아웃</a>
 							</ul>
@@ -177,9 +168,11 @@
 									class="u-logo-image u-logo-image-1">
 								</a>
 								<h5
+									id="footer-number"
 									class="u-align-left-lg u-align-left-md u-small-text u-text u-text-variant u-text-1">
 									고객센터</h5>
 								<p
+									id="footer-number"
 									class="u-align-left-lg u-align-left-md u-small-text u-text u-text-variant u-text-1">
 									1644-1644</p>
 							</div>

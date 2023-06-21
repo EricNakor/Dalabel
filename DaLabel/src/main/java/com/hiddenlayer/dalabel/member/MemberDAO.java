@@ -57,10 +57,11 @@ public class MemberDAO {
 	public void logout(HttpServletRequest req) {
 		sessionmap.removeUserIDWithSessionID((String) req.getSession().getAttribute("loginUserID"));
 		String userid=(String)req.getSession().getAttribute("loginUserID");
-		if (req.getSession().getAttribute("workingNow")!=null) {
-			BigDecimal wN = (BigDecimal) req.getSession().getAttribute("workingNow");
+		if (req.getSession().getAttribute("workingNowNumber")!=null) {
+			BigDecimal wN = (BigDecimal) req.getSession().getAttribute("workingNowNumber");
 			ps.pushMissingData(ps.getProjectNoWithUserID(userid), wN);
 			req.getSession().removeAttribute("workingNow");
+			req.getSession().removeAttribute("workingNowNumber");
 			ps.removeUserIDWithProjectNo(userid);
 		}
 		req.getSession().removeAttribute("loginUserID");
