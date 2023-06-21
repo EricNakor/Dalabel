@@ -5,6 +5,7 @@ function boardSearchCheck() {
 		return false;
 	} 
 	return true;
+}
 function joinCheck() {
 	var idInput = document.joinForm.user_id;
 	var pwInput = document.joinForm.user_pw;

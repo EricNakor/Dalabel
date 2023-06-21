@@ -34,7 +34,7 @@ function labeling_do_loads(x, y) {
                 var howTd = ($("<p></p>").attr("class", "u-align-left u-text u-text-grey-40 u-text-4").text(project_how))
                 var stateTd = ($("<p></p>").attr("class", "u-align-left u-text u-text-grey-40 u-text-4").attr("id", "labeling-progress").text("현재 상태 : " + project2.dolabel_state).css("margin-top", 0))
                 var titleDiv = ($("<div></div>").attr("class", "titleDiv").append(titleTd))
-                var div = ($("<div></div>").attr("class", "u-align-left u-container-align-center u-container-style manage-list-item u-radius-20 manage-repeater-item u-shape-round u-white manage-list-item-1"))
+                var div = $("<div></div>").attr("class", "u-align-left u-container-align-center u-container-style manage-list-item u-radius-20 manage-repeater-item u-shape-round u-white manage-list-item-1")
                 .append(
                     $("<div></div>").attr("id", "projectTbl").attr("class", "u-container-layout u-container-layout-1 manage-container-layout u-similar-container manage-container-layout-1")
                     .append(titleDiv, howTd, requestorTd, stateTd))
@@ -74,15 +74,16 @@ function my_labeling_load(x, y) {
                 if (myLabeling2.dolabel_state == 3) {
                     return true;
                 }
-                let tbinf = $("<table></table>");
-                tbinf.append("<tr><td>프로젝트명</td><td>" + myLabeling2.project_title + "</td></tr>");
-                tbinf.append("<tr><td>소유자</td><td>" + myLabeling2.dolabel_user + "</td></tr>");
+                let pArea = $("<p></p>").attr("class", "u-align-left u-text u-text-grey-40 u-text-4").attr("id", "labeling-progress")
+                let tbinf = $("<div></div>").attr("class", "u-align-left u-container-align-center u-container-style manage-list-item u-radius-20 manage-repeater-item u-shape-round u-white manage-list-item-1");
+                tbinf.append($("<h5></h5>").attr("class", "u-align-left u-custom-font u-font-ubuntu u-text u-text-default manage-text-palette-1-base u-text-3 labeling-text-3").text(myLabeling2.project_title).css("margin-bottom", 0));
+                tbinf.append(p.text(myLabeling2.dolabel_user));
                 if (myLabeling2.dolabel_state == 0) {
-                    tbinf.append("<tr><td>상태</td><td>" + "수락대기중" + "</td></tr>");
+                    tbinf.append(p.text("상태 : 수락대기중"));
                 } else if (myLabeling2.dolabel_score != null) {
-                    tbinf.append("<tr><td>스코어</td><td>" + dolabel_score + "</td></tr>");
+                    tbinf.append(p.text("스코어 : " + dolabel_score));
                 } else if (myLabeling2.dolabel_state == 1) {
-                    tbinf.append("<tr><td>상태</td><td>" + "수락됨" + "<button onclick=\"location.href='doLabeling.needlogin.start?project_no=" + myLabeling2.dolabel_project_no + "'\">라벨링 시작하기</button>" + "</td></tr>");
+                    tbinf.append("수락됨" + "<button onclick=\"location.href='doLabeling.needlogin.start?project_no=" + myLabeling2.dolabel_project_no + "'\">라벨링 시작하기</button>" + "</td></tr>");
                 } else if (myLabeling2.dolabel_state == 4) {
                     tbinf.append("<tr><td>상태</td><td>" +
                         "<button>초대받기</button>" +

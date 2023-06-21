@@ -65,7 +65,7 @@
 							id="svg-7b92" x="0px" y="0px" viewBox="0 0 302 302"
 							style="enable-background: new 0 0 302 302;" xml:space="preserve"
 							class="u-svg-content">
-							<g>
+							<g>-
 							<rect y="36" width="302" height="30"></rect>
 							<rect y="236" width="302" height="30"></rect>
 							<rect y="136" width="302" height="30"></rect>
@@ -168,9 +168,11 @@
 									class="u-logo-image u-logo-image-1">
 								</a>
 								<h5
+									id="footer-number"
 									class="u-align-left-lg u-align-left-md u-small-text u-text u-text-variant u-text-1">
 									고객센터</h5>
 								<p
+									id="footer-number"
 									class="u-align-left-lg u-align-left-md u-small-text u-text u-text-variant u-text-1">
 									1644-1644</p>
 							</div>
