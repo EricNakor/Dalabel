@@ -12,8 +12,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.hiddenlayer.dalabel.TokenGenerator;
 import com.hiddenlayer.dalabel.manageLabeling.LabelingProject;
 import com.hiddenlayer.dalabel.manageLabeling.ManageLabelingDAO;
+import com.hiddenlayer.dalabel.report.Report;
 
 @Controller
 public class DoLabelingController {
@@ -23,12 +25,12 @@ public class DoLabelingController {
 
 	@Autowired
 	private ManageLabelingDAO mlDAO;
-
+	
 //	라벨링 시작시 호출.
 	@RequestMapping(value = "/doLabeling.needlogin.start", method = RequestMethod.GET)
 	public String start(HttpServletRequest req, LabelingProject lp) {
 		dlDAO.start(req, lp);
-		req.setAttribute("contentPage","labeling/start_labeling.jsp" );
+		req.setAttribute("contentPage", "labeling/start_labeling.jsp");
 		return "index";
 	}
 
@@ -87,6 +89,15 @@ public class DoLabelingController {
 	public @ResponseBody ArrayList<SearchResultDoLabelingList> show(HttpServletRequest req,
 			@RequestParam(value = "start") int start, @RequestParam(value = "end") int end) {
 		return dlDAO.show(req, start, end);
+	}
+	
+	//report
+	@RequestMapping(value = "/doLabeling.needlogin.report", method = RequestMethod.POST)
+	public @ResponseBody int writeReport(Report r, HttpServletRequest req) {
+		TokenGenerator.generate(req);
+//			req.setAttribute("contentPage", "community_board/write.jsp");
+		return dlDAO.writeReport(r, req);
+//			req.setAttribute("contentPage", "home.jsp");
 	}
 
 }
