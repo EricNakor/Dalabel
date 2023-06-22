@@ -1,12 +1,17 @@
 package com.hiddenlayer.dalabel.manageLabeling;
 
+import java.io.OutputStream;
+import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.hiddenlayer.dalabel.dolabeling.LabelDoList;
 import com.hiddenlayer.dalabel.manageBundle.ManageSelector;
@@ -80,5 +85,31 @@ public class ManageLabelingDAO {
 		if(ld.getDolabel_state().intValue()==3) {
 			ps.removeUserIDWithProjectNo(ld.getDolabel_user());
 		}
+	}
+
+	public void downloadFile(HttpServletRequest req, int project_no, HttpServletResponse response) {
+		String userid = (String)req.getSession().getAttribute("loginUserID");
+		ArrayList<LabelingResult> results = ss.getMapper(ManageLabelingMapper.class).getResults(project_no, userid);
+		System.out.println(results.size());
+		OutputStream os = null;
+		response.setHeader("Content-Disposition", "attachment;filename=" + "result.csv"+ ";");
+
+		try {
+			os = response.getOutputStream();
+			for (LabelingResult labelingResult : results) {
+				os.write(String.format("%s,%s\n", labelingResult.getData_no(), labelingResult.getLabel_result()).getBytes());
+			}
+			os.flush();
+			os.close();
+			response.flushBuffer();
+		} catch (Exception e) {
+			try {
+				os.close();
+			} catch (Exception e2) {
+				// TODO: handle exception
+			}
+			// TODO: handle exception
+		}
+
 	}
 }
