@@ -95,7 +95,6 @@ public class DoLabelingController {
 	@RequestMapping(value = "/doLabeling.needlogin.report", method = RequestMethod.POST)
 	public @ResponseBody int writeReport(Report r, HttpServletRequest req) {
 //		TokenGenerator.generate(req);
-		System.out.println("신고 테스트");
 //			req.setAttribute("contentPage", "community_board/write.jsp");
 		return dlDAO.writeReport(r, req);
 //			req.setAttribute("contentPage", "home.jsp");

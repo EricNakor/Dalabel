@@ -143,7 +143,6 @@ public class DoLabelingDAO {
 
 	public int writeReport(Report r, HttpServletRequest req) {
 		try {
-			System.out.println("신고try");
 //			String token = req.getParameter("token");
 //			String lastSuccessToken = (String) req.getSession().getAttribute("successToken");
 //			if (lastSuccessToken != null && token.equals(lastSuccessToken)) {
@@ -160,7 +159,6 @@ public class DoLabelingDAO {
 			return ss.getMapper(ReportMapper.class).writeReport(r);
 		} catch (Exception e) {
 			e.printStackTrace();
-			System.out.println("신고catch");
 			req.setAttribute("result", "글쓰기 실패");
 			return 0;
 		}

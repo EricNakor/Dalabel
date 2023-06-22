@@ -38,8 +38,7 @@
 									src="resources/data/zip.png">
 								<h5
 									class="u-align-center u-custom-font u-font-ubuntu u-text u-text-default u-text-palette-1-base u-text-3">
-									${b.bundle_folder_name}
-								</h5>
+									${b.bundle_folder_name}</h5>
 								<p class="u-align-left u-text u-text-grey-40 u-text-4">
 									${b.bundle_descript }</p>
 								<form action="bundle.needlogin.data.go">
@@ -49,7 +48,7 @@
 										value="${b.bundle_uploaded_filename }"
 										name="bundle_uploaded_filename">
 									<button type="button"
-									onclick="location.href='reg.needlogin.labeling.go?bundle_name=${b.bundle_uploaded_filename}&bundle_no=${b.bundle_no }'"
+										onclick="location.href='reg.needlogin.labeling.go?bundle_name=${b.bundle_uploaded_filename}&bundle_no=${b.bundle_no }'"
 										class="u-active-black u-align-center u-border-none manage-btn u-btn-round manage-button-style u-hover-black u-palette-3-base u-radius-50 u-text-active-white u-text-body-alt-color u-text-hover-white manage-btn-2">라벨링
 										등록</button>
 									<button

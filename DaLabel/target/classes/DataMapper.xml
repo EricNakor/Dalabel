@@ -42,13 +42,6 @@
 		]]>
 	</select>
 	
-	
-	<select id="getReportedData"
-		resultType="com.hiddenlayer.dalabel.manageLabeling.Data">
-		<![CDATA[
-			select data_name from data where data_where =  #{data_where} and data_activation = 2
-		]]>
-	</select>
 	<update id="deleteData">
 		<![CDATA[
 		update data set data_activation = 0
