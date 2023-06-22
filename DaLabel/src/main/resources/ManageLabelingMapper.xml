@@ -74,4 +74,14 @@
 			where project_no = #{project_no})
 		]]>
 	</select>
+	<select id="getResults"
+		resultType="com.hiddenlayer.dalabel.manageLabeling.LabelingResult">
+		<![CDATA[
+			select data_no, label_result from labeling_result
+			where project_no = (select project_no from Labeling_project where project_no=#{project_no} and project_requestor=#{userid})
+	
+		]]>
+	</select>
+	
+	
 </mapper>
