@@ -7,225 +7,276 @@
 <head>
 <script src="resources/js/dalabelMove.js"></script>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-<script type="text/javascript" src="resources/js/dalabelMove.js"></script>
-<script type="text/javascript" src="resources/js/move.js"></script>
 <meta charset="UTF-8">
 <title>다라벨 게시판</title>
+<link rel="stylesheet" href="resources/css/nicepage.css" media="screen">
+<link rel="stylesheet" href="resources/css/boardDetail.css" media="screen">
+<script class="u-script" type="text/javascript"
+	src="jquery-1.9.1.min.js" defer=""></script>
+<script class="u-script" type="text/javascript" src="nicepage.js"
+	defer=""></script>
+<link id="u-theme-google-font" rel="stylesheet"
+	href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
+
+
+
+
+<script type="application/ld+json">{
+		"@context": "http://schema.org",
+		"@type": "Organization",
+		"name": "",
+		"url": "/",
+		"logo": "images/default-logo.png"
+}</script>
 </head>
-<body>
-	<hr>
+
+<body class="u-body u-xl-mode" data-lang="en">
 	<form action="board.needlogin.post.update.go?board_id=${detailBoard.board_id }">
 		<input type="hidden" value="${detailBoard.board_id }" name="board_id">
-		<button type="button" onclick="goLists();">목록으로</button>
-		<table>
-			<tr>
-				<td>말 머 리: ${detailBoard.board_category }</td>
-			</tr>
-			<tr>
-				<td>등 록 일: ${detailBoard.board_regist }</td>
-			</tr>
-			<tr>
-				<td>제 목: ${detailBoard.board_title }</td>
-			</tr>
-			<tr>
-				<td>글쓴사람 : ${detailBoard.board_writer }</td>
-			</tr>
-			<tr>
-				<td>글 내 용 : ${detailBoard.board_content }</td>
-			</tr>
-			<c:if test="${sessionScope.loginUserID == detailBoard.board_writer }">
-				<tr>
-					<td>
-						<button>수정</button>
-						<button type="button"
-							onclick="postDelete(${detailBoard.board_id })">삭제</button>
-					</td>
-				</tr>
-			</c:if>
-		</table>
+		<section class="u-clearfix u-section-1" id="sec-b5df">
+			<div class="u-clearfix u-sheet u-sheet-1">
+				<div class="u-expanded-width u-table u-table-responsive u-table-1">
+					<table class="u-table-entity u-table-entity-1">
+						<colgroup>
+							<col width="10.53%">
+              				<col width="11.58%">
+              				<col width="53.61%">
+            				<col width="11.88%">
+             				<col width="12.4%">
+						</colgroup>
+						<tbody class="u-table-body">
+							<tr style="height: 80px;">
+								<td
+									class="u-border-2 u-border-no-left u-border-no-right u-border-white u-palette-1-light-2 u-table-cell u-table-cell-1"
+									align="center">제 목</td>
+								<td colspan="4"
+									class="u-border-2 u-border-white u-palette-1-light-2 u-table-cell u-table-cell-2">[${detailBoard.board_category }] ${detailBoard.board_title }</td>
+							</tr>
+							<tr style="height: 50px;">
+								<td
+									class="u-border-2 u-border-no-left u-border-no-right u-border-white u-palette-1-light-3 u-table-cell u-table-cell-6"
+									align="center">작 성 자</td>
+								<td class="u-border-2 u-border-white u-palette-1-light-3 u-table-cell u-table-cell-7">${detailBoard.board_writer }</td>
+								<td class="u-border-2 u-border-white u-palette-1-light-3 u-table-cell u-table-cell-7"></td>
+								<td class="u-border-2 u-border-white u-palette-1-light-3 u-table-cell u-table-cell-8"
+									align="center">등 록 일<br>수 정 일</td>
+								<td
+									class="u-border-2 u-border-white u-palette-1-light-3 u-table-cell u-table-cell-10"><fmt:formatDate
+										value="${detailBoard.board_regist }" type="date"
+										pattern="yy.MM.dd HH:mm" /><br><fmt:formatDate
+										value="${detailBoard.board_edit }" type="date"
+										pattern="yy.MM.dd HH:mm" /></td>
+							</tr>
+							<tr style="height: 223px;">
+								<td
+									class="u-border-2 u-border-no-left u-border-no-right u-border-palette-1-light-2 u-table-cell"
+									colspan="5">${detailBoard.board_content }</td>
+							</tr>
+							<tr style="height: 65px;">
+								<td class="u-table-cell" align="left"><button type="button" class="boardBtn" onclick="location.href='board.go'">목록</button></td>
+								<td colspan="4" class="u-table-cell" align="right"><c:if
+										test="${sessionScope.loginUserID == detailBoard.board_writer }">
+										<button
+											class="boardBtn">수정</button>
+										<button type="button"
+											onclick="postDelete(${detailBoard.board_id })"
+											class="boardBtn">삭제</button>
+									</c:if></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</section>
 	</form>
-	--------------------------------
-	<table>
-		<tr>
-			<td>
-				<table>
-					<tr>
-						<td><c:forEach var="r" items="${comment }">
-								<div id="orgComment${r.comment_id }">
-
-									<p>
-										<span class="commentWriter">${r.comment_writer }&nbsp;&nbsp;</span>
-										<input name="comment_id" value="${r.comment_id}" type="hidden">
-										<input name="inherit_post" value="${detailBoard.board_id}"
-											type="hidden"> ${r.comment_content } - <span>[
-											<fmt:formatDate value="${r.comment_edit }" type="date"
-												pattern="yy.MM.dd HH:mm" /> ]
-										</span>
-										<c:if test="${sessionScope.loginUserID == r.comment_writer }">
-											<button type="button" onclick="updateComm(${r.comment_id});">수정</button>
-											<button type="button"
-												onclick="commentDelete(${r.comment_id }, ${detailBoard.board_id })">삭제</button>
-										</c:if>
-										<button onclick="writeReply(${r.comment_id}, ${token});"
-											type="button" id="wr" value="0">대댓글</button>
-									</p>
-								</div>
-								<div id="updComment${r.comment_id }" style="display: none">
-									<form action="board.needlogin.comment.update"
-										name="commentForm" id="commentForm${r.comment_id }"
-										method="post">
-										<p>
-											<span class="commentWriter">${r.comment_writer }&nbsp;&nbsp;</span>
-											<input name="comment_id" value="${r.comment_id}"
-												type="hidden"> <input name="inherit_post"
-												value="${detailBoard.board_id}" type="hidden">
-											<textarea name="comment_content">${r.comment_content }</textarea>
-											- <span>[ <fmt:formatDate value="${r.comment_edit }"
-													type="date" pattern="yy.MM.dd HH:mm" /> ]
-											</span>
-											<c:if test="${sessionScope.loginUserID == r.comment_writer }">
-												<button type="submit">수정</button>
-												<button type="button"
-													onclick="commentDelete(${r.comment_id }, ${detailBoard.board_id })">삭제</button>
-											</c:if>
-											<button onclick="writeReply(${r.comment_id}, ${token});"
-												type="button" id="wr" value="0">대댓글</button>
-										</p>
-									</form>
-								</div>
-								<table>
-									<c:forEach var="rr" items="${reply }">
-										<c:if test="${rr.inherit_comment == r.comment_id}">
-											<tr id="orgReply${rr.reply_id }">
-												<td colspan=4>└&nbsp;&nbsp;<span class="commentWriter">${rr.reply_writer }&nbsp;</span>
-													<input name="reply_id" value="${rr.reply_id }"
-													type="hidden"> <input name="inherit_post"
-													value="${detailBoard.board_id }" type="hidden"> <input
-													name="inherit_comment" value="${r.comment_id }"
-													type="hidden"> ${rr.reply_content } <span>[
-														<fmt:formatDate value="${rr.reply_edit }" type="date"
-															pattern="yy.MM.dd HH:mm" /> ]
-												</span> <c:if
-														test="${sessionScope.loginUserID == rr.reply_writer }">
-														<button type="button" id="btn"
-															onclick="update(${rr.reply_id});">수정</button>
-														<button type="button"
-															onclick="replyDelete(${detailBoard.board_id}, ${r.comment_id}, ${rr.reply_id })">삭제</button>
-													</c:if>
-												</td>
-											</tr>
-											<tr id="updReply${rr.reply_id }" style="display: none">
-												<form action="board.needlogin.reply.update" method="post">
-													<td colspan=4>└&nbsp;&nbsp;<span class="commentWriter">${rr.reply_writer }&nbsp;</span>
-														<input name="reply_id" value="${rr.reply_id }"
-														type="hidden"> <input name="inherit_post"
-														value="${detailBoard.board_id }" type="hidden"> <input
-														name="inherit_comment" value="${r.comment_id }"
-														type="hidden"> <textarea name="reply_content"> ${rr.reply_content }</textarea>
-														<span>[ <fmt:formatDate value="${rr.reply_edit }"
-																type="date" pattern="yy.MM.dd HH:mm" /> ]
-													</span> <c:if
-															test="${sessionScope.loginUserID == rr.reply_writer }">
-															<button type="submit">수정</button>
-															<button type="button"
-																onclick="replyDelete(${detailBoard.board_id}, ${r.comment_id}, ${rr.reply_id })">삭제</button>
-														</c:if>
-													</td>
-												</form>
-											</tr>
-										</c:if>
-									</c:forEach>
+	<section class="u-align-center u-clearfix u-section-3" id="sec-da1e">
+		<div class="u-clearfix u-sheet u-sheet-1">
+			<div class="u-table u-table-responsive u-table-1">
+				<table class="u-table-entity u-table-entity-1">
+					<colgroup>
+						<col width="12.71%">
+						<col width="29.1%">
+						<col width="29.1%">
+						<col width="29.1%">
+					</colgroup>
+					<tbody class="u-table-body">
+						<tr>
+							<td colspan="4" >
+								<table class="u-table-entity u-table-entity-1" class="Tbl">
 									<tr>
-										<td>
-											<form action="board.needlogin.reply.write" method="post">
-												<table id="${r.comment_id }">
+										<td
+											><c:forEach
+												var="r" items="${comment }">
+														<hr>
+												<div class="orgComment${r.comment_id }"
+													style="float: left; width: 70%;">
+													<span class="commentWriter">${r.comment_writer }&nbsp;&nbsp;▶&nbsp;&nbsp;</span>
+													<input name="comment_id" value="${r.comment_id}"
+														type="hidden"> <input name="inherit_post"
+														value="${detailBoard.board_id}" type="hidden">
+													${r.comment_content } - <span>[ <fmt:formatDate
+															value="${r.comment_edit }" type="date"
+															pattern="yy.MM.dd HH:mm" /> ]
+													</span>
+													<button onclick="writeReply(${r.comment_id}, ${token});"
+														type="button" id="wr" value="0" class="btn">답글</button>
+												</div>
+												<div style="float: left; width: 30%;" align="right" class="orgComment${r.comment_id }">
+												
+													<c:if
+														test="${sessionScope.loginUserID == r.comment_writer }">
+														
+														<button type="button"
+															onclick="updateComm(${r.comment_id});" class="btn">수정</button>
+														<button type="button"
+															onclick="commentDelete(${r.comment_id }, ${detailBoard.board_id })" class="btn">삭제</button>
+													</c:if>
+												</div>
+												<div id="updComment${r.comment_id }" style="display: none;">
+													<form action="board.needlogin.comment.update" name="commentForm"
+														id="commentForm${r.comment_id }" method="post">
+														<span class="commentWriter">${r.comment_writer }&nbsp;&nbsp;&nbsp;&nbsp;</span>
+														<input name="comment_id" value="${r.comment_id}"
+															type="hidden"> <input name="inherit_post"
+															value="${detailBoard.board_id}" type="hidden">
+														<textarea name="comment_content" class="txt">${r.comment_content }</textarea>
+														&nbsp;&nbsp; <span>[ <fmt:formatDate
+																value="${r.comment_edit }" type="date"
+																pattern="yy.MM.dd HH:mm" /> ]
+														</span>
+														<button onclick="writeReply(${r.comment_id}, ${token});"
+															type="button" class="btn">답글</button>
+														<c:if
+															test="${sessionScope.loginUserID == r.comment_writer }">
+															<button type="submit" class="btn">수정</button>
+															<button type="button" class="btn"
+																onclick="commentDelete(${r.comment_id }, ${detailBoard.board_id })">삭제</button>
+														</c:if>
+													</form>
+												</div>
+												<table class="u-table-entity u-table-entity-1">
+
+													<c:forEach var="rr" items="${reply }">
+														<c:if test="${rr.inherit_comment == r.comment_id}">
+															<tr id="orgReply${rr.reply_id }">
+																<td colspan="4">
+																	<div style="float: left; width: 70%;">
+																		└&nbsp;&nbsp;<span class="commentWriter">${rr.reply_writer }&nbsp;&nbsp;▷&nbsp;&nbsp;</span>
+																		<input name="reply_id" value="${rr.reply_id }"
+																			type="hidden"> <input name="inherit_post"
+																			value="${detailBoard.board_id }" type="hidden">
+																		<input name="inherit_comment" value="${r.comment_id }"
+																			type="hidden"> ${rr.reply_content } - <span>[
+																			<fmt:formatDate value="${rr.reply_edit }" type="date"
+																				pattern="yy.MM.dd HH:mm" /> ]
+																		</span>
+																	</div>
+																	<div style="float: left; width: 30%;" align="right">
+																		<c:if
+																			test="${sessionScope.loginUserID == rr.reply_writer }">
+																			<button type="button" id="btn"  class="btn"
+																				onclick="update(${rr.reply_id});">수정</button>
+																			<button type="button" class="btn"
+																				onclick="replyDelete(${detailBoard.board_id}, ${r.comment_id}, ${rr.reply_id })">삭제</button>
+																		</c:if>
+																	</div>
+					
+																</td>
+															</tr>
+															<tr id="updReply${rr.reply_id }" style="display: none;">
+																<form action="board.needlogin.reply.update" method="post">
+																	<td colspan="4">└&nbsp;&nbsp;<span
+																		class="commentWriter">${rr.reply_writer }&nbsp;&nbsp;&nbsp;&nbsp;</span>
+																		<input name="reply_id" value="${rr.reply_id }"
+																		type="hidden"> <input name="inherit_post"
+																		value="${detailBoard.board_id }" type="hidden">
+																		<input name="inherit_comment" value="${r.comment_id }"
+																		type="hidden"> <textarea name="reply_content"  class="txt"> ${rr.reply_content }</textarea>
+																		<span>[ <fmt:formatDate
+																				value="${rr.reply_edit }" type="date"
+																				pattern="yy.MM.dd HH:mm" /> ]
+																	</span> <c:if
+																			test="${sessionScope.loginUserID == rr.reply_writer }">
+																			<button type="submit" class="btn">수정</button>
+																			<button type="button" class="btn"
+																				onclick="replyDelete(${detailBoard.board_id}, ${r.comment_id}, ${rr.reply_id })">삭제</button>
+																		</c:if>
+																	</td>
+																</form>
+															</tr>
+														</c:if>
+													</c:forEach>
 													<tr>
-														<td colspan=4><input name="inherit_post"
-															value="${detailBoard.board_id }" type="hidden"> <input
-															name="inherit_comment" value="${r.comment_id }"
-															type="hidden"> <input name="token"
-															value="${token}" type="hidden"></td>
+														<td>
+															<form action="board.needlogin.reply.write" method="post">
+																<table>
+																	<tr>
+																		<td colspan="4" id="${r.comment_id }"><input
+																			name="inherit_post" value="${detailBoard.board_id }"
+																			type="hidden"> <input name="inherit_comment"
+																			value="${r.comment_id }" type="hidden"> <input
+																			name="token" value="${token}" type="hidden"></td>
+																	</tr>
+																</table>
+															</form>
+														</td>
 													</tr>
 												</table>
+											</c:forEach></td>
+									</tr>
+									<tr>
+										<td class="commentTd">
+											<form action="board.needlogin.comment.write"
+												name="boardCommentWriteForm" onsubmit="" method="post">
+												<!-- js 설정 후 -->
+												<span class="commentWriter">${sessionScope.loginUserID }&nbsp;▶&nbsp;</span>
+												<input name="token" value="${token}" type="hidden">
+												<input name="inherit_post" value="${detailBoard.board_id}"
+													type="hidden">
+												<textarea name="comment_content" maxlength="500"
+													 class="txt" placeholder="댓글 입력"></textarea>
+												<button class="writeBtn">작성</button>
 											</form>
 										</td>
 									</tr>
 								</table>
-							</c:forEach></td>
-					</tr>
-					<tr>
-						<td class="commentTd">
-							<form action="board.needlogin.comment.write"
-								name="boardCommentWriteForm" onsubmit="" method="post">
-								<!-- js 설정 후 -->
-								<span class="commentWriter">${sessionScope.loginUserID }&nbsp;</span>
-								<input name="token" value="${token}" type="hidden"> <input
-									name="inherit_post" value="${detailBoard.board_id}"
-									type="hidden">
-								<textarea name="comment_content" maxlength="500"
-									class="commentContent" placeholder="댓글 입력"></textarea>
-								<button>작성</button>
-							</form>
-						</td>
-					</tr>
+							</td>
+						</tr>
+					</tbody>
 				</table>
-			</td>
-		</tr>
-	</table>
+			</div>
+		</div>
+	</section>
 </body>
 <script type="text/javascript">
 	function writeReply(idd, tok) {
-		var id = "${sessionScope.loginUserID }";
-		var i = $("<textarea></textarea>").attr({
+		var id = "${sessionScope.loginUserID }&nbsp;▷&nbsp;";
+		var i = $(" <textarea></textarea>").attr({
 			id : "reply",
 			name : "reply_content",
-			placeholder : "대댓글 입력"
+			placeholder : "답글 입력",
+			class : "txt"
 		});
 		var b = $("<button></button>").attr({
-			class : "writeReply",
+			class : "writeBtn",
 			type : "submit"
 		}).text("작성");
 		
-		var idTd = $("<td></td>").html(id);
-		var iTd = $("<td></td>").html(i);
-		var bTd = $("<td></td>").html(b);
-		var tr =  $("<tr></tr>").append(idTd, iTd, bTd);
 		
-		$("#" + idd).append(tr);
+		$("#" + idd).append(id, i,"&nbsp;", b);
 		
 		
-	}
-	
-	function addReply(ccc) {
-		var reply = {
-			comment_id : "${r.comment_id}",
-			cr_depth : cr_depth,
-			cr_parent_id : "",
-			
-		} 
-		
-		$.ajax({
-			url : "board.needlogin.reply.write",
-			data : $("#commentForm").serialize(),
-			success : function(){
-				location.href = "board.needlogin.reply.write";
-				
-			
-				
-			}
-			
-		});
 	}
 	
 	function update(xx){
-	      $("#orgReply" + xx).attr("style", "display: none;");
-	      $("#updReply" + xx).removeAttr("style");
-	   }
-	   
+		$("#orgReply" + xx).attr("style", "display: none;");
+		$("#updReply" + xx).removeAttr("style");
+	}
+	
 	function updateComm(yy) {
-	      $("#orgComment" + yy).attr("style", "display: none;");
-	      $("#updComment" + yy).removeAttr("style");
-	   }
+		$(".orgComment" + yy).attr("style", "display: none;");
+		$("#updComment" + yy).removeAttr("style");
+	}
 	
 	
 </script>
