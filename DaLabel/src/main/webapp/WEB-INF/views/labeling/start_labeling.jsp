@@ -79,6 +79,7 @@
 			success : function() {
 				alert("아무 결과값이나 넣어주세요. ")
 				document.getElementById("reportArea").style.display = "none";
+				$("#reportTextArea").val('');
 			}
 		})
 	}

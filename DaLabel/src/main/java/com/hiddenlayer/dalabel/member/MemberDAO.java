@@ -46,6 +46,7 @@ public class MemberDAO {
 							(user.getUser_img() != null) ? user.getUser_img() : "defaultprofile.jpg");
 					req.setAttribute("loginResult", "로그인 성공");
 					sessionmap.putUserIDWithSessionID(user.getUser_id(), req.getSession().getId());
+
 					req.getSession().setAttribute("loginUserRating", user.getUser_rating().intValue());
 				}
 			}
@@ -55,8 +56,10 @@ public class MemberDAO {
 	}
 
 	public void logout(HttpServletRequest req) {
-		sessionmap.removeUserIDWithSessionID((String) req.getSession().getAttribute("loginUserID"));
 		String userid=(String)req.getSession().getAttribute("loginUserID");
+		if(sessionmap.getSessionIDWithUserID(userid).equals(req.getSession().getId())) {
+			sessionmap.removeUserIDWithSessionID((String) req.getSession().getAttribute("loginUserID"));
+		}
 		if (req.getSession().getAttribute("workingNowNumber")!=null) {
 			BigDecimal wN = (BigDecimal) req.getSession().getAttribute("workingNowNumber");
 			ps.pushMissingData(ps.getProjectNoWithUserID(userid), wN);

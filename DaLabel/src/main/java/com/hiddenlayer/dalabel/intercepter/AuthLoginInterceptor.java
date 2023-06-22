@@ -19,7 +19,7 @@ public class AuthLoginInterceptor extends HandlerInterceptorAdapter{
 	@Override
 	public boolean preHandle(HttpServletRequest req, HttpServletResponse response, Object handler)
 			throws Exception {
-	
+
 		String userid = (String) req.getSession().getAttribute("loginUserID");
 		if (userid == null || sessionmap.getSessionIDWithUserID(userid) == null) {
 			response.sendRedirect("login.go");
