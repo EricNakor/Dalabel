@@ -16,6 +16,7 @@
 					where board_writer like '%'||#{search}||'%' or board_title like '%'||#{search}||'%'
 					order by board_regist desc
 				)
+				where board_category != 'notice'
 			)
 			where rn >= #{start} and rn <= #{end}
 		)

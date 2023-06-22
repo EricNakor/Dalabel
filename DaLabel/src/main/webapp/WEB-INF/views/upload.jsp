@@ -6,33 +6,35 @@
 <head>
 <script type="text/javascript" src="resources/js/jQuery.js"></script>
 <script type="text/javascript" src="resources/js/upload.js"></script>
+<link rel="stylesheet" href="resources/css/upload.css" media="screen">
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
 	<form action="${link }" method="post" enctype="multipart/form-data"
 		onsubmit="return checkFilevalidation();">
-		<table>
+		<table class="uploadTbl">
 			<c:if test="${link eq \"upload.needlogin.bundle.do\" }">
+				<th>
+					압축 파일 내 존재하는 파일 타입
+				</th>
 				<tr>
-					<td>파일 타입</td>
-					<td><select name="bundle_data_type">
+					<td align="center"><select name="bundle_data_type">
 							<option value="jpg">jpg
 							<option value="png">png
 							<option value="txt">txt
 					</select></td>
 				</tr>
+				<tr id="noticeUpload"><td>※ 단일 확장자로 구성된 압축 파일을 업로드 해주세요.</td></tr>
 				<tr>
-					<td>간단한 설명</td>
-					<td><input name="bundle_descript"></td>
+					<td>번들 이름 : <input id="uploadInput" name="bundle_descript" placeholder="구성된 이미지 번들의 간단하게 입력해주세요."></td>
 				</tr>
 			</c:if>
 			<tr>
-				<td colspan="2"><input type="file" name="fileName"
-					id="fileInput"></td>
+				<td colspan="2" align="center"><input id="fileBox" type="file" name="fileName" id="fileInput" placeholder="압축 파일을 선택해주세요. 예).zip"></td>
 			</tr>
 			<tr>
-				<td colspan="2"><button>업로드</button></td>
+				<td colspan="2" align="center"><button class="uploadBtn">번들 업로드</button></td>
 			</tr>
 		</table>
 	</form>

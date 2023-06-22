@@ -118,3 +118,7 @@
 .list:hover {
 	background-color: #E9F2FA;
 }
+
+.searchInput {
+	border : solid 1px #478ac9;
+}

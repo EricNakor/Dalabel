@@ -25,4 +25,10 @@ public class UserLoginSession {
 	public String getSessionIDWithUserID(String userid) {
 		return userIDtoSessionID.get(userid);
 	}
+	
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return userIDtoSessionID.toString();
+	}
 }
