@@ -91,3 +91,11 @@ input, button {
     margin-top: 314px;
   }
 }
+
+.select-8e37 {
+	width: 50%;
+    display: inline-block;
+    background: url('arrow.jpg') no-repeat 99% 50%;
+    background-color: white;
+    float: left;
+}

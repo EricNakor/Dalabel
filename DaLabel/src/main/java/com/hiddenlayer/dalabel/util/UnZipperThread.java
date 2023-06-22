@@ -62,7 +62,7 @@ public class UnZipperThread extends Thread {
 				fileName = fileInfo.getFileName();
 				endtag = fileInfo.getEndtag();
 				bundleNo = fileInfo.getBundleNumber();
-				folderName = fileName.substring(fileName.indexOf("_") + 1, fileName.length() - 4);
+				folderName = fileName.substring(0, fileName.length() - 4);
 				try {
 					File zipFile = new File(fileName);
 					zis = new ZipInputStream(new BufferedInputStream(new FileInputStream(zipFile)));
@@ -76,7 +76,8 @@ public class UnZipperThread extends Thread {
 							continue;
 						}
 						idx++;
-						String innerFileName = UUID.randomUUID().toString()+"_"+String.format("%08d", idx) + "." + fileEnd;
+						String innerFileName = UUID.randomUUID().toString() + "_" + String.format("%08d", idx) + "."
+								+ fileEnd;
 						file = new File(folderName, innerFileName);
 						if (!ze.isDirectory()) {
 							try {
@@ -87,14 +88,14 @@ public class UnZipperThread extends Thread {
 							}
 						}
 					}
-					ss.getMapper(ManageBundleMapper.class)
-							.updateBundleAfterUnzip(new DataBundle(bundleNo, new BigDecimal(idx)));
 
 				} catch (Exception e) {
 					e.printStackTrace();
 					continue;
 				} finally {
 					try {
+						ss.getMapper(ManageBundleMapper.class)
+						.updateBundleAfterUnzip(new DataBundle(bundleNo, new BigDecimal(idx)));
 						zis.close(); // catch로 빠져도 닫음
 					} catch (Exception e) {
 					}

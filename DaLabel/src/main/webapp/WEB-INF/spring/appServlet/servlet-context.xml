@@ -35,10 +35,11 @@
 		<beans:property name="driverClassName"
 			value="oracle.jdbc.driver.OracleDriver" />
 		<beans:property name="url"
-			value="jdbc:oracle:thin:@{address}" />
-		<beans:property name="username" value="{id}" />
-		<beans:property name="password" value="{pw}" />
+			value="jdbc:oracle:thin:@192.168.0.150:1521:xe" />
+		<beans:property name="username" value="hiddenlayer" />
+		<beans:property name="password" value="hidden142857pw" />
 	</beans:bean>
+
 
 	<beans:bean id="transactionManager"
 		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
@@ -53,10 +54,12 @@
 		<beans:property name="mapperLocations">
 			<beans:list>
 				<beans:value>classpath:AccountMapper.xml</beans:value>
+				<beans:value>classpath:BoardMapper.xml</beans:value>
 				<beans:value>classpath:DataDoLabelingMapper.xml</beans:value>
 				<beans:value>classpath:DataMapper.xml</beans:value>
 				<beans:value>classpath:ManageBundleMapper.xml</beans:value>
 				<beans:value>classpath:ManageLabelingMapper.xml</beans:value>
+				<beans:value>classpath:ReportMapper.xml</beans:value>
 			</beans:list>
 		</beans:property>
 	</beans:bean>
@@ -65,6 +68,13 @@
 		class="org.mybatis.spring.SqlSessionTemplate">
 		<beans:constructor-arg name="sqlSessionFactory"
 			ref="sqlSessionFactory" />
+	</beans:bean>
+
+	<!-- 게시물 조회 개수 -->
+	<beans:bean id="board"
+		class="com.hiddenlayer.dalabel.DalabelOptions">
+		<beans:property name="boardPostPerPage" value="15"></beans:property>
+		<beans:property name="qnaPostPerPage" value="15"></beans:property>
 	</beans:bean>
 
 	<!-- 가이드라인 이미지 업로드할 때 필요 -->
@@ -77,9 +87,14 @@
 
 	<interceptors>
 		<interceptor>
-			<mapping path="*.needlogin.*" />
+			<mapping path="/*.needlogin.*" />
 			<beans:bean id="loginInterceptor"
 				class="com.hiddenlayer.dalabel.intercepter.AuthLoginInterceptor" />
+		</interceptor>
+		<interceptor>
+			<mapping path="/**" />
+			<beans:bean id="FileInterceptor"
+				class="com.hiddenlayer.dalabel.intercepter.FileInterceptor" />
 		</interceptor>
 	</interceptors>
 </beans:beans>

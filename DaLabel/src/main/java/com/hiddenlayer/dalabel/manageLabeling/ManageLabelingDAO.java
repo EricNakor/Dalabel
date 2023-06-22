@@ -33,9 +33,12 @@ public class ManageLabelingDAO {
 	public void regLabelingProject(LabelingProject lp, HttpServletRequest req) {
 		lp.setProject_requestor((String) req.getSession().getAttribute("loginUserID"));
 		ss.getMapper(ManageLabelingMapper.class).regLabelingProject(lp);
+		if (req.getSession().getAttribute("projectCount") != null) {
+			req.getSession().setAttribute("projectCount", (Integer) req.getSession().getAttribute("projectCount") + 1);
+		}
 	}
 
-	public void getMyLabeling(int page, HttpServletRequest req) {
+	public void getUploadedProject(int page, HttpServletRequest req) {
 		String user = (String) req.getSession().getAttribute("loginUserID");
 		if (req.getSession().getAttribute("projectCount") == null) {
 			req.getSession().setAttribute("projectCount",
@@ -62,7 +65,6 @@ public class ManageLabelingDAO {
 	// 프로젝트 권한설정 관리
 	public void updateProjectAccessLevel(LabelingProject lp, HttpServletRequest req) {
 		ss.getMapper(ManageLabelingMapper.class).updateProjectAccessLevel(lp);
-
 		if (lp.getProject_access_level().intValue() != 0) {
 			ps.createDoLabeling(lp.getProject_no(), ss.getMapper(ManageLabelingMapper.class).getFileCount(lp),
 					lp.getProject_access_level());
@@ -80,6 +82,9 @@ public class ManageLabelingDAO {
 //	
 	public void changeUserAccess(LabelDoList ld, HttpServletRequest req) {
 		ss.getMapper(ManageLabelingMapper.class).changeUserAccess(ld); // 수락, 거부, 밴할 때 호출할 함수
+		if(ld.getDolabel_state().intValue()==3) {
+			ps.removeUserIDWithProjectNo(ld.getDolabel_user());
+		}
 	}
 
 	public void downloadFile(HttpServletRequest req, int project_no, HttpServletResponse response) {

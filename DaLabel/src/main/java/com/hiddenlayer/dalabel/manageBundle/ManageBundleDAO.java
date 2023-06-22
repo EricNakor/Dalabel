@@ -39,13 +39,15 @@ public class ManageBundleDAO {
 		db.setBundle_data_type(names[1]);
 		db.setBundle_descript(names[2]);
 		String foldername = db.getBundle_uploaded_filename().substring(names[0].indexOf("_") + 1, names[0].length());
-		db.setBundle_folder_name(
-				foldername.substring(0, foldername.lastIndexOf(".")));
+		db.setBundle_folder_name(foldername.substring(0, foldername.lastIndexOf(".")));
 		ss.getMapper(ManageBundleMapper.class).regLabelingBundle(db);
 
 		uzt.addTodo(new UnZipInfos(fu.getDataRealPath(loginUser) + names[0], names[1],
 				new BigDecimal(ss.getMapper(ManageBundleMapper.class).getBundleNumber(loginUser, names[0]))));
 		req.setAttribute("rtVal", db.getBundle_uploaded_filename());
+		if (req.getSession().getAttribute("bundleCount") != null) {
+			req.getSession().setAttribute("bundleCount", (Integer) req.getSession().getAttribute("bundleCount") + 1);
+		}
 	}
 
 	public void getMyBundle(int page, HttpServletRequest req) {
@@ -69,6 +71,9 @@ public class ManageBundleDAO {
 
 	public void deleteBundle(int bundle_no, HttpServletRequest req) {
 		ss.getMapper(ManageBundleMapper.class).deleteBundle(bundle_no);
+		if (req.getSession().getAttribute("bundleCount") != null) {
+			req.getSession().setAttribute("bundleCount", (Integer) req.getSession().getAttribute("bundleCount") - 1);
+		}
 	}
 
 }

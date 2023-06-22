@@ -17,7 +17,7 @@
 		<c:forEach var="mlu" items="${mlu }">
 			<tr>
 				<td align="center">${mlu.dolabel_user}</td>
-				<form action="update.user.access">
+				<form action="update.needlogin.user.access">
 					<td><input type="hidden" name="dolabel_user"
 						value="${mlu.dolabel_user }"> <input type="hidden"
 						name="dolabel_project_no" value="${mlu.dolabel_project_no }">

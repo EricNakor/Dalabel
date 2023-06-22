@@ -1,0 +1,19 @@
+@charset "UTF-8";
+
+#writePost{
+	width: 760px;
+	font-size: 15pt;
+}
+
+#writePost input{
+	width: 550px;
+	height: 45px;
+	border: black solid 3px;
+	padding: 5px;
+}
+
+#writePost textarea {
+	width: 550px;
+	height: 300px;
+	resize: none;
+}

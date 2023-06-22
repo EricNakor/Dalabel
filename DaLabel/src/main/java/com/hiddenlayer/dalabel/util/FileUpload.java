@@ -23,8 +23,9 @@ public class FileUpload {
 	public boolean deleteProfileIMG(String fileName) {
 		return new File(profileIMGrealpath + fileName).delete();
 	}
-	
-	private String fileUploadMr(String path, MultipartHttpServletRequest multiFile) throws Exception{
+
+	private String fileUploadMr(String path, MultipartHttpServletRequest multiFile) throws Exception {
+
 		File uploadFolder = new File(path);
 		OutputStream os = null;
 		try {
@@ -33,8 +34,7 @@ public class FileUpload {
 			}
 			MultipartFile file = multiFile.getFile("fileName");
 			String fileName = UUID.randomUUID().toString() + "_" + file.getOriginalFilename();
-			fileName= fileName.substring(fileName.indexOf("_") + 1, fileName.length());
-			String uploadPath = path+"\\"+fileName;
+			String uploadPath = path + "\\" + fileName;
 			os = new FileOutputStream(new File(uploadPath));
 			byte[] bytes = file.getBytes();
 			os.write(bytes);
@@ -47,8 +47,8 @@ public class FileUpload {
 			os.close();
 		}
 	}
-	
-	public String profileUpload(HttpServletRequest req,MultipartHttpServletRequest multiFile) {
+
+	public String profileUpload(HttpServletRequest req, MultipartHttpServletRequest multiFile) {
 		if (profileIMGrealpath == null) {
 			profileIMGrealpath = req.getSession().getServletContext().getRealPath("resources/image/profile/");
 		}
@@ -60,7 +60,7 @@ public class FileUpload {
 		}
 	}
 
-	public String[] bundleUpload(HttpServletRequest req,MultipartHttpServletRequest multiFile) {
+	public String[] bundleUpload(HttpServletRequest req, MultipartHttpServletRequest multiFile) {
 		String userID = (String) req.getSession().getAttribute("loginUserID");
 		if (dataRealPath == null) {
 			dataRealPath = req.getSession().getServletContext().getRealPath("resources/data/");
@@ -68,7 +68,7 @@ public class FileUpload {
 		String path = dataRealPath + userID;
 		String returnName = null;
 		try {
-			returnName=fileUploadMr(path, multiFile);
+			returnName = fileUploadMr(path, multiFile);
 			return new String[] { returnName, multiFile.getParameter("bundle_data_type"),
 					multiFile.getParameter("bundle_descript") };
 		} catch (Exception e1) {

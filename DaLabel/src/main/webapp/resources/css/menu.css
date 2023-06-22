@@ -1,0 +1,7 @@
+@charset "UTF-8";
+
+#menubutton:hover {
+  font-weight: bold;
+  color: #0080FF;
+  text-decoration: underline;
+}

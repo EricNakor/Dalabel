@@ -40,12 +40,17 @@ public class MemberDAO {
 			ArrayList<Member> member = ss.getMapper(AccountMapper.class).getUserinfo(m);
 			Member user = member.get(0);
 			if (user != null) {
+				System.out.println(user.getUser_id());
+				System.out.println(user.getUser_pw());
+				System.out.println(m.getUser_pw());
 				if (user.getUser_pw().equals(m.getUser_pw())) {
+					System.out.println("로그인 성공함");
 					req.getSession().setAttribute("loginUserID", user.getUser_id());
 					req.getSession().setAttribute("loginUserIMG",
 							(user.getUser_img() != null) ? user.getUser_img() : "defaultprofile.jpg");
 					req.setAttribute("loginResult", "로그인 성공");
 					sessionmap.putUserIDWithSessionID(user.getUser_id(), req.getSession().getId());
+
 					req.getSession().setAttribute("loginUserRating", user.getUser_rating().intValue());
 				}
 			}
@@ -55,12 +60,15 @@ public class MemberDAO {
 	}
 
 	public void logout(HttpServletRequest req) {
-		sessionmap.removeUserIDWithSessionID((String) req.getSession().getAttribute("loginUserID"));
 		String userid=(String)req.getSession().getAttribute("loginUserID");
-		if (req.getSession().getAttribute("workingNow")!=null) {
-			BigDecimal wN = (BigDecimal) req.getSession().getAttribute("workingNow");
+		if(sessionmap.getSessionIDWithUserID(userid).equals(req.getSession().getId())) {
+			sessionmap.removeUserIDWithSessionID((String) req.getSession().getAttribute("loginUserID"));
+		}
+		if (req.getSession().getAttribute("workingNowNumber")!=null) {
+			BigDecimal wN = (BigDecimal) req.getSession().getAttribute("workingNowNumber");
 			ps.pushMissingData(ps.getProjectNoWithUserID(userid), wN);
 			req.getSession().removeAttribute("workingNow");
+			req.getSession().removeAttribute("workingNowNumber");
 			ps.removeUserIDWithProjectNo(userid);
 		}
 		req.getSession().removeAttribute("loginUserID");
@@ -68,6 +76,7 @@ public class MemberDAO {
 		req.getSession().removeAttribute("loginUserRating");		
 		req.getSession().removeAttribute("joinProjectCount");		
 		req.getSession().removeAttribute("bundleCount");		
+		req.getSession().removeAttribute("projectCount");		
 	}
 
 	public void joinMember(Member m, HttpServletRequest req) {
@@ -90,8 +99,6 @@ public class MemberDAO {
 			m.setUser_id((String) req.getSession().getAttribute("loginUserID"));
 			ArrayList<Member> userinfo = ss.getMapper(AccountMapper.class).getUserinfo(m);
 			m = userinfo.get(0);
-			for (Member member : userinfo) {
-			}
 			req.setAttribute("memberInfo", m);
 		} catch (Exception e) {
 		}
@@ -113,9 +120,16 @@ public class MemberDAO {
 	public void deleteMember(HttpServletRequest req) {
 		Member m = new Member();
 		m.setUser_id((String) req.getSession().getAttribute("loginUserID"));
+//		int postCount = ss.getMapper(BoardMapper.class).getPostCountByUser(m);
 		if (ss.getMapper(AccountMapper.class).deleteMember(m) == 1) {
+			// 탈퇴 시 글 카운트
+//			int allPostCount = bDAO.getAllPostCount();
+//			bDAO.setAllPostCount(allPostCount - postCount);
 			logout(req);
+		} else {
+
 		}
+
 	}
 
 	public void updateProfile(HttpServletRequest req, MultipartHttpServletRequest multiFile) {

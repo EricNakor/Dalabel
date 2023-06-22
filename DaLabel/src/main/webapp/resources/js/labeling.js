@@ -44,23 +44,27 @@ function del_btn(obj) {
 
 function json_() {
 	let arr = []
-	if ($('#project_how').val() === '-1') {
+	if ($('#project_how').val() === '-1' || $('#bundle_data_type').val() === '-1') {
 		return false
 	}
 	if ($('#project_title').val() === '' || $('#project_guide').val() === '') {
 		return false
 	}
-	if (obj['type'] === 'input') {
-		let obj = {}
+	if ($('#project_how').val() === '0') {
 		obj['type'] = 'input'
 		$('#project_category').attr('value', JSON.stringify(obj))
-		return false
+		console.log($('#project_category').val())
+		return true
 	}
 	$('.for_eachs').each((i, e) => {
 		arr[i] = e.value;
 	})
 	obj['info'] = arr
 	$('#project_category').attr('value', JSON.stringify(obj))
+	console.log($('#project_category').val())
+	if ($('#project_how').val() === '1' && obj['info'].length === 0) {
+		return false
+	}
 	return true
 }
 

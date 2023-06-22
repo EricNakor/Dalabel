@@ -15,10 +15,11 @@
 		<![CDATA[
 		select *
 		from (
-			select rownum as rn, project_no, project_title, project_access_level, project_progress
+			select rownum as rn, project_no, project_title, project_how, project_access_level, project_progress
 			from (
-				select project_no, project_title, project_access_level, project_progress from labeling_project
+				select project_no, project_title, project_how, project_access_level, project_progress from labeling_project
 				where project_requestor = #{login_user}
+				order by project_no desc
 			)
 		)
 		where rn >= #{start} and rn <= #{end}
@@ -45,7 +46,8 @@
 	<update id="updateProjectAccessLevel"
 		parameterType="com.hiddenlayer.dalabel.manageLabeling.LabelingProject">
 		<![CDATA[
-			update labeling_project set project_access_level = #{project_access_level}
+			update labeling_project set project_access_level = #{project_access_level},
+			project_guide = #{project_guide}, project_progress = 1
 			where project_no = #{project_no}
 		]]>
 	</update>
@@ -71,7 +73,7 @@
 		<![CDATA[
 			select bundle_file_count from DataBundle
 			where bundle_no = (select project_bundle_no from labeling_project
-			where project_no = #{project_no})
+								where project_no = #{project_no})
 		]]>
 	</select>
 	<select id="getResults"

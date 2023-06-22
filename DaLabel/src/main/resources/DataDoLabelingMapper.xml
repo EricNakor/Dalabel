@@ -6,7 +6,7 @@
 		parameterType="com.hiddenlayer.dalabel.dolabeling.LabelData">
 		<![CDATA[
 			insert into Labeling_Done
-			values (#{project_no}, #{data_no}, #{worked_by}, #{label})
+			values (labeling_done_seq.nextval, #{project_no}, #{data_no}, #{worked_by}, #{label})
 		]]>
 	</insert>
 	<insert id="addLabelDoList"

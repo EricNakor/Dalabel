@@ -31,24 +31,25 @@ public class ManageLabelingController {
 	@RequestMapping(value = "/reg.needlogin.labeling.do", method = RequestMethod.POST)
 	public String doRegLabeling(LabelingProject lp, HttpServletRequest req) {
 		mlDAO.regLabelingProject(lp, req);
-		req.setAttribute("contentPage", "home.jsp");
+		req.setAttribute("contentPage", "manage_labeling/manage_labeling.jsp");
+		mlDAO.getUploadedProject(1, req);
 		return "index";
 	}
 
 	@RequestMapping(value = "/get.needlogin.myUpload.labeling", method = RequestMethod.GET)
 	public String getManageLabeling(HttpServletRequest req) {
-		mlDAO.getMyLabeling(1, req);
+		mlDAO.getUploadedProject(1, req);
 		req.setAttribute("contentPage", "manage_labeling/manage_labeling.jsp");
 		return "index";
 	}
 
 	@RequestMapping(value = "project.needlogin.page.change", method = RequestMethod.GET)
 	public String pageChangeProject(@RequestParam(value = "page") int page, HttpServletRequest req) {
-		mlDAO.getMyLabeling(page, req);
+		mlDAO.getUploadedProject(page, req);
 		req.setAttribute("contentPage", "manage_labeling/manage_labeling.jsp");
 		return "index";
 	}
-	
+
 	@RequestMapping(value = "/get.needlogin.detail.myproject", method = RequestMethod.GET)
 	public String goDetailProject(HttpServletRequest req) {
 		mlDAO.getMyDeatilProject(req);
@@ -59,29 +60,28 @@ public class ManageLabelingController {
 	@RequestMapping(value = "/update.needlogin.project.accessLevel", method = RequestMethod.GET)
 	public String updateAccessLevel(LabelingProject lp, HttpServletRequest req) {
 		mlDAO.updateProjectAccessLevel(lp, req);
-		req.setAttribute("contentPage", "home.jsp");
+		mlDAO.getUploadedProject(1, req);
+		req.setAttribute("contentPage", "manage_labeling/manage_labeling.jsp");
 		return "index";
 	}
 
-	@RequestMapping(value = "/manage.labeling.user", method = RequestMethod.GET)
+	@RequestMapping(value = "/manage.needlogin.labeling.user", method = RequestMethod.GET)
 	public String getLabelingUser(@RequestParam(value = "project_no") int project_no, HttpServletRequest req) {
 		mlDAO.select(project_no, req);
 		req.setAttribute("contentPage", "manage_labeling/manage_labeling_user.jsp");
 		return "index";
 	}
 
-	@RequestMapping(value = "/update.user.access", method = RequestMethod.GET)
+	@RequestMapping(value = "/update.needlogin.user.access", method = RequestMethod.GET)
 	public String updateUserLevel(LabelDoList ld, HttpServletRequest req) {
 		mlDAO.changeUserAccess(ld, req); // change
 		mlDAO.select(ld.getDolabel_project_no().intValue(), req);
 		req.setAttribute("contentPage", "manage_labeling/manage_labeling_user.jsp");
 		return "index";
 	}
-	
 	@RequestMapping(value = "/download.needlogin.projectresult", method = RequestMethod.GET)
 	public void downloadProjectResult(HttpServletRequest req, @RequestParam(value="project_no")int project_no, HttpServletResponse res) {
 		mlDAO.downloadFile(req, project_no, res);
 
 	}
-	
 }

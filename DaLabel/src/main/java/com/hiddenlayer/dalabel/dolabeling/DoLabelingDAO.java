@@ -13,10 +13,13 @@ import com.hiddenlayer.dalabel.manageBundle.ManageBundleMapper;
 import com.hiddenlayer.dalabel.manageLabeling.Data;
 import com.hiddenlayer.dalabel.manageLabeling.LabelingProject;
 import com.hiddenlayer.dalabel.manageLabeling.ManageLabelingMapper;
+import com.hiddenlayer.dalabel.report.Report;
+import com.hiddenlayer.dalabel.report.ReportMapper;
 import com.hiddenlayer.dalabel.session.ProjectSession;
 
 @Service
 public class DoLabelingDAO {
+
 	@Autowired
 	private SqlSession ss;
 
@@ -24,10 +27,18 @@ public class DoLabelingDAO {
 	private ProjectSession ps;
 
 	public void start(HttpServletRequest req, LabelingProject lp) {
+		if (req.getSession().getAttribute("workingNowNumber") != null) {
+			req.getSession().removeAttribute("workingNow");
+			ps.pushMissingData(ps.getProjectNoWithUserID((String) req.getSession().getAttribute("loginUserID")),
+					(BigDecimal) req.getSession().getAttribute("workingNowNumber"));
+			req.getSession().removeAttribute("workingNowNumber");
+		}
+
 		ps.putUserIDWithProjectNo((String) req.getSession().getAttribute("loginUserID"), lp.getProject_no());
-		req.setAttribute("projectDetailInfo",ss.getMapper(ManageLabelingMapper.class).getMyDeatilProject(lp.getProject_no().intValue()));
-		System.out.println(lp.getProject_no());
-		req.setAttribute("filePath",ss.getMapper(ManageBundleMapper.class).getBundleFilePath(lp.getProject_no().intValue()) );
+		req.setAttribute("projectDetailInfo",
+				ss.getMapper(ManageLabelingMapper.class).getMyDeatilProject(lp.getProject_no().intValue()));
+		String filePath = ss.getMapper(ManageBundleMapper.class).getBundleFilePath(lp.getProject_no().intValue());
+		req.setAttribute("filePath", filePath.substring(0, filePath.length() - 4));
 	}
 
 	public String nextDataName(HttpServletRequest req, LabelData ld) {
@@ -36,20 +47,22 @@ public class DoLabelingDAO {
 		Data d = null;
 		int flag = 0;
 		if (userid.equals(ld.getWorked_by())) {
-			if (req.getSession().getAttribute("workingNow") != null
+			if (ps.getProjectNoWithUserID(userid) != null && req.getSession().getAttribute("workingNow") != null
 					&& req.getSession().getAttribute("workingNow").equals(ld.getData_no())) {
 				ss.getMapper(DataDoLabelingMapper.class).addLabelData(ld);
 				flag = 1;
 			}
-			if (ps.getProjectNoWithUserID(userid) != null && (req.getSession().getAttribute("workingNow") == null  || flag == 1)) {
+			if (ps.getProjectNoWithUserID(userid) != null
+					&& (req.getSession().getAttribute("workingNow") == null || flag == 1)) {
 				d = ps.getNextData(userid);
 			}
 
 		}
 		if (d == null) {
-			return (String)req.getSession().getAttribute("workingNow");
+			return (String) req.getSession().getAttribute("workingNow");
 		} else {
 			req.getSession().setAttribute("workingNow", d.getData_name());
+			req.getSession().setAttribute("workingNowNumber", d.getData_where());
 			return d.getData_name();
 		}
 	}
@@ -95,7 +108,6 @@ public class DoLabelingDAO {
 				}
 			}
 		}
-
 	}
 
 	private void addJoinNeedPermission(HttpServletRequest req, BigDecimal project_no) {
@@ -125,5 +137,30 @@ public class DoLabelingDAO {
 		return ss.getMapper(DataDoLabelingMapper.class).findAccessableDoList(
 				(String) req.getSession().getAttribute("loginUserID"),
 				new BigDecimal((Integer) req.getSession().getAttribute("loginUserRating")), start, getnum);
+	}
+
+	// data report
+
+	public int writeReport(Report r, HttpServletRequest req) {
+		try {
+//			String token = req.getParameter("token");
+//			String lastSuccessToken = (String) req.getSession().getAttribute("successToken");
+//			if (lastSuccessToken != null && token.equals(lastSuccessToken)) {
+//				req.setAttribute("result", "글쓰기 실패 새로고침");
+//				return 0;
+//			}
+
+			String user = (String) req.getSession().getAttribute("loginUserID");
+			r.setReport_by(user);
+			r.setReport_content(r.getReport_content().replace("\r\n", "<br>"));
+
+			req.setAttribute("result", "글쓰기 성공");
+//			req.getSession().setAttribute("successToken", token);
+			return ss.getMapper(ReportMapper.class).writeReport(r);
+		} catch (Exception e) {
+			e.printStackTrace();
+			req.setAttribute("result", "글쓰기 실패");
+			return 0;
+		}
 	}
 }
