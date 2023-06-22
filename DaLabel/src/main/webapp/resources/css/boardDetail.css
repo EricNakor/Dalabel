@@ -1,13 +1,13 @@
-.u-section-1 .u-sheet-1 {
+.board-section-1 .u-sheet-1 {
   min-height: 400px;
 }
 
-.u-section-1 .u-table-1 {
+.board-section-1 .u-table-1 {
   margin-top: 34px;
   margin-bottom: 60px;
 }
 
-.u-section-1 .u-table-entity-1 {
+.board-section-1 .u-table-entity-1 {
   min-height: 100px;
 }
 
@@ -19,53 +19,53 @@
   height: 88px;
 }
 
-.u-section-1 .u-table-cell-1 {
+.board-section-1 .u-table-cell-1 {
   font-weight: 700;
   background-image: none;
   font-size: 1.25rem;
 }
 
-.u-section-1 .u-table-cell-2 {
+.board-section-1 .u-table-cell-2 {
   font-weight: 700;
   background-image: none;
   font-size: 1.25rem;
 }
 
-.u-section-1 .u-table-cell-3 {
+.board-section-1 .u-table-cell-3 {
   font-weight: 700;
   background-image: none;
   font-size: 1.25rem;
 }
 
-.u-section-1 .u-table-cell-4 {
+.board-section-1 .u-table-cell-4 {
   font-weight: 700;
   background-image: none;
   font-size: 1.25rem;
 }
 
-.u-section-1 .u-table-cell-5 {
+.board-section-1 .u-table-cell-5 {
   font-weight: 700;
   background-image: none;
   font-size: 1.25rem;
 }
 
-.u-section-1 .u-table-cell-6 {
+.board-section-1 .u-table-cell-6 {
   background-image: none;
 }
 
-.u-section-1 .u-table-cell-7 {
+.board-section-1 .u-table-cell-7 {
   background-image: none;
 }
 
-.u-section-1 .u-table-cell-8 {
+.board-section-1 .u-table-cell-8 {
   background-image: none;
 }
 
-.u-section-1 .u-table-cell-9 {
+.board-section-1 .u-table-cell-9 {
   background-image: none;
 }
 
-.u-section-1 .u-table-cell-10 {
+.board-section-1 .u-table-cell-10 {
   background-image: none;
 }.u-section-2 .u-sheet-1 {
   min-height: 464px;
@@ -161,7 +161,7 @@
  
  .txt {
  	resize: none;
- 	height: 35px;
+ 	height: 50px;
  	width: 700px;
  }
  

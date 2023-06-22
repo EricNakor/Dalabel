@@ -3,39 +3,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
-<html style="font-size: 16px;" lang="en">
+<html>
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta charset="utf-8">
-<meta name="keywords" content="">
-<meta name="description" content="">
-<title>Home</title>
-<link rel="stylesheet" href="resources/css/boardList.css" media="screen">
-<link rel="stylesheet" href="resources/css/nicepage.css" media="screen">
-<script class="u-script" type="text/javascript"
-	src="jquery-1.9.1.min.js" defer=""></script>
-<script class="u-script" type="text/javascript" src="nicepage.js"
-	defer=""></script>
-<meta name="generator" content="Nicepage 5.12.2, nicepage.com">
-<meta name="referrer" content="origin">
-<link id="u-theme-google-font" rel="stylesheet"
-	href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
-
-
-
-<script type="application/ld+json">{
-		"@context": "http://schema.org",
-		"@type": "Organization",
-		"name": "",
-		"url": "/",
-		"logo": "images/default-logo.png"
-}</script>
-<meta name="theme-color" content="#478ac9">
-<meta property="og:title" content="Home">
-<meta property="og:type" content="website">
-<link rel="canonical" href="/">
-<meta data-intl-tel-input-cdn-path="intlTelInput/">
-</head>
+<meta charset="UTF-8">
 <body class="u-body u-xl-mode">
 	<input name="token" value="${token }" type="hidden">
 	<section class="u-align-center u-clearfix u-section-1" id="sec-30ba">
@@ -65,12 +35,14 @@
 								록 일</td>
 						</tr>
 						<c:forEach var="n" items="${curNotice }">
-							<tr style="height: 50px;" class="list"
+							<tr class="list"
 								onclick="location.href='board.needlogin.get.detail?board_id='+${n.board_id}">
 								<td align="center"
-									class="u-border-2 u-border-no-left u-border-no-right u-border-white u-table-cell"><strong>[공지]</strong>
+									class="u-border-2 u-border-no-left u-border-no-right u-border-white u-table-cell"><strong>공지</strong>
 								</td>
-								<td class="u-border-2 u-border-white u-table-cell"><strong>${n.board_title }</strong></td>
+								<td class="u-border-2 u-border-white u-table-cell"><strong><a
+										href="board.get.detail?board_id=${n.board_id }">${n.board_title }</a></strong>
+									<input name="board_id" value="${n.board_id }" type="hidden"></td>
 								<td align="center"
 									class="u-border-2 u-border-white u-table-cell"><strong>관리자</strong></td>
 								<td align="center"
@@ -84,8 +56,8 @@
 								<td align="center"
 									class="u-border-2 u-border-no-left u-border-no-right u-border-white u-table-cell">${p.board_category }</td>
 								<td class="u-border-2 u-border-white u-table-cell"><input
-									name="board_id" value="${b.board_id }" type="hidden"> <a
-									href="board.get.detail?board_id=${p.board_id }">${p.board_title }</a></td>
+									name="board_id" value="${p.board_id }" type="hidden"> <a
+									href="board.needlogin.get.detail?board_id=${p.board_id }">${p.board_title }</a></td>
 								<td align="center"
 									class="u-border-2 u-border-white u-table-cell">${p.board_writer }</td>
 								<td align="center"
@@ -95,16 +67,17 @@
 						</c:forEach>
 					</tbody>
 					<tr>
-						<td align="right" colspan="4"><a
+						<td align="right" colspan="4" class="u-border-2 u-border-no-left u-border-no-right u-border-palette-1-light-2 u-table-cell"><a
 							href="board.needlogin.post.write.go">글쓰기</a></td>
 					</tr>
 					<tr>
 						<td align="center" colspan="4">
-							<form action="board.search" name="boardSearchForm"
+							<form action="board.needlogin.search" name="boardSearchForm"
 								onsubmit="return boardSearchCheck();">
 								<table id="searchArea">
 									<tr>
-										<td align="center"><input name="search" maxlength="20">
+										<td align="center"><input name="search" maxlength="20"
+											class="searchInput">
 											<button class="searchBtn">검색</button></td>
 									</tr>
 								</table>
