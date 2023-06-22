@@ -1,34 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
-${projectDetailInfo.project_no }<hr>
-${projectDetailInfo.project_title }<hr>
-${projectDetailInfo.project_requestor }<hr>
-${projectDetailInfo.project_access_level }<hr>
-${projectDetailInfo.project_guide }<hr>
-${projectDetailInfo.project_how }<hr>
-${projectDetailInfo.project_category }<hr>
-${projectDetailInfo.project_progress }<hr>
-${projectDetailInfo.project_bundle_no }<hr>
-대충 라벨링 페이지
-<br>
-<img class="problem" src="" alt="파일못찾음">
-
-<!-- 신고버튼 -->
-<input type="button" value="데이터 신고" onclick="reportData()">
-<div id="reportArea" style="display: none;">
-	<textarea id="reportTextArea" cols="100" rows="5" placeholder="신고 사유를 입력해주세요." maxlength="500"></textarea>
-	<input type="button" value="신고" onclick="reportArea()">
-</div><hr>
-<!-- 신고버튼 -->
-
-
-
-<div class="userInput">
-	
-</div>
-
+<html>
+<head>
 <script type="text/javascript">
 
 	function submitLabel(labelInfo){
@@ -79,7 +53,6 @@ ${projectDetailInfo.project_bundle_no }<hr>
 					$(".problem").attr("src", "resources/data/${projectDetailInfo.project_requestor}/${filePath}/"+nextData).css("width", "5 00px").css("height", "300px");
 				}
 				else{
-					alert("반응없음");
 				}
 			}
 		})
@@ -96,6 +69,7 @@ ${projectDetailInfo.project_bundle_no }<hr>
 				report_data: no
 			}, success: function() {
 				alert("아무 버튼이나 눌러주세요")
+				document.getElementById("reportArea").style.display = "none";
 			}
 		})
 	}
@@ -106,3 +80,25 @@ ${projectDetailInfo.project_bundle_no }<hr>
 		}
 
 </script>
+</head>
+<body class="u-body u-xl-mode">
+${projectDetailInfo.project_title }<hr>
+<br>
+<img class="problem" src="" alt="파일못찾음">
+
+<!-- 신고버튼 -->
+<input type="button" value="데이터 신고" onclick="reportData()">
+<div id="reportArea" style="display: none;">
+	<textarea id="reportTextArea" cols="100" rows="5" placeholder="신고 사유를 입력해주세요." maxlength="500"></textarea>
+	<input type="button" value="신고" onclick="reportArea()">
+</div><hr>
+<!-- 신고버튼 -->
+
+
+
+<div class="userInput">
+	
+</div>
+
+</body>
+</html>

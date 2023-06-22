@@ -87,9 +87,14 @@
 
 	<interceptors>
 		<interceptor>
-			<mapping path="*.needlogin.*" />
+			<mapping path="/*.needlogin.*" />
 			<beans:bean id="loginInterceptor"
 				class="com.hiddenlayer.dalabel.intercepter.AuthLoginInterceptor" />
+		</interceptor>
+		<interceptor>
+			<mapping path="/**" />
+			<beans:bean id="FileInterceptor"
+				class="com.hiddenlayer.dalabel.intercepter.FileInterceptor" />
 		</interceptor>
 	</interceptors>
 </beans:beans>

@@ -9,3 +9,4 @@ function submit() {
 	var text = area.value;
 	// 신고하기 서버 통신
 }
+

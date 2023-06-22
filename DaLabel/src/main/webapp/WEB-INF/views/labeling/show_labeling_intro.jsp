@@ -17,7 +17,7 @@
 	}
 </script>
 </head>
-<body>
+<body class="u-body u-xl-mode">
 	<div>${project.project_guide }</div>
 	<c:if test="${param.flag eq 1 }">
 		<div>

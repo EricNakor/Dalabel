@@ -62,6 +62,8 @@
 											onclick="location.href='manage.needlogin.labeling.user?project_no=${project.project_no}'"
 											style="background-color: #478ac9; color: #ffffff; margin-top: 1px; margin-bottom: 1px; padding: 10px 30px">참가자
 											관리</button>
+										<button type="button" onclick="location.href='http://192.168.0.186/${project.project_no}'"
+											style="background-color: #478ac9; color: #ffffff; margin-top: 1px; margin-bottom: 1px; padding: 10px 30px">정산하기</button>
 									</div>
 								</form>
 							</div>
