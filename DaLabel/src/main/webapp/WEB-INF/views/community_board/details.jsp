@@ -5,35 +5,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script src="resources/js/dalabelMove.js"></script>
-<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <meta charset="UTF-8">
-<title>다라벨 게시판</title>
-<link rel="stylesheet" href="resources/css/nicepage.css" media="screen">
-<link rel="stylesheet" href="resources/css/boardDetail.css" media="screen">
-<script class="u-script" type="text/javascript"
-	src="jquery-1.9.1.min.js" defer=""></script>
-<script class="u-script" type="text/javascript" src="nicepage.js"
-	defer=""></script>
-<link id="u-theme-google-font" rel="stylesheet"
-	href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
-
-
-
-
-<script type="application/ld+json">{
-		"@context": "http://schema.org",
-		"@type": "Organization",
-		"name": "",
-		"url": "/",
-		"logo": "images/default-logo.png"
-}</script>
-</head>
-
 <body class="u-body u-xl-mode" data-lang="en">
 	<form action="board.needlogin.post.update.go?board_id=${detailBoard.board_id }">
 		<input type="hidden" value="${detailBoard.board_id }" name="board_id">
-		<section class="u-clearfix u-section-1" id="sec-b5df">
+		<section class="u-clearfix board-section-1" id="sec-b5df">
 			<div class="u-clearfix u-sheet u-sheet-1">
 				<div class="u-expanded-width u-table u-table-responsive u-table-1">
 					<table class="u-table-entity u-table-entity-1">
@@ -73,7 +49,7 @@
 									colspan="5">${detailBoard.board_content }</td>
 							</tr>
 							<tr style="height: 65px;">
-								<td class="u-table-cell" align="left"><button type="button" class="boardBtn" onclick="location.href='board.go'">목록</button></td>
+								<td class="u-table-cell" align="left"><button type="button" class="boardBtn" onclick="location.href='board.needlogin.go'">목록</button></td>
 								<td colspan="4" class="u-table-cell" align="right"><c:if
 										test="${sessionScope.loginUserID == detailBoard.board_writer }">
 										<button
@@ -89,7 +65,7 @@
 			</div>
 		</section>
 	</form>
-	<section class="u-align-center u-clearfix u-section-3" id="sec-da1e">
+	<section class="u-align-center u-clearfix" id="sec-da1e">
 		<div class="u-clearfix u-sheet u-sheet-1">
 			<div class="u-table u-table-responsive u-table-1">
 				<table class="u-table-entity u-table-entity-1">
@@ -118,7 +94,7 @@
 															value="${r.comment_edit }" type="date"
 															pattern="yy.MM.dd HH:mm" /> ]
 													</span>
-													<button onclick="writeReply(${r.comment_id}, ${token});"
+													<button onclick="writeReply(${r.comment_id}, ${detailBoard.board_id});"
 														type="button" id="wr" value="0" class="btn">답글</button>
 												</div>
 												<div style="float: left; width: 30%;" align="right" class="orgComment${r.comment_id }">
@@ -135,22 +111,20 @@
 												<div id="updComment${r.comment_id }" style="display: none;">
 													<form action="board.needlogin.comment.update" name="commentForm"
 														id="commentForm${r.comment_id }" method="post">
-														<span class="commentWriter">${r.comment_writer }&nbsp;&nbsp;&nbsp;&nbsp;</span>
+														<span class="commentWriter">${r.comment_writer }&nbsp;&nbsp;▶&nbsp;&nbsp;</span>
 														<input name="comment_id" value="${r.comment_id}"
 															type="hidden"> <input name="inherit_post"
 															value="${detailBoard.board_id}" type="hidden">
-														<textarea name="comment_content" class="txt">${r.comment_content }</textarea>
+														<textarea name="comment_content" class="txt" style="vertical-align: middle;">${r.comment_content }</textarea>
 														&nbsp;&nbsp; <span>[ <fmt:formatDate
 																value="${r.comment_edit }" type="date"
 																pattern="yy.MM.dd HH:mm" /> ]
 														</span>
-														<button onclick="writeReply(${r.comment_id}, ${token});"
-															type="button" class="btn">답글</button>
 														<c:if
 															test="${sessionScope.loginUserID == r.comment_writer }">
-															<button type="submit" class="btn">수정</button>
+															<button type="submit" class="btn" style="vertical-align: middle;">수정</button>
 															<button type="button" class="btn"
-																onclick="commentDelete(${r.comment_id }, ${detailBoard.board_id })">삭제</button>
+																onclick="commentDelete(${r.comment_id }, ${detailBoard.board_id })" style="vertical-align: middle;">삭제</button>
 														</c:if>
 													</form>
 												</div>
@@ -186,20 +160,20 @@
 															<tr id="updReply${rr.reply_id }" style="display: none;">
 																<form action="board.needlogin.reply.update" method="post">
 																	<td colspan="4">└&nbsp;&nbsp;<span
-																		class="commentWriter">${rr.reply_writer }&nbsp;&nbsp;&nbsp;&nbsp;</span>
+																		class="commentWriter">${rr.reply_writer }&nbsp;&nbsp;▷&nbsp;&nbsp;</span>
 																		<input name="reply_id" value="${rr.reply_id }"
 																		type="hidden"> <input name="inherit_post"
 																		value="${detailBoard.board_id }" type="hidden">
 																		<input name="inherit_comment" value="${r.comment_id }"
-																		type="hidden"> <textarea name="reply_content"  class="txt"> ${rr.reply_content }</textarea>
+																		type="hidden"> <textarea name="reply_content"  class="txt"  style="vertical-align: middle;"> ${rr.reply_content }</textarea>
 																		<span>[ <fmt:formatDate
 																				value="${rr.reply_edit }" type="date"
 																				pattern="yy.MM.dd HH:mm" /> ]
 																	</span> <c:if
 																			test="${sessionScope.loginUserID == rr.reply_writer }">
-																			<button type="submit" class="btn">수정</button>
+																			<button type="submit" class="btn" style="vertical-align: middle;">수정</button>
 																			<button type="button" class="btn"
-																				onclick="replyDelete(${detailBoard.board_id}, ${r.comment_id}, ${rr.reply_id })">삭제</button>
+																				onclick="replyDelete(${detailBoard.board_id}, ${r.comment_id}, ${rr.reply_id })" style="vertical-align: middle;">삭제</button>
 																		</c:if>
 																	</td>
 																</form>
@@ -208,7 +182,7 @@
 													</c:forEach>
 													<tr>
 														<td>
-															<form action="board.needlogin.reply.write" method="post">
+															<form action="board.needlogin.reply.write" method="post" onsubmit="writeReplyCheck();">
 																<table>
 																	<tr>
 																		<td colspan="4" id="${r.comment_id }"><input
@@ -227,15 +201,16 @@
 									<tr>
 										<td class="commentTd">
 											<form action="board.needlogin.comment.write"
-												name="boardCommentWriteForm" onsubmit="" method="post">
+												name="boardCommentWriteForm" onsubmit="writeCommentCheck();" method="post">
 												<!-- js 설정 후 -->
 												<span class="commentWriter">${sessionScope.loginUserID }&nbsp;▶&nbsp;</span>
 												<input name="token" value="${token}" type="hidden">
 												<input name="inherit_post" value="${detailBoard.board_id}"
 													type="hidden">
-												<textarea name="comment_content" maxlength="500"
-													 class="txt" placeholder="댓글 입력"></textarea>
-												<button class="writeBtn">작성</button>
+												<textarea name="comment_content" maxlength="500" id="commentTxt" 
+													 class="txt" placeholder="댓글 입력" style="vertical-align: middle;"></textarea>
+												<button class="writeBtn" style="vertical-align: middle;">작성</button>
+												<br><br><br>
 											</form>
 										</td>
 									</tr>
@@ -249,25 +224,36 @@
 	</section>
 </body>
 <script type="text/javascript">
-	function writeReply(idd, tok) {
+	function writeReply(idd, bid) {
 		var id = "${sessionScope.loginUserID }&nbsp;▷&nbsp;";
-		var i = $(" <textarea></textarea>").attr({
-			id : "reply",
+		var i = $("<textarea></textarea>").attr({
+			id : "replyTxt",
 			name : "reply_content",
 			placeholder : "답글 입력",
-			class : "txt"
+			class : "txt",
+			style : "vertical-align: middle;",
+			onsubmit : "writeReplyCheck();"
 		});
 		var b = $("<button></button>").attr({
 			class : "writeBtn",
-			type : "submit"
+			type : "submit",
+			style : "vertical-align: middle;"
 		}).text("작성");
 		
+		var cb = $("<button></button>").attr({
+			class : "writeBtn",
+			type : "button",
+			style : "vertical-align: middle;",
+			onclick : "window.location.reload()"
+		}).text("취소");
 		
-		$("#" + idd).append(id, i,"&nbsp;", b);
+		
+		$("#" + idd).append(id, i,"&nbsp;", b,"&nbsp;", cb);
 		
 		
 	}
-	
+
+
 	function update(xx){
 		$("#orgReply" + xx).attr("style", "display: none;");
 		$("#updReply" + xx).removeAttr("style");

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <!DOCTYPE html>
 <html style="font-size: 16px;" lang="en">
@@ -16,6 +17,9 @@
 <link rel="stylesheet" href="resources/css/MyPage.css" media="screen">
 <link rel="stylesheet" href="resources/css/LoginJoin.css" media="screen">
 <link rel="stylesheet" href="resources/css/Manage.css" media="screen">
+<link rel="stylesheet" href="resources/css/boardList.css" media="screen">
+<link rel="stylesheet" href="resources/css/boardDetail.css" media="screen">
+<link rel="stylesheet" href="resources/css/upload.css" media="screen">
 <script class="u-script" type="text/javascript"
 	src="resources/js/jquery-3.5.1.min.js"></script>
 <script class="u-script" type="text/javascript"
@@ -26,6 +30,8 @@
 <script src="//cdn.ckeditor.com/4.21.0/standard/ckeditor.js"></script>
 <script type="text/javascript" src="resources/js/labeling.js"></script>
 <script type="text/javascript" src="resources/js/labeling-do.js"></script>
+<script type="text/javascript" src="resources/js/dalabelMove.js"></script>
+<script type="text/javascript" src="resources/js/validCheck.js"></script>
 <meta name="generator" content="Nicepage 5.9.15, nicepage.com">
 <meta name="referrer" content="origin">
 <link id="u-theme-google-font" rel="stylesheet"
@@ -43,7 +49,7 @@
 <meta property="og:type" content="website">
 <meta data-intl-tel-input-cdn-path="intlTelInput/">
 </head>
-<body onload="isOverLap(${sessionScope.overlap});">
+<body>
 	<header class="u-clearfix u-header u-header" id="sec-61c1">
 		<div class="u-clearfix u-sheet u-sheet-1">
 			<a href="/dalabel" class="u-image u-logo u-image-1"
