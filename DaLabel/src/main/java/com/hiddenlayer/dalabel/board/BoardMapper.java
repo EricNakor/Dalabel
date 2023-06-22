@@ -13,6 +13,8 @@ public interface BoardMapper {
 	public abstract Board getDetailBoard(int board_id);
 
 	public abstract List<Board> getPost(BoardSelector bs);
+	
+	public abstract List<Board> getCurNotice(int board_category);
 
 	public abstract int getPostCount(BoardSelector bs);
 

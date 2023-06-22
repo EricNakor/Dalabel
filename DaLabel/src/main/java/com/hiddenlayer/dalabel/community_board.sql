@@ -13,12 +13,26 @@ create table board(
 	board_delete number(1) not null,
 	constraint post_writer 
 		foreign key (board_writer)
-		references member(user_id)
+		references member(user_id)s
 		on delete cascade );
 
 create sequence board_seq start with 1 increment by 1;
 
+select * 
+	from (
+		select * 
+		from board where board_category = 'notice' 
+		order by board_regist desc
+		) 
+	where ROWNUM <=5
+	order by board_regist desc
+	
+	
+	
+	
+
 select * from board
+--insert into board (board_id, board_writer, board_category, board_title, board_content, board_delete, board_regist, board_edit) values(board_seq.nextval, 'wasd', 'board', 'test', 'test', 0, sysdate, sysdate)
 
 create table post_comment(
 	comment_id number(8) not null primary key,

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="com.hiddenlayer.dalabel.manageLabeling.ManageLabelingMapper">
+	<insert id="regLabelingProject"
+		parameterType="com.hiddenlayer.dalabel.manageLabeling.LabelingProject">
+		<![CDATA[
+		insert into labeling_project values(labeling_project_seq.nextval, #{project_title}, #{project_requestor}, 0, #{project_guide}, #{project_how}, #{project_category}, 0, #{project_bundle_no})
+	]]>
+	</insert>
+
+	<select id="getMyLabelingProject"
+		parameterType="com.hiddenlayer.dalabel.manageBundle.ManageSelector"
+		resultType="com.hiddenlayer.dalabel.manageLabeling.LabelingProject">
+		<![CDATA[
+		select *
+		from (
+			select rownum as rn, project_no, project_title, project_how, project_access_level, project_progress
+			from (
+				select project_no, project_title, project_how, project_access_level, project_progress from labeling_project
+				where project_requestor = #{login_user}
+				order by project_no desc
+			)
+		)
+		where rn >= #{start} and rn <= #{end}
+	]]>
+	</select>
+
+	<select id="getMyDeatilProject"
+		parameterType="java.lang.Integer"
+		resultType="com.hiddenlayer.dalabel.manageLabeling.LabelingProject">
+		<![CDATA[
+			select * from labeling_project where project_no = #{project_no}
+		]]>
+	</select>
+
+
+	<select id="getAllMyProjectCount"
+		parameterType="java.lang.String" resultType="java.lang.Integer">
+		<![CDATA[
+			select count(*) from labeling_project
+			where project_requestor = #{login_user}
+		]]>
+	</select>
+
+	<update id="updateProjectAccessLevel"
+		parameterType="com.hiddenlayer.dalabel.manageLabeling.LabelingProject">
+		<![CDATA[
+			update labeling_project set project_access_level = #{project_access_level},
+			project_guide = #{project_guide}
+			where project_no = #{project_no}
+		]]>
+	</update>
+
+	<update id="changeUserAccess"
+		parameterType="com.hiddenlayer.dalabel.dolabeling.LabelDoList">		<![CDATA[
+			update labeling_do set dolabel_state = #{dolabel_state}
+			where dolabel_user = #{dolabel_user} and dolabel_project_no = #{dolabel_project_no}
+		]]>
+	</update>
+
+	<select id="selectLabelingUser"
+		parameterType="java.lang.Integer"
+		resultType="com.hiddenlayer.dalabel.dolabeling.LabelDoList">
+		<![CDATA[
+			select dolabel_user, dolabel_state, dolabel_project_no from labeling_do where dolabel_project_no = #{dolabel_project_no}
+		]]>
+	</select>
+
+	<select id="getFileCount"
+		parameterType="com.hiddenlayer.dalabel.manageLabeling.LabelingProject"
+		resultType="java.math.BigDecimal">
+		<![CDATA[
+			select bundle_file_count from DataBundle
+			where bundle_no = (select project_bundle_no from labeling_project
+								where project_no = #{project_no})
+		]]>
+	</select>
+</mapper>

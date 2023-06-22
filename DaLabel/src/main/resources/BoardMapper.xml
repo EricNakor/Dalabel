@@ -20,7 +20,21 @@
 			where rn >= #{start} and rn <= #{end}
 		)
 		]]>
-
+	</select>
+	
+	<select id="getCurNotice"
+		resultType="com.hiddenlayer.dalabel.board.Board"
+		parameterType="com.hiddenlayer.dalabel.board.BoardSelector">
+	<![CDATA[
+	select * 
+	from (
+		select * 
+		from board where board_category = 'notice' 
+		order by board_regist desc
+		) 
+	where ROWNUM <=5 
+	order by board_regist desc
+	]]>
 	</select>
 
 	<select id="getDetailBoard" parameterType="java.lang.Integer"
