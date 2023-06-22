@@ -38,6 +38,7 @@
 	href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
 <link id="u-page-google-font" rel="stylesheet"
 	href="https://fonts.googleapis.com/css?family=Ubuntu:300,300i,400,400i,500,500i,700,700i">
+<link rel="stylesheet" href="resources/css/menu.css" media="screen">
 <script type="application/ld+json">{
 		"@context": "http://schema.org",
 		"@type": "Organization",
@@ -120,33 +121,22 @@
 									</li>
 								</c:if>
 								<c:if test="${sessionScope.loginUserID == null }">
-									<li class="u-nav-item"><a
-										class="u-button-style u-nav-link" href="login.go">로그인</a> <a
-										class="u-button-style u-nav-link" href="member.join.go">회원가입</a></li>
+									<li class="u-nav-item"><a class="u-button-style u-nav-link" href="login.go" id="menubutton">로그인</a> 
+									<a class="u-button-style u-nav-link" href="member.join.go" id="menubutton">회원가입</a></li>
 								</c:if>
-								<li class="u-nav-item"><a class="u-button-style u-nav-link"
-									href="member.needlogin.info">내 정보</a></li>
-								<li class="u-nav-item"><a class="u-button-style u-nav-link">라벨링</a>
+								<li class="u-nav-item"><a class="u-button-style u-nav-link"	href="member.needlogin.info" id="menubutton">내 정보</a></li>
+								<li class="u-nav-item"><a class="u-button-style u-nav-link" id="menubutton">라벨링</a>
 									<div class="u-nav-popup">
-										<ul
-											class="u-h-spacing-20 u-nav u-unstyled u-v-spacing-10 u-nav-5">
-											<li class="u-nav-item"><a
-												class="u-button-style u-nav-link"
-												href="get.needlogin.my.bundle">내 데이터 관리</a></li>
-											<li class="u-nav-item"><a
-												class="u-button-style u-nav-link"
-												href="get.needlogin.myUpload.labeling">라벨링 프로젝트 관리</a></li>
-											<li class="u-nav-item"><a
-												class="u-button-style u-nav-link"
-												href="doLabeling.needlogin.showable">라벨링 할래요</a></li>
+										<ul	class="u-h-spacing-20 u-nav u-unstyled u-v-spacing-10 u-nav-5">
+											<li class="u-nav-item"><a class="u-button-style u-nav-link" href="get.needlogin.my.bundle" id="menubutton"> · 내 데이터 관리</a></li>
+											<li class="u-nav-item"><a class="u-button-style u-nav-link" href="get.needlogin.myUpload.labeling" id="menubutton"> · 라벨링 프로젝트 관리</a></li>
+											<li class="u-nav-item"><a class="u-button-style u-nav-link" href="doLabeling.needlogin.showable" id="menubutton"> · 
+											라벨링 할래요</a></li>
 										</ul>
 									</div></li>
-								<li class="u-nav-item"><a href="board.needlogin.go"
-									class="u-button-style u-nav-link">게시판</a></li>
-								<li class="u-nav-item"><a href="/dalabel#qna"
-									class="u-button-style u-nav-link" rel="nofollow">고객센터</a></li>
-								<li class="u-nav-item"><a class="u-button-style u-nav-link"
-									href="member.needlogin.logout">로그아웃</a></li>
+								<li class="u-nav-item"><a href="board.needlogin.go" class="u-button-style u-nav-link" id="menubutton">게시판</a>
+								<li class="u-nav-item"><a href="/dalabel#qna" class="u-button-style u-nav-link" rel="nofollow" id="menubutton">고객센터</a></li>
+								<li class="u-nav-item"><a class="u-button-style u-nav-link" href="member.needlogin.logout" id="menubutton">로그아웃</a>
 							</ul>
 						</div>
 					</div>
