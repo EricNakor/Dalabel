@@ -47,7 +47,7 @@
 		parameterType="com.hiddenlayer.dalabel.manageLabeling.LabelingProject">
 		<![CDATA[
 			update labeling_project set project_access_level = #{project_access_level},
-			project_guide = #{project_guide}
+			project_guide = #{project_guide}, project_progress = 1
 			where project_no = #{project_no}
 		]]>
 	</update>

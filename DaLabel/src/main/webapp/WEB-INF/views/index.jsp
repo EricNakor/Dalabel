@@ -142,11 +142,11 @@
 										</ul>
 									</div></li>
 								<li class="u-nav-item"><a href="board.needlogin.go"
-									class="u-button-style u-nav-link">게시판</a>
+									class="u-button-style u-nav-link">게시판</a></li>
 								<li class="u-nav-item"><a href="/dalabel#qna"
 									class="u-button-style u-nav-link" rel="nofollow">고객센터</a></li>
 								<li class="u-nav-item"><a class="u-button-style u-nav-link"
-									href="member.needlogin.logout">로그아웃</a>
+									href="member.needlogin.logout">로그아웃</a></li>
 							</ul>
 						</div>
 					</div>

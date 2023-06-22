@@ -68,10 +68,7 @@
 					</tbody>
 					<tr>
 						<td align="right" colspan="4" class="u-border-2 u-border-no-left u-border-no-right u-border-palette-1-light-2 u-table-cell"><a
-							href="board.needlogin.post.write.go"></a></td>
-					</tr>
-					<tr>
-						<td align="right" colspan="4"><a href="board.needlogin.post.write.go">글쓰기</a></td>
+							href="board.needlogin.post.write.go">글쓰기</a></td>
 					</tr>
 					<tr>
 						<td align="center" colspan="4">
