@@ -32,11 +32,8 @@
 	}
 
 	$(function() {
-		let info = $
-		{
-			projectDetailInfo.project_category
-		}
-		;
+		let info = ${projectDetailInfo.project_category};
+		
 		if (info.type == 'input') {
 			$(".userInput")
 					.append(
@@ -61,7 +58,7 @@
 					$(".problem").attr(
 							"src",
 							"resources/data/${projectDetailInfo.project_requestor}/${filePath}/"
-									+ nextData).css("width", "5 00px").css(
+									+ nextData).css("width", "500px").css(
 							"height", "300px");
 				} else {
 				}
@@ -95,7 +92,7 @@
 </script>
 </head>
 <body class="u-body u-xl-mode">
-	<section class="u-align-center u-clearfix u-section-2" id="sec-30ba">
+	<section class="u-align-center u-clearfix u-section-2">
 		<div class="u-clearfix u-sheet u-sheet-1">
 			<div class="u-table u-table-responsive u-table-1">
 				<table class="u-table-entity u-table-entity-1">
@@ -132,10 +129,5 @@
 			</div>
 		</div>
 	</section>
-
-
-
-
-
 </body>
 </html>
