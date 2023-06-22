@@ -55,7 +55,7 @@
 									<div class="member-info-form-group member-info-form-name">
 										<label for="name-bb79" class="u-label">생일</label> <input
 											type="text" id="name-bb79" name="birth"
-											value="${memberInfo.user_birth }"
+											value="<fmt:formatDate value="${memberInfo.user_birth }" pattern="yyyyMMdd"/>"
 											class="u-border-none u-input u-input-rectangle">
 									</div>
 									<div class="member-info-form-group member-info-form-name">

@@ -8,12 +8,14 @@ create table member (
 	user_isdeleted number(1) not null, -- 0이 탈퇴 안한거, 1이 탈퇴한거
 	user_deleted_date date,
 	user_rating number(2) not null,
-	user_credit number(9) not null
+	user_credit number(9) not null,
+	user_trust number(3, 2)
 )
 
-select * from member
+alter table member drop column user_trust
 
-update member set user_isdeleted = 0
-where user_id = 'test12'
+alter table member add user_trust number(5, 2) default 0
+
+select * from member
 
 drop table member cascade constraint purge
