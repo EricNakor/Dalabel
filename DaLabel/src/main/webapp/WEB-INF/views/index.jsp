@@ -43,7 +43,7 @@
 <meta property="og:type" content="website">
 <meta data-intl-tel-input-cdn-path="intlTelInput/">
 </head>
-<body onload="isOverLap(${sessionScope.overlap});">
+<body>
 	<header class="u-clearfix u-header u-header" id="sec-61c1">
 		<div class="u-clearfix u-sheet u-sheet-1">
 			<a href="/dalabel" class="u-image u-logo u-image-1"

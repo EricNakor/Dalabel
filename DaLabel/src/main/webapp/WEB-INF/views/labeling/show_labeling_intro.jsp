@@ -18,7 +18,9 @@
 </script>
 </head>
 <body class="u-body u-xl-mode">
-	<div>${project.project_guide }</div>
+	<div>
+		${project.project_title }<br> ${project.project_guide }
+	</div>
 	<c:if test="${param.flag eq 1 }">
 		<div>
 			<button onclick="alertJoin(${project.project_no });">신청하기</button>

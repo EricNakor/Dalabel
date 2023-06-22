@@ -28,7 +28,7 @@
 				</tr>
 			</c:if>
 			<tr>
-				<td colspan="2"><input type="file" name="fileName"
+				<td colspan="2"><input type="file" placeholder="압축파일을 넣어주세요." name="fileName"
 					id="fileInput"></td>
 			</tr>
 			<tr>
