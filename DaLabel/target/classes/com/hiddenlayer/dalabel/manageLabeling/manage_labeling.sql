@@ -102,6 +102,8 @@ create table labeling_result (
 
 select * from labeling_result
 
+select * from labeling_project
+
 drop table labeling_result cascade constraint purge
 
 CREATE FUNCTION BOR(x IN NUMBER, y IN NUMBER) RETURN NUMBER AS
