@@ -9,7 +9,7 @@
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <title>Insert title here</title>
 </head>
-<body>
+<body class="u-body u-xl-mode">
 	<div>${bundle.bundle_folder_name }</div>
 	<table>
 		<tr>

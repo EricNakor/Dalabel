@@ -23,7 +23,9 @@
 				<div id="projectsontainer" class="u-repeater u-repeater-1">
 				</div>
 			</div>
-			<button class="loadBt">추가로 로드하기</button>
+			<div>
+				<button class="loadBt">추가로 로드하기</button>
+			</div>
 		</div>
 	</section>
 </body>
