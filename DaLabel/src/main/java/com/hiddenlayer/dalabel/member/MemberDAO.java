@@ -40,7 +40,11 @@ public class MemberDAO {
 			ArrayList<Member> member = ss.getMapper(AccountMapper.class).getUserinfo(m);
 			Member user = member.get(0);
 			if (user != null) {
+				System.out.println(user.getUser_id());
+				System.out.println(user.getUser_pw());
+				System.out.println(m.getUser_pw());
 				if (user.getUser_pw().equals(m.getUser_pw())) {
+					System.out.println("로그인 성공함");
 					req.getSession().setAttribute("loginUserID", user.getUser_id());
 					req.getSession().setAttribute("loginUserIMG",
 							(user.getUser_img() != null) ? user.getUser_img() : "defaultprofile.jpg");
