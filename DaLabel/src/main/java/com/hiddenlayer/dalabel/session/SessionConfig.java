@@ -29,7 +29,11 @@ public class SessionConfig implements HttpSessionListener {
 		} catch (Exception e) {
 		}
 		if(se.getSession().getAttribute("workingNowNumber")!=null) {
+			try {
 			ps.pushMissingData(ps.getProjectNoWithUserID(userid), (BigDecimal)se.getSession().getAttribute("workingNowNumber"));
+			}
+			catch(Exception e) {
+			}
 		}
 		try {
 			ps.removeUserIDWithProjectNo(userid);			

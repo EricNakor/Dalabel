@@ -59,6 +59,7 @@ public class ManageLabelingController {
 	@RequestMapping(value = "/update.needlogin.project.accessLevel", method = RequestMethod.GET)
 	public String updateAccessLevel(LabelingProject lp, HttpServletRequest req) {
 		mlDAO.updateProjectAccessLevel(lp, req);
+		mlDAO.getUploadedProject(1, req);
 		req.setAttribute("contentPage", "manage_labeling/manage_labeling.jsp");
 		return "index";
 	}

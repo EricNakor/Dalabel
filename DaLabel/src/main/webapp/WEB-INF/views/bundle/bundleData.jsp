@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
-<body>
+<body class="u-body u-xl-mode">
 	<div>${bundle.bundle_folder_name }</div>
 	<table>
 		<tr>
