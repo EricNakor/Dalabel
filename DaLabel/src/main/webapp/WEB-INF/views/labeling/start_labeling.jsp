@@ -32,7 +32,11 @@
 	}
 
 	$(function() {
-		let info = ${projectDetailInfo.project_category};
+		let info = $
+		{
+			projectDetailInfo.project_category
+		}
+		;
 		if (info.type == 'input') {
 			$(".userInput")
 					.append(
@@ -89,25 +93,47 @@
 </script>
 </head>
 <body class="u-body u-xl-mode">
-${projectDetailInfo.project_title }<hr>
-<br>
-<img class="problem" src="" alt="파일못찾음">
+	<section class="u-align-center u-clearfix u-section-2" id="sec-30ba">
+		<div class="u-clearfix u-sheet u-sheet-1">
+			<div class="u-table u-table-responsive u-table-1">
+				<table class="u-table-entity u-table-entity-1">
+					<tbody class="u-table-body">
+						<tr style="height: 60px;">
+							<td align="left"
+								class="u-border-2 u-border-no-left u-border-no-right u-border-white u-palette-1-light-2 u-table-cell u-table-cell-1">${projectDetailInfo.project_title }</td>
+						</tr>
+						<tr style="height: 50px;">
+							<td
+								class="u-border-2 u-border-no-left u-border-no-right u-border-white u-table-cell"
+								align="right">
+								<!-- 신고버튼 --> <input type="image" src="resources/css/siren.jpg"
+								style="width: 50px; height: 50px;" onclick="reportData()">
+								<div id="reportArea" style="display: none;">
+									<textarea id="reportTextArea"
+										placeholder="신고 사유를 입력해주세요." maxlength="500"></textarea>
+									<input class="reportBtn" type="button" value="신고" onclick="reportArea()">
+								</div> <!-- 신고버튼 -->
 
-<!-- 신고버튼 -->
-<input type="button" value="데이터 신고" onclick="reportData()">
-<div id="reportArea" style="display: none;">
-	<textarea id="reportTextArea" cols="100" rows="5"
-		placeholder="신고 사유를 입력해주세요." maxlength="500"></textarea>
-	<input type="button" value="신고" onclick="reportArea()">
-</div>
-<hr>
-<!-- 신고버튼 -->
+							</td>
+						</tr>
+
+						<tr>
+							<td
+								class="u-border-2 u-border-no-left u-border-no-right u-border-white u-table-cell"><img
+								class="problem" src="" alt="파일못찾음"></td>
+						</tr>
+						<tr>
+							<td  class="u-border-2 u-border-no-left u-border-no-right u-border-palette-1-light-2 u-table-cell"><div class="userInput"></div></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</section>
 
 
 
-<div class="userInput">
-	
-</div>
+
 
 </body>
 </html>
