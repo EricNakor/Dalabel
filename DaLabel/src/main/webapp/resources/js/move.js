@@ -24,3 +24,7 @@ function wantResult(no) {
 		}
 	})
 }
+
+function getAccessUser(project_no) {
+	window.open('manage.needlogin.labeling.user?project_no=' + project_no, 'pop', 'width=500, height=300')
+}

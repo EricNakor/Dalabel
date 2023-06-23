@@ -69,20 +69,19 @@ public class ManageLabelingController {
 	@RequestMapping(value = "/manage.needlogin.labeling.user", method = RequestMethod.GET)
 	public String getLabelingUser(@RequestParam(value = "project_no") int project_no, HttpServletRequest req) {
 		mlDAO.select(project_no, req);
-		req.setAttribute("contentPage", "manage_labeling/manage_labeling_user.jsp");
-		return "index";
+		return "manage_labeling/manage_labeling_user";
 	}
 
 	@RequestMapping(value = "/update.needlogin.user.access", method = RequestMethod.GET)
-	public String updateUserLevel(LabelDoList ld, HttpServletRequest req) {
+	public String updateUserLevel(@RequestParam(value = "dolabel_project_no") int project_no, LabelDoList ld, HttpServletRequest req) {
 		mlDAO.changeUserAccess(ld, req); // change
-		mlDAO.select(ld.getDolabel_project_no().intValue(), req);
-		req.setAttribute("contentPage", "manage_labeling/manage_labeling_user.jsp");
-		return "index";
+		mlDAO.select(project_no, req);
+		return "manage_labeling/manage_labeling_user";
 	}
 	@RequestMapping(value = "/download.needlogin.projectresult", method = RequestMethod.GET)
 	public void downloadProjectResult(HttpServletRequest req, @RequestParam(value="project_no")int project_no, HttpServletResponse res) {
 		mlDAO.downloadFile(req, project_no, res);
+	}
 
 	@RequestMapping(value = "/want.needlogin.labeling.result", method = RequestMethod.GET)
 	public @ResponseBody String getResult(HttpServletRequest req, @RequestParam(value = "project_no") int no) {
