@@ -97,8 +97,8 @@ public class ManageLabelingDAO {
 			URL url = new URL("http://192.168.0.186/labeling.result/" + no);
 			HttpURLConnection con = (HttpURLConnection) url.openConnection();
 			BufferedReader br = new BufferedReader(new InputStreamReader(con.getInputStream(), "utf-8"));
-			System.out.println(br.readLine());
-			if (br.readLine().equals("accepted")) {
+			String s = br.readLine();
+			if (s.equals("\"accepted\"")) {
 				// 프로젝트 상태 (대기중상태로)바꾸셈
 				return "success";
 			} else {

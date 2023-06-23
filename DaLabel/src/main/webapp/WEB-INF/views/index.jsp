@@ -136,7 +136,11 @@
 									</div></li>
 								<li class="u-nav-item"><a href="board.needlogin.go" class="u-button-style u-nav-link" id="menubutton">게시판</a>
 								<li class="u-nav-item"><a href="/dalabel#qna" class="u-button-style u-nav-link" rel="nofollow" id="menubutton">고객센터</a></li>
-								<li class="u-nav-item"><a class="u-button-style u-nav-link" href="member.needlogin.logout" id="menubutton">로그아웃</a>
+								<c:if test="${sessionScope.loginUserID != null }">
+									<li class="u-nav-item"><a
+										class="u-button-style u-nav-link"
+										href="member.needlogin.logout" id="menubutton">로그아웃</a>
+								</c:if>
 							</ul>
 						</div>
 					</div>
@@ -158,7 +162,7 @@
 							class="u-align-left-sm u-align-left-xl u-align-left-xs u-container-style u-layout-cell u-left-cell u-size-15 u-size-30-md u-layout-cell-1">
 							<div
 								class="u-container-layout u-valign-middle-xs u-valign-top-lg u-valign-top-md u-valign-top-sm u-container-layout-1">
-								<a href="푸터 쪽 로고 링크" class="u-image u-logo u-image-1"
+								<a href="/dalabel" class="u-image u-logo u-image-1"
 									data-image-width="80" data-image-height="40"> <img
 									src="resources/image/page_image/logo.png"
 									class="u-logo-image u-logo-image-1">

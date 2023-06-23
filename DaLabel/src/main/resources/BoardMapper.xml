@@ -53,7 +53,7 @@
 		<![CDATA[
 		select count(*) 
 		from board
-		where board_writer like '%'||#{search}||'%' or board_title like '%'||#{search}||'%'
+		where board_category != 'notice' and (board_writer like '%'||#{search}||'%' or board_title like '%'||#{search}||'%')
 		]]>
 	</select>
 

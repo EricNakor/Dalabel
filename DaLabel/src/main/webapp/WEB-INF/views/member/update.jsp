@@ -17,7 +17,7 @@
 						class="u-container-style u-layout-cell u-size-60 u-layout-cell-1">
 						<div class="u-container-layout u-container-layout-1">
 							<div class="u-expanded-width member-info-form member-info-form-1">
-								<a href="doLabeling.needlogin.mypage">참여중인 라벨링</a>
+								<a href="doLabeling.needlogin.mypage" type="button" class="boardBtn">참여중인 라벨링</a>
 								<form action="member.needlogin.update.do" method="post"
 									style="padding: 10px;">
 									<div
@@ -58,20 +58,18 @@
 											value="<fmt:formatDate value="${memberInfo.user_birth }" pattern="yyyyMMdd"/>"
 											class="u-border-none u-input u-input-rectangle">
 									</div>
-									<div class="member-info-form-group member-info-form-name">
-										<label for="name-bb79" class="u-label">프로필</label><br> <img
-											id="profile"
+									<div class="member-info-form-group member-info-form-name" align="center">
+										<label for="name-bb79" class="u-label">프로필</label><br> <img id="searchImg"
 											src="resources/image/profile/${sessionScope.loginUserIMG }"
-											alt="${sessionScope.loginUserIMG }">
-										<button type="button" onclick="fileUpload('try.needlogin.upload')">프사 변경</button>
+											alt="${sessionScope.loginUserIMG }"><br>
+										<button type="button" onclick="fileUpload('try.needlogin.upload')" class="boardBtn" >프사 변경</button>
 									</div>
 									<div
 										class="u-align-center member-info-form-group member-info-form-submit">
 										<button
-											style="background-color: #478ac9; color: #ffffff; margin-top: 1px; margin-bottom: 1px; padding: 10px 30px";>수정</button>
-										<button type="button"
-											style="background-color: #478ac9; color: #ffffff; margin-top: 1px; margin-bottom: 1px; padding: 10px 30px"
-											; onclick="deleteMember();">탈퇴</button>
+											 class="boardBtn" >수정</button>
+										<button type="button"  class="boardBtn" 
+											onclick="deleteMember();">탈퇴</button>
 									</div>
 								</form>
 							</div>

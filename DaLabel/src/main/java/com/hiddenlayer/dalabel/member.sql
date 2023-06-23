@@ -18,4 +18,19 @@ alter table member add user_trust number(5, 2) default 0
 
 select * from member
 
+
 drop table member cascade constraint purge
+
+
+delete BOARD
+delete COMMENT_REPLY
+delete DATA
+delete DATABUNDLE
+delete LABELING_DO
+delete LABELING_DONE
+delete LABELING_PROJECT
+delete LABELING_RESULT
+delete MEMBER
+delete POST_COMMENT
+delete REPLY
+delete REPORT

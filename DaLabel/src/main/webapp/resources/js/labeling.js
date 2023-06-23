@@ -95,6 +95,9 @@ function selectAll() {
 }
 
 function loadProjectAccessLevel(val){
+	if($('.access').length==0){
+		return 0;
+	}
 	$('.access')[4].checked=true
 	$('.access').each((a,b)=>{
 		if(val==1){

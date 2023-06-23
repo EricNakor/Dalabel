@@ -46,7 +46,7 @@
 									class="u-border-2 u-border-no-left u-border-no-right u-border-white u-table-cell"><strong>공지</strong>
 								</td>
 								<td class="u-border-2 u-border-white u-table-cell"><strong><a
-										href="board.get.detail?board_id=${n.board_id }">${n.board_title }</a></strong>
+										href="board.needlogin.get.detail?board_id=${n.board_id }">${n.board_title }</a></strong>
 									<input name="board_id" value="${n.board_id }" type="hidden"></td>
 								<td align="center"
 									class="u-border-2 u-border-white u-table-cell"><strong>관리자</strong></td>

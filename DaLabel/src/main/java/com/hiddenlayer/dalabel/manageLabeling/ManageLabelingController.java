@@ -87,4 +87,5 @@ public class ManageLabelingController {
 	public @ResponseBody String getResult(HttpServletRequest req, @RequestParam(value = "project_no") int no) {
 		return mlDAO.getResult(req, no);
 	}
+	
 }

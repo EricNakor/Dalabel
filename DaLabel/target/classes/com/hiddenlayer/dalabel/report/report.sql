@@ -35,3 +35,43 @@ select data_name from Data where data_where=92
 select * from report
 insert into report(report_no, report_by, report_content, report_data, report_project_no, report_date)
 		values(report_seq.nextval, 'qwer1234', '신고2', '  0653d567-2d27-46b0-95b5-b7e8c1099112_00000015.jpg', 197, sysdate)
+		
+select * from labeling_project
+select * from data
+		
+select report_no , report_by , report_content , report_data , report_project_no , report_date from report
+left join data
+on report_project_no = data_where and data_name = report_data
+where data_activation=0
+and  report_project_no in (
+	select project_no
+	from labeling_project
+	where project_requestor='client' and project_bundle_no=232
+	)
+	and report_no>0
+	
+select report_no , report_by , report_content , report_data , report_project_no , report_date from report
+	where  report_project_no in (
+		select project_no
+		from labeling_project
+		where project_requestor='client' and project_bundle_no=122
+	)
+	and report_no>0
+
+select * from dataBundle
+	
+select * from data
+select * from report
+
+select report_no , report_by , report_content , report_data , report_project_no , report_date from
+	(select report_no , report_by , report_content , report_data , report_project_no , report_date from report
+	where  report_project_no in (
+		select project_no
+		from labeling_project
+		where project_requestor='client' and project_bundle_no=122
+	)
+	and report_no>0
+	)
+left join data
+on data_where = 122 and data_name = report_data
+where data_activation=1

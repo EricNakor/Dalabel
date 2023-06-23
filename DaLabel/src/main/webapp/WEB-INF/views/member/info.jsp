@@ -60,9 +60,8 @@
 											value="<fmt:formatDate value="${memberInfo.user_birth }" dateStyle="long"/>"
 											readonly class="u-border-none u-input u-input-rectangle">
 									</div>
-									<div class="member-info-form-group member-info-form-name">
-										<label for="name-bb79" class="u-label">프로필</label><br> <img
-											id="profile"
+									<div class="member-info-form-group member-info-form-name" align="center">
+										<label for="name-bb79" class="u-label">프로필</label><br> <img id="searchImg"
 											src="resources/image/profile/${sessionScope.loginUserIMG }"
 											alt="${sessionScope.loginUserIMG }">
 									</div>

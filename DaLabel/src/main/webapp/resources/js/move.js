@@ -18,8 +18,9 @@ function wantResult(no) {
 			project_no : no
 		},
 		success : function(result) {
+			alert("정산을 시작합니다.")
 			if(result == "success") {
-				$("#getResult").style.display = "none"
+				$("#getResult").css("display", "none")
 			}
 		}
 	})
@@ -27,4 +28,8 @@ function wantResult(no) {
 
 function getAccessUser(project_no) {
 	window.open('manage.needlogin.labeling.user?project_no=' + project_no, 'pop', 'width=500, height=300')
+}
+
+function downResult(project_no) {
+	location.href = "download.needlogin.projectresult?project_no="+project_no;
 }

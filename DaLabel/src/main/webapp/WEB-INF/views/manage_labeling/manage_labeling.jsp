@@ -50,10 +50,10 @@
 										<c:if test="${p.project_progress == 49}">
 									진행 중
 								</c:if>
-										<c:if test="${p.project_progress == 51}">
+										<c:if test="${p.project_progress == 50}">
 									정산중
 								</c:if>
-										<c:if test="${p.project_progress == 52}">
+										<c:if test="${p.project_progress == 51}">
 									종료(정산됨)
 								</c:if>
 									</p>

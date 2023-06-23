@@ -11,7 +11,7 @@ create table databundle(
 	references member(user_id) on delete cascade
 )
 CREATE INDEX idx_bundle_upload ON databundle (bundle_uploader, bundle_uploaded_filename);
-
+delete databundle
 drop sequence databundle_seq
 create sequence databundle_seq
 
@@ -32,7 +32,7 @@ create table labeling_project (
 	constraint project_requestor2 foreign key (project_requestor)
 	references member(user_id) on delete cascade
 )
-
+delete labeling_project
 select * from LABELING_PROJECT
 
 select * from LABELING_DONE
@@ -58,6 +58,7 @@ create table data(
 	constraint data_where2 foreign key (data_where)
 )
 
+delete data
 update data set data_activation = '1' where data_where = '22'
 
 select * from data
@@ -80,6 +81,9 @@ create table labeling_do (
 	constraint want_labeling_pk primary key(dolabel_user, dolabel_project_no)
 )
 
+delete labeling_do
+select * from labeling_do
+
 create table labeling_done (
 	labeling_done_no number(8) primary key,
 	project_no number(8) not null,
@@ -91,6 +95,7 @@ create table labeling_done (
 	constraint done_worked_by foreign key (worked_by) 
 	references member(user_id) on delete cascade
 )
+delete REPORT
 
 create sequence labeling_done_seq
 
@@ -99,6 +104,10 @@ create table labeling_result (
 	data_no varchar2(58) not null,
 	label_result varchar2(300 char) not null
 )
+
+select * from labeling_result
+
+delete labeling_result cascade constraint purge
 
 select * from labeling_result
 
@@ -112,4 +121,7 @@ CREATE FUNCTION BOR(x IN NUMBER, y IN NUMBER) RETURN NUMBER AS
 BEGIN
 RETURN x + y - bitand(x,y);
 END;
+
+select * from REPORT
+select * from 
 

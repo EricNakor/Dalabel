@@ -16,6 +16,8 @@ create table board(
 		references member(user_id)s
 		on delete cascade );
 
+		delete board
+		
 create sequence board_seq start with 1 increment by 1;
 
 select * 
@@ -44,6 +46,8 @@ create table post_comment(
 	comment_delete number(1) not null
 );
 
+delete post_comment
+
 create table post_comment(
 	comment_id number(8) not null primary key,
 	inherit_post number(8) not null,
@@ -57,6 +61,7 @@ create table post_comment(
 		on delete cascade,
 	foreign key(comment_writer) references member(user_id)
 );
+
 
 select * from post_comment;
 
@@ -78,6 +83,8 @@ create table reply(
 	constraint c_r foreign key(inherit_comment) references post_comment(comment_id) on delete cascade,
 	foreign key(reply_writer) references member(user_id)
 );
+
+delete reply
 
 create sequence reply_seq;
 
@@ -113,6 +120,18 @@ create table comment_reply (
 		on delete cascade
 );
 
+delete comment_reply
+
 select * from COMMENT_REPLY;
 
 create sequence comment_reply_seq;
+
+
+
+select * 
+		from board
+		where (board_writer like 'z' or board_title like 'test') and board_category != 'notice'
+		
+select * from board where board_id=85
+
+select * from labeling_done

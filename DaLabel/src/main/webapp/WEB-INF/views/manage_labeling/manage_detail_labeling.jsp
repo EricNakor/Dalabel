@@ -27,49 +27,59 @@
 											type="text" id="name-bb79" value="${project.project_title }"
 											readonly class="u-border-none u-input u-input-rectangle">
 									</div>
-									<div class="member-info-form-group member-info-form-name">
-										<label for="name-bb79" class="u-label">참여권한</label><br> <input
-											type="hidden" value="${project.project_no }"
-											name="project_no"><input type="checkbox" value="1"
-											class="access" onchange="selectAll();">전체 <input
-											type="checkbox" value="2" class="access">숙련자 <input
-											type="checkbox" value="4" class="access">이메일 인증된 사람 <input
-											type="checkbox" value="8" class="access">요청 후 수락 <input
-											type="radio" value="0" class="access" name="andor">or
-										<input type="radio" value="16" class="access" name="andor">and
-										<input name="project_access_level" type="hidden"
-											id="project_access_level">
-									</div>
-									<div class="u-form-group u-form-message u-label-none">
-										<label for="message-3b9a" class="u-label">GuideLine</label>
-										<textarea placeholder="가이드라인" rows="50" cols="50"
-											name="project_guide" id="project_guide"
-											class="u-input u-input-rectangle">
+									<c:if test="${project.project_progress == 48 || project.project_progress == 49}">
+										<div class="member-info-form-group member-info-form-name">
+											<label for="name-bb79" class="u-label">참여권한</label><br>
+											<input type="hidden" value="${project.project_no }"
+												name="project_no"><input type="checkbox" value="1"
+												class="access" onchange="selectAll();">전체 <input
+												type="checkbox" value="2" class="access">숙련자 <input
+												type="checkbox" value="4" class="access">이메일 인증된 사람
+											<input type="checkbox" value="8" class="access">요청 후
+											수락 <input type="radio" value="0" class="access" name="andor">or
+											<input type="radio" value="16" class="access" name="andor">and
+											<input name="project_access_level" type="hidden"
+												id="project_access_level">
+										</div>
+										<div class="u-form-group u-form-message u-label-none">
+											<label for="message-3b9a" class="u-label">GuideLine</label>
+											<textarea placeholder="가이드라인" rows="50" cols="50"
+												name="project_guide" id="project_guide"
+												class="u-input u-input-rectangle">
 											${project.project_guide }
 										</textarea>
-										<script type="text/javascript">
+											<script type="text/javascript">
 											CKEDITOR.replace('project_guide', {
 											filebrowserUploadUrl : 'upload.do',
 											height: '400px'
 											});
 										</script>
-									</div>
-									<div
-										class="u-align-center member-info-form-group member-info-form-submit">
-										<button
-											style="background-color: #478ac9; color: #ffffff; margin-top: 1px; margin-bottom: 1px; padding: 10px 30px">수정</button>
-										<button type="button"
-											onclick="getAccessUser(${project.project_no});"
-											style="background-color: #478ac9; color: #ffffff; margin-top: 1px; margin-bottom: 1px; padding: 10px 30px">참가자
-											관리</button>
-										<c:if test="${project.project_progress == 49 }">
-											<button 
-											id="getResult"
-											type="button"
+										</div>
+										<div
+											class="u-align-center member-info-form-group member-info-form-submit">
+											<button
+												style="background-color: #478ac9; color: #ffffff; margin-top: 1px; margin-bottom: 1px; padding: 10px 30px">수정</button>
+											<button type="button"
+												onclick="getAccessUser(${project.project_no});"
+												style="background-color: #478ac9; color: #ffffff; margin-top: 1px; margin-bottom: 1px; padding: 10px 30px">참가자
+												관리</button>
+											<button id="getResult" type="button"
 												onclick="wantResult(${project.project_no});"
 												style="background-color: #478ac9; color: #ffffff; margin-top: 1px; margin-bottom: 1px; padding: 10px 30px">정산하기</button>
-										</c:if>
-									</div>
+										</div>
+									</c:if>
+									<c:if test="${project.project_progress == 50}">
+										<div class="u-form-group u-form-message u-label-none">
+											정산중입니다.
+										</div>
+									</c:if>
+									<c:if test="${project.project_progress == 51}">
+										<div class="u-form-group u-form-message u-label-none u-align-center">
+											<button type="button"
+											onclick="downResult(${project.project_no});"
+											style="background-color: #478ac9; color: #ffffff; margin-top: 1px; margin-bottom: 1px; padding: 10px 30px">정산 결과받기</button>
+										</div>
+									</c:if>
 								</form>
 							</div>
 						</div>

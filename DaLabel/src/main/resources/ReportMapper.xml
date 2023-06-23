@@ -13,13 +13,20 @@
 	<select id="getReportedData"
 		resultType="com.hiddenlayer.dalabel.report.Report">
 		<![CDATA[
-		select * from report
-			where report_project_no in (
-				select project_no
-				from labeling_project
-				where project_requestor=#{username} and project_bundle_no=#{project_no}
-			)
-			and report_no>#{report_no}
+
+	select report_no , report_by , report_content , report_data , report_project_no , report_date from
+	(
+		select report_no , report_by , report_content , report_data , report_project_no , report_date from report
+		where  report_project_no in (
+			select project_no
+			from labeling_project
+			where project_requestor=#{username} and project_bundle_no=#{project_no}
+		)
+		and report_no>#{report_no}
+	)
+	left join data
+	on data_where = #{project_no} and data_name = report_data
+	where data_activation=1
 		]]>
 	</select>
 
