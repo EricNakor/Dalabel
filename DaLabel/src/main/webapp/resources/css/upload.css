@@ -82,3 +82,45 @@
 	height: 100px;
 	vertical-align: middle;
 }
+
+#ssBtn {
+   background-color: white;
+   border-color: white;
+   border : solid 2px white;
+   outline: none;
+   border-radius: 5px 5px 5px 5px;
+}
+
+#ssBtn:hover {
+   background-color: #ADCCE9;
+}
+
+#getData {
+   background-color: #ADCCE9;
+   border-color: white;
+   border : solid 2px #ADCCE9;
+   outline: none;
+   border-radius: 5px 5px 5px 5px;
+   padding: 5px 10px;
+}
+
+#getData:hover {
+   background-color: white;
+}
+
+#reportedDataTable th{
+   background-color : #E9F2FA;
+   height : 40px;
+   text-align: center;
+   font-weight: bold;
+}
+
+#reportedDataTable img{
+   max-height: 200px;
+   max-width: auto;
+}
+
+#searchImg{
+   max-height: 400px;
+   max-width: auto;
+}
