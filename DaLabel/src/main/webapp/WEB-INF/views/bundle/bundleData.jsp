@@ -100,17 +100,23 @@
            success: function (datas) {
                if (datas.length > 0) {
                    console.log(datas);
-                   $("#reportedDataTable").append("<thead><tr><th>&nbsp;신고된 이미지&nbsp;</th><th>&nbsp;신고한 유저&nbsp;</th><th>&nbsp;신고 내용&nbsp;</th><th>&nbsp;신고 날짜&nbsp;</th></tr></thead>")
+                   $("#reportedDataTable").append("<thead><tr><th>&nbsp;이미지 번호&nbsp;</th><th>&nbsp;신고된 이미지&nbsp;</th><th>&nbsp;신고한 유저&nbsp;</th><th>&nbsp;신고 내용&nbsp;</th><th>&nbsp;신고 날짜&nbsp;</th></tr></thead>")
                   
                    $(datas).each((a, b) => {
                         let t = '${bundle.bundle_uploaded_filename }';
                         t = t.substring(0, t.length - 4);
+                        
+                        let str = b.report_data;
+                        let fileNo = str.substr(str.indexOf('_') + 1, 8);
+                        console.log(str.length)
+                        
                         let reportDate = new Date(b.report_date);
                         let yyyy = reportDate.getFullYear();
                         let mm = reportDate.getMonth() + 1;
                         let dd = reportDate.getDate();
                        
                         let newRow = $('<tr></tr>');
+                        newRow.append('<td class="u-border-2 u-border-no-left u-border-no-right u-border-palette-1-light-2 u-table-cell"><center>' + fileNo + '</center></td>');
                         newRow.append('<td class="u-border-2 u-border-no-left u-border-no-right u-border-palette-1-light-2 u-table-cell"><center><img src="resources/data/${sessionScope.loginUserID}/' + t + '/' + b.report_data + '"></center></td>');
                         newRow.append('<td class="u-border-2 u-border-no-left u-border-no-right u-border-palette-1-light-2 u-table-cell"><center>' + b.report_by + '</center></td>');
                         newRow.append('<td class="u-border-2 u-border-no-left u-border-no-right u-border-palette-1-light-2 u-table-cell"><center>' + b.report_content + '</center></td>');
