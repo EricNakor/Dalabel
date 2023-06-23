@@ -69,7 +69,7 @@
 									<div
 										class="u-align-center member-info-form-group member-info-form-submit">
 										<button
-											style="background-color: #478ac9; color: #ffffff; margin-top: 1px; margin-bottom: 1px; padding: 10px 30px";>수정하러
+											style="background-color: #478ac9; color: #ffffff; margin-top: 1px; margin-bottom: 1px; padding: 10px 30px;">수정하러
 											가기</button>
 									</div>
 								</form>

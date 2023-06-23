@@ -1,5 +1,9 @@
 package com.hiddenlayer.dalabel.manageLabeling;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -79,6 +83,23 @@ public class ManageLabelingDAO {
 		ss.getMapper(ManageLabelingMapper.class).changeUserAccess(ld); // 수락, 거부, 밴할 때 호출할 함수
 		if(ld.getDolabel_state().intValue()==3) {
 			ps.removeUserIDWithProjectNo(ld.getDolabel_user());
+		}
+	}
+	
+	public String getResult(HttpServletRequest req, int no) {
+		try {
+			URL url = new URL("http://192.168.0.186/labeling.result/" + no);
+			HttpURLConnection con = (HttpURLConnection) url.openConnection();
+			BufferedReader br = new BufferedReader(new InputStreamReader(con.getInputStream(), "utf-8"));
+			System.out.println(br.readLine());
+			if (br.readLine().equals("accepted")) {
+				// 프로젝트 상태 (대기중상태로)바꾸셈
+				return "success";
+			} else {
+				return "false";
+			}
+		} catch (Exception e) {
+			return null;
 		}
 	}
 }
