@@ -1,6 +1,6 @@
 
 function fileUpload(type) {
-	window.open(type, 'pop', 'width=500, height=300');
+	window.open(type, 'pop', 'width=500, height=500');
 }
 
 function checkFilevalidation() {
@@ -10,8 +10,8 @@ function checkFilevalidation() {
 function close_self(rtval) {
 	if (rtval.slice(-3, rtval.length) !== 'zip') {
 		opener.document.getElementById("profile").src = rtval
-	} else {
+	} else if (rtval.slice(-3, rtval.length) === 'zip') {
 		opener.location.href = "get.needlogin.my.bundle";
-	}
+	} 
 	window.open('', '_self').close();
 }

@@ -32,7 +32,6 @@
 
 							
 							<option value="3" ${mlu.dolabel_state=='3'?"selected":""}>밴
-
 							
 					</select>
 						<button>수정</button></td>

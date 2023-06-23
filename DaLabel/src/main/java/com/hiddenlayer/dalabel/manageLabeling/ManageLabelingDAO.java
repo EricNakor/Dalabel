@@ -80,17 +80,18 @@ public class ManageLabelingDAO {
 	// 정산시작하기
 	// 참여인원 관리 - 조회, 대기, 수락, 거부, 밴, (초대)
 	public void select(int no, HttpServletRequest req) {
+		System.out.println(no);
 		req.setAttribute("mlu", ss.getMapper(ManageLabelingMapper.class).selectLabelingUser(no)); // 모든 대기다 명단이 나옴
 	}
 
 //	
 	public void changeUserAccess(LabelDoList ld, HttpServletRequest req) {
 		ss.getMapper(ManageLabelingMapper.class).changeUserAccess(ld); // 수락, 거부, 밴할 때 호출할 함수
-		if(ld.getDolabel_state().intValue()==3) {
+		if (ld.getDolabel_state().intValue() == 3) {
 			ps.removeUserIDWithProjectNo(ld.getDolabel_user());
 		}
 	}
-	
+
 	public String getResult(HttpServletRequest req, int no) {
 		try {
 			URL url = new URL("http://192.168.0.186/labeling.result/" + no);
@@ -106,17 +107,20 @@ public class ManageLabelingDAO {
 		} catch (Exception e) {
 			return null;
 		}
+	}
+
 	public void downloadFile(HttpServletRequest req, int project_no, HttpServletResponse response) {
-		String userid = (String)req.getSession().getAttribute("loginUserID");
+		String userid = (String) req.getSession().getAttribute("loginUserID");
 		ArrayList<LabelingResult> results = ss.getMapper(ManageLabelingMapper.class).getResults(project_no, userid);
 		System.out.println(results.size());
 		OutputStream os = null;
-		response.setHeader("Content-Disposition", "attachment;filename=" + "result.csv"+ ";");
+		response.setHeader("Content-Disposition", "attachment;filename=" + "result.csv" + ";");
 
 		try {
 			os = response.getOutputStream();
 			for (LabelingResult labelingResult : results) {
-				os.write(String.format("%s,%s\n", labelingResult.getData_no(), labelingResult.getLabel_result()).getBytes());
+				os.write(String.format("%s,%s\n", labelingResult.getData_no(), labelingResult.getLabel_result())
+						.getBytes());
 			}
 			os.flush();
 			os.close();

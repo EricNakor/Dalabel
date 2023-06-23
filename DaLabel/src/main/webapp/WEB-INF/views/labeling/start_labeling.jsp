@@ -58,8 +58,7 @@
 					$(".problem").attr(
 							"src",
 							"resources/data/${projectDetailInfo.project_requestor}/${filePath}/"
-									+ nextData).css("width", "500px").css(
-							"height", "300px");
+									+ nextData).attr("id", "searchImg")
 				} else {
 				}
 			}
@@ -117,12 +116,12 @@
 						</tr>
 
 						<tr>
-							<td
+							<td align="center"
 								class="u-border-2 u-border-no-left u-border-no-right u-border-white u-table-cell"><img
 								class="problem" src="" alt="파일못찾음"></td>
 						</tr>
 						<tr>
-							<td  class="u-border-2 u-border-no-left u-border-no-right u-border-palette-1-light-2 u-table-cell"><div class="userInput"></div></td>
+							<td align="center" class="u-border-2 u-border-no-left u-border-no-right u-border-palette-1-light-2 u-table-cell"><div class="userInput"></div></td>
 						</tr>
 					</tbody>
 				</table>
