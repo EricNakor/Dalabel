@@ -63,8 +63,10 @@
 											style="background-color: #478ac9; color: #ffffff; margin-top: 1px; margin-bottom: 1px; padding: 10px 30px">참가자
 											관리</button>
 										<c:if test="${project.project_progress == 49 }">
-											<button type="button"
-												onclick="location.href='http://192.168.0.186/labeling.result/${project.project_no}'"
+											<button 
+											id="getResult"
+											type="button"
+												onclick="wantResult(${project.project_no});"
 												style="background-color: #478ac9; color: #ffffff; margin-top: 1px; margin-bottom: 1px; padding: 10px 30px">정산하기</button>
 										</c:if>
 									</div>

@@ -10,3 +10,17 @@ function submit() {
 	// 신고하기 서버 통신
 }
 
+function wantResult(no) {
+	$.ajax({
+		type : "get",
+		url : "want.needlogin.labeling.result",
+		data : {
+			project_no : no
+		},
+		success : function(result) {
+			if(result == "success") {
+				$("#getResult").style.display = "none"
+			}
+		}
+	})
+}

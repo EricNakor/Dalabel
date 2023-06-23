@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.hiddenlayer.dalabel.dolabeling.LabelDoList;
 
@@ -83,5 +84,8 @@ public class ManageLabelingController {
 	public void downloadProjectResult(HttpServletRequest req, @RequestParam(value="project_no")int project_no, HttpServletResponse res) {
 		mlDAO.downloadFile(req, project_no, res);
 
+	@RequestMapping(value = "/want.needlogin.labeling.result", method = RequestMethod.GET)
+	public @ResponseBody String getResult(HttpServletRequest req, @RequestParam(value = "project_no") int no) {
+		return mlDAO.getResult(req, no);
 	}
 }

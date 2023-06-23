@@ -11,6 +11,11 @@
 	<section class="u-align-center u-clearfix u-section-1" id="sec-30ba">
 		<div class="u-clearfix u-sheet u-sheet-1">
 			<div class="u-table u-table-responsive u-table-1">
+				<div class="u-align-right">
+					<button
+						style="background-color: #478ac9; color: #ffffff; margin-top: 1px; margin-bottom: 1px; padding: 10px 30px"
+						onclick="location.href='board.needlogin.post.write.go'">글쓰기</button>
+				</div>
 				<table class="u-table-entity u-table-entity-1">
 					<colgroup>
 						<col width="13.15%">
@@ -66,10 +71,6 @@
 							</tr>
 						</c:forEach>
 					</tbody>
-					<tr>
-						<td align="right" colspan="4" class="u-border-2 u-border-no-left u-border-no-right u-border-palette-1-light-2 u-table-cell"><a
-							href="board.needlogin.post.write.go">글쓰기</a></td>
-					</tr>
 					<tr>
 						<td align="center" colspan="4">
 							<form action="board.needlogin.search" name="boardSearchForm"

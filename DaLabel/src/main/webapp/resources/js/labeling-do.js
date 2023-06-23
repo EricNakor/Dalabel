@@ -23,6 +23,10 @@ function labeling_do_loads(x, y) {
                     flag = 2;
                 } else if (project2.dolabel_state == "4") {
                     project2.dolabel_state = "초대됨"
+                } else if (project2.dolabel_state == "2") {
+                	project2.dolabel_state = "거절됨"
+                } else if (project2.dolabel_state == "3") {
+                	project2.dolabel_state = "밴당함"
                 }
                 var titleTd = ($("<h5></h5>").attr("class", "u-align-left u-custom-font u-font-ubuntu u-text u-text-default manage-text-palette-1-base u-text-3 labeling-text-3").text(project2.project_title))
                 var requestorTd = ($("<p></p>").attr("class", "u-align-left u-text u-text-grey-40 u-text-4").attr("id", "labeling-progress").text("요청자 : " + project2.project_requestor).css("margin-bottom", 0))
@@ -79,6 +83,8 @@ function my_labeling_load(x, y) {
                 tbinf.append(pArea.text(myLabeling2.dolabel_user));
                 if (myLabeling2.dolabel_state == 0) {
                     tableArea.append(pArea.text("상태 : 수락대기중"));
+                } else if (myLabeling2.dolabel_state == 2 || myLabeling2.dolabel_state == 3) {
+                	tableArea.append(pArea.text("상태 : 참여불가"))
                 } else if (myLabeling2.dolabel_score != null) {
                     tableArea.append(pArea.text("스코어 : " + dolabel_score));
                 } else if (myLabeling2.dolabel_state == 1) {
