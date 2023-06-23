@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hiddenlayer.dalabel.report.ReportMapper">
+
+	<insert id="writeReport"
+		parameterType="com.hiddenlayer.dalabel.report.Report">
+		<![CDATA[
+		insert into report(report_no, report_by, report_content, report_data, report_project_no, report_date)
+		values(report_seq.nextval, #{report_by}, #{report_content}, #{report_data}, #{report_project_no}, sysdate)
+		]]>
+	</insert>
+
+	<select id="getReportedData"
+		resultType="com.hiddenlayer.dalabel.report.Report">
+		<![CDATA[
+
+	select report_no , report_by , report_content , report_data , report_project_no , report_date from
+	(
+		select report_no , report_by , report_content , report_data , report_project_no , report_date from report
+		where  report_project_no in (
+			select project_no
+			from labeling_project
+			where project_requestor=#{username} and project_bundle_no=#{project_no}
+		)
+		and report_no>#{report_no}
+	)
+	left join data
+	on data_where = #{project_no} and data_name = report_data
+	where data_activation=1
+		]]>
+	</select>
+
+</mapper>

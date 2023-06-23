@@ -8,4 +8,5 @@ public interface AccountMapper {
 	public abstract int changeMember(Member member);
 	public abstract int changeMemberIMG(Member member);
 	public abstract int deleteMember(Member member);
+	public abstract int checkId(String user_id);
 }

@@ -1,5 +1,6 @@
 package com.hiddenlayer.dalabel.member;
 
+import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -11,31 +12,17 @@ public class Member {
 	private String user_pw;
 	private Date user_birth;
 	private String user_img;
-	private int user_isdeleted;
 	private Date user_deleted_date;
+	private BigDecimal user_rating;
+	private BigDecimal user_credit;
 
 	public Member() {
+		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public int getUser_isdeleted() {
-		return user_isdeleted;
-	}
-
-	public void setUser_isdeleted(int user_isdeleted) {
-		this.user_isdeleted = user_isdeleted;
-	}
-
-	public Date getUser_deleted_date() {
-		return user_deleted_date;
-	}
-
-	public void setUser_deleted_date(Date user_deleted_date) {
-		this.user_deleted_date = user_deleted_date;
-	}
-
 	public Member(String user_id, String user_email, String user_name, String user_pw, Date user_birth, String user_img,
-			int user_isdeleted, Date user_deleted_date) {
+			Date user_deleted_date, BigDecimal user_rating, BigDecimal user_credit) {
 		super();
 		this.user_id = user_id;
 		this.user_email = user_email;
@@ -43,8 +30,9 @@ public class Member {
 		this.user_pw = user_pw;
 		this.user_birth = user_birth;
 		this.user_img = user_img;
-		this.user_isdeleted = user_isdeleted;
 		this.user_deleted_date = user_deleted_date;
+		this.user_rating = user_rating;
+		this.user_credit = user_credit;
 	}
 
 	public String getUser_id() {
@@ -93,6 +81,34 @@ public class Member {
 
 	public void setUser_img(String user_img) {
 		this.user_img = user_img;
+	}
+
+	public Date getUser_deleted_date() {
+		return user_deleted_date;
+	}
+
+	public void setUser_deleted_date(Date user_deleted_date) {
+		this.user_deleted_date = user_deleted_date;
+	}
+
+	public BigDecimal getUser_rating() {
+		return user_rating;
+	}
+
+	public void setUser_rating(BigDecimal user_rating) {
+		this.user_rating = user_rating;
+	}
+
+	public BigDecimal getUser_credit() {
+		return user_credit;
+	}
+
+	public void setUser_credit(BigDecimal user_credit) {
+		this.user_credit = user_credit;
+	}
+
+	public static SimpleDateFormat getSdf() {
+		return SDF;
 	}
 
 }

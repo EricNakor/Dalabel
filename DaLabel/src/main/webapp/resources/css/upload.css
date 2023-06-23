@@ -1,0 +1,161 @@
+@charset "UTF-8";
+
+.uploadTbl{
+	margin: auto;
+}
+
+.uploadTbl th {
+	padding : 18px;
+	font-size: 15pt;
+}
+
+.uploadTbl td {
+	padding: 5px;
+}
+
+.uploadTbl select {
+	font-size: 12pt;
+	width : 75%;
+	padding: 3px;
+	border : solid 1px black;
+	outline: none;
+	text-align:center;
+}
+
+.uploadTbl button {
+	background-color: #0080FF;
+	color : white;
+	border : solid 1px #0080FF;
+	outline : none;
+	font-size: 13pt;
+	padding : 3px;
+	width : 70%;
+}
+
+#noticeUpload {
+	color : red;
+}
+
+#uploadInput {
+	width : 75%;
+	border : solid 1px black;
+	outline : none;
+	padding : 2px;
+	text-align:center
+}
+
+.labelBtn {
+	background-color: #478ac9;
+	border-color: white;
+	border : solid 1px #478ac9;
+	outline: none;
+	border-radius: 5px 5px 5px 5px;
+	color: white;
+	padding: 5px 15px;
+	margin: 10px;
+}
+
+.labelBtn:hover {
+	background-color: white;
+	color : black;
+}
+
+ .reportBtn {
+ 	background-color: #0080FF;
+	border-color: white;
+	border : solid 1px #0080FF;
+	outline: none;
+	border-radius: 10px 10px 10px 10px;
+	color: white;
+	vertical-align: middle;
+	height: 100px;
+ }
+ 
+ .reportBtn:hover {
+	background-color: white;
+	color : black;
+}
+
+#reportTextArea {
+	resize: none;
+	width: 400px;
+	height: 100px;
+	vertical-align: middle;
+}
+
+#ssBtn {
+   background-color: white;
+   border-color: white;
+   border : solid 2px white;
+   outline: none;
+   border-radius: 5px 5px 5px 5px;
+}
+
+#ssBtn:hover {
+   background-color: #ADCCE9;
+}
+
+#getData {
+   background-color: #ADCCE9;
+   border-color: white;
+   border : solid 2px #ADCCE9;
+   outline: none;
+   border-radius: 5px 5px 5px 5px;
+   padding: 5px 10px;
+}
+
+#getData:hover {
+   background-color: white;
+}
+
+#reportedDataTable th{
+   background-color : #E9F2FA;
+   height : 40px;
+   text-align: center;
+   font-weight: bold;
+}
+
+#reportedDataTable img{
+   max-height: 200px;
+   max-width: auto;
+}
+
+#searchImg{
+   max-height: 400px;
+   max-width: auto;
+}
+
+.manageUser {
+	margin: auto;
+	width : 80%;
+	height : 80%;
+}
+
+.manageUser th {
+	background-color: #E9F2FA;
+	border: solid 2px white; 
+	padding : 15px;
+}
+
+.manageUser tr {
+	border-bottom: solid 2px #E9F2FA;
+}
+
+.selectLevel {
+	border: solid 1px #ADCCE9;
+	border-radius: 5px 5px 5px 5px;
+}
+
+.btn {
+ 	background-color: white;
+	border-color: white;
+	border : solid 1px #ADCCE9;
+	outline: none;
+	border-radius: 10px 10px 10px 10px;
+	color: black;
+ }
+ 
+.btn:hover {
+	background-color: #ADCCE9;
+	color : white;
+}

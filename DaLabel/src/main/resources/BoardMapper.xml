@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hiddenlayer.dalabel.board.BoardMapper">
+	<!-- 게시글 검색 -->
+	<select id="getPost"
+		resultType="com.hiddenlayer.dalabel.board.Board"
+		parameterType="com.hiddenlayer.dalabel.board.BoardSelector">	
+		<![CDATA[
+		select board_writer, board_id, board_category, board_title, board_regist
+		from(
+			select * from (
+				select rownum as rn, board_id, board_category, board_writer, board_title, board_regist
+				from (
+					select * 
+					from board
+					where board_writer like '%'||#{search}||'%' or board_title like '%'||#{search}||'%'
+					order by board_regist desc
+				)
+				where board_category != 'notice'
+			)
+			where rn >= #{start} and rn <= #{end}
+		)
+		]]>
+	</select>
+	
+	<select id="getCurNotice"
+		resultType="com.hiddenlayer.dalabel.board.Board"
+		parameterType="com.hiddenlayer.dalabel.board.BoardSelector">
+	<![CDATA[
+	select * 
+	from (
+		select * 
+		from board where board_category = 'notice' 
+		order by board_regist desc
+		) 
+	where ROWNUM <=5 
+	order by board_regist desc
+	]]>
+	</select>
+
+	<select id="getDetailBoard" parameterType="java.lang.Integer"
+		resultType="com.hiddenlayer.dalabel.board.Board">
+		<![CDATA[
+		select * from board
+		where board_id = #{board_id}
+		]]>
+	</select>
+
+	<!-- 게시글 카운트 -->
+	<select id="getPostCount"
+		parameterType="com.hiddenlayer.dalabel.board.BoardSelector"
+		resultType="java.lang.Integer">
+		<![CDATA[
+		select count(*) 
+		from board
+		where board_category != 'notice' and (board_writer like '%'||#{search}||'%' or board_title like '%'||#{search}||'%')
+		]]>
+	</select>
+
+	<!-- 게시글 작성 -->
+	<insert id="writePost"
+		parameterType="com.hiddenlayer.dalabel.board.Board">
+		<![CDATA[
+		insert into board(board_id, board_writer, board_category, board_title, board_content, board_delete, board_regist, board_edit)
+		values(board_seq.nextval, #{board_writer}, #{board_category}, #{board_title}, #{board_content}, 0, sysdate, sysdate)
+		]]>
+	</insert>
+	
+	<!-- 게시글 수정 -->
+	<update id="updatePost" parameterType="com.hiddenlayer.dalabel.board.Board">
+		<![CDATA[
+		update board set board_title = #{board_title}, board_content = #{board_content}, board_edit = sysdate
+		where board_id = #{board_id}
+		]]>
+	</update>
+
+	<!-- 게시글 삭제 -->
+	<delete id="deletePost" parameterType="java.math.BigDecimal">
+		<![CDATA[
+		delete from board where board_id = #{board_id}
+		]]>
+	</delete>
+
+	<!-- 탈퇴 회원 게시글 -->
+	<select id="getPostCountByUser"
+		parameterType="com.hiddenlayer.dalabel.member.Member"
+		resultType="java.lang.Integer">
+		<![CDATA[
+		select count(*) 
+		from board
+		where board_writer = #{board_writer}
+		]]>
+	</select>
+
+	<!-- 댓글 작성 -->
+	<insert id="writeComment"
+		parameterType="com.hiddenlayer.dalabel.board.BoardComment">
+		<![CDATA[
+		insert into post_comment
+		values(post_comment_seq.nextval, #{inherit_post}, #{comment_writer}, #{comment_content}, sysdate, sysdate, 0)
+		]]>
+	</insert>
+
+	<!-- 댓글 조회 -->
+	<select id="getComment"
+		resultType="com.hiddenlayer.dalabel.board.BoardComment">
+		<![CDATA[
+		select*
+		from post_comment
+		where inherit_post = #{board_id}
+		order by comment_regist
+		]]>
+	</select>
+	
+	<!-- 댓글 삭제 -->
+	<delete id="deleteComment">
+		<![CDATA[
+			delete from post_comment
+			where comment_id = #{comment_id}
+		]]>
+	</delete>
+	
+	<update id="updateComment" parameterType="com.hiddenlayer.dalabel.board.BoardComment">
+		<![CDATA[
+			update post_comment
+			set comment_content = #{comment_content}, comment_edit = sysdate
+			where comment_id = #{comment_id}
+		]]>
+	</update>
+	
+	
+	<!-- 대댓글 작성 -->
+	<insert id="writeReply" parameterType="com.hiddenlayer.dalabel.board.BoardReply">
+		<![CDATA[
+		insert into reply
+		values(reply_seq.nextval, #{inherit_post}, #{inherit_comment}, #{reply_writer}, #{reply_content}, sysdate, sysdate, 0)
+		]]>
+	</insert>
+	
+	<!-- 대댓글 조회 -->
+	<select id="getReply" resultType="com.hiddenlayer.dalabel.board.BoardReply">
+		<![CDATA[
+			select * from reply
+			where inherit_post = #{board_id}
+			order by reply_regist
+		]]>
+	</select>
+	
+	<delete id="deleteReply">
+		<![CDATA[
+			delete from reply
+			where reply_id = #{reply_id}
+		]]>
+	</delete>
+	
+	<update id="updateReply" parameterType="com.hiddenlayer.dalabel.board.BoardReply">
+		<![CDATA[
+			update reply
+			set reply_content = #{reply_content}, reply_edit = sysdate
+			where reply_id = #{reply_id}
+		]]>
+	</update>
+	
+	
+	
+</mapper>
