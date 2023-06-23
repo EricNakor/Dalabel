@@ -3,6 +3,7 @@ package com.hiddenlayer.dalabel.manageLabeling;
 import java.math.BigDecimal;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -79,10 +80,12 @@ public class ManageLabelingController {
 		req.setAttribute("contentPage", "manage_labeling/manage_labeling_user.jsp");
 		return "index";
 	}
+	@RequestMapping(value = "/download.needlogin.projectresult", method = RequestMethod.GET)
+	public void downloadProjectResult(HttpServletRequest req, @RequestParam(value="project_no")int project_no, HttpServletResponse res) {
+		mlDAO.downloadFile(req, project_no, res);
 
 	@RequestMapping(value = "/want.needlogin.labeling.result", method = RequestMethod.GET)
 	public @ResponseBody String getResult(HttpServletRequest req, @RequestParam(value = "project_no") int no) {
 		return mlDAO.getResult(req, no);
 	}
-	
 }

@@ -1,6 +1,6 @@
 
 function fileUpload(type) {
-	window.open(type, 'pop', 'width=500, height=500');
+	window.open(type, 'pop', 'width=500, height=300');
 }
 
 function checkFilevalidation() {
