@@ -4,12 +4,13 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="resources/css/upload.css" media="screen">
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body class="u-body u-xl-mode">
 	<%-- 멤버 라벨링 유저 --%>
-	<table>
+	<table class="manageUser">
 		<tr>
 			<th>유저명</th>
 			<th>현재상태</th>
@@ -18,7 +19,7 @@
 			<tr>
 				<td align="center">${mlu.dolabel_user}</td>
 				<form action="update.needlogin.user.access">
-					<td><input type="hidden" name="dolabel_user"
+					<td align="center"><input type="hidden" name="dolabel_user"
 						value="${mlu.dolabel_user }"> <input type="hidden"
 						name="dolabel_project_no" value="${mlu.dolabel_project_no }">
 						<select name="dolabel_state" class="selectLevel">
@@ -34,7 +35,7 @@
 							<option value="3" ${mlu.dolabel_state=='3'?"selected":""}>밴
 							
 					</select>
-						<button>수정</button></td>
+						<button class="btn">수정</button></td>
 				</form>
 			</tr>
 		</c:forEach>
